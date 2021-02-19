@@ -24,3 +24,5 @@ sudo apt install jflex
 ```bash
 jflex SMPLLexer.flex
 ```
+
+Find JFlex manual [here](https://jflex.de/manual.html).
