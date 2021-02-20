@@ -169,10 +169,10 @@ Here are a few ideas for extensions to _SMPL_ :
 
 <hr />
 
-<a id="footnote-1">1</a>: variable types are not explicitly specified by the programmer
+<a id="footnote-1"><sup>1</sup></a>Variable types are not explicitly specified by the programmer
 
-<a id="footnote-2">2</a>: procedure calls that are the final expressions in the calling procedure’s body return their values to the calling procedure’s caller
+<a id="footnote-2"><sup>2</sup></a>Procedure calls that are the final expressions in the calling procedure’s body return their values to the calling procedure’s caller
 
-<a id="footnote-3">3</a>: First class objects may be named, stored in data structures,passed as arguments and returned as values from procedures
+<a id="footnote-3"><sup>3</sup></a>First class objects may be named, stored in data structures, passed as arguments and returned as values from procedures
 
 &copy; Prof. Daniel Coore
