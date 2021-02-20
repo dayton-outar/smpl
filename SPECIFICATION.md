@@ -35,20 +35,22 @@ Table 1: Escaped codes for control characters in strings
 
 | Code | Character |
 | :--- | :--- |
-| sp | space |
-| tb | tab |
-| nl | newline |
-| cr | carriage return |
-| ff | form feed (or newpage) |
+| `sp` | space |
+| `tb` | tab |
+| `nl` | newline |
+| `cr` | carriage return |
+| `ff` | form feed (or newpage) |
 
 Table 2: Table of special character codes
 
 - String constants are denoted between double quotes `"`. Within a string, certain control characters can be denoted by an escape sequence. Table 1 lists the set of escape sequences that should be recognised within _SMPL_ strings.
-- Character literals are denoted as `#\` followed immediately by the character representation. For example, the character `a` is represented as `#\a`. Common special characters have two letter codes. Table 2 lists the codes for recognized specialcharacters. To accomodate the remaining characters, character literals may also be specified by their unicode representation given as four hexadecimal digits immediately following the `#\`. So the characteramay also be denoted as `#\0061`.
+- Character literals are denoted as `#\` followed immediately by the character representation. For example, the character `a` is represented as `#\a`. Common special characters have two letter codes. Table 2 lists the codes for recognized special characters. To accomodate the remaining characters, character literals may also be specified by their unicode representation given as four hexadecimal digits immediately following the `#\`. So the character `a` may also be denoted as `#\0061`.
 - The boolean constants _`true`_ and _`false`_ are denoted `#t` and `#f` respectively.
 - The empty list, called _`nil`_, is denoted by `#e`. An _SMPL_ list is actually a sequence of pairs that terminate with the empty list.
 
-_SMPL_ has two types of compound data: the vector and the pair. A vector is somewhat like an array, except that it is not constrained to hold only one typeof data. A pair contains two arbitrary objects. Table 3 describes the builtin functions availablefor manipulating compound data in _SMPL_. Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second (after it has been evaluated) must be a procedure that when given an index less than the size, returns the value to be stored at that positionin the subvector. The following examples should help to clarify the description. In them, assume that the value ofxhas previously been set to 5.
+_SMPL_ has two types of compound data: the vector and the pair. A vector is somewhat like an array, except that it is not constrained to hold only one typeof data. A pair contains two arbitrary objects. Table 3 describes the builtin functions availablefor manipulating compound data in _SMPL_.
+
+Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second (after it has been evaluated) must be a procedure that when given an index less than the size, returns the value to be stored at that position _in the subvector_. The following examples should help to clarify the description. In them, assume that the value of `x` has previously been set to 5.
 
 ```python
 [: 1,2,3 :]                                 ⇒ [1 2 3]
@@ -60,12 +62,12 @@ _SMPL_ has two types of compound data: the vector and the pair. A vector is some
 
 | Builtin | Explanation |
 | :--- | :--- |
-| **pair(**&#12296;e<sub>1</sub> ,e<sub>2</sub>&#12297;**)** | Create a pair containing the objects denoted by e<sub>1</sub> and e<sub>2</sub>. |
-| **1<sup>st</sup>(**&#12296;p&#12297;**)** | Return the first object in the pair _p_. |
-| **2<sup>nd</sup>(**&#12296;p&#12297;**)** | Return the second object in the pair _p_. |
-| **[:[**&#12296;e<sub>1</sub>&#12297;, &hellip;,&#12296;e<sub>n</sub>&#12297;**]:]** | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form<br/>&#12296;expr<sub>size</sub>&#12297; : &#12296;expr<sub>init</sub>&#12297; |
-| &#12296;expr<sub>vec</sub>&#12297;**[**&#12296;n&#12297;**]** | Return the <i>n<sup>th</sup></i> element of vector _vec_(indexed from 0).<br/>When on the LHS of an assignment, sets the <i>n<sup>th</sup></i> element to the RHS. |
-| **size(**&#12296;vec&#12297;**)** | Return the length of the vector _vec_. |
+| `pair(`&#12296;e<sub>1</sub> ,e<sub>2</sub>&#12297;`)` | Create a pair containing the objects denoted by e<sub>1</sub> and e<sub>2</sub>. |
+| `1st(`&#12296;p&#12297;`)` | Return the first object in the pair _p_. |
+| `2nd(`&#12296;p&#12297;`)` | Return the second object in the pair _p_. |
+| `[:[`&#12296;e<sub>1</sub>&#12297;, &hellip;,&#12296;e<sub>n</sub>&#12297;`]:]` | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form<br/>&#12296;expr<sub>size</sub>&#12297; : &#12296;expr<sub>init</sub>&#12297; |
+| &#12296;expr<sub>vec</sub>&#12297;`[`&#12296;n&#12297;`]` | Return the <i>n<sup>th</sup></i> element of vector _vec_(indexed from 0).<br/>When on the LHS of an assignment, sets the <i>n<sup>th</sup></i> element to the RHS. |
+| `size(`&#12296;vec&#12297;`)` | Return the length of the vector _vec_. |
 
 Table 3: Builtin expressions
 
