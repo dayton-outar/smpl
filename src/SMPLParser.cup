@@ -20,8 +20,8 @@ non terminal            expr_list;
 non terminal Integer    expr;      // used to store evaluated subexpressions
 
 /* Precedences */
-precedence left PLUS, MINUS;
 precedence left TIMES;
+precedence left PLUS, MINUS;
 
 /* The grammar rules */
 expr_list ::= expr_list expr:e SEMI         {: System.out.println(e);:}

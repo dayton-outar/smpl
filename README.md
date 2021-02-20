@@ -41,8 +41,8 @@ Compile all files
 javac -cp ../lib/java-cup-11b-runtime.jar:. *.java
 ```
 
-Run main
+Run main and pass text containing expression to it
 
 ```bash
-java -cp ../lib/java-cup-11b-runtime.jar:. Main
+java -cp ../lib/java-cup-11b-runtime.jar:. Main < bomdas.txt
 ```
