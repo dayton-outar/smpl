@@ -96,10 +96,10 @@ Here are some example procedures in SMPL.
 | hidi := hexpri | assign the value ofexprto variableid. |
 | if hexpri then hexpri<br />[else hexpri] | test predicate, evaluate then clause if non-false<br />otherwise evaluate else clause, if given. |
 | case {<br />[p 1 :c 1... pn:cn] }<br />hexpri : hexpri  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keywordelse, it is regarded as true. |
-| {... } | compound expression |
-| print(hexpri) | Print the value of the given expression. |
-| read() | Read and return a string from the keyboard. |
-| readint() | Read and return an integer from the keyboard. |
+| `{...}` | compound expression |
+| `print(&#12296;expr&#12297;)` | Print the value of the given expression. |
+| `read()` | Read and return a string from the keyboard. |
+| `readint()` | Read and return an integer from the keyboard. |
 | `//`<br />`/*... */` | comment to rest of line<br />block comment (nestable) |
 
 
