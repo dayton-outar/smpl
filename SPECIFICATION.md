@@ -86,7 +86,7 @@ _SMPL_ understands the following common binary operators:
 - Logical operators: `and`, `or`, `not`
 
 Operator precedence, from highest to lowest is as follows: `∼`	⇒ `∗`, `/`, `%` ⇒ `+`, `−` ⇒ `&`, `|` ⇒ `=`, `>`, `<`, `≤`, `≥`, `≠`	⇒ `not`	⇒ `and`	⇒ `or`
-In order to apply a unary minus to an expression, the combinedexpression must be surrounded by parentheses. So the negative of the variable `x` is expressed as `(- x)`, not  `- x`.
+In order to apply a unary minus to an expression, the combined expression must be surrounded by parentheses. So the negative of the variable `x` is expressed as `(- x)`, not  `- x`.
 
 <div align="right">
     <b><a href="#smpl-specification"">↥ To Top</a></b>
@@ -98,8 +98,8 @@ Here are some example procedures in _SMPL_.
 
 | Keyword | Purpose |
 | :--- | :--- |
-| **proc(**_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>**)** &#12296;_body_&#12297; | return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. |
-| **let(**_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>**)** &#12296;_body_&#12297; | evaluate _body_ in an environment extended by bindings _b_<sub><i>i</i></sub>.<br />The syntax of a binding is &#12296;_id_&#12297; be &#12296;_expr_&#12297;. |
+| `proc(`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)` &#12296;_body_&#12297; | return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. |
+| `let(`_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>`)` &#12296;_body_&#12297; | evaluate _body_ in an environment extended by bindings _b_<sub><i>i</i></sub>.<br />The syntax of a binding is &#12296;_id_&#12297; be &#12296;_expr_&#12297;. |
 | `def 〈id〉 〈expr〉` | define _id_ and set it to the value of _expr_ in the current environment. |
 | `〈id〉 := 〈expr〉` | assign the value of _expr_ to variable _id_. |
 | `if 〈expr〉 then 〈expr〉`<br />**[**`else 〈expr〉`**]** | test predicate, evaluate then clause if non-false<br />otherwise evaluate else clause, if given. |
@@ -154,11 +154,11 @@ Here are a few ideas for extensions to _SMPL_ :
 - arbitrary precision integer arithmetic. It would be good if _SMPL_ were not restricted to integers that could fit within the 32-bit two’s complement representation. These “big” integers could be represented by using multiple words of contiguous storage to store the bits of the number. Each of the primitive arithmetic operators would have to be redefined to accommodate these
     large numbers. However, the only difference the user should observe is that she is no longer restricted to small integers. (A good test case for this is tosee whether your extended language
     can compute the factorial of 1000.)
-- Floating point numbers. This might not be very difficult if thetarget language (or machine, in the case of an interpreter) already supports floating point numbers. In that case, the biggest
+- Floating point numbers. This might not be very difficult if the target language (or machine, in the case of an interpreter) already supports floating point numbers. In that case, the biggest
     issue is probably how best to implement the type conversion rules for arithmetic computations that mix integers and floating point numbers.
 - Variable numbers of arguments to procedures. Procedure declarations would allow a special parameter syntax to indicate that the procedure could be called with a variable number of
     arguments.
-- Static types. Type declarations could be permitted in _SMPL_ . In which case, compile-time type checking could then be performed to improve the run timeperformance of programs.
+- Static types. Type declarations could be permitted in _SMPL_. In which case, compile-time type checking could then be performed to improve the run timeperformance of programs.
 - Additional control structures. Typical looping constructs such as `for`, `repeat` and `while` in Pascal could be included in _SMPL_.
 - Macros. A limited form of language extension can be accomplished through the use of macros. It should not be too difficult to extend _SMPL_ to include macros that are declared and used in
     a similar way to procedures.
