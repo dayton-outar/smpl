@@ -1,6 +1,6 @@
 # SMPL Specification
 
-<div style="text-align:right">November 1, 2000</div>
+<p style="text-align:right">November 1, 2000</p>
 
 ## 1 Introduction
 
