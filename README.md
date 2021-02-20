@@ -33,6 +33,8 @@ Generate parser
 java -jar ../lib/java-cup-11b.jar -interface -parser SMPLParser SMPLParser.cup
 ```
 
+Find Java CUP LALR Parser Generator [here](http://www2.cs.tum.edu/projects/cup/index.php).
+
 Compile all files
 
 ```bash
