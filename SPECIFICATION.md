@@ -4,60 +4,46 @@
 
 ## 1 Introduction
 
-SMPL is a small, but expressive toy programming language. As the name suggests,smplis easy to
-learn but, as you will discover, it is quite powerful.
+SMPL is a small, but expressive toy programming language. As the name suggests, SMPL is easy to learn but, as you will discover, it is quite powerful.
 
-This document only partly specifiessmpl. Specifically, only the core subset ofsmplis described.
-There are a number of extensions and modifications that can bemade tosmpl, which you will get
-to experiment with at some point.
+This document only partly specifies SMPL . Specifically, only the core subset of SMPL is described. There are a number of extensions and modifications that can bemade to SMPL , which you will get to experiment with at some point.
 
-smplis dynamically typed<sup>1</sup> and tail-recursive<sup>2</sup>. Its procedures are first class objects^3. Allsmpl
-sentences are in fact expressions in the sense that they implicitly return values. Some expressions are
-permitted to return an “unspecified value” to indicate that the value is not useful; these expressions
-are essentially statements.
+SMPL is dynamically typed[^1] and tail-recursive[^2]. Its procedures are first class objects[^3]. All SMPL sentences are in fact expressions in the sense that they implicitly return values. Some expressions are permitted to return an “unspecified value” to indicate that the value is not useful; these expressions are essentially statements.
 
-SMPL has integers, the two boolean literals, characters, strings, pairs and vectors as primitive
-data types. Storage that is dynamically allocated is automatically recovered by a garbage collector.
-There are no explicit pointers, all references to compound data are automatically treated as pointers
-to the data. All parameters are passed using the “call-by-value” convention. Variables are statically
-scoped and may denote a value of any data type.
+SMPL has integers, the two boolean literals, characters, strings, pairs and vectors as primitive data types. Storage that is dynamically allocated is automatically recovered by a garbage collector. There are no explicit pointers, all references to compound data are automatically treated as pointers to the data. All parameters are passed using the “call-by-value” convention. Variables are statically scoped and may denote a value of any data type.
 
 ## 2 Syntax
 
-The syntax ofsmpluses infix notation, and all binary operators must be separated from their
-operands by at least one whitespace character. The whitespace characters are the usual ones:
-space, carriage return and tab characters. (Feel free to include other control characters such as
+The syntax of SMPL uses infix notation, and all binary operators must be separated from their operands by at least one whitespace character. The whitespace characters are the usual ones: space, carriage return and tab characters. (Feel free to include other control characters such as
 form feed and line feed if you wish).
 
 ### 2.1 Literals and Values
 
-smplcan denote the following types of literals:
+SMPL can denote the following types of literals:
 
 - Signed integers that can fit into 32-bit two’s complement representation, strings and characters. Integers are assumed to be in decimal, unless prefixed with#xor#bin which case they are in hexadecimal or binary, respectively.
 
-```
-Escape Sequence Character Denoted
-\\ backslash (\)
-\n newline
-\t tab
-```
-```
+| Escape Sequence | Character Denoted |
+| :--- | :--- |
+| `\\` | backslash (`\`) |
+| `\n` | newline |
+| `\t` | tab |
+
 Table 1: Escaped codes for control characters in strings
-```
-```
-Code Character
-sp space
-tb tab
-nl newline
-cr carriage return
-ff form feed (or newpage)
-```
-```
+
+| Code | Character |
+| :--- | :--- |
+| sp | space |
+| tb | tab |
+| nl | newline |
+| cr | carriage return |
+| ff | form feed (or newpage) |
+
 Table 2: Table of special character codes
-```
+
 - String constants are denoted between double quotes ("). Within a string, certain control
     characters can be denoted by an escape sequence. Table 1 lists the set of escape sequences
-    that should be recognised withinsmplstrings.
+    that should be recognised within SMPL strings.
 - Character literals are denoted as#\followed immediately by the character representation.
     For example, the characterais represented as#\a. Common special characters have two
     letter codes. Table 2 lists the codes for recognized specialcharacters. To accomodate the
@@ -65,12 +51,12 @@ Table 2: Table of special character codes
     given as four hexadecimal digits immediately following the#\. So the characteramay also
     be denoted as#\0061.
 - The boolean constantstrueandfalseare denoted#tand#frespectively.
-- The empty list, callednil, is denoted by#e. Ansmpllist is actually a sequence of pairs that
+- The empty list, callednil, is denoted by#e. An SMPL list is actually a sequence of pairs that
     terminate with the empty list.
 
 **SMPL** has two types of compound data: the vector and the pair. A vector is somewhat like an
 array, except that it is not constrained to hold only one typeof data. A pair contains two arbitrary
-objects. Table 3 describes the builtin functions availablefor manipulating compound data insmpl.
+objects. Table 3 describes the builtin functions availablefor manipulating compound data in SMPL .
 Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of
 disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified
 by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second
@@ -102,16 +88,16 @@ Table 3: Builtin expressions
 ```
 ### 2.2 Statements and Expressions
 
-Table 4 lists the keywords ofsmpland their purposes.
-Identifiers insmplmust contain at least one non-digit character, and may not begin with the
+Table 4 lists the keywords of SMPL and their purposes.
+Identifiers in SMPL must contain at least one non-digit character, and may not begin with the
 character#. Identifiers may not contain parentheses, brackets, braces, any of the quote characters,
-the comma, the colon nor any of the operator symbols. The following are all legalsmplidentifiers:
+the comma, the colon nor any of the operator symbols. The following are all legal SMPL identifiers:
 foo,bar1,1bar,ba1r,foo!,bar?,fo#o,foo.bar. The following are illegal identifiers: #bar, 12 ,
 (foo),{bar},[baz],foo,bar,foo:bar.
 Function calls are denoted by the function name followed immediately by a sequence of comma-
 separated argument expressions enclosed in parentheses. The following expressions are all legal
 function calls:f(a, b),g(),foo(a, b, c, d).
-smplunderstands the following common binary operators:
+SMPL understands the following common binary operators:
 
 - Arithmetic operators:+, -, *, /, %
 - Bitwise operators:&, |, ~
@@ -125,7 +111,7 @@ by parentheses. So the negative of the variablexis expressed as(- x), not- x.
 
 ## 3 Examples
 
-Here are some example procedures insmpl.
+Here are some example procedures in SMPL.
 
 
 Keyword Purpose
@@ -147,7 +133,7 @@ readint() Read and return an integer from the keyboard.
 /*... */ block comment (nestable)
 
 ```
-Table 4: Table ofsmplcommands
+Table 4: Table of SMPL commands
 ```
 ```
 fact := proc(n)
@@ -198,9 +184,9 @@ size(v2): proc(i) v2[i] :]
 
 ## 4 Extensions
 
-Here are a few ideas for extensions tosmpl:
+Here are a few ideas for extensions to SMPL :
 
-- arbitrary precision integer arithmetic. It would be good ifsmplwere not restricted to integers
+- arbitrary precision integer arithmetic. It would be good if SMPL were not restricted to integers
     that could fit within the 32-bit two’s complement representation. These “big” integers could
     be represented by using multiple words of contiguous storage to store the bits of the number.
     Each of the primitive arithmetic operators would have to be redefined to accommodate these
@@ -214,22 +200,22 @@ Here are a few ideas for extensions tosmpl:
 - Variable numbers of arguments to procedures. Procedure declarations would allow a special
     parameter syntax to indicate that the procedure could be called with a variable number of
     arguments.
-- Static types. Type declarations could be permitted insmpl. In which case, compile-time
+- Static types. Type declarations could be permitted in SMPL . In which case, compile-time
     type checking could then be performed to improve the run timeperformance of programs.
 - Additional control structures. Typical looping constructs such asfor,repeatandwhilein
-    Pascal could be included insmpl.
+    Pascal could be included in SMPL .
 - Macros. A limited form of language extension can be accomplished through the use of macros.
-    It should not be too difficult to extendsmplto include macros that are declared and used in
+    It should not be too difficult to extend SMPL to include macros that are declared and used in
     a similar way to procedures.
-- Call by: reference, lazy and name parameter passing conventions. At the momentsmpl
+- Call by: reference, lazy and name parameter passing conventions. At the moment SMPL 
     supports only call by value (CBV). It could be extended to allow procedure declarations that
     would support parameter passing by other conventions.
 
----
-(^1) variable types are not explicitly specified by the programmer
-(^2) procedure calls that are the final expressions in the calling procedure’s body return their values to the calling
+<hr />
+[^1]: variable types are not explicitly specified by the programmer
+[^2]: procedure calls that are the final expressions in the calling procedure’s body return their values to the calling
 procedure’s caller
-(^3) First class objects may be named, stored in data structures,passed as arguments and returned as values from
+[^3]: First class objects may be named, stored in data structures,passed as arguments and returned as values from
 procedures
----
+<hr />
 &copy; Prof. Daniel Coore
