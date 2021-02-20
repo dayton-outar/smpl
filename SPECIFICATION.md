@@ -91,7 +91,7 @@ Here are some example procedures in SMPL.
 | Keyword | Purpose |
 | :--- | :--- |
 | **proc(**_p_<sub>1</sub>, p<sub>2</sub>, &hellip;, p<sub>n</sub>**)** &#12296;_body_&#12297; | return a procedure ofnarguments with formal parameters _p_<sub><i>i</i></sub>. |
-| **let(**_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>**)** &#12296;_body_&#12297; | evaluate _body_ in an environment extended by bindings _b<sub><i>i</i></sub>.<br />The syntax of a binding is &#12296;_id_&#12297; be &#12296;_expr_&#12297;. |
+| **let(**_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>**)** &#12296;_body_&#12297; | evaluate _body_ in an environment extended by bindings _b_<sub><i>i</i></sub>.<br />The syntax of a binding is &#12296;_id_&#12297; be &#12296;_expr_&#12297;. |
 | def hidi hexpri | defineidand set it to the value ofexprin the current environment. |
 | hidi := hexpri | assign the value ofexprto variableid. |
 | if hexpri then hexpri<br />[else hexpri] | test predicate, evaluate then clause if non-false<br />otherwise evaluate else clause, if given. |
@@ -154,10 +154,11 @@ Here are a few ideas for extensions to SMPL :
     would support parameter passing by other conventions.
 
 <hr />
+
 [^1]: variable types are not explicitly specified by the programmer
-[^2]: procedure calls that are the final expressions in the calling procedure’s body return their values to the calling
-procedure’s caller
-[^3]: First class objects may be named, stored in data structures,passed as arguments and returned as values from
-procedures
-<hr />
+
+[^2]: procedure calls that are the final expressions in the calling procedure’s body return their values to the calling procedure’s caller
+
+[^3]: First class objects may be named, stored in data structures,passed as arguments and returned as values from procedures
+
 &copy; Prof. Daniel Coore
