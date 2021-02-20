@@ -30,5 +30,17 @@ Find JFlex manual [here](https://jflex.de/manual.html).
 Generate parser
 
 ```bash
-java -jar java-cup-11b.jar -interface -parser SMPLParser SMPLParser.cup
+java -jar ../lib/java-cup-11b.jar -interface -parser SMPLParser SMPLParser.cup
+```
+
+Compile all files
+
+```bash
+javac -cp ../lib/java-cup-11b-runtime.jar:. *.java
+```
+
+Run main
+
+```bash
+java -cp ../lib/java-cup-11b-runtime.jar:. Main
 ```

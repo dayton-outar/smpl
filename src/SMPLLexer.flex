@@ -49,22 +49,15 @@ alphanum = {alpha}|{num}
 
 %%
 
-/* keywords */
-<YYINITIAL> "abstract"           { return symbol(sym.ABSTRACT); }
-<YYINITIAL> "boolean"            { return symbol(sym.BOOLEAN); }
-<YYINITIAL> "break"              { return symbol(sym.BREAK); }
-
 <YYINITIAL> {
   /* identifiers */
-  {Identifier}                   { return symbol(sym.IDENTIFIER); }
+  /* {Identifier}                   { return symbol(sym.IDENTIFIER); } // TODO: Remove comments and reinstate */
 
   /* literals */
-  {DecIntegerLiteral}            { return symbol(sym.INTEGER_LITERAL); }
+  {DecIntegerLiteral}            { return symbol(sym.INTEGER); }
   \"                             { string.setLength(0); yybegin(STRING); }
 
   /* operators */
-  "="                            { return symbol(sym.ASSIGN); }
-  "=="                           { return symbol(sym.EQUAL); }
   "+"                            { return symbol(sym.PLUS); }
   "-"                            { return symbol(sym.MINUS); }
   "*"                            { return symbol(sym.TIMES); }
@@ -79,9 +72,11 @@ alphanum = {alpha}|{num}
 }
 
 <STRING> {
+  /* TODO: Remove comments and reinstate
   \"                             { yybegin(YYINITIAL);
                                    return symbol(sym.STRING_LITERAL,
                                    string.toString()); }
+  */
   [^\n\r\"\\]+                   { string.append( yytext() ); }
   \\t                            { string.append('\t'); }
   \\n                            { string.append('\n'); }

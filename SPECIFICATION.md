@@ -75,7 +75,7 @@ Table 2: Table of special character codes
 - The empty list, callednil, is denoted by#e. Ansmpllist is actually a sequence of pairs that
     terminate with the empty list.
 
-smplhas two types of compound data: the vector and the pair. A vector is somewhat like an
+**SMPL** has two types of compound data: the vector and the pair. A vector is somewhat like an
 array, except that it is not constrained to hold only one typeof data. A pair contains two arbitrary
 objects. Table 3 describes the builtin functions availablefor manipulating compound data insmpl.
 Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of
@@ -84,15 +84,16 @@ by two expressions: the first (after it has been evaluated) gives the size of th
 (after it has been evaluated) must be a procedure that when given an index less than the size,
 returns the value to be stored at that positionin the subvector. The following examples should
 help to clarify the description. In them, assume that the value ofxhas previously been set to 5.
+```
 [: 1,2,3 :] ⇒ [1 2 3]
 [: 1,2,x :] ⇒ [1 2 5]
 [: 5: proc(i) i :] ⇒ [0 1 2 3 4]
 [: 1, 3: proc(n) 2 * n, 3 :] ⇒ [1 0 2 4 3]
 [: 3: proc(n) 2 * n, 4: proc(n) 3 * n :] ⇒ [0 2 4 0 3 6 9]
-
-
 ```
+
 Builtin Explanation
+
 pair(he 1 ,e 2 i) Create a pair containing the objects denoted bye 1 ande 2.
 1st(hpi) Return the first object in the pairp.
 2nd(hpi) Return the second object in the pairp.
