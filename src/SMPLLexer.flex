@@ -6,7 +6,8 @@ import java_cup.runtime.*;
  */
 %%
 
-%class Lexer
+%class SMPLLexer
+%type java_cup.runtime.Symbol
 %unicode
 %cup
 %line
@@ -40,6 +41,10 @@ Identifier = [:jletter:] [:jletterdigit:]*
 
 DecIntegerLiteral = 0 | [1-9][0-9]*
 
+num = [0-9]+
+alpha = [A-Za-z_]
+alphanum = {alpha}|{num}
+
 %state STRING
 
 %%
@@ -58,9 +63,13 @@ DecIntegerLiteral = 0 | [1-9][0-9]*
   \"                             { string.setLength(0); yybegin(STRING); }
 
   /* operators */
-  "="                            { return symbol(sym.EQ); }
-  "=="                           { return symbol(sym.EQEQ); }
+  "="                            { return symbol(sym.ASSIGN); }
+  "=="                           { return symbol(sym.EQUAL); }
   "+"                            { return symbol(sym.PLUS); }
+  "-"                            { return symbol(sym.MINUS); }
+  "*"                            { return symbol(sym.TIMES); }
+  "("                            { return symbol(sym.LPAREN); }
+  ")"                            { return symbol(sym.RPAREN); }
 
   /* comments */
   {Comment}                      { /* ignore */ }
