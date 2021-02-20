@@ -90,12 +90,12 @@ Here are some example procedures in SMPL.
 
 | Keyword | Purpose |
 | :--- | :--- |
-| **proc(**_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>**)** &#12296;_body_&#12297; | return a procedure ofnarguments with formal parameters _p_<sub><i>i</i></sub>. |
+| **proc(**_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>**)** &#12296;_body_&#12297; | return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. |
 | **let(**_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>**)** &#12296;_body_&#12297; | evaluate _body_ in an environment extended by bindings _b_<sub><i>i</i></sub>.<br />The syntax of a binding is &#12296;_id_&#12297; be &#12296;_expr_&#12297;. |
-| def 〈id〉 〈expr〉 | define _id_ and set it to the value of _expr_ in the current environment. |
-| 〈id〉 := 〈expr〉 | assign the value of _expr_ to variable _id_. |
-| if 〈expr〉 then 〈expr〉<br />[else 〈expr〉] | test predicate, evaluate then clause if non-false<br />otherwise evaluate else clause, if given. |
-| case {<br />[_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>] }<br />〈expr〉 : 〈expr〉  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keywordelse, it is regarded as true. |
+| `def 〈id〉 〈expr〉` | define _id_ and set it to the value of _expr_ in the current environment. |
+| `〈id〉 := 〈expr〉` | assign the value of _expr_ to variable _id_. |
+| `if 〈expr〉 then 〈expr〉`<br />[`else 〈expr〉`] | test predicate, evaluate then clause if non-false<br />otherwise evaluate else clause, if given. |
+| `case {`<br />[_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>]`}`<br />`〈expr〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
 | `{...}` | compound expression |
 | `print(〈expr〉)` | Print the value of the given expression. |
 | `read()` | Read and return a string from the keyboard. |
