@@ -8,7 +8,7 @@ SMPL is a small, but expressive toy programming language. As the name suggests, 
 
 This document only partly specifies SMPL . Specifically, only the core subset of SMPL is described. There are a number of extensions and modifications that can bemade to SMPL , which you will get to experiment with at some point.
 
-SMPL is dynamically typed[^1] and tail-recursive[^2]. Its procedures are first class objects[^3]. All SMPL sentences are in fact expressions in the sense that they implicitly return values. Some expressions are permitted to return an “unspecified value” to indicate that the value is not useful; these expressions are essentially statements.
+SMPL is dynamically typed[^1](#footnote-1) and tail-recursive[^2](#footnote-2). Its procedures are first class objects[^3](#footnote-3). All SMPL sentences are in fact expressions in the sense that they implicitly return values. Some expressions are permitted to return an “unspecified value” to indicate that the value is not useful; these expressions are essentially statements.
 
 SMPL has integers, the two boolean literals, characters, strings, pairs and vectors as primitive data types. Storage that is dynamically allocated is automatically recovered by a garbage collector. There are no explicit pointers, all references to compound data are automatically treated as pointers to the data. All parameters are passed using the “call-by-value” convention. Variables are statically scoped and may denote a value of any data type.
 
@@ -155,10 +155,10 @@ Here are a few ideas for extensions to SMPL :
 
 <hr />
 
-[^1]: variable types are not explicitly specified by the programmer
+<a id="footnote-1">1</a>: variable types are not explicitly specified by the programmer
 
-[^2]: procedure calls that are the final expressions in the calling procedure’s body return their values to the calling procedure’s caller
+<a id="footnote-2">2</a>: procedure calls that are the final expressions in the calling procedure’s body return their values to the calling procedure’s caller
 
-[^3]: First class objects may be named, stored in data structures,passed as arguments and returned as values from procedures
+<a id="footnote-3">3</a>: First class objects may be named, stored in data structures,passed as arguments and returned as values from procedures
 
 &copy; Prof. Daniel Coore
