@@ -61,39 +61,28 @@ Table 2: Table of special character codes
 | **pair(**&#12296;e<sub>1</sub> ,e<sub>2</sub>&#12297;**)** | Create a pair containing the objects denoted by e<sub>1</sub> and e<sub>2</sub>. |
 | **1<sup>st</sup>(**&#12296;p&#12297;**)** | Return the first object in the pair _p_. |
 | **2<sup>nd</sup>(**&#12296;p&#12297;**)** | Return the second object in the pair _p_. |
-| **[:[**&#12296;e<sub>1</sub>&#12297;,&hellip;,&#12296;e<sub>n</sub>&#12297;**]:]** | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form |
+| **[:[**&#12296;e<sub>1</sub>&#12297;, &hellip;,&#12296;e<sub>n</sub>&#12297;**]:]** | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form<br/>&#12296;expr<sub>size</sub>&#12297; : &#12296;expr<sub>init</sub>&#12297; |
+| &#12296;expr<sub>vec</sub>&#12297;**[**&#12296;n&#12297;**]** | Return thenth element of vectorvec(indexed from 0).<br/>When on the LHS of an assignment, sets thenth element to the RHS. |
+| **size(**&#12296;vec&#12297;**)** | Return the length of the vector _vec_. |
 
-
-hexprsizei : hexpriniti.
-hexprveci[hni] Return thenth element of vectorvec(indexed from 0).
-When on the LHS of an assignment, sets thenth element to the RHS.
-size(hveci) Return the length of the vectorvec.
-```
-```
 Table 3: Builtin expressions
-```
+
 ### 2.2 Statements and Expressions
 
 Table 4 lists the keywords of SMPL and their purposes.
-Identifiers in SMPL must contain at least one non-digit character, and may not begin with the
-character#. Identifiers may not contain parentheses, brackets, braces, any of the quote characters,
-the comma, the colon nor any of the operator symbols. The following are all legal SMPL identifiers:
-foo,bar1,1bar,ba1r,foo!,bar?,fo#o,foo.bar. The following are illegal identifiers: #bar, 12 ,
-(foo),{bar},[baz],foo,bar,foo:bar.
-Function calls are denoted by the function name followed immediately by a sequence of comma-
-separated argument expressions enclosed in parentheses. The following expressions are all legal
-function calls:f(a, b),g(),foo(a, b, c, d).
+
+Identifiers in SMPL must contain at least one non-digit character, and may not begin with the character `#`. Identifiers may not contain parentheses, brackets, braces, any of the quote characters, the comma, the colon nor any of the operator symbols. The following are all legal SMPL identifiers: `foo`, `bar1`, `1bar`, `ba1r`, `foo!`, `bar?`, `fo#o`, `foo.bar`. The following are illegal identifiers: `#bar`, `12`, `(foo)`, `{bar}`, `[baz]`, `foo`, `bar`, `foo:bar`.
+
+Function calls are denoted by the function name followed immediately by a sequence of comma-separated argument expressions enclosed in parentheses. The following expressions are all legal function calls: `f(a, b)`, `g()`, `foo(a, b, c, d)`.
+
 SMPL understands the following common binary operators:
+- Arithmetic operators: `+`, `-`, `*`, `/`, `%`
+- Bitwise operators: `&`, `|`, `~`
+- Relational operators: `=`, `>`, `<`, `<=`, `>=`, `!=`
+- Logical operators: `and`, `or`, `not`
 
-- Arithmetic operators:+, -, *, /, %
-- Bitwise operators:&, |, ~
-- Relational operators:=, >, <, <=, >=, !=
-- Logical operators: and, or, not
-
-Operator precedence, from highest to lowest is as follows:∼≻ ∗, /,%≻+,− ≻&,| ≻=, >, <
-,≤,≥, 6 =≻not≻and≻or
-In order to apply a unary minus to an expression, the combinedexpression must be surrounded
-by parentheses. So the negative of the variablexis expressed as(- x), not- x.
+Operator precedence, from highest to lowest is as follows: `∼` ≻ `∗`, `/`, `%` ≻ `+`, `−` ≻ `&`, `|` ≻ `=`, `>`, `<`, `≤`, `≥`, `&ne;` ≻ `not` ≻`and`≻ `or`
+In order to apply a unary minus to an expression, the combinedexpression must be surrounded by parentheses. So the negative of the variable `x` is expressed as `(- x)`, not  `- x`.
 
 ## 3 Examples
 
