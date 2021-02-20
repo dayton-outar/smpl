@@ -2,6 +2,12 @@
 
 SMPL is a small, but expressive toy programming language. Credits to Prof. Daniel Coore for the [specification](./SPECIFICATION.md).
 
+## To-Do
+
+- [ ] Complete updating and formatting documentation. Conform to Github standards
+- [ ] Find entry point of Logo Lexer and Parser
+- [ ] Build SMPL according to specs
+
 ## Getting Started
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
