@@ -89,6 +89,7 @@ In order to apply a unary minus to an expression, the combinedexpression must be
 Here are some example procedures in SMPL.
 
 | Keyword | Purpose |
+| :--- | :--- |
 | proc(p 1 , p 2 ,... , pn)hbodyi | return a procedure ofnarguments with formal parameterspi. |
 
 let(b 1 , b 2 ,... , bn)hbodyi evaluatebodyin an environment extended by bindingsbi.
