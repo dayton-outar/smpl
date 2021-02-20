@@ -62,7 +62,7 @@ Table 2: Table of special character codes
 | **1<sup>st</sup>(**&#12296;p&#12297;**)** | Return the first object in the pair _p_. |
 | **2<sup>nd</sup>(**&#12296;p&#12297;**)** | Return the second object in the pair _p_. |
 | **[:[**&#12296;e<sub>1</sub>&#12297;, &hellip;,&#12296;e<sub>n</sub>&#12297;**]:]** | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form<br/>&#12296;expr<sub>size</sub>&#12297; : &#12296;expr<sub>init</sub>&#12297; |
-| &#12296;expr<sub>vec</sub>&#12297;**[**&#12296;n&#12297;**]** | Return thenth element of vectorvec(indexed from 0).<br/>When on the LHS of an assignment, sets thenth element to the RHS. |
+| &#12296;expr<sub>vec</sub>&#12297;**[**&#12296;n&#12297;**]** | Return the _n_th element of vectorvec(indexed from 0).<br/>When on the LHS of an assignment, sets thenth element to the RHS. |
 | **size(**&#12296;vec&#12297;**)** | Return the length of the vector _vec_. |
 
 Table 3: Builtin expressions
