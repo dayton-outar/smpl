@@ -48,7 +48,7 @@ Table 2: Table of special character codes
 
 **SMPL** has two types of compound data: the vector and the pair. A vector is somewhat like an array, except that it is not constrained to hold only one typeof data. A pair contains two arbitrary objects. Table 3 describes the builtin functions availablefor manipulating compound data in SMPL. Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second (after it has been evaluated) must be a procedure that when given an index less than the size, returns the value to be stored at that positionin the subvector. The following examples should help to clarify the description. In them, assume that the value ofxhas previously been set to 5.
 
-```
+```python
 [: 1,2,3 :]                                 ⇒ [1 2 3]
 [: 1,2,x :]                                 ⇒ [1 2 5]
 [: 5: proc(i) i :]                          ⇒ [0 1 2 3 4]
@@ -88,9 +88,9 @@ In order to apply a unary minus to an expression, the combinedexpression must be
 
 Here are some example procedures in SMPL.
 
+| Keyword | Purpose |
+| proc(p 1 , p 2 ,... , pn)hbodyi | return a procedure ofnarguments with formal parameterspi. |
 
-Keyword Purpose
-proc(p 1 , p 2 ,... , pn)hbodyi return a procedure ofnarguments with formal parameterspi.
 let(b 1 , b 2 ,... , bn)hbodyi evaluatebodyin an environment extended by bindingsbi.
 The syntax of a binding ishidibehexpri.
 def hidi hexpri defineidand set it to the value ofexprin the current environment.
@@ -107,83 +107,55 @@ readint() Read and return an integer from the keyboard.
 // comment to rest of line
 /*... */ block comment (nestable)
 
-```
+
 Table 4: Table of SMPL commands
-```
-```
+
+```python
 fact := proc(n)
-// return factorial n
-if n <= 1
-then 1
-else n * fact(n - 1)
-```
-```
+    // return factorial n
+    if n <= 1
+        then 1
+        else n * fact(n - 1)
+
 def fib proc(n)
-/* return the nth fibonacci
-number */
-if n <= 1
-then 1
-else fib(n - 1) + fib(n - 2)
-```
-```
+    /* return the nth fibonacci number */
+    if n <= 1
+        then 1
+        else fib(n - 1) + fib(n - 2)
+
 def map proc(f, list)
-/* return a new list, obtained
-by applying f to each element
-of list */
-```
-```
-if list = #e
-then #e
-else pair(f(1st(list)),
-map(f, 2nd(list)))
-```
-```
+    /* return a new list, obtained by applying f to each element of list */
+    if list = #e
+        then #e
+        else pair(f(1st(list)),
+            map(f, 2nd(list)))
+
 def vecMap proc(f, v)
-/* return a newly allocated vector
-obtained by applying f to each
-element of v. */
-```
-```
-[: size(v): proc(i) f(v[i]) :]
-```
-```
+    /* return a newly allocated vector obtained by applying f to each element of v. */
+    [: size(v): proc(i) f(v[i]) :]
+
+
 def vecAppend proc(v1, v2)
-/* return a newly allocated vector
-containing elements of v1 followed
-by elements of v2 */
-```
-```
-[: size(v1): proc(i) v1[i],
-size(v2): proc(i) v2[i] :]
+    /* return a newly allocated vector containing elements of v1 followed by elements of v2 */
+    [: size(v1): proc(i) v1[i], size(v2): proc(i) v2[i] :]
 ```
 
 ## 4 Extensions
 
 Here are a few ideas for extensions to SMPL :
 
-- arbitrary precision integer arithmetic. It would be good if SMPL were not restricted to integers
-    that could fit within the 32-bit two’s complement representation. These “big” integers could
-    be represented by using multiple words of contiguous storage to store the bits of the number.
-    Each of the primitive arithmetic operators would have to be redefined to accommodate these
-    large numbers. However, the only difference the user should observe is that she is no longer
-    restricted to small integers. (A good test case for this is tosee whether your extended language
+- arbitrary precision integer arithmetic. It would be good if SMPL were not restricted to integers that could fit within the 32-bit two’s complement representation. These “big” integers could be represented by using multiple words of contiguous storage to store the bits of the number. Each of the primitive arithmetic operators would have to be redefined to accommodate these
+    large numbers. However, the only difference the user should observe is that she is no longer restricted to small integers. (A good test case for this is tosee whether your extended language
     can compute the factorial of 1000.)
-- Floating point numbers. This might not be very difficult if thetarget language (or machine, in
-    the case of an interpreter) already supports floating point numbers. In that case, the biggest
-    issue is probably how best to implement the type conversion rules for arithmetic computations
-    that mix integers and floating point numbers.
-- Variable numbers of arguments to procedures. Procedure declarations would allow a special
-    parameter syntax to indicate that the procedure could be called with a variable number of
+- Floating point numbers. This might not be very difficult if thetarget language (or machine, in the case of an interpreter) already supports floating point numbers. In that case, the biggest
+    issue is probably how best to implement the type conversion rules for arithmetic computations that mix integers and floating point numbers.
+- Variable numbers of arguments to procedures. Procedure declarations would allow a special parameter syntax to indicate that the procedure could be called with a variable number of
     arguments.
-- Static types. Type declarations could be permitted in SMPL . In which case, compile-time
-    type checking could then be performed to improve the run timeperformance of programs.
-- Additional control structures. Typical looping constructs such asfor,repeatandwhilein
-    Pascal could be included in SMPL .
-- Macros. A limited form of language extension can be accomplished through the use of macros.
-    It should not be too difficult to extend SMPL to include macros that are declared and used in
+- Static types. Type declarations could be permitted in SMPL . In which case, compile-time type checking could then be performed to improve the run timeperformance of programs.
+- Additional control structures. Typical looping constructs such as `for`, `repeat` and `while` in Pascal could be included in SMPL.
+- Macros. A limited form of language extension can be accomplished through the use of macros. It should not be too difficult to extend SMPL to include macros that are declared and used in
     a similar way to procedures.
-- Call by: reference, lazy and name parameter passing conventions. At the moment SMPL 
-    supports only call by value (CBV). It could be extended to allow procedure declarations that
+- Call by: reference, lazy and name parameter passing conventions. At the moment SMPL supports only call by value (CBV). It could be extended to allow procedure declarations that
     would support parameter passing by other conventions.
 
 <hr />
