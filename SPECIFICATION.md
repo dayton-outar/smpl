@@ -81,7 +81,7 @@ SMPL understands the following common binary operators:
 - Relational operators: `=`, `>`, `<`, `<=`, `>=`, `!=`
 - Logical operators: `and`, `or`, `not`
 
-Operator precedence, from highest to lowest is as follows: `∼` 	&#10145; `∗`, `/`, `%` 	&#10145; `+`, `−` 	&#10145; `&`, `|` 	&#10145; `=`, `>`, `<`, `≤`, `≥`, `&#8800;`	&#10145; `not`	&#10145; `and`	&#10145; `or`
+Operator precedence, from highest to lowest is as follows: `∼` 	→ `∗`, `/`, `%` 	→ `+`, `−` 	→ `&`, `|` 	→ `=`, `>`, `<`, `≤`, `≥`, `≠`	→ `not`	→ `and`	→ `or`
 In order to apply a unary minus to an expression, the combinedexpression must be surrounded by parentheses. So the negative of the variable `x` is expressed as `(- x)`, not  `- x`.
 
 ## 3 Examples
@@ -90,7 +90,7 @@ Here are some example procedures in SMPL.
 
 | Keyword | Purpose |
 | :--- | :--- |
-| **proc(**_p_<sub>1</sub>, p<sub>2</sub>, &hellip;, p<sub>n</sub>**)** &#12296;_body_&#12297; | return a procedure ofnarguments with formal parameters _p_<sub><i>i</i></sub>. |
+| **proc(**_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>**)** &#12296;_body_&#12297; | return a procedure ofnarguments with formal parameters _p_<sub><i>i</i></sub>. |
 | **let(**_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>**)** &#12296;_body_&#12297; | evaluate _body_ in an environment extended by bindings _b_<sub><i>i</i></sub>.<br />The syntax of a binding is &#12296;_id_&#12297; be &#12296;_expr_&#12297;. |
 | def hidi hexpri | defineidand set it to the value ofexprin the current environment. |
 | hidi := hexpri | assign the value ofexprto variableid. |
