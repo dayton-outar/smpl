@@ -1,12 +1,14 @@
 # _SMPL_ Specification
 
-November 1, 2000
+<div align="right">
+    <p>November 1, 2000</p>
+</div>
 
 ## 1 Introduction
 
 _SMPL_ is a small, but expressive toy programming language. As the name suggests, _SMPL_ is easy to learn but, as you will discover, it is quite powerful.
 
-This document only partly specifies _SMPL_ . Specifically, only the core subset of _SMPL_ is described. There are a number of extensions and modifications that can bemade to _SMPL_ , which you will get to experiment with at some point.
+This document only partly specifies _SMPL_. Specifically, only the core subset of _SMPL_ is described. There are a number of extensions and modifications that can be made to _SMPL_ , which you will get to experiment with at some point.
 
 _SMPL_ is dynamically typed<sup><a href="#footnote-1">1</a></sup> and tail-recursive<sup><a href="#footnote-2">2</a></sup>. Its procedures are first class objects<sup><a href="#footnote-3">3</a></sup>. All _SMPL_ sentences are in fact expressions in the sense that they implicitly return values. Some expressions are permitted to return an “unspecified value” to indicate that the value is not useful; these expressions are essentially statements.
 
@@ -84,6 +86,10 @@ _SMPL_ understands the following common binary operators:
 Operator precedence, from highest to lowest is as follows: `∼`	⇒ `∗`, `/`, `%` ⇒ `+`, `−` ⇒ `&`, `|` ⇒ `=`, `>`, `<`, `≤`, `≥`, `≠`	⇒ `not`	⇒ `and`	⇒ `or`
 In order to apply a unary minus to an expression, the combinedexpression must be surrounded by parentheses. So the negative of the variable `x` is expressed as `(- x)`, not  `- x`.
 
+<div align="right">
+    <b><a href="#smpl-specification"">↥ To Top</a></b>
+</div>
+
 ## 3 Examples
 
 Here are some example procedures in _SMPL_.
@@ -135,6 +141,10 @@ def vecAppend proc(v1, v2)
     [: size(v1): proc(i) v1[i], size(v2): proc(i) v2[i] :]
 ```
 
+<div align="right">
+    <b><a href="#smpl-specification"">↥ To Top</a></b>
+</div>
+
 ## 4 Extensions
 
 Here are a few ideas for extensions to _SMPL_ :
@@ -152,6 +162,10 @@ Here are a few ideas for extensions to _SMPL_ :
     a similar way to procedures.
 - Call by: reference, lazy and name parameter passing conventions. At the moment _SMPL_ supports only call by value (CBV). It could be extended to allow procedure declarations that
     would support parameter passing by other conventions.
+
+<div align="right">
+    <b><a href="#smpl-specification"">↥ To Top</a></b>
+</div>
 
 <hr />
 
