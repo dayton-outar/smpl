@@ -1,6 +1,6 @@
 # SMPL Specification
 
-### November 1, 2000
+<div style="text-align:right">November 1, 2000</div>
 
 ## 1 Introduction
 
@@ -34,13 +34,6 @@ form feed and line feed if you wish).
 smplcan denote the following types of literals:
 
 - Signed integers that can fit into 32-bit two’s complement representation, strings and characters. Integers are assumed to be in decimal, unless prefixed with#xor#bin which case they are in hexadecimal or binary, respectively.
-
-(^1) variable types are not explicitly specified by the programmer
-(^2) procedure calls that are the final expressions in the calling procedure’s body return their values to the calling
-procedure’s caller
-(^3) First class objects may be named, stored in data structures,passed as arguments and returned as values from
-procedures
-
 
 ```
 Escape Sequence Character Denoted
@@ -232,4 +225,11 @@ Here are a few ideas for extensions tosmpl:
     supports only call by value (CBV). It could be extended to allow procedure declarations that
     would support parameter passing by other conventions.
 
+---
+(^1) variable types are not explicitly specified by the programmer
+(^2) procedure calls that are the final expressions in the calling procedure’s body return their values to the calling
+procedure’s caller
+(^3) First class objects may be named, stored in data structures,passed as arguments and returned as values from
+procedures
+---
 &copy; Prof. Daniel Coore
