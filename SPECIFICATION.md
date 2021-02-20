@@ -81,7 +81,7 @@ SMPL understands the following common binary operators:
 - Relational operators: `=`, `>`, `<`, `<=`, `>=`, `!=`
 - Logical operators: `and`, `or`, `not`
 
-Operator precedence, from highest to lowest is as follows: `∼` ≻ `∗`, `/`, `%` ≻ `+`, `−` ≻ `&`, `|` ≻ `=`, `>`, `<`, `≤`, `≥`, `&ne;` ≻ `not` ≻`and`≻ `or`
+Operator precedence, from highest to lowest is as follows: `∼` 	&#10145; `∗`, `/`, `%` 	&#10145; `+`, `−` 	&#10145; `&`, `|` 	&#10145; `=`, `>`, `<`, `≤`, `≥`, `&ne;`	&#10145; `not`	&#10145; `and`	&#10145; `or`
 In order to apply a unary minus to an expression, the combinedexpression must be surrounded by parentheses. So the negative of the variable `x` is expressed as `(- x)`, not  `- x`.
 
 ## 3 Examples
