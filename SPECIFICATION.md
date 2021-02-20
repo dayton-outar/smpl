@@ -21,7 +21,7 @@ form feed and line feed if you wish).
 
 SMPL can denote the following types of literals:
 
-- Signed integers that can fit into 32-bit two’s complement representation, strings and characters. Integers are assumed to be in decimal, unless prefixed with#xor#bin which case they are in hexadecimal or binary, respectively.
+- Signed integers that can fit into 32-bit two’s complement representation, strings and characters. Integers are assumed to be in decimal, unless prefixed with `#x` or `#b` in which case they are in hexadecimal or binary, respectively.
 
 | Escape Sequence | Character Denoted |
 | :--- | :--- |
@@ -49,20 +49,21 @@ Table 2: Table of special character codes
 **SMPL** has two types of compound data: the vector and the pair. A vector is somewhat like an array, except that it is not constrained to hold only one typeof data. A pair contains two arbitrary objects. Table 3 describes the builtin functions availablefor manipulating compound data in SMPL. Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second (after it has been evaluated) must be a procedure that when given an index less than the size, returns the value to be stored at that positionin the subvector. The following examples should help to clarify the description. In them, assume that the value ofxhas previously been set to 5.
 
 ```
-[: 1,2,3 :] ⇒ [1 2 3]
-[: 1,2,x :] ⇒ [1 2 5]
-[: 5: proc(i) i :] ⇒ [0 1 2 3 4]
-[: 1, 3: proc(n) 2 * n, 3 :] ⇒ [1 0 2 4 3]
-[: 3: proc(n) 2 * n, 4: proc(n) 3 * n :] ⇒ [0 2 4 0 3 6 9]
+[: 1,2,3 :]                                 ⇒ [1 2 3]
+[: 1,2,x :]                                 ⇒ [1 2 5]
+[: 5: proc(i) i :]                          ⇒ [0 1 2 3 4]
+[: 1, 3: proc(n) 2 * n, 3 :]                ⇒ [1 0 2 4 3]
+[: 3: proc(n) 2 * n, 4: proc(n) 3 * n :]    ⇒ [0 2 4 0 3 6 9]
 ```
 
-Builtin Explanation
+| Builtin | Explanation |
+| :--- | :--- |
+| **pair(**&#12296;e<sub>1</sub> ,e<sub>2</sub>&#12297;**)** | Create a pair containing the objects denoted by e<sub>1</sub> and e<sub>2</sub>. |
+| **1<sup>st</sup>(**&#12296;p&#12297;**)** | Return the first object in the pair _p_. |
+| **2<sup>nd</sup>(**&#12296;p&#12297;**)** | Return the second object in the pair _p_. |
+| **[:[**&#12296;e<sub>1</sub>&#12297;,&hellip;,&#12296;e<sub>n</sub>&#12297;**]:]** | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form |
 
-pair(he 1 ,e 2 i) Create a pair containing the objects denoted bye 1 ande 2.
-1st(hpi) Return the first object in the pairp.
-2nd(hpi) Return the second object in the pairp.
-[:[he 1 i,.. .,heni] :] Return a newly allocated vector initialised with the given specifications.
-Each specification is either an expression or of the form
+
 hexprsizei : hexpriniti.
 hexprveci[hni] Return thenth element of vectorvec(indexed from 0).
 When on the LHS of an assignment, sets thenth element to the RHS.
