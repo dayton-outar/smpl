@@ -19,9 +19,9 @@ terminal Integer    INTEGER;        // our scanner provides numbers as integers
 non terminal            expr_list;
 non terminal Integer    expr;      // used to store evaluated subexpressions
 
-/* Precedences */
-precedence left TIMES;
+/* Precedences. Highest precedence is at the bottom. */
 precedence left PLUS, MINUS;
+precedence left TIMES;
 
 /* The grammar rules */
 expr_list ::= expr_list expr:e SEMI         {: System.out.println(e);:}
