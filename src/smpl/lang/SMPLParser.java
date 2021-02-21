@@ -117,9 +117,11 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
     {
 
     // Create a lexer that reads from specified input stream
-    if (in == null)
+    if (in == null) {
 		in = System.in;
-	lexer = new SMPLLexer(new InputStreamReader(in));
+		lexer = new SMPLLexer( new InputStreamReader(in) );
+	}
+	setScanner( lexer );
 
     }
 
@@ -129,7 +131,7 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
     {
 
 	try {
-		return lexer.next_token();
+		return getScanner().next_token();
 	} catch (java.io.IOException ioe) {
 		System.out.println ("Unrecognised token");
 		System.out.println(ioe.getMessage());
@@ -139,16 +141,12 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
     }
 
 
-    SMPLLexer lexer;
-
+	SMPLLexer lexer;
 	InputStream in = null;
 
 	public SMPLParser(String file) throws FileNotFoundException {
 	    in = new FileInputStream(file);
-	}
-
-	public SMPLParser(InputStream is) {
-	    in = is;
+		lexer = new SMPLLexer(new InputStreamReader(in));
 	}
 
 	public void report_error(String message, Object info) {
@@ -161,7 +159,8 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
 		report_error("Syntax error while reading: ", cur_token);
 		System.err.println ("Last token read is " +
 					        lexer.getText());
-	}        
+	}
+
 
 
 /** Cup generated class to encapsulate user supplied action code.*/

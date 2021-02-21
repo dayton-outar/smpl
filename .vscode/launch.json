@@ -15,14 +15,14 @@
             "name": "Launch App",
             "request": "launch",
             "mainClass": "App",
-            "projectName": "smpl_a65f9bd"
+            "projectName": "smpl"
         },
         {
             "type": "java",
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "Main",
-            "projectName": "smpl_a65f9bd"
+            "projectName": "smpl"
         }
     ]
 }

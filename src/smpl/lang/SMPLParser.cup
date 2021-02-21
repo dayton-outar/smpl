@@ -4,16 +4,12 @@ import java_cup.runtime.*;
 import java.io.*;
 
 parser code {:
-    SMPLLexer lexer;
-
+	SMPLLexer lexer;
 	InputStream in = null;
 
 	public SMPLParser(String file) throws FileNotFoundException {
 	    in = new FileInputStream(file);
-	}
-
-	public SMPLParser(InputStream is) {
-	    in = is;
+		lexer = new SMPLLexer(new InputStreamReader(in));
 	}
 
 	public void report_error(String message, Object info) {
@@ -26,19 +22,22 @@ parser code {:
 		report_error("Syntax error while reading: ", cur_token);
 		System.err.println ("Last token read is " +
 					        lexer.getText());
-	}        
+	}
+
 :};
 
 init with {:
     // Create a lexer that reads from specified input stream
-    if (in == null)
+    if (in == null) {
 		in = System.in;
-	lexer = new SMPLLexer(new InputStreamReader(in));
+		lexer = new SMPLLexer( new InputStreamReader(in) );
+	}
+	setScanner( lexer );
 :};
 
 scan with {:
 	try {
-		return lexer.next_token();
+		return getScanner().next_token();
 	} catch (java.io.IOException ioe) {
 		System.out.println ("Unrecognised token");
 		System.out.println(ioe.getMessage());
