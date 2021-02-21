@@ -15,14 +15,8 @@
             "name": "Launch App",
             "request": "launch",
             "mainClass": "App",
-            "projectName": "smpl"
-        },
-        {
-            "type": "java",
-            "name": "Launch Main",
-            "request": "launch",
-            "mainClass": "Main",
-            "projectName": "smpl"
+            "projectName": "smpl_a65f9bd",
+            "args": "/home/dayton/Documents/Projects/smpl/src/bomdas.txt"
         }
     ]
 }
