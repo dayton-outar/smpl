@@ -1,0 +1,72 @@
+package smpl.lang;
+
+import java_cup.runtime.*;
+import java.io.*;
+
+parser code {:
+    SMPLLexer lexer;
+
+	InputStream in = null;
+
+	public SMPLParser(String file) throws FileNotFoundException {
+	    in = new FileInputStream(file);
+	}
+
+	public SMPLParser(InputStream is) {
+	    in = is;
+	}
+
+	public void report_error(String message, Object info) {
+	    System.err.println(message + info);
+	}
+
+	public void syntax_error(Symbol cur_token) {
+		System.err.print("Line " + lexer.getLine() +
+				         " near char " + lexer.getChar() + ": ");
+		report_error("Syntax error while reading: ", cur_token);
+		System.err.println ("Last token read is " +
+					        lexer.getText());
+	}        
+:};
+
+init with {:
+    // Create a lexer that reads from specified input stream
+    if (in == null)
+		in = System.in;
+	lexer = new SMPLLexer(new InputStreamReader(in));
+:};
+
+scan with {:
+	try {
+		return lexer.next_token();
+	} catch (java.io.IOException ioe) {
+		System.out.println ("Unrecognised token");
+		System.out.println(ioe.getMessage());
+		throw ioe;
+	}
+:};
+
+/* Terminals (tokens returned by the scanner). */
+terminal            SEMI, PLUS, MINUS, TIMES, LPAREN, RPAREN;
+terminal String		IDENTIFIER;
+terminal Integer    INTEGER;        // our scanner provides numbers as integers
+
+/* Non terminals */
+non terminal            expr_list;
+non terminal Integer    expr;      // used to store evaluated subexpressions
+
+/* Precedences. Highest precedence is at the bottom. */
+precedence left PLUS, MINUS;
+precedence left TIMES;
+
+/* Grammar rules */
+expr_list ::= expr_list expr:e SEMI         {: System.out.println(e);:}
+            | expr:e SEMI                   {: System.out.println(e);:}
+;
+expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1+e2;       :}
+             | expr:e1 MINUS expr:e2        {: RESULT = e1-e2;       :}
+             | expr:e1 TIMES expr:e2        {: RESULT = e1*e2;       :}
+             | MINUS expr:e                 {: RESULT = -e;          :}
+             | LPAREN expr:e RPAREN	        {: RESULT = e;           :}
+             | INTEGER:n	                {: RESULT = n;           :}
+             ;
