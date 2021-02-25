@@ -1,4 +1,4 @@
-# _SMPL_ Specification
+# SMPL Specification
 
 <div align="right">
     <p>November 1, 2000</p>
