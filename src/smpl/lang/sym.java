@@ -9,7 +9,6 @@ package smpl.lang;
 public interface sym {
   /* terminals */
   public static final int MINUS = 4;
-  public static final int INTEGER = 9;
   public static final int SEMI = 2;
   public static final int EOF = 0;
   public static final int PLUS = 3;
@@ -18,6 +17,7 @@ public interface sym {
   public static final int IDENTIFIER = 8;
   public static final int TIMES = 5;
   public static final int LPAREN = 6;
+  public static final int INTEGER_LITERAL = 9;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -28,7 +28,7 @@ public interface sym {
   "LPAREN",
   "RPAREN",
   "IDENTIFIER",
-  "INTEGER"
+  "INTEGER_LITERAL"
   };
 }
 

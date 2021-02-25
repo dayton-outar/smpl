@@ -125,21 +125,6 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
 
     }
 
-  /** Scan to get the next Symbol. */
-  public java_cup.runtime.Symbol scan()
-    throws java.lang.Exception
-    {
-
-	try {
-		return getScanner().next_token();
-	} catch (java.io.IOException ioe) {
-		System.out.println ("Unrecognised token");
-		System.out.println(ioe.getMessage());
-		throw ioe;
-	}
-
-    }
-
 
 	SMPLLexer lexer;
 	InputStream in = null;
@@ -295,7 +280,7 @@ class CUP$SMPLParser$actions {
           return CUP$SMPLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // expr ::= INTEGER 
+          case 8: // expr ::= INTEGER_LITERAL 
             {
               Integer RESULT =null;
 		int nleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;

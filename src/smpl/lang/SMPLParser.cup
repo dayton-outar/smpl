@@ -35,24 +35,14 @@ init with {:
 	setScanner( lexer );
 :};
 
-scan with {:
-	try {
-		return getScanner().next_token();
-	} catch (java.io.IOException ioe) {
-		System.out.println ("Unrecognised token");
-		System.out.println(ioe.getMessage());
-		throw ioe;
-	}
-:};
-
 /* Terminals (tokens returned by the scanner). */
 terminal            SEMI, PLUS, MINUS, TIMES, LPAREN, RPAREN;
 terminal String		IDENTIFIER;
-terminal Integer    INTEGER;        // our scanner provides numbers as integers
+terminal Integer   	INTEGER_LITERAL;        // our scanner provides numbers as integers
 
 /* Non terminals */
 non terminal            expr_list;
-non terminal Integer    expr;      // used to store evaluated subexpressions
+non terminal Integer   	expr;      // used to store evaluated subexpressions
 
 /* Precedences. Highest precedence is at the bottom. */
 precedence left PLUS, MINUS;
@@ -67,5 +57,5 @@ expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1+e2;       :}
              | expr:e1 TIMES expr:e2        {: RESULT = e1*e2;       :}
              | MINUS expr:e                 {: RESULT = -e;          :}
              | LPAREN expr:e RPAREN	        {: RESULT = e;           :}
-             | INTEGER:n	                {: RESULT = n;           :}
+             | INTEGER_LITERAL:n	        {: RESULT = n;           :}
              ;

@@ -16,7 +16,7 @@
             "request": "launch",
             "mainClass": "App",
             "projectName": "smpl_a65f9bd",
-            "args": "/home/dayton/Documents/Projects/smpl/src/bomdas.txt"
+            "args": "/home/dayton/Documents/Projects/smpl/src/number.txt"
         }
     ]
 }

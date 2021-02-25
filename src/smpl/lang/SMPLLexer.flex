@@ -19,7 +19,6 @@ import java_cup.runtime.*;
 
 %unicode
 %line
-%column
 
 %{
   public int getChar()
@@ -38,9 +37,9 @@ import java_cup.runtime.*;
   }
 %}
 
-LineTerminator = \r|\n|\r\n
-InputCharacter = [^\r\n]
-ws     = {LineTerminator} | [ \t\f]
+LineTerminator  = \r|\n|\r\n
+InputCharacter  = [^\r\n]
+ws              = {LineTerminator} | [ \t\f]
 
 /* comments */
 comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
@@ -57,8 +56,6 @@ num = [0-9]+
 alpha = [A-Za-z_]
 alphanum = {alpha}|{num}
 
-%state STRING
-
 %%
 
 <YYINITIAL> {
@@ -66,9 +63,10 @@ alphanum = {alpha}|{num}
   {id}                          { return new Symbol(sym.IDENTIFIER); }
 
   /* literals */
-  {num}                         { return new Symbol(sym.INTEGER); }
+  {num}                         { return new Symbol(sym.INTEGER_LITERAL, new Integer(yytext())); }
 
   /* operators */
+  ";"                           { return new Symbol(sym.SEMI); }
   "+"                           { return new Symbol(sym.PLUS); }
   "-"                           { return new Symbol(sym.MINUS); }
   "*"                           { return new Symbol(sym.TIMES); }
