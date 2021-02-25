@@ -85,7 +85,10 @@ _SMPL_ understands the following common binary operators:
 - Relational operators: `=`, `>`, `<`, `<=`, `>=`, `!=`
 - Logical operators: `and`, `or`, `not`
 
-Operator precedence, from highest to lowest is as follows: `∼`	**⇒** `∗`, `/`, `%` **⇒** `+`, `−` **⇒** `&`, `|` **⇒** `=`, `>`, `<`, `≤`, `≥`, `≠`	**⇒** `not`	**⇒** `and`	**⇒** `or`
+Operator precedence, from highest to lowest is as follows: 
+
+`∼`	**⇒** `∗`, `/`, `%` **⇒** `+`, `−` **⇒** `&`, `|` **⇒** `=`, `>`, `<`, `≤`, `≥`, `≠`	**⇒** `not`	**⇒** `and`	**⇒** `or`
+
 In order to apply a unary minus to an expression, the combined expression must be surrounded by parentheses. So the negative of the variable `x` is expressed as `(- x)`, not  `- x`.
 
 <div align="right">
