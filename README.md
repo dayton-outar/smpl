@@ -5,7 +5,6 @@ SMPL is a small, but expressive toy programming language. Credits to Prof. Danie
 ## To-Do
 
 - [ ] Complete updating and formatting documentation. Conform to Github standards
-- [ ] Find entry point of Logo Lexer and Parser
 - [ ] Build SMPL according to specs
 - [ ] Catch up on some Java and Java tools: Ant, Maven, etc.
 
