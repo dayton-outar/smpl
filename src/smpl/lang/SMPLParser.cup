@@ -35,10 +35,25 @@ init with {:
 	setScanner( lexer );
 :};
 
-/* Terminals (tokens returned by the scanner). */
-terminal            SEMI, PLUS, MINUS, TIMES, LPAREN, RPAREN;
+// special symbols
+terminal            SEMI, LPAREN, RPAREN;
 terminal String		IDENTIFIER;
 terminal Integer   	INTEGER_LITERAL;        // our scanner provides numbers as integers
+
+// operators: arithmetic
+terminal PLUS, MINUS, TIMES, DIVIDE, MOD;
+
+// operators: bitwise
+terminal AMP, BAR, TILDE;
+
+// operators: relational
+terminal EQ, GT, LT, LTEQ, GTEQ, NOTEQ;
+
+// operators: logical
+terminal AND, OR, NOT;
+
+// operators: assignment
+terminal ASSIGN;
 
 /* Non terminals */
 non terminal            expr_list;
@@ -46,16 +61,37 @@ non terminal Integer   	expr;      // used to store evaluated subexpressions
 
 /* Precedences. Highest precedence is at the bottom. */
 precedence left PLUS, MINUS;
-precedence left TIMES;
+precedence left TIMES, DIVIDE, MOD;
 
 /* Grammar rules */
 expr_list ::= expr_list expr:e SEMI         {: System.out.println(e);:}
             | expr:e SEMI                   {: System.out.println(e);:}
 ;
-expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1+e2;       :}
-             | expr:e1 MINUS expr:e2        {: RESULT = e1-e2;       :}
-             | expr:e1 TIMES expr:e2        {: RESULT = e1*e2;       :}
+expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1 + e2;       :}
+             | expr:e1 MINUS expr:e2        {: RESULT = e1 - e2;       :}
+             | expr:e1 TIMES expr:e2        {: RESULT = e1 * e2;       :}
+			 | expr:e1 DIVIDE expr:e2       {: RESULT = e1 / e2;       :}
+			 | expr:e1 MOD expr:e2        	{: RESULT = e1 % e2;       :}
              | MINUS expr:e                 {: RESULT = -e;          :}
              | LPAREN expr:e RPAREN	        {: RESULT = e;           :}
              | INTEGER_LITERAL:n	        {: RESULT = n;           :}
              ;
+
+condition ::=  expr:c1 GT expr:c2
+               {: RESULT = (c1 > c2); :} |
+
+               expr:c1 LT expr:c2
+               {: RESULT = (c1 < c2); :} |
+
+               expr:c1 EQ expr:c2
+               {: RESULT = (c1 == c2); :}
+
+			   expr:c1 LTEQ expr:c2
+               {: RESULT = (c1 <= c2); :}
+
+			   expr:c1 GTEQ expr:c2
+               {: RESULT = (c1 >= c2); :}
+
+			   expr:c1 NOTEQ expr:c2
+               {: RESULT = (c1 != c2); :}
+               ;

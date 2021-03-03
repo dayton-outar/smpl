@@ -58,6 +58,10 @@ alphanum = {alpha}|{num}
 
 %%
 
+<YYINITIAL> not                 { return new Symbol(sym.NOT); }
+<YYINITIAL> and                 { return new Symbol(sym.AND); }
+<YYINITIAL> or                  { return new Symbol(sym.OR); }
+
 <YYINITIAL> {
   /* identifiers */
   {id}                          { return new Symbol(sym.IDENTIFIER); }
@@ -65,13 +69,25 @@ alphanum = {alpha}|{num}
   /* literals */
   {num}                         { return new Symbol(sym.INTEGER_LITERAL, new Integer(yytext())); }
 
-  /* operators */
-  ";"                           { return new Symbol(sym.SEMI); }
+  /* operators */  
+  "*"                           { return new Symbol(sym.TIMES); }
+  "/"                           { return new Symbol(sym.DIVIDE); }
+  "%"                           { return new Symbol(sym.MOD); }
   "+"                           { return new Symbol(sym.PLUS); }
   "-"                           { return new Symbol(sym.MINUS); }
-  "*"                           { return new Symbol(sym.TIMES); }
+  "&"                           { return new Symbol(sym.AMP); }
+  "|"                           { return new Symbol(sym.BAR); }
+  "~"                           { return new Symbol(sym.TILDE); }
+  "=="                          { return new Symbol(sym.EQ); }
+  ">"                           { return new Symbol(sym.GT); }
+  ">="                          { return new Symbol(sym.GTEQ); }
+  "<"                           { return new Symbol(sym.LT); }
+  "<="                          { return new Symbol(sym.LTEQ); }
+  "!="                          { return new Symbol(sym.NOTEQ); }
+  "="                           { return new Symbol(sym.ASSIGN); }
   "("                           { return new Symbol(sym.LPAREN); }
   ")"                           { return new Symbol(sym.RPAREN); }
+  ";"                           { return new Symbol(sym.SEMI); }
 
   /* comments */
   {comment}                     { /* ignore */ }

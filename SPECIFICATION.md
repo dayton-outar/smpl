@@ -82,7 +82,7 @@ Function calls are denoted by the function name followed immediately by a sequen
 _SMPL_ understands the following common binary operators:
 - Arithmetic operators: `+`, `-`, `*`, `/`, `%`
 - Bitwise operators: `&`, `|`, `~`
-- Relational operators: `=`, `>`, `<`, `<=`, `>=`, `!=`
+- Relational operators: `==`<sup><a href="#footnote-4">4</a></sup>, `>`, `<`, `<=`, `>=`, `!=`
 - Logical operators: `and`, `or`, `not`
 
 Operator precedence, from highest to lowest is as follows: 
@@ -179,5 +179,7 @@ Here are a few ideas for extensions to _SMPL_ :
 <a id="footnote-2"><sup>2</sup></a> Procedure calls that are the final expressions in the calling procedure’s body return their values to the calling procedure’s caller
 
 <a id="footnote-3"><sup>3</sup></a> First class objects may be named, stored in data structures, passed as arguments and returned as values from procedures
+
+<a id="footnote-4"><sup>4</sup</a> The original concepts was to use `=` for the conditional expression indicating equality. The developer opted for `==`, which was more ubiquitous across many current languages. This would make `=` available for the assignment operator.
 
 &copy; Prof. Daniel Coore
