@@ -180,6 +180,6 @@ Here are a few ideas for extensions to _SMPL_ :
 
 <a id="footnote-3"><sup>3</sup></a> First class objects may be named, stored in data structures, passed as arguments and returned as values from procedures
 
-<a id="footnote-4"><sup>4</sup</a> The original concepts was to use `=` for the conditional expression indicating equality. The developer opted for `==`, which was more ubiquitous across many current languages. This would make `=` available for the assignment operator.
+<a id="footnote-4"><sup>4</sup></a> The original concepts was to use `=` for the conditional expression indicating equality. The developer opted for `==`, which was more ubiquitous across many current languages. This would make `=` available for the assignment operator.
 
 &copy; Prof. Daniel Coore
