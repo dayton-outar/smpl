@@ -57,6 +57,8 @@ terminal ASSIGN;
 
 /* Non terminals */
 non terminal            expr_list;
+non terminal			condition_list;
+non terminal Boolean	condition;
 non terminal Integer   	expr;      // used to store evaluated subexpressions
 
 /* Precedences. Highest precedence is at the bottom. */
@@ -64,34 +66,43 @@ precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE, MOD;
 
 /* Grammar rules */
-expr_list ::= expr_list expr:e SEMI         {: System.out.println(e);:}
-            | expr:e SEMI                   {: System.out.println(e);:}
+expr_list ::= expr_list expr:e SEMI         	{: System.out.println(e);:}
+            | expr:e SEMI                   	{: System.out.println(e);:}
+			| condition_list condition:c SEMI	{: System.out.println(c);:}
 ;
-expr      ::= expr:e1 PLUS  expr:e2         {: RESULT = e1 + e2;       :}
-             | expr:e1 MINUS expr:e2        {: RESULT = e1 - e2;       :}
-             | expr:e1 TIMES expr:e2        {: RESULT = e1 * e2;       :}
-			 | expr:e1 DIVIDE expr:e2       {: RESULT = e1 / e2;       :}
-			 | expr:e1 MOD expr:e2        	{: RESULT = e1 % e2;       :}
-             | MINUS expr:e                 {: RESULT = -e;          :}
-             | LPAREN expr:e RPAREN	        {: RESULT = e;           :}
-             | INTEGER_LITERAL:n	        {: RESULT = n;           :}
+
+expr ::= 	expr:e1 PLUS expr:e2         	{: RESULT = e1 + e2;       	:}
+
+             | expr:e1 MINUS expr:e2        {: RESULT = e1 - e2;       	:}
+
+             | expr:e1 TIMES expr:e2        {: RESULT = e1 * e2;       	:}
+
+			 | expr:e1 DIVIDE expr:e2       {: RESULT = e1 / e2;       	:}
+
+			 | expr:e1 MOD expr:e2        	{: RESULT = e1 % e2;       	:}
+
+             | MINUS expr:e                 {: RESULT = -e;				:}
+
+             | LPAREN expr:e RPAREN	        {: RESULT = e;           	:}
+
+             | INTEGER_LITERAL:n	        {: RESULT = n;           	:}
              ;
 
-condition ::=  expr:c1 GT expr:c2
-               {: RESULT = (c1 > c2); :} |
+condition_list ::=	condition:c1 AND condition:c2	{: RESULT = (c1 && c2);	:}
+				| condition:c1 OR condition:c2		{: RESULT = (c1 || c2);	:}
+				| LPAREN condition:c RPAREN	        {: RESULT = c;			:}
+				| NOT condition:c					{: RESULT = (!c);		:}
+				;
 
-               expr:c1 LT expr:c2
-               {: RESULT = (c1 < c2); :} |
+condition ::=  expr:e1 GT expr:e2			{: RESULT = (e1 > e2); 		:}
 
-               expr:c1 EQ expr:c2
-               {: RESULT = (c1 == c2); :}
+               | expr:e1 LT expr:e2			{: RESULT = (e1 < e2); 		:}
 
-			   expr:c1 LTEQ expr:c2
-               {: RESULT = (c1 <= c2); :}
+               | expr:e1 EQ expr:e2			{: RESULT = (e1 == e2); 	:}
 
-			   expr:c1 GTEQ expr:c2
-               {: RESULT = (c1 >= c2); :}
+			   | expr:e1 LTEQ expr:e2 		{: RESULT = (e1 <= e2); 	:}
 
-			   expr:c1 NOTEQ expr:c2
-               {: RESULT = (c1 != c2); :}
+			   | expr:e1 GTEQ expr:e2		{: RESULT = (e1 >= e2); 	:}
+
+			   | expr:e1 NOTEQ expr:e2		{: RESULT = (e1 != e2); 	:}
                ;
