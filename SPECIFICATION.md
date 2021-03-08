@@ -77,7 +77,7 @@ Table 4 lists the keywords of _SMPL_ and their purposes.
 
 _SMPL_ ***Identifiers***:
  - Can contain at least one non-digit character
- - Not contain any special characters (Only alpha-numeric characters allowed)
+ - Must not contain any special characters (Only alpha-numeric characters allowed)
  
  The following are ***legal identifiers***: `foo`, `bar1`, `1bar`, `ba1r`.<sup><a href="#footnote-4">4</a></sup>
  
