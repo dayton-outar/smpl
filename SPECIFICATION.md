@@ -82,7 +82,7 @@ Table 4 lists the keywords of _SMPL_ and their purposes.
  
  The following are ***legal identifiers***: `foo`, `bar1`, `1bar`, `ba1r`.<sup><a href="#footnote-4">4</a></sup>
  
- The following are _illegal identifiers_: `#bar`, `12`, `(foo)`, `{bar}`, `[baz]`, `foo`, `bar`, `foo:bar`.
+ The following are _illegal identifiers_: `#bar`, `12`, `(foo)`, `{bar}`, `[baz]`, `foo`, `bar`, `foo:bar`, `foo!`, `bar?`, `fo#o`, `foo.bar`.
 
 ***Function calls*** are denoted by the function name followed immediately by a sequence of comma-separated argument expressions enclosed in parentheses. The following expressions are all ***legal function calls***: `f(a, b)`, `g()`, `foo(a, b, c, d)`.
 
@@ -187,7 +187,7 @@ Here are a few ideas for extensions to _SMPL_ :
 
 <a id="footnote-3"><sup>3</sup></a> First class objects may be named, stored in data structures, passed as arguments and returned as values from procedures
 
-<a id="footnote-4"><sup>4</sup></a> The original specification included special characters such as `!`, `?`, `#`. These are removed in this specification. So, these: `foo!`, `bar?`, `fo#o`, `foo.bar` are also allowed.
+<a id="footnote-4"><sup>4</sup></a> The original specification included special characters such as `!`, `?`, `#`. These are removed in this specification. So, these: `foo!`, `bar?`, `fo#o`, `foo.bar` are not allowed.
 
 <a id="footnote-5"><sup>5</sup></a> The original concepts was to use `=` for the conditional expression indicating equality. The developer opted for `==`, which was more ubiquitous across many current languages. This would make `=` available for the assignment operator.
 
