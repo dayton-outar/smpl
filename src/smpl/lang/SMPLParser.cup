@@ -64,13 +64,13 @@ non terminal Boolean	condition;
 non terminal Integer   	expression;      // used to store evaluated subexpressions
 
 /* Precedences. Highest precedence is at the bottom. */
-precedence nonassoc OR;
-precedence nonassoc AND;
-precedence nonassoc NOT;
+precedence left OR;
+precedence left AND;
+precedence left NOT;
 precedence nonassoc GT, LT, EQ, LTEQ, GTEQ, NOTEQ;
 precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE, MOD;
-precedence nonassoc TILDE;
+precedence left TILDE;
 
 /* Grammar rules */
 statement ::= expression_list:l SEMI				{: System.out.println(l);:}
@@ -105,9 +105,9 @@ condition_list ::= condition_list condition_relation:r 	{: RESULT = r;	:}
 				| condition_relation:r					{: RESULT = r;	:}
 				;
 
-condition_relation ::= condition:c1 AND condition:c2	{: RESULT = (c1 && c2);	:}
+condition_relation ::= condition_relation:c1 AND condition:c2	{: RESULT = (c1 && c2);	:}
 
-				| condition:c1 OR condition:c2			{: RESULT = (c1 || c2);	:}
+				| condition_relation:c1 OR condition:c2			{: RESULT = (c1 || c2);	:}
 
 				| NOT condition:c						{: RESULT = (!c);		:}
 
