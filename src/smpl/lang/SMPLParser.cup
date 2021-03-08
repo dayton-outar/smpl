@@ -107,9 +107,11 @@ condition_list ::= condition_list condition_relation:r 	{: RESULT = r;	:}
 
 condition_relation ::= condition:c1 AND condition:c2	{: RESULT = (c1 && c2);	:}
 
-				| condition:c1 OR condition:c2		{: RESULT = (c1 || c2);	:}
+				| condition:c1 OR condition:c2			{: RESULT = (c1 || c2);	:}
 
-				| NOT condition:c					{: RESULT = (!c);		:}
+				| NOT condition:c						{: RESULT = (!c);		:}
+
+				| condition:c							{: RESULT = c;			:}
 				;
 
 condition ::=  expression:e1 GT expression:e2	{: RESULT = (e1 > e2); 		:}
