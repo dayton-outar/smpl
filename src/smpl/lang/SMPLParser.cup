@@ -59,6 +59,7 @@ terminal ASSIGN;
 non terminal			statement;
 non terminal            expression_list;
 non terminal			condition_list;
+non terminal Boolean	condition_relation;
 non terminal Boolean	condition;
 non terminal Integer   	expression;      // used to store evaluated subexpressions
 
@@ -99,17 +100,16 @@ expression ::= 	expression:e1 PLUS expression:e2	{: RESULT = e1 + e2;       	:}
              | INTEGER_LITERAL:n	      			{: RESULT = n;           	:}
              ;
 
-condition_list ::= condition_list AND condition:c	{: RESULT = c;			:}
+condition_list ::= condition_list condition_relation:r 	{: RESULT = r;	:}
 
-				| condition:c1 AND condition:c2		{: RESULT = (c1 && c2);	:}
+				| condition_relation:r					{: RESULT = r;	:}
+				;
+
+condition_relation ::= condition:c1 AND condition:c2	{: RESULT = (c1 && c2);	:}
 
 				| condition:c1 OR condition:c2		{: RESULT = (c1 || c2);	:}
 
-				| LPAREN condition:c RPAREN			{: RESULT = c;			:}
-
 				| NOT condition:c					{: RESULT = (!c);		:}
-
-				| condition:c						{: RESULT = c;			:}
 				;
 
 condition ::=  expression:e1 GT expression:e2	{: RESULT = (e1 > e2); 		:}
@@ -123,4 +123,6 @@ condition ::=  expression:e1 GT expression:e2	{: RESULT = (e1 > e2); 		:}
 				| expression:e1 GTEQ expression:e2	{: RESULT = (e1 >= e2); 	:}
 
 				| expression:e1 NOTEQ expression:e2	{: RESULT = (e1 != e2); 	:}
+
+				| LPAREN condition:c RPAREN			{: RESULT = c;			:}
                ;
