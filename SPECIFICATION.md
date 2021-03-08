@@ -78,9 +78,9 @@ Table 4 lists the keywords of _SMPL_ and their purposes.
 ***Identifiers*** in _SMPL_ must:
  - Contain at least one non-digit character
  - Not begin with the character `#`
- - Not contain parentheses, brackets, braces, any of the quote characters, the comma, the colon nor any of the operator symbols
+ - Not contain any special characters (Only alpha-numeric characters allowed)
  
- The following are ***legal identifiers***: `foo`, `bar1`, `1bar`, `ba1r`, `foo!`, `bar?`, `fo#o`, `foo.bar`.
+ The following are ***legal identifiers***: `foo`, `bar1`, `1bar`, `ba1r`.<sup><a href="#footnote-4">4</a></sup>
  
  The following are _illegal identifiers_: `#bar`, `12`, `(foo)`, `{bar}`, `[baz]`, `foo`, `bar`, `foo:bar`.
 
@@ -89,7 +89,7 @@ Table 4 lists the keywords of _SMPL_ and their purposes.
 _SMPL_ understands the following common binary operators:
 - Arithmetic operators: `+`, `-`, `*`, `/`, `%`
 - Bitwise operators: `&`, `|`, `~`
-- Relational operators: `==`<sup><a href="#footnote-4">4</a></sup>, `>`, `<`, `<=`, `>=`, `!=`
+- Relational operators: `==`<sup><a href="#footnote-5">5</a></sup>, `>`, `<`, `<=`, `>=`, `!=`
 - Logical operators: `and`, `or`, `not`
 
 Operator precedence, from highest to lowest is as follows: 
@@ -187,6 +187,8 @@ Here are a few ideas for extensions to _SMPL_ :
 
 <a id="footnote-3"><sup>3</sup></a> First class objects may be named, stored in data structures, passed as arguments and returned as values from procedures
 
-<a id="footnote-4"><sup>4</sup></a> The original concepts was to use `=` for the conditional expression indicating equality. The developer opted for `==`, which was more ubiquitous across many current languages. This would make `=` available for the assignment operator.
+<a id="footnote-4"><sup>4</sup></a> The original specification included special characters such as `!`, `?`, `#`. These are removed in this specification. So, these: `foo!`, `bar?`, `fo#o`, `foo.bar` are also allowed.
+
+<a id="footnote-5"><sup>5</sup></a> The original concepts was to use `=` for the conditional expression indicating equality. The developer opted for `==`, which was more ubiquitous across many current languages. This would make `=` available for the assignment operator.
 
 &copy; Prof. Daniel Coore
