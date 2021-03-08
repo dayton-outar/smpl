@@ -75,9 +75,8 @@ Table 3: Builtin expressions
 
 Table 4 lists the keywords of _SMPL_ and their purposes.
 
-***Identifiers*** in _SMPL_ must:
- - Contain at least one non-digit character
- - Not begin with the character `#`
+_SMPL_ ***Identifiers***:
+ - Can contain at least one non-digit character
  - Not contain any special characters (Only alpha-numeric characters allowed)
  
  The following are ***legal identifiers***: `foo`, `bar1`, `1bar`, `ba1r`.<sup><a href="#footnote-4">4</a></sup>
