@@ -75,9 +75,16 @@ Table 3: Builtin expressions
 
 Table 4 lists the keywords of _SMPL_ and their purposes.
 
-Identifiers in _SMPL_ must contain at least one non-digit character, and may not begin with the character `#`. Identifiers may not contain parentheses, brackets, braces, any of the quote characters, the comma, the colon nor any of the operator symbols. The following are all legal _SMPL_ identifiers: `foo`, `bar1`, `1bar`, `ba1r`, `foo!`, `bar?`, `fo#o`, `foo.bar`. The following are illegal identifiers: `#bar`, `12`, `(foo)`, `{bar}`, `[baz]`, `foo`, `bar`, `foo:bar`.
+***Identifiers*** in _SMPL_ must:
+ - Contain at least one non-digit character
+ - Not begin with the character `#`
+ - Not contain parentheses, brackets, braces, any of the quote characters, the comma, the colon nor any of the operator symbols
+ 
+ The following are ***legal identifiers***: `foo`, `bar1`, `1bar`, `ba1r`, `foo!`, `bar?`, `fo#o`, `foo.bar`.
+ 
+ The following are _illegal identifiers_: `#bar`, `12`, `(foo)`, `{bar}`, `[baz]`, `foo`, `bar`, `foo:bar`.
 
-Function calls are denoted by the function name followed immediately by a sequence of comma-separated argument expressions enclosed in parentheses. The following expressions are all legal function calls: `f(a, b)`, `g()`, `foo(a, b, c, d)`.
+***Function calls*** are denoted by the function name followed immediately by a sequence of comma-separated argument expressions enclosed in parentheses. The following expressions are all ***legal function calls***: `f(a, b)`, `g()`, `foo(a, b, c, d)`.
 
 _SMPL_ understands the following common binary operators:
 - Arithmetic operators: `+`, `-`, `*`, `/`, `%`
