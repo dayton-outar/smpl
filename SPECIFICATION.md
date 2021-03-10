@@ -160,7 +160,7 @@ def vecAppend proc(v1, v2)
 
 Here are a few ideas for extensions to _SMPL_ :
 
-- arbitrary precision integer arithmetic. It would be good if _SMPL_ were not restricted to integers that could fit within the 32-bit two’s complement representation. These “big” integers could be represented by using multiple words of contiguous storage to store the bits of the number. Each of the primitive arithmetic operators would have to be redefined to accommodate these
+- Arbitrary precision integer arithmetic. It would be good if _SMPL_ were not restricted to integers that could fit within the 32-bit two’s complement representation. These “big” integers could be represented by using multiple words of contiguous storage to store the bits of the number. Each of the primitive arithmetic operators would have to be redefined to accommodate these
     large numbers. However, the only difference the user should observe is that she is no longer restricted to small integers. (A good test case for this is tosee whether your extended language
     can compute the factorial of 1000.)
 - Floating point numbers. This might not be very difficult if the target language (or machine, in the case of an interpreter) already supports floating point numbers. In that case, the biggest
