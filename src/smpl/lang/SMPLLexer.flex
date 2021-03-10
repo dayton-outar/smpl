@@ -53,7 +53,7 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 id = [:jletter:] [:jletterdigit:]*
 
 num = [0-9]+
-alpha = [A-Za-z_]
+alpha = [A-Za-z_]+
 alphanum = {alpha}|{num}
 
 %%
@@ -67,7 +67,7 @@ alphanum = {alpha}|{num}
   {id}                          { return new Symbol(sym.IDENTIFIER); }
 
   /* literals */
-  {num}                         { return new Symbol(sym.INTEGER_LITERAL, new Integer(yytext())); }
+  {num}                         { return new Symbol(sym.INTEGER_LITERAL, Integer.valueOf(yytext())); }
 
   /* operators */  
   "*"                           { return new Symbol(sym.TIMES); }

@@ -7,9 +7,13 @@ parser code {:
 	SMPLLexer lexer;
 	InputStream in = null;
 
-	public SMPLParser(String file) throws FileNotFoundException {
-	    in = new FileInputStream(file);
-		lexer = new SMPLLexer(new InputStreamReader(in));
+	public SMPLParser(String file) {
+		try {
+			in = new FileInputStream(file);
+			lexer = new SMPLLexer(new InputStreamReader(in));
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}	    
 	}
 
 	public void report_error(String message, Object info) {
@@ -73,9 +77,11 @@ precedence left TIMES, DIVIDE, MOD;
 precedence left TILDE;
 
 /* Grammar rules */
-statement ::= expression_list:l SEMI				{: System.out.println(l);:}
+statement ::= expression_list:l SEMI					{: System.out.println(l);	:}
 
-			| condition_list:l SEMI					{: System.out.println(l);:}
+			| condition_list:l SEMI						{: System.out.println(l);	:}
+
+			| IDENTIFIER ASSIGN expression_list:l SEMI	{: System.out.println(l);	:}
 			;
 
 expression_list ::= expression_list expression:e	{: RESULT = e;			:}

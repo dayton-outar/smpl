@@ -825,7 +825,7 @@ public class SMPLLexer implements java_cup.runtime.Scanner {
             // fall through
           case 28: break;
           case 5: 
-            { return new Symbol(sym.INTEGER_LITERAL, new Integer(yytext()));
+            { return new Symbol(sym.INTEGER_LITERAL, Integer.valueOf(yytext()));
             } 
             // fall through
           case 29: break;

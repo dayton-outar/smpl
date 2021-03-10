@@ -107,17 +107,17 @@ Here are some example procedures in _SMPL_.
 
 | Keyword | Purpose |
 | :--- | :--- |
-| `proc(`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)` &#12296;_body_&#12297; | return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. |
-| `let(`_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>`)` &#12296;_body_&#12297; | evaluate _body_ in an environment extended by bindings _b_<sub><i>i</i></sub>.<br />The syntax of a binding is &#12296;_id_&#12297; be &#12296;_expr_&#12297;. |
-| `def 〈id〉 〈expr〉` | define _id_ and set it to the value of _expr_ in the current environment. |
-| `〈id〉 = 〈expr〉`<sup><a href="#footnote-5">5</a></sup> | assign the value of _expr_ to variable _id_. |
-| `if 〈expr〉 then 〈expr〉`<br />**[**`else 〈expr〉`**]** | test predicate, evaluate then clause if non-false<br />otherwise evaluate else clause, if given. |
+| `proc(`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)` &#12296;_body_&#12297; | Return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. |
+| `let(`_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>`)` &#12296;_body_&#12297; | Evaluate _body_ in an environment extended by bindings _b_<sub><i>i</i></sub>.<br />The syntax of a binding is &#12296;_id_&#12297; be &#12296;_expr_&#12297;. |
+| `def 〈id〉 〈expr〉` | Define _id_ and set it to the value of _expr_ in the current environment. |
+| `〈id〉 = 〈expr〉`<sup><a href="#footnote-5">5</a></sup> | Assign the value of _expr_ to variable _id_. |
+| `if 〈expr〉 then 〈expr〉`<br />**[**`else 〈expr〉`**]** | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
 | `case {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈expr〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
-| `{...}` | compound expression |
+| `{...}` | Compound expression |
 | `print(〈expr〉)` | Print the value of the given expression. |
 | `read()` | Read and return a string from the keyboard. |
 | `readint()` | Read and return an integer from the keyboard. |
-| `//`<br />`/*... */` | comment to rest of line<br />block comment (nestable) |
+| `//`<br />`/*... */` | Comment to rest of line<br />block comment (nestable) |
 
 
 Table 4: Table of _SMPL_ commands
