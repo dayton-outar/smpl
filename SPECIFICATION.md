@@ -52,7 +52,7 @@ _SMPL_ has two types of compound data: the vector and the pair. A vector is some
 
 Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second (after it has been evaluated) must be a procedure that when given an index less than the size, returns the value to be stored at that position _in the subvector_. The following examples should help to clarify the description. In them, assume that the value of `x` has previously been set to 5.
 
-```python
+```scheme
 [: 1,2,3 :]                                 ⇒ [1 2 3]
 [: 1,2,x :]                                 ⇒ [1 2 5]
 [: 5: proc(i) i :]                          ⇒ [0 1 2 3 4]
@@ -110,7 +110,7 @@ Here are some example procedures in _SMPL_.
 | `proc(`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)` &#12296;_body_&#12297; | return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. |
 | `let(`_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>`)` &#12296;_body_&#12297; | evaluate _body_ in an environment extended by bindings _b_<sub><i>i</i></sub>.<br />The syntax of a binding is &#12296;_id_&#12297; be &#12296;_expr_&#12297;. |
 | `def 〈id〉 〈expr〉` | define _id_ and set it to the value of _expr_ in the current environment. |
-| `〈id〉 := 〈expr〉` | assign the value of _expr_ to variable _id_. |
+| `〈id〉 = 〈expr〉`<sup><a href="#footnote-5">5</a></sup> | assign the value of _expr_ to variable _id_. |
 | `if 〈expr〉 then 〈expr〉`<br />**[**`else 〈expr〉`**]** | test predicate, evaluate then clause if non-false<br />otherwise evaluate else clause, if given. |
 | `case {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈expr〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
 | `{...}` | compound expression |
@@ -122,7 +122,7 @@ Here are some example procedures in _SMPL_.
 
 Table 4: Table of _SMPL_ commands
 
-```python
+```scheme
 fact := proc(n)
     // return factorial n
     if n <= 1
