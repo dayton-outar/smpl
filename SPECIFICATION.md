@@ -109,8 +109,7 @@ Here are some example procedures in _SMPL_.
 | :--- | :--- |
 | `proc(`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)` &#12296;_body_&#12297; | Return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. |
 | `let(`_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>`)` &#12296;_body_&#12297; | Evaluate _body_ in an environment extended by bindings _b_<sub><i>i</i></sub>.<br />The syntax of a binding is &#12296;_id_&#12297; be &#12296;_expr_&#12297;. |
-| `def 〈id〉 〈expr〉` | Define _id_ and set it to the value of _expr_ in the current environment. |
-| `〈id〉 = 〈expr〉`<sup><a href="#footnote-5">5</a></sup> | Assign the value of _expr_ to variable _id_. |
+| `〈id〉 = 〈expr〉`<sup><a href="#footnote-5">5</a></sup>&nbsp;<sup><a href="#footnote-6">6</a></sup> | Define and assign the value of _expr_ to variable _id_. |
 | `if 〈expr〉 then 〈expr〉`<br />**[**`else 〈expr〉`**]** | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
 | `case {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈expr〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
 | `{...}` | Compound expression |
@@ -190,6 +189,8 @@ Here are a few ideas for extensions to _SMPL_ :
 
 <a id="footnote-4"><sup>4</sup></a> The original specification included special characters such as `!`, `?`, `#`. These are removed in this specification. So, these: `foo!`, `bar?`, `fo#o`, `foo.bar` are not allowed.
 
-<a id="footnote-5"><sup>5</sup></a> The original concepts was to use `=` for the conditional expression indicating equality. The developer opted for `==`, which was more ubiquitous across many current languages. This would make `=` available for the assignment operator.
+<a id="footnote-5"><sup>5</sup></a> The original concepts was to use `=` for the conditional expression indicating equality. This version will use `==`, which is more ubiquitous across most popular languages. This would make `=` available for the assignment operator.
+
+<a id="footnote-6"><sup>6</sup></a> `def 〈id〉 〈expr〉` was removed for this specification as `〈id〉 = 〈expr〉` was thought to be sufficiently identifiable and useful for the same purpose.
 
 &copy; Dayton Outar
