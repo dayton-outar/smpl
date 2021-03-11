@@ -50,11 +50,10 @@ EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
 DocumentationComment = "/**" {CommentContent} "*"+ "/"
 CommentContent       = ( [^*] | \*+ [^/*] )*
 
-id = [:jletter:] [:jletterdigit:]*
-
 num = [0-9]+
 alpha = [A-Za-z_]+
 alphanum = {alpha}|{num}
+id = {alpha}{alphanum}|{num}{alphanum}
 
 %%
 
@@ -87,6 +86,9 @@ alphanum = {alpha}|{num}
   "="                           { return new Symbol(sym.ASSIGN); }
   "("                           { return new Symbol(sym.LPAREN); }
   ")"                           { return new Symbol(sym.RPAREN); }
+  "{"                           { return new Symbol(sym.LBRACE); }
+  "}"                           { return new Symbol(sym.RBRACE); }
+  ","                           { return new Symbol(sym.COMMA); }
   ";"                           { return new Symbol(sym.SEMI); }
 
   /* comments */

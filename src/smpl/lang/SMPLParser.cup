@@ -2,6 +2,7 @@ package smpl.lang;
 
 import java_cup.runtime.*;
 import java.io.*;
+import java.util.Vector;
 
 parser code {:
 	SMPLLexer lexer;
@@ -40,7 +41,7 @@ init with {:
 :};
 
 // special symbols
-terminal            SEMI, LPAREN, RPAREN;
+terminal            SEMI, LPAREN, RPAREN, LBRACE, RBRACE, COMMA;
 terminal String		IDENTIFIER;
 terminal Integer   	INTEGER_LITERAL;        // our scanner provides numbers as integers
 
@@ -65,6 +66,9 @@ non terminal            expression_list;
 non terminal Boolean	condition_list;
 non terminal Boolean	condition;
 non terminal Integer   	expression;      // used to store evaluated subexpressions
+non terminal Vector 	parameter_list;
+non terminal Vector		variable_list;
+non terminal empty;
 
 /* Precedences. Highest precedence is at the bottom. */
 precedence left OR;
@@ -77,11 +81,25 @@ precedence left TIMES, DIVIDE, MOD;
 precedence left TILDE;
 
 /* Grammar rules */
-statement ::= expression_list:l SEMI					{: System.out.println(l);	:}
+statement ::= expression_list:l SEMI						{: System.out.println(l);	:}
 
-			| condition_list:l SEMI						{: System.out.println(l);	:}
+			| condition_list:l SEMI							{: System.out.println(l);	:}
 
-			| IDENTIFIER ASSIGN expression_list:l SEMI	{: System.out.println(l);	:}
+			| IDENTIFIER ASSIGN expression_list:l SEMI		{: System.out.println(l);	:}
+
+			| IDENTIFIER:i ASSIGN LPAREN variable_list RPAREN LBRACE RBRACE {: System.out.println(i); System.out.println(l); :}
+
+			| IDENTIFIER:i LPAREN parameter_list:l RPAREN	{: System.out.println(i); System.out.println(l); :}
+			;
+
+variable_list ::= IDENTIFIER:i COMMA variable_list:l		{: l.addElement(i); RESULT = l; :}
+
+			| empty									{: RESULT = new Vector(); :}
+			;
+
+parameter_list ::= expression:e COMMA parameter_list:l		{: l.addElement(e); RESULT = l; :}
+			
+			| empty										{: RESULT = new Vector(); 		:}
 			;
 
 expression_list ::= expression_list expression:e	{: RESULT = e;			:}
@@ -109,7 +127,7 @@ expression ::= 	expression:e1 PLUS expression:e2	{: RESULT = e1 + e2;       	:}
 
              | LPAREN expression:e RPAREN			{: RESULT = e;           	:}
 
-			 | IDENTIFIER:i							{: RESULT = 2; // TBC		:}
+			 | IDENTIFIER:i							{: RESULT = 2; // TBC .. I have a dilemma here. This clashes with a rule in statement but I need to to evaluate a variable in expressions		:}
 
              | INTEGER_LITERAL:n	      			{: RESULT = n;           	:}
              ;
@@ -137,3 +155,5 @@ condition ::=  expression:e1 EQ expression:e2		{: RESULT = (e1.equals(e2));:}
 
 				| LPAREN condition:c RPAREN			{: RESULT = c;				:}
                ;
+
+empty ::=;
