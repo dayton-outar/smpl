@@ -53,7 +53,7 @@ CommentContent       = ( [^*] | \*+ [^/*] )*
 num = [0-9]+
 alpha = [A-Za-z_]+
 alphanum = {alpha}|{num}
-id = {alpha}{alphanum}|{num}{alphanum}
+id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
 
 %%
 
