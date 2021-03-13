@@ -41,7 +41,7 @@ init with {:
 :};
 
 // special symbols
-terminal            SEMI, LPAREN, RPAREN, LBRACE, RBRACE, COMMA;
+terminal            SEMI, COLON, LPAREN, RPAREN, LBRACE, RBRACE, COMMA;
 terminal String		IDENTIFIER;
 terminal Integer   	INTEGER_LITERAL;        // our scanner provides numbers as integers
 
@@ -61,7 +61,10 @@ terminal AND, OR, NOT;
 terminal ASSIGN;
 
 /* Non terminals */
+non terminal			program;
+non terminal Vector		statement_list;
 non terminal			statement;
+non terminal String		variable;
 non terminal            expression_list;
 non terminal Boolean	condition_list;
 non terminal Boolean	condition;
@@ -71,7 +74,7 @@ non terminal Vector		variable_list;
 non terminal empty;
 
 /* Precedences. Highest precedence is at the bottom. */
-precedence left COMMA;
+precedence nonassoc LPAREN;
 precedence left OR;
 precedence left AND;
 precedence left NOT;
@@ -81,30 +84,38 @@ precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE, MOD;
 precedence left TILDE;
 
-/* Grammar rules */
-statement ::= expression_list:l SEMI						{: System.out.println(l);	:}
+/* Grammar Rules */
 
-			| condition_list:l SEMI							{: System.out.println(l);	:}
+program ::= statement_list:sl 						{: System.out.println(sl); :};
 
-			| IDENTIFIER:i LPAREN parameter_list:l RPAREN	{: RESULT = 5; :}
+statement_list ::= statement:stmt statement_list:sl {: sl.addElement(stmt); RESULT = sl ; :} 
+				
+				| empty 							{: RESULT = new Vector(); :}
+				;
 
-			| IDENTIFIER ASSIGN expression_list:l SEMI		{: System.out.println(l);	:}
+statement ::= expression_list:l SEMI							{: RESULT = l;	:}
 
-			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN LBRACE RBRACE SEMI {: System.out.println(i); System.out.println(l); :}
+			| IDENTIFIER:i LPAREN parameter_list:l RPAREN		{: RESULT = 5; :}
+
+			| IDENTIFIER:i ASSIGN expression_list:l SEMI		{: RESULT = "CMD " + i + " = " + l + "";	:}
+
+			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN LBRACE RBRACE SEMI {: RESULT = "CMD " + i + " = (" + l + ")"; :}
 			;
 
-parameter_list ::= expression:e COMMA parameter_list:l		{: l.addElement(e); RESULT = l; :}
+parameter_list ::= expression_list:e COMMA parameter_list:l		{: l.addElement(e); RESULT = l; :}
 			
 			| empty										{: RESULT = new Vector(); 		:}
 			;
 
-variable_list ::= variable_list:l COMMA IDENTIFIER:i 	{: l.addElement(i); RESULT = l; :}
+variable_list ::= variable_list:l COMMA variable:v 	{: l.addElement(v); RESULT = l; :}
 
-			| IDENTIFIER:i							{: Vector l = new Vector(); l.addElement(i); RESULT = l; :}
+			| variable:v							{: Vector l = new Vector(); l.addElement(v); RESULT = l;:}
 
 			| empty									{: RESULT = new Vector(); :}
 			;
 
+variable ::= COLON IDENTIFIER:i			{: RESULT = i; :}
+			;
 
 expression_list ::= expression_list expression:e	{: RESULT = e;			:}
 

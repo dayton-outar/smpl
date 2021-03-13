@@ -70,26 +70,28 @@ id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
 
   /* operators */  
   "*"                           { return new Symbol(sym.TIMES); }
-  "/"                           { return new Symbol(sym.DIVIDE); }
-  "%"                           { return new Symbol(sym.MOD); }
-  "+"                           { return new Symbol(sym.PLUS); }
+  "/"                           { return new Symbol(sym.DIVIDE);}
+  "%"                           { return new Symbol(sym.MOD);   }
+  "+"                           { return new Symbol(sym.PLUS);  }
   "-"                           { return new Symbol(sym.MINUS); }
-  "&"                           { return new Symbol(sym.AMP); }
-  "|"                           { return new Symbol(sym.BAR); }
+  "&"                           { return new Symbol(sym.AMP);   }
+  "|"                           { return new Symbol(sym.BAR);   }
   "~"                           { return new Symbol(sym.TILDE); }
-  "=="                          { return new Symbol(sym.EQ); }
-  ">"                           { return new Symbol(sym.GT); }
-  ">="                          { return new Symbol(sym.GTEQ); }
-  "<"                           { return new Symbol(sym.LT); }
-  "<="                          { return new Symbol(sym.LTEQ); }
+  /* "=>"                          { return new Symbol(sym.IMPLY); } */
+  "=="                          { return new Symbol(sym.EQ);    }
+  ">"                           { return new Symbol(sym.GT);    }
+  ">="                          { return new Symbol(sym.GTEQ);  }
+  "<"                           { return new Symbol(sym.LT);    }
+  "<="                          { return new Symbol(sym.LTEQ);  }
   "!="                          { return new Symbol(sym.NOTEQ); }
-  "="                           { return new Symbol(sym.ASSIGN); }
-  "("                           { return new Symbol(sym.LPAREN); }
-  ")"                           { return new Symbol(sym.RPAREN); }
-  "{"                           { return new Symbol(sym.LBRACE); }
-  "}"                           { return new Symbol(sym.RBRACE); }
+  "="                           { return new Symbol(sym.ASSIGN);}
+  "("                           { return new Symbol(sym.LPAREN);}
+  ")"                           { return new Symbol(sym.RPAREN);}
+  "{"                           { return new Symbol(sym.LBRACE);}
+  "}"                           { return new Symbol(sym.RBRACE);}
   ","                           { return new Symbol(sym.COMMA); }
-  ";"                           { return new Symbol(sym.SEMI); }
+  ":"                           { return new Symbol(sym.COLON); }
+  ";"                           { return new Symbol(sym.SEMI);  }
 
   /* comments */
   {comment}                     { /* ignore */ }

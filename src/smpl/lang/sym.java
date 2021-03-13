@@ -8,38 +8,40 @@ package smpl.lang;
 /** CUP generated interface containing symbol constants. */
 public interface sym {
   /* terminals */
-  public static final int TIMES = 12;
-  public static final int MOD = 14;
-  public static final int AND = 24;
-  public static final int LT = 20;
-  public static final int NOTEQ = 23;
-  public static final int PLUS = 10;
-  public static final int OR = 25;
-  public static final int RBRACE = 6;
-  public static final int RPAREN = 4;
+  public static final int TIMES = 13;
+  public static final int MOD = 15;
+  public static final int AND = 25;
+  public static final int LT = 21;
+  public static final int NOTEQ = 24;
+  public static final int PLUS = 11;
+  public static final int OR = 26;
+  public static final int RBRACE = 7;
+  public static final int RPAREN = 5;
   public static final int SEMI = 2;
-  public static final int NOT = 26;
-  public static final int IDENTIFIER = 8;
-  public static final int GT = 19;
-  public static final int LPAREN = 3;
-  public static final int LBRACE = 5;
-  public static final int TILDE = 17;
-  public static final int AMP = 15;
-  public static final int COMMA = 7;
-  public static final int LTEQ = 21;
+  public static final int NOT = 27;
+  public static final int IDENTIFIER = 9;
+  public static final int GT = 20;
+  public static final int LPAREN = 4;
+  public static final int COLON = 3;
+  public static final int LBRACE = 6;
+  public static final int TILDE = 18;
+  public static final int AMP = 16;
+  public static final int COMMA = 8;
+  public static final int LTEQ = 22;
   public static final int EOF = 0;
-  public static final int DIVIDE = 13;
-  public static final int MINUS = 11;
+  public static final int DIVIDE = 14;
+  public static final int MINUS = 12;
   public static final int error = 1;
-  public static final int ASSIGN = 27;
-  public static final int EQ = 18;
-  public static final int INTEGER_LITERAL = 9;
-  public static final int GTEQ = 22;
-  public static final int BAR = 16;
+  public static final int ASSIGN = 28;
+  public static final int EQ = 19;
+  public static final int INTEGER_LITERAL = 10;
+  public static final int GTEQ = 23;
+  public static final int BAR = 17;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
   "SEMI",
+  "COLON",
   "LPAREN",
   "RPAREN",
   "LBRACE",
