@@ -52,7 +52,7 @@ _SMPL_ has two types of compound data: the vector and the pair. A vector is some
 
 Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second (after it has been evaluated) must be a procedure that when given an index less than the size, returns the value to be stored at that position _in the subvector_. The following examples should help to clarify the description. In them, assume that the value of `x` has previously been set to 5.
 
-```scheme
+```haskell
 [: 1,2,3 :]                                 ⇒ [1 2 3]
 [: 1,2,x :]                                 ⇒ [1 2 5]
 [: 5: proc(i) i :]                          ⇒ [0 1 2 3 4]
@@ -107,12 +107,11 @@ Here are some example procedures in _SMPL_.
 
 | Keyword | Purpose |
 | :--- | :--- |
-| `proc(`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)` &#12296;_body_&#12297; | Return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. |
-| `let(`_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>`)` &#12296;_body_&#12297; | Evaluate _body_ in an environment extended by bindings _b_<sub><i>i</i></sub>.<br />The syntax of a binding is &#12296;_id_&#12297; be &#12296;_expr_&#12297;. |
 | `〈id〉 = 〈expr〉`<sup><a href="#footnote-5">5</a></sup>&nbsp;<sup><a href="#footnote-6">6</a></sup> | Define and assign the value of _expr_ to variable _id_. |
-| `if 〈expr〉 then 〈expr〉`<br />**[**`else 〈expr〉`**]** | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
+| `〈id〉 = (`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)` &#12296;_body_&#12297;<a href="#footnote-7">7</a></sup> | Return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. |
+| `〈expr〉 ? 〈expr〉`<sup><a href="#footnote-8">8</a><br />`: 〈expr〉` | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
 | `case {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈expr〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
-| `{...}` | Compound expression |
+| `{...}`<sup><a href="#footnote-9">9</a> | Compound expression. List (or &#12296;_body_&#12297;) of statements can be executed and expressions evaluated within this code block |
 | `print(〈expr〉)` | Print the value of the given expression. |
 | `read()` | Read and return a string from the keyboard. |
 | `readint()` | Read and return an integer from the keyboard. |
@@ -121,34 +120,17 @@ Here are some example procedures in _SMPL_.
 
 Table 4: Table of _SMPL_ commands
 
-```scheme
-fact := proc(n)
-    // return factorial n
-    if n <= 1
-        then 1
-        else n * fact(n - 1)
+```haskell
+fact = (n) -> (n <= 1) ? 1 : n * fact(n - 1); // return factorial n
 
-def fib proc(n)
-    /* return the nth fibonacci number */
-    if n <= 1
-        then 1
-        else fib(n - 1) + fib(n - 2)
+fib = (n) -> (n <= 1) ? 1 : fib(n - 1) + fib(n - 2); /* return the nth fibonacci number */
 
-def map proc(f, list)
-    /* return a new list, obtained by applying f to each element of list */
-    if list = #e
-        then #e
-        else pair(f(1st(list)),
-            map(f, 2nd(list)))
+map = (f, list) -> (list = #e) ? #e : pair(f(1st(list)), map(f, 2nd(list))); /* return a new list, obtained by applying f to each element of list */
 
-def vecMap proc(f, v)
-    /* return a newly allocated vector obtained by applying f to each element of v. */
-    [: size(v): proc(i) f(v[i]) :]
+vecMap = (f, v) -> [: size(v): proc(i) f(v[i]) :]; /* return a newly allocated vector obtained by applying f to each element of v. */
 
-
-def vecAppend proc(v1, v2)
-    /* return a newly allocated vector containing elements of v1 followed by elements of v2 */
-    [: size(v1): proc(i) v1[i], size(v2): proc(i) v2[i] :]
+vecAppend = (v1, v2) -> [: size(v1): proc(i) v1[i], size(v2): proc(i) v2[i] :]; /* return a newly allocated vector containing elements of v1 followed by elements of v2 */
+    
 ```
 
 <div align="right">
@@ -192,5 +174,11 @@ Here are a few ideas for extensions to _SMPL_ :
 <a id="footnote-5"><sup>5</sup></a> The original concepts was to use `=` for the conditional expression indicating equality. This version will use `==`, which is more ubiquitous across most popular languages. This would make `=` available for the assignment operator.
 
 <a id="footnote-6"><sup>6</sup></a> `def 〈id〉 〈expr〉` was removed for this specification as `〈id〉 = 〈expr〉` was thought to be sufficiently identifiable and useful for the same purpose.
+
+<a id="footnote-7"><sup>7</sup></a> `proc(`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)` &#12296;_body_&#12297; was changed to `〈id〉 = (`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)` &#12296;_body_&#12297; to look more like assignment. Mimicking JavaScript design (not the syntax but the interpretation) of function variables.
+
+<a id="footnote-8"><sup>8</sup></a> `if 〈expr〉 then 〈expr〉 else 〈expr〉` was removed as `〈expr〉 ? 〈expr〉 : 〈expr〉` was thought to be more brief
+
+<a id="footnote-9"><sup>9</sup></a> `let(`_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>`)` &#12296;_body_&#12297; was removed as `{...}` thought to be sufficient for evaluating a list of statements
 
 &copy; Dayton Outar

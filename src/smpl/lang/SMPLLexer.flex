@@ -77,7 +77,8 @@ id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
   "&"                           { return new Symbol(sym.AMP);   }
   "|"                           { return new Symbol(sym.BAR);   }
   "~"                           { return new Symbol(sym.TILDE); }
-  /* "=>"                          { return new Symbol(sym.IMPLY); } */
+  "->"                          { return new Symbol(sym.IMPLY); }
+  "?"                           { return new Symbol(sym.QUES);  }
   "=="                          { return new Symbol(sym.EQ);    }
   ">"                           { return new Symbol(sym.GT);    }
   ">="                          { return new Symbol(sym.GTEQ);  }

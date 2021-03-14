@@ -32,9 +32,11 @@ public interface sym {
   public static final int DIVIDE = 14;
   public static final int MINUS = 12;
   public static final int error = 1;
+  public static final int IMPLY = 29;
   public static final int ASSIGN = 28;
   public static final int EQ = 19;
   public static final int INTEGER_LITERAL = 10;
+  public static final int QUES = 30;
   public static final int GTEQ = 23;
   public static final int BAR = 17;
   public static final String[] terminalNames = new String[] {
@@ -66,7 +68,9 @@ public interface sym {
   "AND",
   "OR",
   "NOT",
-  "ASSIGN"
+  "ASSIGN",
+  "IMPLY",
+  "QUES"
   };
 }
 
