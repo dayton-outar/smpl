@@ -121,15 +121,20 @@ Here are some example procedures in _SMPL_.
 Table 4: Table of _SMPL_ commands
 
 ```haskell
-fact = (n) -> (n <= 1) ? 1 : n * fact(n - 1); // return factorial n
+// return factorial n
+fact = (n) -> (n <= 1) ? 1 : n * fact(n - 1);
 
-fib = (n) -> (n <= 1) ? 1 : fib(n - 1) + fib(n - 2); /* return the nth fibonacci number */
+/* return the nth fibonacci number */
+fib = (n) -> (n <= 1) ? 1 : fib(n - 1) + fib(n - 2);
 
-map = (f, list) -> (list = #e) ? #e : pair(f(1st(list)), map(f, 2nd(list))); /* return a new list, obtained by applying f to each element of list */
+/* return a new list, obtained by applying f to each element of list */
+map = (f, list) -> (list = #e) ? #e : pair(f(1st(list)), map(f, 2nd(list)));
 
-vecMap = (f, v) -> [: size(v): proc(i) f(v[i]) :]; /* return a newly allocated vector obtained by applying f to each element of v. */
+/* return a newly allocated vector obtained by applying f to each element of v. */
+vecMap = (f, v) -> [: size(v): proc(i) f(v[i]) :];
 
-vecAppend = (v1, v2) -> [: size(v1): proc(i) v1[i], size(v2): proc(i) v2[i] :]; /* return a newly allocated vector containing elements of v1 followed by elements of v2 */
+ /* return a newly allocated vector containing elements of v1 followed by elements of v2 */
+vecAppend = (v1, v2) -> [: size(v1): proc(i) v1[i], size(v2): proc(i) v2[i] :];
     
 ```
 
