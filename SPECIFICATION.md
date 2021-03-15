@@ -153,7 +153,6 @@ Here are a few ideas for extensions to _SMPL_ :
     issue is probably how best to implement the type conversion rules for arithmetic computations that mix integers and floating point numbers.
 - Variable numbers of arguments to procedures. Procedure declarations would allow a special parameter syntax to indicate that the procedure could be called with a variable number of
     arguments.
-- Static types. Type declarations could be permitted in _SMPL_. In which case, compile-time type checking could then be performed to improve the run timeperformance of programs.
 - Additional control structures. Typical looping constructs such as `for`, `repeat` and `while` in Pascal could be included in _SMPL_.
 - Macros. A limited form of language extension can be accomplished through the use of macros. It should not be too difficult to extend _SMPL_ to include macros that are declared and used in
     a similar way to procedures.

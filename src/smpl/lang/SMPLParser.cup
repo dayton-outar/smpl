@@ -63,6 +63,7 @@ terminal ASSIGN, IMPLY, QUES;
 /* Non terminals */
 non terminal			program;
 non terminal Vector		statement_list;
+non terminal Vector		statement_block;
 non terminal			statement;
 non terminal String		variable;
 non terminal            expression_list;
@@ -88,6 +89,9 @@ precedence left TILDE;
 
 program ::= statement_list:sl 						{: System.out.println(sl); :};
 
+statement_block ::= LBRACE statement_list:l RBRACE	{: RESULT = l; :}
+				;
+
 statement_list ::= statement:stmt statement_list:sl {: sl.addElement(stmt); RESULT = sl ; :} 
 				
 				| empty 							{: RESULT = new Vector(); :}
@@ -99,11 +103,13 @@ statement ::= expression_list:l SEMI							{: RESULT = l;	:}
 
 			| IDENTIFIER:i ASSIGN expression_list:l SEMI		{: RESULT = "CMD " + i + " = " + l + "";	:}
 
-			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN IMPLY LBRACE RBRACE SEMI {: RESULT = "CMD " + i + " = (" + l + ")"; :}
+			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN IMPLY expression_list:el SEMI {: RESULT = "CMD " + i + " = (" + l + ") => " + el; :}
 
-			| condition_list:l QUES expression_list:e			{: RESULT = "CMD condition ? " + e; :}
+			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN IMPLY statement_block:sl SEMI {: RESULT = "CMD " + i + " = (" + l + ") {\n" + sl + "\n}"; :}
 
-			| condition_list:l QUES expression_list:e1 COLON expression_list:e2	{: RESULT = "CMD condition ? " + e1 + " : " + e2; :}
+			| condition_list:l QUES expression_list:e SEMI			{: RESULT = "CMD condition ? " + e; :}
+
+			| condition_list:l QUES expression_list:e1 COLON expression_list:e2 SEMI	{: RESULT = "CMD condition ? " + e1 + " : " + e2; :}
 			;
 
 parameter_list ::= expression_list:e COMMA parameter_list:l		{: l.addElement(e); RESULT = l; :}
