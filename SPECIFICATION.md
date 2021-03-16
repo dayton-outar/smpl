@@ -48,16 +48,16 @@ Table 2: Table of special character codes
 - The boolean constants _`true`_ and _`false`_ are denoted `#t` and `#f` respectively.
 - The empty list, called _`nil`_, is denoted by `#e`. An _SMPL_ list is actually a sequence of pairs that terminate with the empty list.
 
-_SMPL_ has two types of compound data: the vector and the pair. A vector is somewhat like an array, except that it is not constrained to hold only one typeof data. A pair contains two arbitrary objects. Table 3 describes the builtin functions availablefor manipulating compound data in _SMPL_.
+_SMPL_ has two types of compound data: the vector and the pair. A vector is somewhat like an array, except that it is not constrained to hold only one typeof data. A pair contains two arbitrary objects. Table 3 describes the builtin functions available for manipulating compound data in _SMPL_.
 
 Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second (after it has been evaluated) must be a procedure that when given an index less than the size, returns the value to be stored at that position _in the subvector_. The following examples should help to clarify the description. In them, assume that the value of `x` has previously been set to 5.
 
 ```haskell
-[: 1,2,3 :]                                 ⇒ [1 2 3]
-[: 1,2,x :]                                 ⇒ [1 2 5]
-[: 5: proc(i) i :]                          ⇒ [0 1 2 3 4]
-[: 1, 3: proc(n) 2 * n, 3 :]                ⇒ [1 0 2 4 3]
-[: 3: proc(n) 2 * n, 4: proc(n) 3 * n :]    ⇒ [0 2 4 0 3 6 9]
+[ 1,2,3 ]                               ⇒ [1 2 3]
+[ 1,2,x ]                               ⇒ [1 2 5]
+[ 5: (i) -> i ]                         ⇒ [0 1 2 3 4]
+[ 1, 3: (n) -> 2 * n, 3 ]               ⇒ [1 0 2 4 3]
+[ 3: (n) -> 2 * n, 4: (n) -> 3 * n ]    ⇒ [0 2 4 0 3 6 9]
 ```
 
 | Builtin | Explanation |
@@ -65,7 +65,7 @@ Vector initialisation is quite flexible. A vector may be initialised by specifyi
 | `pair(`&#12296;e<sub>1</sub> ,e<sub>2</sub>&#12297;`)` | Create a pair containing the objects denoted by e<sub>1</sub> and e<sub>2</sub>. |
 | `1st(`&#12296;p&#12297;`)` | Return the first object in the pair _p_. |
 | `2nd(`&#12296;p&#12297;`)` | Return the second object in the pair _p_. |
-| `[:[`&#12296;e<sub>1</sub>&#12297;, &hellip;,&#12296;e<sub>n</sub>&#12297;`]:]` | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form<br/>&#12296;expr<sub>size</sub>&#12297; : &#12296;expr<sub>init</sub>&#12297; |
+| `[`&#12296;e<sub>1</sub>&#12297;, &hellip;,&#12296;e<sub>n</sub>&#12297;`]`<sup><a href="#footnote-a">a</a></sup> | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form<br/>&#12296;expr<sub>size</sub>&#12297; : &#12296;expr<sub>init</sub>&#12297; |
 | &#12296;expr<sub>vec</sub>&#12297;`[`&#12296;n&#12297;`]` | Return the <i>n<sup>th</sup></i> element of vector _vec_(indexed from 0).<br/>When on the LHS of an assignment, sets the <i>n<sup>th</sup></i> element to the RHS. |
 | `size(`&#12296;vec&#12297;`)` | Return the length of the vector _vec_. |
 
@@ -111,10 +111,9 @@ Here are some example procedures in _SMPL_.
 | `〈id〉 = (`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)` &#12296;_body_&#12297;<sup><a href="#footnote-7">7</a></sup> | Return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. |
 | `〈expr〉 ? 〈expr〉`<sup><a href="#footnote-8">8</a></sup><br />`: 〈expr〉` | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
 | `case {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈expr〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
-| `{...}`<sup><a href="#footnote-9">9</a> | Compound expression. List (or &#12296;_body_&#12297;) of statements can be executed and expressions evaluated within this code block |
-| `print(〈expr〉)` | Print the value of the given expression. |
-| `read()` | Read and return a string from the keyboard. |
-| `readint()` | Read and return an integer from the keyboard. |
+| `{...}`<sup><a href="#footnote-9">9</a></sup> | Compound expression. List (or &#12296;_body_&#12297;) of statements can be executed and expressions evaluated within this code block |
+| `:> 〈expr〉`<sup><a href="#footnote-10">10</a></sup> | Print the value of the given expression. |
+| `:<`<sup><a href="#footnote-11">11</a></sup> | Read and return a stream from the keyboard either a number or a string. |
 | `//`<br />`/*... */` | Comment to rest of line<br />block comment (nestable) |
 
 
@@ -173,6 +172,8 @@ Here are a few ideas for extensions to _SMPL_ :
 
 &copy; Prof. Daniel Coore
 
+<a id="footnote-a"><sup>a</sup></a> Changed the token for enclosing arrays to the ubiquitous tokens, `[` `]`, rather than `[:`, `:]`.
+
 <a id="footnote-4"><sup>4</sup></a> The original specification included special characters such as `!`, `?`, `#`. These are removed in this specification. So, these: `foo!`, `bar?`, `fo#o`, `foo.bar` are not allowed.
 
 <a id="footnote-5"><sup>5</sup></a> The original concepts was to use `=` for the conditional expression indicating equality. This version will use `==`, which is more ubiquitous across most popular languages. This would make `=` available for the assignment operator.
@@ -184,5 +185,9 @@ Here are a few ideas for extensions to _SMPL_ :
 <a id="footnote-8"><sup>8</sup></a> `if 〈expr〉 then 〈expr〉 else 〈expr〉` was removed as `〈expr〉 ? 〈expr〉 : 〈expr〉` was thought to be more brief
 
 <a id="footnote-9"><sup>9</sup></a> `let(`_b_<sub>1</sub> , _b_<sub>2</sub>, &hellip;, _b_<sub>n</sub>`)` &#12296;_body_&#12297; was removed as `{...}` thought to be sufficient for evaluating a list of statements
+
+<a id="footnote-10"><sup>10</sup></a> `print(〈expr〉)` was replaced by `:> 〈expr〉` as part of the philosophy to make the language more symbolic
+
+<a id="footnote-11"><sup>11</sup></a> `read()` and `readint()` was replaced by `<:` as part of the philosophy to make the language more symbolic and minimalistic
 
 &copy; Dayton Outar
