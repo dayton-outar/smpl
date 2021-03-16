@@ -48,6 +48,8 @@ Table 2: Table of special character codes
 - The boolean constants _`true`_ and _`false`_ are denoted `#t` and `#f` respectively.
 - The empty list, called _`nil`_, is denoted by `#e`. An _SMPL_ list is actually a sequence of pairs that terminate with the empty list.
 
+### 2.2 Compound Data
+
 _SMPL_ has two types of compound data: the vector and the pair. A vector is somewhat like an array, except that it is not constrained to hold only one typeof data. A pair contains two arbitrary objects. Table 3 describes the builtin functions available for manipulating compound data in _SMPL_.
 
 Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second (after it has been evaluated) must be a procedure that when given an index less than the size, returns the value to be stored at that position _in the subvector_. The following examples should help to clarify the description. In them, assume that the value of `x` has previously been set to 5.
@@ -71,7 +73,7 @@ Vector initialisation is quite flexible. A vector may be initialised by specifyi
 
 Table 3: Builtin expressions
 
-### 2.2 Statements and Expressions
+### 2.3 Statements and Expressions
 
 Table 4 lists the keywords of _SMPL_ and their purposes.
 
@@ -130,10 +132,10 @@ fib = (n) -> (n <= 1) ? 1 : fib(n - 1) + fib(n - 2);
 map = (f, list) -> (list = #e) ? #e : pair(f(1st(list)), map(f, 2nd(list)));
 
 /* return a newly allocated vector obtained by applying f to each element of v. */
-vecMap = (f, v) -> [: size(v): proc(i) f(v[i]) :];
+vecMap = (f, v) -> [ size(v): (i) -> f(v[i]) ];
 
  /* return a newly allocated vector containing elements of v1 followed by elements of v2 */
-vecAppend = (v1, v2) -> [: size(v1): proc(i) v1[i], size(v2): proc(i) v2[i] :];
+vecAppend = (v1, v2) -> [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ];
     
 ```
 
