@@ -99,14 +99,6 @@ Operator precedence, from highest to lowest is as follows:
 
 In order to apply a unary minus to an expression, the combined expression must be surrounded by parentheses. So the negative of the variable `x` is expressed as `(- x)`, not  `- x`.
 
-<div align="right">
-    <b><a href="#smpl-specification"">↥ To Top</a></b>
-</div>
-
-## 3 Examples
-
-Here are some example procedures in _SMPL_.
-
 | Keyword | Purpose |
 | :--- | :--- |
 | `〈id〉 = 〈expr〉`<sup><a href="#footnote-5">5</a></sup>&nbsp;<sup><a href="#footnote-6">6</a></sup> | Define and assign the value of _expr_ to variable _id_. |
@@ -121,7 +113,15 @@ Here are some example procedures in _SMPL_.
 | `//`<br />`/*... */` | Comment to rest of line<br />block comment (nestable) |
 
 
-Table 4: Table of _SMPL_ commands
+Table 4: Table of _SMPL_ statements
+
+<div align="right">
+    <b><a href="#smpl-specification"">↥ To Top</a></b>
+</div>
+
+## 3 Examples
+
+Here are some example procedures in _SMPL_.
 
 ```haskell
 // return factorial n
