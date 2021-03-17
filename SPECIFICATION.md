@@ -23,7 +23,7 @@ form feed and line feed if you wish).
 
 _SMPL_ can denote the following types of literals:
 
-- Signed integers that can fit into 32-bit two’s complement representation, strings and characters. Integers are assumed to be in decimal, unless prefixed with `#x` or `#b` in which case they are in hexadecimal or binary, respectively.
+- Numbers that can fit into double-precision 64-bit two’s complement representation, strings and characters. Numbers can represent fractions that can store values up to 16 decimal places. Signed integers has a minimum value of -2<sup>63</sup> and a maximum value of 2<sup>63</sup>-1. Numbers are assumed to be in decimal, unless prefixed with `0x`, `0o` or `0b` in which case they are in hexadecimal, octal or binary, respectively.<sup><a href="#footnote-e">e</a></sup>
 
 | Escape Sequence | Character Denoted |
 | :--- | :--- |
@@ -106,7 +106,7 @@ In order to apply a unary minus to an expression, the combined expression must b
 | `〈id〉 = (...〈parameter〉)` &#12296;_body_&#12297;<sup><a href="#footnote-d">d</a></sup> | Reads variable number of arguments into parameter. Parameter will contain array of bindings passed into body of statements |
 | `〈expr〉 ? 〈expr〉`<sup><a href="#footnote-8">8</a></sup><br />`: 〈expr〉` | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
 | `case {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈expr〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
-| `(〈assignment〉; 〈condition〉; 〈expr〉)` &#12296;_body_&#12297;<sup><a href="#footnote-c">c</a></sup> | Typical looping constructs such as `for` and `while` in Pascal could be included in _SMPL_.<br />How do we create a minimal loop grammar that can be used for both `for` and `while`? |
+| `(〈assignments〉; 〈condition〉; 〈expr〉)` &#12296;_body_&#12297;<sup><a href="#footnote-c">c</a></sup> | Typical looping constructs such as `for` and `while` in Pascal could be included in _SMPL_.<br />How do we create a minimal loop grammar that can be used for both `for` and `while`? |
 | `{...}`<sup><a href="#footnote-9">9</a></sup> | Compound expression. List (or &#12296;_body_&#12297;) of statements can be executed and expressions evaluated within this code block |
 | `:> 〈expr〉`<sup><a href="#footnote-10">10</a></sup> | Print the value of the given expression. |
 | `:<`<sup><a href="#footnote-11">11</a></sup> | Read and return a stream from the keyboard either a number or a string. |
@@ -149,8 +149,6 @@ vecAppend = (v1, v2) -> [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ];
 
 Here are a few ideas for extensions to _SMPL_ :
 
-- Arbitrary precision integer arithmetic. It would be good if _SMPL_ were not restricted to integers that could fit within the 32-bit two’s complement representation. These “big” integers could be represented by using multiple words of contiguous storage to store the bits of the number. Each of the primitive arithmetic operators would have to be redefined to accommodate these large numbers. However, the only difference the user should observe is that she is no longer restricted to small integers. (A good test case for this is to see whether your extended language can compute the factorial of 1000.)
-- Floating point numbers. This might not be very difficult if the target language (or machine, in the case of an interpreter) already supports floating point numbers. In that case, the biggest issue is probably how best to implement the type conversion rules for arithmetic computations that mix integers and floating point numbers.
 - Macros. A limited form of language extension can be accomplished through the use of macros. It should not be too difficult to extend _SMPL_ to include macros that are declared and used in
     a similar way to procedures.
 - Call by: reference, lazy and name parameter passing conventions. At the moment _SMPL_ supports only call by value (CBV). It could be extended to allow procedure declarations that
@@ -169,6 +167,8 @@ Here are a few ideas for extensions to _SMPL_ :
 <a id="footnote-3"><sup>3</sup></a> First class objects may be named, stored in data structures, passed as arguments and returned as values from procedures
 
 &copy; Prof. Daniel Coore
+
+<a id="footnote-e"><sup>e</sup></a> Implementing extension for _Arbitrary precision integer arithmetic_ and _Floating point numbers_ in first iteration (A good test case for this is to see whether your extended language can compute the factorial of 1000).
 
 <a id="footnote-a"><sup>a</sup></a> Changed the token for enclosing arrays to the ubiquitous tokens, `[` `]`, rather than `[:`, `:]`.
 
