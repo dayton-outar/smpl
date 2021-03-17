@@ -35,7 +35,7 @@ Table 1: Escaped codes for control characters in strings
 
 - String constants are denoted between double quotes `"`. Within a string, certain control characters can be denoted by an escape sequence. Table 1 lists the set of escape sequences that should be recognised within _SMPL_ strings.
 - Character literals are denoted as `#\` followed immediately by the character representation. For example, the character `a` is represented as `#\a`. Character literals may also be specified by their unicode representation given as four hexadecimal digits immediately following the `#\`. So the character `a` may also be denoted as `#\0061`.<sup><a href="#footnote-f">f</a></sup>
-- The boolean constants _`true`_ and _`false`_ are denoted `#t` and `#f` respectively.
+- The boolean constants are _`true`_ and _`false`_.
 - The empty list, called _`nil`_, is denoted by `#e`. An _SMPL_ list is actually a sequence of pairs that terminate with the empty list.
 
 ### 2.2 Compound Data
@@ -81,18 +81,18 @@ _SMPL_ ***operators*** include:
 - Arithmetic operators: `+`, `-`, `*`, `/`, `%`
 - Bitwise operators: `&`, `|`, `~`
 - Relational operators: `==`<sup><a href="#footnote-5">5</a></sup>, `>`, `<`, `<=`, `>=`, `!=`
-- Logical operators: `and`, `or`, `not`
+- Logical operators: `&&`, `||`, `!`
 
 Operator precedence, from highest to lowest is as follows: 
 
-`∼`	**⇒** `∗`, `/`, `%` **⇒** `+`, `−` **⇒** `&`, `|` **⇒** `=`, `>`, `<`, `≤`, `≥`, `≠`	**⇒** `not`	**⇒** `and`	**⇒** `or`
+`∼`	**⇒** `∗`, `/`, `%` **⇒** `+`, `−` **⇒** `&`, `|` **⇒** `=`, `>`, `<`, `≤`, `≥`, `≠`	**⇒** `!`	**⇒** `&&`	**⇒** `||`
 
 In order to apply a unary minus to an expression, the combined expression must be surrounded by parentheses. So the negative of the variable `x` is expressed as `(- x)`, not  `- x`.
 
 | Keyword | Purpose |
 | :--- | :--- |
 | `〈id〉 = 〈expr〉`<sup><a href="#footnote-5">5</a></sup>&nbsp;<sup><a href="#footnote-6">6</a></sup> | Define and assign the value of _expr_ to variable _id_. |
-| `〈id〉 = (`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)`<sup><a href="#footnote-7">7</a></sup><br />`{...}`<sup><a href="#footnote-9">9</a></sup> | Return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. Optionally, the spread operator `(...〈parameter〉)` can be used, whill pass an array of values passed to function.<sup><a href="#footnote-d">d</a></sup><br />Compound expression containing list of statements. |
+| `〈id〉 = (`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)`<sup><a href="#footnote-7">7</a></sup><br />`{...}`<sup><a href="#footnote-9">9</a></sup> | Return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. Optionally, the spread operator `(...〈parameter〉)` can be used, which will pass an array of values passed to function.<sup><a href="#footnote-d">d</a></sup><br />Compound expression containing list of statements. |
 | `〈expr〉 ? 〈expr〉`<sup><a href="#footnote-8">8</a></sup><br />`: 〈expr〉` | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
 | `case {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈expr〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
 | `(〈assignments〉; 〈condition〉; 〈expr〉)` &#12296;_body_&#12297;<sup><a href="#footnote-c">c</a></sup> | Typical looping constructs such as `for` and `while` in Pascal could be included in _SMPL_.<br />How do we create a minimal loop grammar that can be used for both `for` and `while`? |

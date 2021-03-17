@@ -58,7 +58,7 @@ terminal EQ, GT, LT, LTEQ, GTEQ, NOTEQ;
 terminal AND, OR, NOT;
 
 // operators: assignment
-terminal ASSIGN, IMPLY, QUES;
+terminal ASSIGN, IMPLY, QUERY;
 
 /* Non terminals */
 non terminal			program;
@@ -75,7 +75,7 @@ non terminal Vector		variable_list;
 non terminal empty;
 
 /* Precedences. Highest precedence is at the bottom. */
-precedence nonassoc LPAREN, RPAREN, COLON, QUES;
+precedence nonassoc LPAREN, RPAREN, COLON, QUERY;
 precedence left OR;
 precedence left AND;
 precedence left NOT;
@@ -107,9 +107,9 @@ statement ::= expression_list:l SEMI							{: RESULT = l;	:}
 
 			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN IMPLY statement_block:sl SEMI {: RESULT = "CMD " + i + " = (" + l + ") {\n" + sl + "\n}"; :}
 
-			| condition_list:l QUES expression_list:e SEMI			{: RESULT = "CMD condition ? " + e; :}
+			| condition_list:l QUERY expression_list:e SEMI			{: RESULT = "CMD condition ? " + e; :}
 
-			| condition_list:l QUES expression_list:e1 COLON expression_list:e2 SEMI	{: RESULT = "CMD condition ? " + e1 + " : " + e2; :}
+			| condition_list:l QUERY expression_list:e1 COLON expression_list:e2 SEMI	{: RESULT = "CMD condition ? " + e1 + " : " + e2; :}
 			;
 
 parameter_list ::= expression_list:e COMMA parameter_list:l		{: l.addElement(e); RESULT = l; :}

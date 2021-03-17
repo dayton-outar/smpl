@@ -57,9 +57,8 @@ id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
 
 %%
 
-<YYINITIAL> not                 { return new Symbol(sym.NOT); }
-<YYINITIAL> and                 { return new Symbol(sym.AND); }
-<YYINITIAL> or                  { return new Symbol(sym.OR); }
+<YYINITIAL> "true"              { return new Symbol(sym.TRUE); }
+<YYINITIAL> "false"             { return new Symbol(sym.FALSE); }
 
 <YYINITIAL> {
   /* identifiers */
@@ -78,7 +77,10 @@ id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
   "|"                           { return new Symbol(sym.BAR);   }
   "~"                           { return new Symbol(sym.TILDE); }
   "->"                          { return new Symbol(sym.IMPLY); }
-  "?"                           { return new Symbol(sym.QUES);  }
+  "!"                           { return new Symbol(sym.NOT); }
+  "&&"                          { return new Symbol(sym.AND); }
+  "||"                          { return new Symbol(sym.OR); }
+  "?"                           { return new Symbol(sym.QUERY);  }
   "=="                          { return new Symbol(sym.EQ);    }
   ">"                           { return new Symbol(sym.GT);    }
   ">="                          { return new Symbol(sym.GTEQ);  }
