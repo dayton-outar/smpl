@@ -33,18 +33,8 @@ _SMPL_ can denote the following types of literals:
 
 Table 1: Escaped codes for control characters in strings
 
-| Code | Character |
-| :--- | :--- |
-| `sp` | space |
-| `tb` | tab |
-| `nl` | newline |
-| `cr` | carriage return |
-| `ff` | form feed (or newpage) |
-
-Table 2: Table of special character codes
-
 - String constants are denoted between double quotes `"`. Within a string, certain control characters can be denoted by an escape sequence. Table 1 lists the set of escape sequences that should be recognised within _SMPL_ strings.
-- Character literals are denoted as `#\` followed immediately by the character representation. For example, the character `a` is represented as `#\a`. Common special characters have two letter codes. Table 2 lists the codes for recognized special characters. To accomodate the remaining characters, character literals may also be specified by their unicode representation given as four hexadecimal digits immediately following the `#\`. So the character `a` may also be denoted as `#\0061`.
+- Character literals are denoted as `#\` followed immediately by the character representation. For example, the character `a` is represented as `#\a`. Character literals may also be specified by their unicode representation given as four hexadecimal digits immediately following the `#\`. So the character `a` may also be denoted as `#\0061`.<sup><a href="#footnote-f">f</a></sup>
 - The boolean constants _`true`_ and _`false`_ are denoted `#t` and `#f` respectively.
 - The empty list, called _`nil`_, is denoted by `#e`. An _SMPL_ list is actually a sequence of pairs that terminate with the empty list.
 
@@ -169,6 +159,8 @@ Here are a few ideas for extensions to _SMPL_ :
 &copy; Prof. Daniel Coore
 
 <a id="footnote-e"><sup>e</sup></a> Implementing extension for _Arbitrary precision integer arithmetic_ and _Floating point numbers_ in first iteration (A good test case for this is to see whether your extended language can compute the factorial of 1000).
+
+<a id="footnote-f"><sup>f</sup></a> Removed _Table of special character codes_. Will be using the uniquitous character codes already established in Java, JavaScript and C.
 
 <a id="footnote-a"><sup>a</sup></a> Changed the token for enclosing arrays to the ubiquitous tokens, `[` `]`, rather than `[:`, `:]`.
 
