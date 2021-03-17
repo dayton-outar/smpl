@@ -45,11 +45,11 @@ _SMPL_ has two types of compound data: the vector and the pair. A vector is some
 Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second (after it has been evaluated) must be a procedure that when given an index less than the size, returns the value to be stored at that position _in the subvector_. The following examples should help to clarify the description. In them, assume that the value of `x` has previously been set to 5.
 
 ```haskell
-[ 1,2,3 ]                               ⇒ [1 2 3]
-[ 1,2,x ]                               ⇒ [1 2 5]
-[ 5: (i) -> i ]                         ⇒ [0 1 2 3 4]
-[ 1, 3: (n) -> 2 * n, 3 ]               ⇒ [1 0 2 4 3]
-[ 3: (n) -> 2 * n, 4: (n) -> 3 * n ]    ⇒ [0 2 4 0 3 6 9]
+[ 1,2,3 ]                                   ⇒ [1 2 3]
+[ 1,2,x ]                                   ⇒ [1 2 5]
+[ 5: (i) { i; } ]                           ⇒ [0 1 2 3 4]
+[ 1, 3: (n) { 2 * n; }, 3 ]                 ⇒ [1 0 2 4 3]
+[ 3: (n) { 2 * n; }, 4: (n) { 3 * n; } ]    ⇒ [0 2 4 0 3 6 9]
 ```
 
 | Builtin | Explanation |
@@ -95,7 +95,7 @@ In order to apply a unary minus to an expression, the combined expression must b
 | `〈id〉 = (`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)`<sup><a href="#footnote-7">7</a></sup><br />`{...}`<sup><a href="#footnote-9">9</a></sup> | Return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. Optionally, the spread operator `(...〈parameter〉)` can be used, which will pass an array of values passed to function.<sup><a href="#footnote-d">d</a></sup><br />Compound expression containing list of statements. |
 | `〈expr〉 ? 〈expr〉`<sup><a href="#footnote-8">8</a></sup><br />`: 〈expr〉` | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
 | `case {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈expr〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
-| `(〈assignments〉; 〈condition〉; 〈expr〉)` &#12296;_body_&#12297;<sup><a href="#footnote-c">c</a></sup> | Typical looping constructs such as `for` and `while` in Pascal could be included in _SMPL_.<br />How do we create a minimal loop grammar that can be used for both `for` and `while`? |
+| `(〈assignments〉; 〈condition〉; 〈expr〉)`<sup><a href="#footnote-c">c</a></sup><br />`{...}` | Looping constructs such as `for` and `while`. `while` needs no `〈asssignments〉` nor `〈expr〉`. So, `while` loop starts like this `(; 〈condition〉;)`. |
 | `:> 〈expr〉`<sup><a href="#footnote-10">10</a></sup> | Print the value of the given expression. |
 | `:<`<sup><a href="#footnote-11">11</a></sup> | Read and return a stream from the keyboard either a number or a string. |
 | `//` | Comment to rest of line |

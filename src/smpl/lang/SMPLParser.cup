@@ -103,9 +103,7 @@ statement ::= expression_list:l SEMI							{: RESULT = l;	:}
 
 			| IDENTIFIER:i ASSIGN expression_list:l SEMI		{: RESULT = "CMD " + i + " = " + l + "";	:}
 
-			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN IMPLY expression_list:el SEMI {: RESULT = "CMD " + i + " = (" + l + ") => " + el; :}
-
-			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN IMPLY statement_block:sl SEMI {: RESULT = "CMD " + i + " = (" + l + ") {\n" + sl + "\n}"; :}
+			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN statement_block:sl {: RESULT = "CMD " + i + " = (" + l + ") {\n" + sl + "\n}"; :}
 
 			| condition_list:l QUERY expression_list:e SEMI			{: RESULT = "CMD condition ? " + e; :}
 
