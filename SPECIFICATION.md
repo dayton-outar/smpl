@@ -23,7 +23,7 @@ form feed and line feed if you wish).
 
 _SMPL_ can denote the following types of literals:
 
-- Numbers that can fit into double-precision 64-bit two’s complement representation, strings and characters. Numbers can represent fractions that can store values up to 16 decimal places. Signed integers has a minimum value of -2<sup>63</sup> and a maximum value of 2<sup>63</sup>-1. Numbers are assumed to be in decimal, unless prefixed with `0x`, `0o` or `0b` in which case they are in hexadecimal, octal or binary, respectively.<sup><a href="#footnote-e">e</a></sup>
+- Numbers that can fit into double-precision 64-bit two’s complement representation, strings and characters. Numbers can represent fractions that can store values up to 16 decimal places. Signed integers has a minimum value of -2<sup>63</sup> and a maximum value of 2<sup>63</sup> &#8211; 1. Numbers are assumed to be in decimal, unless prefixed with `0x`, `0o` or `0b` in which case they are in hexadecimal, octal or binary, respectively.<sup><a href="#footnote-e">e</a></sup>
 
 | Escape Sequence | Character Denoted |
 | :--- | :--- |
