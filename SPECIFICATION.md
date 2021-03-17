@@ -92,15 +92,14 @@ In order to apply a unary minus to an expression, the combined expression must b
 | Keyword | Purpose |
 | :--- | :--- |
 | `〈id〉 = 〈expr〉`<sup><a href="#footnote-5">5</a></sup>&nbsp;<sup><a href="#footnote-6">6</a></sup> | Define and assign the value of _expr_ to variable _id_. |
-| `〈id〉 = (`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)` &#12296;_body_&#12297;<sup><a href="#footnote-7">7</a></sup> | Return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. |
-| `〈id〉 = (...〈parameter〉)` &#12296;_body_&#12297;<sup><a href="#footnote-d">d</a></sup> | Reads variable number of arguments into parameter. Parameter will contain array of bindings passed into body of statements |
+| `〈id〉 = (`_p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>`)`<sup><a href="#footnote-7">7</a></sup><br />`{...}`<sup><a href="#footnote-9">9</a></sup> | Return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub>. Optionally, the spread operator `(...〈parameter〉)` can be used, whill pass an array of values passed to function.<sup><a href="#footnote-d">d</a></sup><br />Compound expression containing list of statements. |
 | `〈expr〉 ? 〈expr〉`<sup><a href="#footnote-8">8</a></sup><br />`: 〈expr〉` | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
 | `case {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈expr〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
 | `(〈assignments〉; 〈condition〉; 〈expr〉)` &#12296;_body_&#12297;<sup><a href="#footnote-c">c</a></sup> | Typical looping constructs such as `for` and `while` in Pascal could be included in _SMPL_.<br />How do we create a minimal loop grammar that can be used for both `for` and `while`? |
-| `{...}`<sup><a href="#footnote-9">9</a></sup> | Compound expression. List (or &#12296;_body_&#12297;) of statements can be executed and expressions evaluated within this code block |
 | `:> 〈expr〉`<sup><a href="#footnote-10">10</a></sup> | Print the value of the given expression. |
 | `:<`<sup><a href="#footnote-11">11</a></sup> | Read and return a stream from the keyboard either a number or a string. |
-| `//`<br />`/*... */` | Comment to rest of line<br />block comment (nestable) |
+| `//` | Comment to rest of line |
+| `/*... */` | Block comment (nestable) |
 
 
 Table 4: Table of _SMPL_ statements
@@ -115,19 +114,19 @@ Here are some example procedures in _SMPL_.
 
 ```haskell
 // return factorial n
-fact = (n) -> (n <= 1) ? 1 : n * fact(n - 1);
+fact = (n) { (n <= 1) ? 1 : n * fact(n - 1); }
 
 /* return the nth fibonacci number */
-fib = (n) -> (n <= 1) ? 1 : fib(n - 1) + fib(n - 2);
+fib = (n) { (n <= 1) ? 1 : fib(n - 1) + fib(n - 2); }
 
 /* return a new list, obtained by applying f to each element of list */
-map = (f, list) -> (list = #e) ? #e : pair(f(1st(list)), map(f, 2nd(list)));
+map = (f, list) { (list = #e) ? #e : pair(f(1st(list)), map(f, 2nd(list))); }
 
 /* return a newly allocated vector obtained by applying f to each element of v. */
-vecMap = (f, v) -> [ size(v): (i) -> f(v[i]) ];
+vecMap = (f, v) { [ size(v): (i) -> f(v[i]) ]; }
 
  /* return a newly allocated vector containing elements of v1 followed by elements of v2 */
-vecAppend = (v1, v2) -> [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ];
+vecAppend = (v1, v2) { [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ]; }
     
 ```
 
