@@ -45,11 +45,11 @@ _SMPL_ has two types of compound data: the vector and the pair. A vector is some
 Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second (after it has been evaluated) must be a procedure that when given an index less than the size, returns the value to be stored at that position _in the subvector_. The following examples should help to clarify the description. In them, assume that the value of `x` has previously been set to 5.
 
 ```haskell
-[ 1,2,3 ]                                   ⇒ [1 2 3]
-[ 1,2,x ]                                   ⇒ [1 2 5]
-[ 5: (i) { i; } ]                           ⇒ [0 1 2 3 4]
-[ 1, 3: (n) { 2 * n; }, 3 ]                 ⇒ [1 0 2 4 3]
-[ 3: (n) { 2 * n; }, 4: (n) { 3 * n; } ]    ⇒ [0 2 4 0 3 6 9]
+[ 1,2,3 ]                       ⇒ [1 2 3]
+[ 1,2,x ]                       ⇒ [1 2 5]
+[ 5:i -> i ]                    ⇒ [0 1 2 3 4]
+[ 1, 3:n -> 2 * n, 3 ]          ⇒ [1 0 2 4 3]
+[ 3:n -> 2 * n, 4:n -> 3 * n ]  ⇒ [0 2 4 0 3 6 9]
 ```
 
 | Builtin | Explanation |
@@ -95,7 +95,7 @@ In order to apply a unary minus to an expression, the combined expression must b
 | `〈id〉 = (〈parameters〉)`<sup><a href="#footnote-7">7</a></sup><br />`{...}`<sup><a href="#footnote-9">9</a></sup> | Return a procedure of _n_ arguments.<br />Parameters can be passed like so, _p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>,<br />or like so `(...〈p〉)` (passes an array of values).<sup><a href="#footnote-d">d</a></sup><br />Followed by list of statements, `{...}`. |
 | `〈condition〉 ? 〈expr〉`<sup><a href="#footnote-8">8</a></sup><br />`: 〈expr〉` | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
 | `?: {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈condition〉 : 〈expr〉`  | Equivalent to an if-else.<br />Best used for multiple conditional cases. |
-| `?: (〈expr〉) {`<br/>**[**_l_<sub><i>1</i></sub>:〈expr〉<sub><i>n</i></sub> &hellip; _l_<sub><i>n</i></sub>:〈expr〉<sub><i>n</i></sub>**]**<br />`}` | Evaluates an expression and matches the value to a case |
+| `?: (〈expr〉) {`<br/>**[**_l_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _l_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**<br />`}` | Evaluates an expression and matches the value to a case |
 | `(〈initialization〉; 〈condition〉; 〈expr〉)`<sup><a href="#footnote-c">c</a></sup><br />`〈expr〉` | Looping construct.<br />`〈initialization〉` and `〈expr〉` (an increment expression) are optional. |
 | `:> 〈expr〉`<sup><a href="#footnote-10">10</a></sup> | Print the value of the given expression. |
 | `:<`<sup><a href="#footnote-11">11</a></sup> | Read and return a stream from the keyboard either a number or a string. |
@@ -111,6 +111,8 @@ Table 4: Table of _SMPL_ statements
 
 ## 3 Examples
 
+### 3.1 Function Declarations
+
 Here are some example procedures in _SMPL_.
 
 ```haskell
@@ -124,10 +126,10 @@ fib = (n) { (n <= 1) ? 1 : fib(n - 1) + fib(n - 2); }
 map = (f, list) { (list = #e) ? #e : pair(f(1st(list)), map(f, 2nd(list))); }
 
 /* return a newly allocated vector obtained by applying f to each element of v. */
-vecMap = (f, v) { [ size(v): (i) -> f(v[i]) ]; }
+vmap = (f, v) { [ size(v): (i) -> f(v[i]) ]; }
 
  /* return a newly allocated vector containing elements of v1 followed by elements of v2 */
-vecAppend = (v1, v2) { [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ]; }
+vappend = (v1, v2) { [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ]; }
     
 ```
 
