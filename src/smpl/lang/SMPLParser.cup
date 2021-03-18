@@ -41,9 +41,9 @@ init with {:
 :};
 
 // special symbols
-terminal            SEMI, COLON, LPAREN, RPAREN, LBRACE, RBRACE, COMMA;
+terminal            SEMI, COLON, LPAREN, RPAREN, LBRACE, RBRACE, LBRAK, RBRAK, COMMA;
 terminal String		IDENTIFIER;
-terminal Integer   	INTEGER_LITERAL;        // our scanner provides numbers as integers
+terminal Integer   	NUMBER;        // our scanner provides numbers as integers
 
 // operators: arithmetic
 terminal PLUS, MINUS, TIMES, DIVIDE, MOD;
@@ -58,7 +58,7 @@ terminal EQ, GT, LT, LTEQ, GTEQ, NOTEQ;
 terminal AND, OR, NOT;
 
 // operators: assignment
-terminal ASSIGN, IMPLY, QUERY;
+terminal ASSIGN, IMPLY, QUERY, CASE;
 
 /* Non terminals */
 non terminal			program;
@@ -154,7 +154,7 @@ expression ::= 	expression:e1 PLUS expression:e2	{: RESULT = e1 + e2;       	:}
 
 			 | IDENTIFIER:i							{: RESULT = 2; // TBC .. I have a dilemma here. This clashes with a rule in statement but I need to to evaluate a variable in expressions		:}
 
-             | INTEGER_LITERAL:n	      			{: RESULT = n;           	:}
+             | NUMBER:n	      						{: RESULT = n;           	:}
              ;
 
 condition_list ::= condition_list:c1 AND condition:c2	{: RESULT = (c1 && c2);	:}
