@@ -40,7 +40,7 @@ Table 1: Escaped codes for control characters in strings
 
 ### 2.2 Compound Data
 
-_SMPL_ has two types of compound data: the vector and the pair. A vector is somewhat like an array, except that it is not constrained to hold only one typeof data. A pair contains two arbitrary objects. Table 3 describes the builtin functions available for manipulating compound data in _SMPL_.
+_SMPL_ has two types of compound data: the vector and the dictionary<sup><a href="#footnote-x">x</a></sup>. A vector is somewhat like an array, except that it is not constrained to hold only one type of data<sup><a href="#footnote-?">?</a></sup>. A dictionary contains a mapping of strings to arbitrary objects<sup><a href="#footnote-x">x</a></sup>. Table 3 describes the builtin functions available for manipulating compound data in _SMPL_.
 
 Vector initialisation is quite flexible. A vector may be initialised by specifying a collection of disjoint subvectors, or the individual elements, or a combination of the two. A subvector is specified by two expressions: the first (after it has been evaluated) gives the size of the subvector, the second (after it has been evaluated) must be a procedure that when given an index less than the size, returns the value to be stored at that position _in the subvector_. The following examples should help to clarify the description. In them, assume that the value of `x` has previously been set to 5.
 
@@ -54,11 +54,11 @@ Vector initialisation is quite flexible. A vector may be initialised by specifyi
 
 | Builtin | Explanation |
 | :--- | :--- |
-| `["` _i_<sub><i>1</i></sub> `" =>` _e_<sub><i>1</i></sub> , &hellip;, `"` _i_<sub><i>n</i></sub> `" =>` _e_<sub><i>n</i></sub>`]` | Return a newly allocated dictionary.<br />Mapping _e_<sub><i>n</i></sub> to _i_<sub><i>n</i></sub>.<br />_i_ is always a string. _e_ can be a string or expression |
-| &#12296;id<sub>dic</sub>&#12297;`["`_i_`"]` | Return the object that is mapped to _i_ in this dictionary. |
+| `["` _i_<sub><i>1</i></sub> `" =>` _e_<sub><i>1</i></sub> , &hellip;, `"` _i_<sub><i>n</i></sub> `" =>` _e_<sub><i>n</i></sub>`]`<sup><a href="#footnote-x">x</a></sup> | Return a newly allocated dictionary.<br />Mapping _e_<sub><i>n</i></sub> to _i_<sub><i>n</i></sub>.<br />_i_ is always a string. _e_ can be a string or expression |
+| &#12296;id<sub>dic</sub>&#12297;`["`_i_`"]`<sup><a href="#footnote-x">x</a></sup> | Return the object that is mapped to _i_ in this dictionary. |
 | `[`&#12296;e<sub>1</sub>&#12297;, &hellip;,&#12296;e<sub>n</sub>&#12297;`]`<sup><a href="#footnote-a">a</a></sup> | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form<br/>&#12296;expr<sub>size</sub>&#12297; : &#12296;expr<sub>init</sub>&#12297; |
 | &#12296;id<sub>vec</sub>&#12297;`[`&#12296;n&#12297;`]` | Return the <i>n<sup>th</sup></i> element of vector _vec_(indexed from 0).<br/>When on the LHS of an assignment, sets the <i>n<sup>th</sup></i> element to the RHS. |
-| `size(`&#12296;id<sub>dic/vec</sub>&#12297;`)` | Return the length of the dictionary or vector. |
+| `size(`&#12296;id<sub>dic/vec</sub>&#12297;`)`<sup><a href="#footnote-x">x</a></sup> | Return the length of the dictionary or vector. |
 
 Table 3: Builtin expressions
 
