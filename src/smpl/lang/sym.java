@@ -8,37 +8,41 @@ package smpl.lang;
 /** CUP generated interface containing symbol constants. */
 public interface sym {
   /* terminals */
-  public static final int TIMES = 13;
-  public static final int MOD = 15;
-  public static final int AND = 25;
-  public static final int LT = 21;
-  public static final int NOTEQ = 24;
-  public static final int PLUS = 11;
-  public static final int OR = 26;
+  public static final int TIMES = 16;
+  public static final int MAP = 10;
+  public static final int MOD = 18;
+  public static final int AND = 28;
+  public static final int LT = 24;
+  public static final int NOTEQ = 27;
+  public static final int PLUS = 14;
+  public static final int OR = 29;
   public static final int RBRACE = 7;
   public static final int RPAREN = 5;
   public static final int SEMI = 2;
-  public static final int NOT = 27;
-  public static final int IDENTIFIER = 9;
-  public static final int GT = 20;
+  public static final int NOT = 30;
+  public static final int IDENTIFIER = 12;
+  public static final int RBRAK = 9;
+  public static final int GT = 23;
   public static final int LPAREN = 4;
   public static final int COLON = 3;
   public static final int LBRACE = 6;
-  public static final int TILDE = 18;
-  public static final int AMP = 16;
-  public static final int COMMA = 8;
-  public static final int LTEQ = 22;
+  public static final int TILDE = 21;
+  public static final int AMP = 19;
+  public static final int COMMA = 11;
+  public static final int LTEQ = 25;
   public static final int EOF = 0;
-  public static final int DIVIDE = 14;
-  public static final int MINUS = 12;
+  public static final int NUMBER = 13;
+  public static final int DIVIDE = 17;
+  public static final int LBRAK = 8;
+  public static final int MINUS = 15;
+  public static final int CASE = 34;
   public static final int error = 1;
-  public static final int IMPLY = 29;
-  public static final int ASSIGN = 28;
-  public static final int EQ = 19;
-  public static final int INTEGER_LITERAL = 10;
-  public static final int QUES = 30;
-  public static final int GTEQ = 23;
-  public static final int BAR = 17;
+  public static final int IMPLY = 32;
+  public static final int ASSIGN = 31;
+  public static final int EQ = 22;
+  public static final int GTEQ = 26;
+  public static final int QUERY = 33;
+  public static final int BAR = 20;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -48,9 +52,12 @@ public interface sym {
   "RPAREN",
   "LBRACE",
   "RBRACE",
+  "LBRAK",
+  "RBRAK",
+  "MAP",
   "COMMA",
   "IDENTIFIER",
-  "INTEGER_LITERAL",
+  "NUMBER",
   "PLUS",
   "MINUS",
   "TIMES",
@@ -70,7 +77,8 @@ public interface sym {
   "NOT",
   "ASSIGN",
   "IMPLY",
-  "QUES"
+  "QUERY",
+  "CASE"
   };
 }
 

@@ -50,15 +50,20 @@ EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
 DocumentationComment = "/**" {CommentContent} "*"+ "/"
 CommentContent       = ( [^*] | \*+ [^/*] )*
 
+unicode = \\u[0-9a-f]{4}
 num = [0-9]+
 alpha = [A-Za-z_]+
 alphanum = {alpha}|{num}
 id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
 
+%state STRING
+
 %%
 
-<YYINITIAL> "true"              { return new Symbol(sym.TRUE); }
+<YYINITIAL> "true"              { return new Symbol(sym.TRUE);  }
 <YYINITIAL> "false"             { return new Symbol(sym.FALSE); }
+<YYINITIAL> "nil"               { return new Symbol(sym.NIL);   }
+<YYINITIAL> "size"              { return new Symbol(sym.SIZE);  }
 
 <YYINITIAL> {
   /* identifiers */
@@ -66,6 +71,7 @@ id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
 
   /* literals */
   {num}                         { return new Symbol(sym.NUMBER, Integer.valueOf(yytext())); }
+  \"                            { string.setLength(0); yybegin(STRING); }
 
   /* operators */  
   "*"                           { return new Symbol(sym.TIMES); }
@@ -106,3 +112,20 @@ id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
   /* whitespace */
   {ws}                          { /* ignore */ }
 }
+
+<STRING> {
+  \"                             { yybegin(YYINITIAL);
+                                       return symbol(sym.STRING_LITERAL,
+                                       string.toString()); }
+  [^\n\r\"\\]+                   { string.append( yytext() ); }
+  \\t                            { string.append('\t'); }
+  \\n                            { string.append('\n'); }
+
+  \\r                            { string.append('\r'); }
+  \\\"                           { string.append('\"'); }
+  \\                             { string.append('\\'); }
+}
+
+/* error fallback */
+[^]                              { throw new Error("Illegal character <"+
+                                                        yytext()+">"); }
