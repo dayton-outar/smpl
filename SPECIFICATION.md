@@ -89,12 +89,13 @@ Operator precedence, from highest to lowest is as follows:
 
 In order to apply a unary minus to an expression, the combined expression must be surrounded by parentheses. So the negative of the variable `x` is expressed as `(- x)`, not  `- x`.
 
-| Keyword | Purpose |
+| Statement | Purpose |
 | :--- | :--- |
 | `〈id〉 = 〈expr〉`<sup><a href="#footnote-5">5</a></sup>&nbsp;<sup><a href="#footnote-6">6</a></sup> | Define and assign the value of _expr_ to variable _id_. |
 | `〈id〉 = (〈parameters〉)`<sup><a href="#footnote-7">7</a></sup><br />`{...}`<sup><a href="#footnote-9">9</a></sup> | Return a procedure of _n_ arguments with formal parameters _p_<sub><i>i</i></sub> like so, _p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>, or lik so `(...〈p〉)` (a spread operator, which will pass an array of values passed to function).<sup><a href="#footnote-d">d</a></sup><br />Compound expression containing list of statements. |
 | `〈condition〉 ? 〈expr〉`<sup><a href="#footnote-8">8</a></sup><br />`: 〈expr〉` | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
-| `?: {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈expr〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
+| `?: {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈condition〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
+| `(〈expr〉) ?: {`<br/>**[**_l_<sub><i>1</i></sub>:〈expr〉<sub><i>n</i></sub> &hellip; _l_<sub><i>n</i></sub>:〈expr〉<sub><i>n</i></sub>**]**<br />`}` | Evaluates an expression and matches the value of the expression to one of the cases within it code block |
 | `(〈initialization〉; 〈condition〉; 〈expr〉)`<sup><a href="#footnote-c">c</a></sup><br />`〈expr〉` | Looping constructs such as `for` and `while`. `while` needs no `〈initialization〉` (which is a variable declaration) nor `〈expr〉` (an increment expression). So, `while` loop starts like this `(; 〈condition〉;)`. |
 | `:> 〈expr〉`<sup><a href="#footnote-10">10</a></sup> | Print the value of the given expression. |
 | `:<`<sup><a href="#footnote-11">11</a></sup> | Read and return a stream from the keyboard either a number or a string. |
