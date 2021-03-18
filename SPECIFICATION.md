@@ -52,7 +52,7 @@ Vector initialisation is quite flexible. A vector may be initialised by specifyi
 [ 3:n -> 2 * n, 4:n -> 3 * n ]  ⇒ [0 2 4 0 3 6 9]
 ```
 
-| Builtin | Explanation |
+| Compound Data Expression | Explanation |
 | :--- | :--- |
 | `["` _i_<sub><i>1</i></sub> `" =>` _e_<sub><i>1</i></sub> , &hellip;, `"` _i_<sub><i>n</i></sub> `" =>` _e_<sub><i>n</i></sub>`]`<sup><a href="#footnote-x">x</a></sup> | Return a newly allocated dictionary.<br />Mapping _e_<sub><i>n</i></sub> to _i_<sub><i>n</i></sub>.<br />_i_ is always a string. _e_ can be a string or expression |
 | &#12296;id<sub>dic</sub>&#12297;`["`_i_`"]`<sup><a href="#footnote-x">x</a></sup> | Return the object that is mapped to _i_ in this dictionary. |
@@ -60,7 +60,7 @@ Vector initialisation is quite flexible. A vector may be initialised by specifyi
 | &#12296;id<sub>vec</sub>&#12297;`[`&#12296;n&#12297;`]` | Return the <i>n<sup>th</sup></i> element of vector _vec_(indexed from 0).<br/>When on the LHS of an assignment, sets the <i>n<sup>th</sup></i> element to the RHS. |
 | `size(`&#12296;id<sub>dic/vec</sub>&#12297;`)`<sup><a href="#footnote-x">x</a></sup> | Return the length of the dictionary or vector. |
 
-Table 3: Builtin expressions
+Table 3: Compound Data Expressions
 
 ### 2.3 Statements and Expressions
 
