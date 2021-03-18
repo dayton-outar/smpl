@@ -96,7 +96,7 @@ In order to apply a unary minus to an expression, the combined expression must b
 | `〈condition〉 ? 〈expr〉`<sup><a href="#footnote-8">8</a></sup><br />`: 〈expr〉` | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
 | `?: {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈condition〉 : 〈expr〉`  | Evaluate the consequent of the first clause whose<br />predicate is true.<br />A clause of a case expression. If predicate is the keyword `else`, it is regarded as true. |
 | `(〈expr〉) ?: {`<br/>**[**_l_<sub><i>1</i></sub>:〈expr〉<sub><i>n</i></sub> &hellip; _l_<sub><i>n</i></sub>:〈expr〉<sub><i>n</i></sub>**]**<br />`}` | Evaluates an expression and matches the value to a case |
-| `(〈initialization〉; 〈condition〉; 〈expr〉)`<sup><a href="#footnote-c">c</a></sup><br />`〈expr〉` | Looping construct. Can be done with or without `〈initialization〉` or `〈expr〉` (an increment expression). |
+| `(〈initialization〉; 〈condition〉; 〈expr〉)`<sup><a href="#footnote-c">c</a></sup><br />`〈expr〉` | Looping construct.<br />Can be done with or without `〈initialization〉` or `〈expr〉` (an increment expression). |
 | `:> 〈expr〉`<sup><a href="#footnote-10">10</a></sup> | Print the value of the given expression. |
 | `:<`<sup><a href="#footnote-11">11</a></sup> | Read and return a stream from the keyboard either a number or a string. |
 | `//` | Comment to rest of line |
