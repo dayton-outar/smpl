@@ -81,7 +81,7 @@ id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
   "&&"                          { return new Symbol(sym.AND);   }
   "||"                          { return new Symbol(sym.OR);    }
   "?"                           { return new Symbol(sym.QUERY); }
-  "?:"                          { return new Symbol(sym.CASE);      }
+  "?:"                          { return new Symbol(sym.CASE);  }
   "=="                          { return new Symbol(sym.EQ);    }
   ">"                           { return new Symbol(sym.GT);    }
   ">="                          { return new Symbol(sym.GTEQ);  }
@@ -93,8 +93,9 @@ id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
   ")"                           { return new Symbol(sym.RPAREN);}
   "{"                           { return new Symbol(sym.LBRACE);}
   "}"                           { return new Symbol(sym.RBRACE);}
-  "["                           { return new Symbol(sym.LBRAK);}
-  "]"                           { return new Symbol(sym.RBRAK);}
+  "=>"                          { return new Symbol(sym.MAP);   }
+  "["                           { return new Symbol(sym.LBRAK); }
+  "]"                           { return new Symbol(sym.RBRAK); }
   ","                           { return new Symbol(sym.COMMA); }
   ":"                           { return new Symbol(sym.COLON); }
   ";"                           { return new Symbol(sym.SEMI);  }

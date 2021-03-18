@@ -54,9 +54,8 @@ Vector initialisation is quite flexible. A vector may be initialised by specifyi
 
 | Builtin | Explanation |
 | :--- | :--- |
-| `pair(`&#12296;e<sub>1</sub> ,e<sub>2</sub>&#12297;`)` | Create a pair containing the objects denoted by e<sub>1</sub> and e<sub>2</sub>. |
-| `1st(`&#12296;p&#12297;`)` | Return the first object in the pair _p_. |
-| `2nd(`&#12296;p&#12297;`)` | Return the second object in the pair _p_. |
+| `["` _i_ `" =>` _e_ `]` | Map _e_ to i.<br />_i_ is always a string. _e_ can be a string or expression |
+| `["`_i_`"]` | Return the object that is mapped to _i_. |
 | `[`&#12296;e<sub>1</sub>&#12297;, &hellip;,&#12296;e<sub>n</sub>&#12297;`]`<sup><a href="#footnote-a">a</a></sup> | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form<br/>&#12296;expr<sub>size</sub>&#12297; : &#12296;expr<sub>init</sub>&#12297; |
 | &#12296;expr<sub>vec</sub>&#12297;`[`&#12296;n&#12297;`]` | Return the <i>n<sup>th</sup></i> element of vector _vec_(indexed from 0).<br/>When on the LHS of an assignment, sets the <i>n<sup>th</sup></i> element to the RHS. |
 | `size(`&#12296;vec&#12297;`)` | Return the length of the vector _vec_. |
