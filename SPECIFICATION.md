@@ -34,9 +34,8 @@ _SMPL_ can denote the following types of literals:
 Table 1: Escaped codes for control characters in strings
 
 - String constants are denoted between double quotes `"`. Within a string, certain control characters can be denoted by an escape sequence. Table 1 lists the set of escape sequences that should be recognised within _SMPL_ strings.
-- Character literals are denoted as `#\` followed immediately by the character representation. For example, the character `a` is represented as `#\a`. Character literals may also be specified by their unicode representation given as four hexadecimal digits immediately following the `#\`. So the character `a` may also be denoted as `#\0061`.<sup><a href="#footnote-f">f</a></sup>
 - The boolean constants are _`true`_ and _`false`_.
-- The empty list, called _`nil`_, is denoted by `#e`. An _SMPL_ list is actually a sequence of pairs that terminate with the empty list.
+- The empty list is denoted by _`nil`_. An _SMPL_ list is actually a sequence of pairs that terminate with the empty list.
 
 ### 2.2 Compound Data
 
@@ -140,6 +139,7 @@ vappend = (v1, v2) { [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ]; }
 
 Here are a few ideas for extensions to _SMPL_ :
 
+- Interpolated string. Implementation of interpolated strings seem to be a challenging prospect for the [lexer](https://stackoverflow.com/questions/57971191/implementing-string-interpolation-in-flex-bison).
 - Macros. A limited form of language extension can be accomplished through the use of macros. It should not be too difficult to extend _SMPL_ to include macros that are declared and used in
     a similar way to procedures.
 - Call by: reference, lazy and name parameter passing conventions. At the moment _SMPL_ supports only call by value (CBV). It could be extended to allow procedure declarations that
