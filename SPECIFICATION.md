@@ -120,9 +120,6 @@ fact = (n) { (n <= 1) ? 1 : n * fact(n - 1); }
 /* return the nth fibonacci number */
 fib = (n) { (n <= 1) ? 1 : fib(n - 1) + fib(n - 2); }
 
-/* return a new list, obtained by applying f to each element of list */
-map = (f, list) { (list = nil) ? nil : pair(f(1st(list)), map(f, 2nd(list))); }
-
 /* return a newly allocated vector obtained by applying f to each element of v. */
 vmap = (f, v) { [ size(v): (i) -> f(v[i]) ]; }
 
