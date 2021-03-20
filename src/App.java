@@ -12,7 +12,7 @@ public class App {
 			for (int i = 0; i < args.length; i++) {
 				System.out.println("  " + args[i] + "...");
 				try {
-					p = new SMPLParser();
+					p = new SMPLParser(args[i]);
                     p.parse();
 				} catch (FileNotFoundException fnfe) {
 					System.out.println("File not found error: " +

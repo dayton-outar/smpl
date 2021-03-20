@@ -21,6 +21,8 @@ import java_cup.runtime.*;
 %line
 
 %{
+  StringBuffer string = new StringBuffer();
+
   public int getChar()
   {
     return yychar + 1;
@@ -37,24 +39,23 @@ import java_cup.runtime.*;
   }
 %}
 
-LineTerminator  = \r|\n|\r\n
-InputCharacter  = [^\r\n]
-ws              = {LineTerminator} | [ \t\f]
+lt              = \r|\n|\r\n
+ic              = [^\r\n]
+ws              = {lt} | [ \t\f]
 
 /* comments */
-comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
+comment         = {tc} | {eolcomment} | {doccomment}
 
-TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
+tc              = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 // Comment can be the last line of the file, without line terminator.
-EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
-DocumentationComment = "/**" {CommentContent} "*"+ "/"
-CommentContent       = ( [^*] | \*+ [^/*] )*
+eolcomment      = "//" {ic}* {lt}?
+doccomment      = "/**" {commentcontent} "*"+ "/"
+commentcontent  = ( [^*] | \*+ [^/*] )*
 
-unicode = \\u[0-9a-f]{4}
-num = [0-9]+
-alpha = [A-Za-z_]+
-alphanum = {alpha}|{num}
-id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
+num             = [0-9]+
+alpha           = [A-Za-z_]+
+alphanum        = {alpha}|{num}
+id              = {alpha}|{alpha}{alphanum}|{num}{alphanum}
 
 %state STRING
 
@@ -87,7 +88,7 @@ id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
   "&&"                          { return new Symbol(sym.AND);   }
   "||"                          { return new Symbol(sym.OR);    }
   "?"                           { return new Symbol(sym.QUERY); }
-  "?:"                          { return new Symbol(sym.CASE);  }
+  "?:"                          { return new Symbol(sym.CASES);  }
   "=="                          { return new Symbol(sym.EQ);    }
   ">"                           { return new Symbol(sym.GT);    }
   ">="                          { return new Symbol(sym.GTEQ);  }
@@ -104,6 +105,8 @@ id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
   "]"                           { return new Symbol(sym.RBRAK); }
   ","                           { return new Symbol(sym.COMMA); }
   ":"                           { return new Symbol(sym.COLON); }
+  ":>"                          { return new Symbol(sym.PRINT); }
+  "<:"                          { return new Symbol(sym.READ);  }
   ";"                           { return new Symbol(sym.SEMI);  }
 
   /* comments */
@@ -115,7 +118,7 @@ id = {alpha}|{alpha}{alphanum}|{num}{alphanum}
 
 <STRING> {
   \"                             { yybegin(YYINITIAL);
-                                       return symbol(sym.STRING_LITERAL,
+                                       return new Symbol(sym.STRING,
                                        string.toString()); }
   [^\n\r\"\\]+                   { string.append( yytext() ); }
   \\t                            { string.append('\t'); }

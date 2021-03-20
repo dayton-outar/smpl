@@ -43,7 +43,15 @@ init with {:
 // special symbols
 terminal            SEMI, COLON, LPAREN, RPAREN, LBRACE, RBRACE, LBRAK, RBRAK, MAP, COMMA;
 terminal String		IDENTIFIER;
+terminal String		STRING;
 terminal Integer   	NUMBER;        // our scanner provides numbers as integers
+terminal Boolean	TRUE, FALSE;
+
+// display operators
+terminal PRINT, READ;
+
+// list operators
+terminal NIL, SIZE;
 
 // operators: arithmetic
 terminal PLUS, MINUS, TIMES, DIVIDE, MOD;
@@ -58,7 +66,7 @@ terminal EQ, GT, LT, LTEQ, GTEQ, NOTEQ;
 terminal AND, OR, NOT;
 
 // operators: assignment
-terminal ASSIGN, IMPLY, QUERY, CASE;
+terminal ASSIGN, IMPLY, QUERY, CASES;
 
 /* Non terminals */
 non terminal			program;
@@ -66,6 +74,12 @@ non terminal Vector		statement_list;
 non terminal Vector		statement_block;
 non terminal			statement;
 non terminal String		variable;
+non terminal Vector		dictionary;
+non terminal Vector		array;
+non terminal Vector		case_list;
+non terminal			case;
+non terminal Vector		if_clause_list;
+non terminal			if_clause;
 non terminal            expression_list;
 non terminal Boolean	condition_list;
 non terminal Boolean	condition;
@@ -99,15 +113,25 @@ statement_list ::= statement:stmt statement_list:sl {: sl.addElement(stmt); RESU
 
 statement ::= expression_list:l SEMI							{: RESULT = l;	:}
 
-			| IDENTIFIER:i LPAREN parameter_list:l RPAREN		{: RESULT = 5; :}
-
 			| IDENTIFIER:i ASSIGN expression_list:l SEMI		{: RESULT = "CMD " + i + " = " + l + "";	:}
+
+			| IDENTIFIER:i ASSIGN LBRAK array:l RBRAK SEMI		{: RESULT = "ARRAY " + i + " = " + l; :}
+
+			| IDENTIFIER:i ASSIGN LBRAK dictionary:l RBRAK SEMI		{: RESULT = "DICTIONARY " + i + " = " + l; :}
 
 			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN statement_block:sl {: RESULT = "CMD " + i + " = (" + l + ") {\n" + sl + "\n}"; :}
 
 			| condition_list:l QUERY expression_list:e SEMI			{: RESULT = "CMD condition ? " + e; :}
 
 			| condition_list:l QUERY expression_list:e1 COLON expression_list:e2 SEMI	{: RESULT = "CMD condition ? " + e1 + " : " + e2; :}
+
+			| CASES LBRACE if_clause_list:l RBRACE	{: RESULT = "IF-ELSES " + l; :}
+
+			| CASES LPAREN expression_list:e RPAREN LBRACE case_list:l RBRACE	{: RESULT = "CASE ( " + e + " ) " + l; :}
+
+			| PRINT STRING:s SEMI	{: RESULT = s; :}
+
+			| IDENTIFIER:i READ	SEMI	{: RESULT = "READ INTO " + i; :}
 			;
 
 parameter_list ::= expression_list:e COMMA parameter_list:l		{: l.addElement(e); RESULT = l; :}
@@ -123,6 +147,16 @@ variable_list ::= variable_list:l COMMA variable:v 	{: l.addElement(v); RESULT =
 			;
 
 variable ::= COLON IDENTIFIER:i			{: RESULT = i; :}
+			;
+
+dictionary ::= STRING:s MAP expression_list:e COMMA dictionary:l {: l.addElement(s + " => " + e); RESULT = l; :}
+			;
+
+array ::= expression_list:e COMMA array:l		{: l.addElement(e); RESULT = l;:}
+
+			| NUMBER:n COLON IDENTIFIER:i IMPLY expression_list:e COMMA array:l {: l.addElement("EXPAND " + n + " " + i + " -> "); RESULT = l; :}
+
+			| empty									{: RESULT = new Vector(); :}
 			;
 
 expression_list ::= expression_list expression:e	{: RESULT = e;			:}
@@ -152,10 +186,36 @@ expression ::= 	expression:e1 PLUS expression:e2	{: RESULT = e1 + e2;       	:}
 
              | LPAREN expression:e RPAREN			{: RESULT = e;           	:}
 
+			 | IDENTIFIER:i LPAREN parameter_list:l RPAREN		{: RESULT = 5; :}
+
+			 | IDENTIFIER:i LBRAK STRING RBRAK 		{: RESULT = 7; :}
+
+			 | IDENTIFIER:i LBRAK NUMBER:n RBRAK 	{: RESULT = 1; :}
+
+			 | SIZE LPAREN IDENTIFIER:i RPAREN	{: RESULT = 3; :}
+
 			 | IDENTIFIER:i							{: RESULT = 2; // TBC .. I have a dilemma here. This clashes with a rule in statement but I need to to evaluate a variable in expressions		:}
 
              | NUMBER:n	      						{: RESULT = n;           	:}
+
+			 | NIL									{: RESULT = null;			:}
              ;
+
+case_list ::= case:c case_list:l {: l.addElement(c); RESULT = l; :}
+
+			| empty	{: RESULT = new Vector(); :}
+			;
+
+case ::= STRING:s COLON expression_list:e SEMI {: RESULT = "CASE " + s + ": " + e; :}
+			;
+
+if_clause_list ::= if_clause:c if_clause_list:l {: l.addElement(c); RESULT = l; :}
+
+			| empty	{: RESULT = new Vector(); :}
+			;
+
+if_clause ::= condition_list:c COLON expression_list:e SEMI {: RESULT = "IF-ELSE " + c + ": " + e; :}
+			;
 
 condition_list ::= condition_list:c1 AND condition:c2	{: RESULT = (c1 && c2);	:}
 
@@ -179,6 +239,10 @@ condition ::=  expression:e1 EQ expression:e2		{: RESULT = (e1.equals(e2));:}
 				| expression:e1 NOTEQ expression:e2	{: RESULT = (e1 != e2); 	:}
 
 				| LPAREN condition:c RPAREN			{: RESULT = c;				:}
+
+				| TRUE								{: RESULT = true;			:}
+
+				| FALSE								{: RESULT = false;			:}
                ;
 
 empty ::=;
