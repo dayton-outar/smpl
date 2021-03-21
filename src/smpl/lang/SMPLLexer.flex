@@ -64,7 +64,6 @@ id              = {alpha}|{alpha}{alphanum}|{num}{alphanum}
 <YYINITIAL> "true"              { return new Symbol(sym.TRUE);  }
 <YYINITIAL> "false"             { return new Symbol(sym.FALSE); }
 <YYINITIAL> "nil"               { return new Symbol(sym.NIL);   }
-<YYINITIAL> "size"              { return new Symbol(sym.SIZE);  }
 
 <YYINITIAL> {
   /* identifiers */
@@ -76,12 +75,25 @@ id              = {alpha}|{alpha}{alphanum}|{num}{alphanum}
 
   /* operators */  
   "*"                           { return new Symbol(sym.TIMES); }
-  "/"                           { return new Symbol(sym.DIVIDE);}
+  "*="                          { return new Symbol(sym.ASSIGNTIMES); }
+  "**"                          { return new Symbol(sym.EXPONENT); }
+  "/"                           { return new Symbol(sym.DIVIDE);  }
+  "_/"                          { return new Symbol(sym.SQRT);    }
+  "/="                          { return new Symbol(sym.ASSIGNDIVIDE); }
   "%"                           { return new Symbol(sym.MOD);   }
+  "%="                          { return new Symbol(sym.ASSIGNMOD); }
   "+"                           { return new Symbol(sym.PLUS);  }
+  "+="                          { return new Symbol(sym.ASSIGNADD); }
+  "++"                          { return new Symbol(sym.INCREMENT); }
   "-"                           { return new Symbol(sym.MINUS); }
+  "-="                          { return new Symbol(sym.ASSIGNSUB); }
+  "--"                          { return new Symbol(sym.DECREMENT); }
   "&"                           { return new Symbol(sym.AMP);   }
+  "&="                          { return new Symbol(sym.ASSIGNAMP); }
   "|"                           { return new Symbol(sym.BAR);   }
+  "|="                          { return new Symbol(sym.ASSIGNBAR); }
+  "^"                           { return new Symbol(sym.CARET); }
+  "^="                          { return new Symbol(sym.ASSIGNCARET); }
   "~"                           { return new Symbol(sym.TILDE); }
   "->"                          { return new Symbol(sym.IMPLY); }
   "!"                           { return new Symbol(sym.NOT);   }
@@ -96,6 +108,7 @@ id              = {alpha}|{alpha}{alphanum}|{num}{alphanum}
   "<="                          { return new Symbol(sym.LTEQ);  }
   "!="                          { return new Symbol(sym.NOTEQ); }
   "="                           { return new Symbol(sym.ASSIGN);}
+  "..."                         { return new Symbol(sym.SPREAD);}
   "("                           { return new Symbol(sym.LPAREN);}
   ")"                           { return new Symbol(sym.RPAREN);}
   "{"                           { return new Symbol(sym.LBRACE);}

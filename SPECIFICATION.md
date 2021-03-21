@@ -12,12 +12,14 @@ This document only partly specifies _SMPL_. Specifically, only the core subset o
 
 _SMPL_ is dynamically typed<sup><a href="#footnote-1">1</a></sup> and tail-recursive<sup><a href="#footnote-2">2</a></sup>. Its procedures are first class objects<sup><a href="#footnote-3">3</a></sup>. All _SMPL_ sentences are in fact expressions in the sense that they implicitly return values. Some expressions are permitted to return an “unspecified value” to indicate that the value is not useful; these expressions are essentially statements.
 
-_SMPL_ has integers, the two boolean literals, characters, strings, pairs and vectors as primitive data types. Storage that is dynamically allocated is automatically recovered by a garbage collector. There are no explicit pointers, all references to compound data are automatically treated as pointers to the data. All parameters are passed using the “call-by-value” convention. Variables are statically scoped and may denote a value of any data type.
+_SMPL_ has numbers, the two boolean literals, strings, dictionaries (or arrays of pairs) and vectors as primitive data types. Storage that is dynamically allocated is automatically recovered by a garbage collector. There are no explicit pointers, all references to compound data are automatically treated as pointers to the data. All parameters are passed using the “call-by-value” convention. Variables are statically scoped and may denote a value of any data type.
 
 ## 2 Syntax
 
 The syntax of _SMPL_ uses infix notation, and all binary operators must be separated from their operands by at least one whitespace character. The whitespace characters are the usual ones: space, carriage return and tab characters. (Feel free to include other control characters such as
 form feed and line feed if you wish).
+
+The initial concept of this language was inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) as specified by the original author, Prof. Daniel Coore. Dayton Outar envisioned the syntax to be more closely related to [JavaScript](https://en.wikipedia.org/wiki/JavaScript) without the use of any english keywords. Creating a language that would use pure mathematical notation would present a challenge to the ASCII inspired QWERTY keyboard. Mathematical notations are available under the provision of unicode character symbols but are not easily accessible through the QWERTY keyboard.
 
 ### 2.1 Literals and Values
 
@@ -57,7 +59,7 @@ Vector initialisation is quite flexible. A vector may be initialised by specifyi
 | &#12296;id<sub>dic</sub>&#12297;`["`_i_`"]`<sup><a href="#footnote-7">7</a></sup> | Return the object that is mapped to _i_ in this dictionary. |
 | `[`&#12296;e<sub>1</sub>&#12297;, &hellip;,&#12296;e<sub>n</sub>&#12297;`]`<sup><a href="#footnote-8">8</a></sup> | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form<br/>&#12296;expr<sub>size</sub>&#12297; : &#12296;expr<sub>init</sub>&#12297; |
 | &#12296;id<sub>vec</sub>&#12297;`[`&#12296;n&#12297;`]` | Return the <i>n<sup>th</sup></i> element of vector _vec_(indexed from 0).<br/>When on the LHS of an assignment, sets the <i>n<sup>th</sup></i> element to the RHS. |
-| `size(`&#12296;id<sub>dic/vec</sub>&#12297;`)`<sup><a href="#footnote-9">9</a></sup> | Return the length of the dictionary or vector. |
+| `|`&#12296;id<sub>dic/vec</sub>&#12297;`|`<sup><a href="#footnote-9">9</a></sup> | Return the length of the dictionary or vector. |
 
 Table 2: Compound Data Expressions
 
@@ -76,8 +78,8 @@ _SMPL_ ***Identifiers***:
 ***Function calls*** are denoted by the function name followed immediately by a sequence of comma-separated argument expressions enclosed in parentheses. The following expressions are ***legal function calls***: `f(a, b)`, `g()`, `foo(a, b, c, d)`.
 
 _SMPL_ ***operators*** include:
-- Arithmetic operators: `+`, `-`, `*`, `/`, `%`
-- Bitwise operators: `&`, `|`, `~`
+- Arithmetic operators: `+`, `+=`, `++` `-`, `-=`, `--`, `*`, `*=`, `**`, `/`, `/=`, `_/`, `%`, `%=`
+- Bitwise operators: `&`, `|`, `^`, `~`
 - Relational operators: `==`<sup><a href="#footnote-11">11</a></sup>, `>`, `<`, `<=`, `>=`, `!=`
 - Logical operators: `&&`, `||`, `!`
 
@@ -114,6 +116,9 @@ Table 3: Table of _SMPL_ statements
 Here are some example procedures in _SMPL_.
 
 ```haskell
+// return the length of the hypotenuse, provided the length of sides a and b of the right angle triangle
+hypotenuse = (:a, :b) { _/(a**2 + b**2) }
+
 // return factorial n
 fact = (:n) { (n <= 1) ? 1 : n * fact(n - 1); }
 
