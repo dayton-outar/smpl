@@ -19,7 +19,7 @@ The initial concept of this language was inspired by [Scheme](https://en.wikiped
 
 Creating a language that would use pure mathematical notation would present a challenge to the ASCII inspired QWERTY keyboard. Mathematical notations are available under the provision of unicode character symbols but are not easily accessible through the QWERTY keyboard.
 
-The question posed by Dayton Outar in the evolution of this programming language is how much mathematical notation can be used in a programming language that has a fluent succinct and expressive style.
+The question posed by Dayton Outar in the evolution of this programming language is, _"How much mathematical notation can be used in a programming language while maintaining a fluent, succinct and expressive style?"_
 
 The syntax encourages the use of procedures for listing complex statements in a unified body that can be reused. In fact, procedures are the only constructs that allow more than one statements within its body. All control structures invokes only one function call in each clause.
 
