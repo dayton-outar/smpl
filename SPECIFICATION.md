@@ -90,7 +90,7 @@ In order to apply a unary minus to an expression, the combined expression must b
 | Statement | Purpose |
 | :--- | :--- |
 | `〈id〉 = 〈expr〉`<sup><a href="#footnote-12">12</a></sup>&nbsp;<sup><a href="#footnote-13">13</a></sup> | Define and assign the value of _expr_ to variable _id_. |
-| `〈id〉 = (〈parameters〉)`<sup><a href="#footnote-14">14</a></sup><br />`{...}`<sup><a href="#footnote-15">15</a></sup> | Return a procedure of _n_ arguments.<br />Parameters can be passed like so, _p_<sub>1</sub>, _p_<sub>2</sub>, &hellip;, _p_<sub>n</sub>,<br />or like so `(...〈p〉)` (passes an array of values).<sup><a href="#footnote-16">16</a></sup><br />Followed by list of statements, `{...}`. |
+| `〈id〉 = (〈parameters〉)`<sup><a href="#footnote-14">14</a></sup><br />`{...}`<sup><a href="#footnote-15">15</a></sup> | Return a procedure of _n_ arguments.<br />Parameters can be passed like so, :_p_<sub>1</sub>, :_p_<sub>2</sub>, &hellip;, :_p_<sub>n</sub>,<br />or like so `(...:〈p〉)` (passes an array of values).<sup><a href="#footnote-16">16</a></sup><br />Followed by list of statements, `{...}`. |
 | `〈condition〉 ? 〈expr〉`<sup><a href="#footnote-17">17</a></sup><br />`: 〈expr〉` | Test predicate, evaluate then clause if non-false.<br />Otherwise evaluate else clause, if given. |
 | `?: {`<br />**[**_p_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _p_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**`}`<br />`〈condition〉 : 〈expr〉`  | Equivalent to an if-else.<br />Best used for multiple conditional cases. |
 | `?: (〈expr〉) {`<sup><a href="#footnote-18">18</a></sup><br/>**[**_l_<sub><i>1</i></sub>:_c_<sub><i>1</i></sub> &hellip; _l_<sub><i>n</i></sub>:_c_<sub><i>n</i></sub>**]**<br />`}` | Evaluates an expression and matches the value to a case |
@@ -115,16 +115,16 @@ Here are some example procedures in _SMPL_.
 
 ```haskell
 // return factorial n
-fact = (n) { (n <= 1) ? 1 : n * fact(n - 1); }
+fact = (:n) { (n <= 1) ? 1 : n * fact(n - 1); }
 
 /* return the nth fibonacci number */
-fib = (n) { (n <= 1) ? 1 : fib(n - 1) + fib(n - 2); }
+fib = (:n) { (n <= 1) ? 1 : fib(n - 1) + fib(n - 2); }
 
 /* return a newly allocated vector obtained by applying f to each element of v. */
-vmap = (f, v) { [ size(v): (i) -> f(v[i]) ]; }
+vmap = (:f, :v) { [ size(v): (i) -> f(v[i]) ]; }
 
 /* return a newly allocated vector containing elements of v1 followed by elements of v2 */
-vappend = (v1, v2) { [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ]; }
+vappend = (:v1, :v2) { [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ]; }
     
 ```
 

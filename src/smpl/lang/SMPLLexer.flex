@@ -68,7 +68,7 @@ id              = {alpha}|{alpha}{alphanum}|{num}{alphanum}
 
 <YYINITIAL> {
   /* identifiers */
-  {id}                          { return new Symbol(sym.IDENTIFIER); }
+  {id}                          { return new Symbol(sym.IDENTIFIER, yytext()); }
 
   /* literals */
   {num}                         { return new Symbol(sym.NUMBER, Integer.valueOf(yytext())); }

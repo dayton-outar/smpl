@@ -135,11 +135,13 @@ statement ::= expression_list:l SEMI							{: RESULT = l;	:}
 			;
 
 parameter_list ::= expression_list:e COMMA parameter_list:l		{: l.addElement(e); RESULT = l; :}
+
+			| expression_list:e							{: Vector l = new Vector(); l.addElement(e); RESULT = l;:}
 			
 			| empty										{: RESULT = new Vector(); 		:}
 			;
 
-variable_list ::= variable_list:l COMMA variable:v 	{: l.addElement(v); RESULT = l; :}
+variable_list ::= variable:v COMMA variable_list:l	{: l.addElement(v); RESULT = l; :}
 
 			| variable:v							{: Vector l = new Vector(); l.addElement(v); RESULT = l;:}
 
@@ -150,11 +152,17 @@ variable ::= COLON IDENTIFIER:i			{: RESULT = i; :}
 			;
 
 dictionary ::= STRING:s MAP expression_list:e COMMA dictionary:l {: l.addElement(s + " => " + e); RESULT = l; :}
+
+			| STRING:s MAP expression_list:e {: Vector l = new Vector(); l.addElement(s + " => " + e); RESULT = l; :}
 			;
 
 array ::= expression_list:e COMMA array:l		{: l.addElement(e); RESULT = l;:}
 
 			| NUMBER:n COLON IDENTIFIER:i IMPLY expression_list:e COMMA array:l {: l.addElement("EXPAND " + n + " " + i + " -> "); RESULT = l; :}
+
+			| expression_list:e		{: Vector l = new Vector(); l.addElement(e); RESULT = l;:}
+
+			| NUMBER:n COLON IDENTIFIER:i IMPLY expression_list:e  {: Vector l = new Vector(); l.addElement("EXPAND " + n + " " + i + " -> "); RESULT = l; :}
 
 			| empty									{: RESULT = new Vector(); :}
 			;
