@@ -15,7 +15,13 @@ _SMPL_ has numbers, the two boolean literals, strings, dictionaries (or arrays o
 The syntax of _SMPL_ uses infix notation, and all binary operators must be separated from their operands by at least one whitespace character. The whitespace characters are the usual ones: space, carriage return and tab characters. (Feel free to include other control characters such as
 form feed and line feed if you wish).
 
-The initial concept of this language was inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) as specified by the original author, Prof. Daniel Coore. Dayton Outar envisioned the syntax to be more closely related to [JavaScript](https://en.wikipedia.org/wiki/JavaScript) without the use of any english keywords. Creating a language that would use pure mathematical notation would present a challenge to the ASCII inspired QWERTY keyboard. Mathematical notations are available under the provision of unicode character symbols but are not easily accessible through the QWERTY keyboard.
+The initial concept of this language was inspired by [Scheme](https://en.wikipedia.org/wiki/Scheme_(programming_language)) as specified by the original author, Prof. Daniel Coore. Dayton Outar envisioned the syntax to be more closely related to [JavaScript](https://en.wikipedia.org/wiki/JavaScript) without the use of any english keywords.
+
+Creating a language that would use pure mathematical notation would present a challenge to the ASCII inspired QWERTY keyboard. Mathematical notations are available under the provision of unicode character symbols but are not easily accessible through the QWERTY keyboard.
+
+The question posed by Dayton Outar in the evolution of this programming language is how much mathematical notation can be used in a programming language that has a fluent succinct and expressive style.
+
+The syntax encourages the use of procedures for listing complex statements in a unified body that can be reused. In fact, procedures are the only constructs that allow more than one statements within its body. All control structures invokes only one function call in each clause.
 
 ### 2.1 Literals and Values
 
