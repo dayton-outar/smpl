@@ -74,6 +74,7 @@ non terminal Vector		statement_list;
 non terminal Vector		statement_block;
 non terminal			statement;
 non terminal String		variable;
+non terminal Vector		intialize_list;
 non terminal Vector		dictionary;
 non terminal Vector		array;
 non terminal Vector		case_list;
@@ -129,6 +130,8 @@ statement ::= expression_list:l SEMI							{: RESULT = l;	:}
 
 			| CASES LPAREN expression_list:e RPAREN LBRACE case_list:l RBRACE	{: RESULT = "CASE ( " + e + " ) " + l; :}
 
+			| LPAREN intialize_list:il SEMI condition_list:cl SEMI expression_list:e RPAREN statement_block:sl {: RESULT = "LOOP (" + il + "; " + cl + "; " + e + ") {\n" + sl + "\n}"; :}
+
 			| LBRAK array:l RBRAK SEMI		{: RESULT = "ARRAY = " + l; :}
 
 			| LBRAK dictionary:l RBRAK SEMI		{: RESULT = "DICTIONARY = " + l; :}
@@ -136,6 +139,11 @@ statement ::= expression_list:l SEMI							{: RESULT = l;	:}
 			| PRINT STRING:s SEMI	{: RESULT = s; :}
 
 			| IDENTIFIER:i READ	SEMI	{: RESULT = "READ INTO " + i; :}
+			;
+
+intialize_list ::= IDENTIFIER:i ASSIGN expression_list:e COMMA intialize_list:l {: l.addElement(i + " = " + e); RESULT = l; :}
+			
+			| IDENTIFIER:i ASSIGN expression_list:e {: Vector l = new Vector(); l.addElement(i + " = " + e); RESULT = l;:}
 			;
 
 parameter_list ::= expression_list:e COMMA parameter_list:l		{: l.addElement(e); RESULT = l; :}
@@ -172,8 +180,6 @@ array ::= expression_list:e COMMA array:l		{: l.addElement(e); RESULT = l;:}
 			;
 
 expression_list ::= expression_list expression:e	{: RESULT = e;			:}
-
-			
 
             | expression:e							{: RESULT = e;			:}
 			;
