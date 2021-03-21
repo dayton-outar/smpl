@@ -6,7 +6,7 @@
 
 ## 1 Introduction
 
-_SMPL_ is a small, but expressive toy programming language. As the name suggests, _SMPL_ is easy to learn but, as you will discover, it is quite powerful.
+_SMPL_ is a small, but expressive mathematical notation programming language. As the name suggests, _SMPL_ is easy to learn but, as you will discover, it is quite powerful.
 
 This document only partly specifies _SMPL_. Specifically, only the core subset of _SMPL_ is described. There are a number of extensions and modifications that can be made to _SMPL_ , which you will get to experiment with at some point.
 
