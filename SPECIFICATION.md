@@ -1,9 +1,5 @@
 # SMPL Specification
 
-<div align="right">
-    <p>November 1, 2000</p>
-</div>
-
 ## 1 Introduction
 
 _SMPL_ is a small, but expressive mathematical notation programming language. As the name suggests, _SMPL_ is easy to learn but, as you will discover, it is quite powerful.
@@ -160,7 +156,7 @@ Here are a few ideas for extensions to _SMPL_ :
 
 <a id="footnote-3"><sup>3</sup></a> First class objects may be named, stored in data structures, passed as arguments and returned as values from procedures
 
-&copy; Prof. Daniel Coore
+&copy; Prof. Daniel Coore [November, 2000]
 
 <a id="footnote-4"><sup>4</sup></a> Implementing extension for _Arbitrary precision integer arithmetic_ and _Floating point numbers_ in first iteration (A good test case for this is to see whether your extended language can compute the factorial of 1000).
 
