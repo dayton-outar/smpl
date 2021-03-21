@@ -129,6 +129,10 @@ statement ::= expression_list:l SEMI							{: RESULT = l;	:}
 
 			| CASES LPAREN expression_list:e RPAREN LBRACE case_list:l RBRACE	{: RESULT = "CASE ( " + e + " ) " + l; :}
 
+			| LBRAK array:l RBRAK SEMI		{: RESULT = "ARRAY = " + l; :}
+
+			| LBRAK dictionary:l RBRAK SEMI		{: RESULT = "DICTIONARY = " + l; :}
+
 			| PRINT STRING:s SEMI	{: RESULT = s; :}
 
 			| IDENTIFIER:i READ	SEMI	{: RESULT = "READ INTO " + i; :}
@@ -158,11 +162,11 @@ dictionary ::= STRING:s MAP expression_list:e COMMA dictionary:l {: l.addElement
 
 array ::= expression_list:e COMMA array:l		{: l.addElement(e); RESULT = l;:}
 
-			| NUMBER:n COLON IDENTIFIER:i IMPLY expression_list:e COMMA array:l {: l.addElement("EXPAND " + n + " " + i + " -> "); RESULT = l; :}
+			| expression_list:n COLON IDENTIFIER:i IMPLY expression_list:e COMMA array:l {: l.addElement("EXPAND " + n + " " + i + " -> "); RESULT = l; :}
 
 			| expression_list:e		{: Vector l = new Vector(); l.addElement(e); RESULT = l;:}
 
-			| NUMBER:n COLON IDENTIFIER:i IMPLY expression_list:e  {: Vector l = new Vector(); l.addElement("EXPAND " + n + " " + i + " -> "); RESULT = l; :}
+			| expression_list:n COLON IDENTIFIER:i IMPLY expression_list:e  {: Vector l = new Vector(); l.addElement("EXPAND " + n + " " + i + " -> "); RESULT = l; :}
 
 			| empty									{: RESULT = new Vector(); :}
 			;
@@ -198,7 +202,7 @@ expression ::= 	expression:e1 PLUS expression:e2	{: RESULT = e1 + e2;       	:}
 
 			 | IDENTIFIER:i LBRAK STRING RBRAK 		{: RESULT = 7; :}
 
-			 | IDENTIFIER:i LBRAK NUMBER:n RBRAK 	{: RESULT = 1; :}
+			 | IDENTIFIER:i LBRAK expression_list:n RBRAK 	{: RESULT = 1; :}
 
 			 | SIZE LPAREN IDENTIFIER:i RPAREN	{: RESULT = 3; :}
 

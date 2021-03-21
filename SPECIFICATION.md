@@ -136,6 +136,7 @@ vappend = (:v1, :v2) { [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ]; }
 
 Here are a few ideas for extensions to _SMPL_ :
 
+- Linear algebra. Allow arithmetic and bitwise operators to be used by vectors.
 - Interpolated string. Implementation of interpolated strings seem to be a challenging prospect for the [lexer](https://stackoverflow.com/questions/57971191/implementing-string-interpolation-in-flex-bison).
 - Macros. A limited form of language extension can be accomplished through the use of macros. It should not be too difficult to extend _SMPL_ to include macros that are declared and used in
     a similar way to procedures.

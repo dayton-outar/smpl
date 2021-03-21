@@ -1,0 +1,2 @@
+/* return a newly allocated vector obtained by applying f to each element of v. */
+vmap = (:f, :v) { [ size(v): i -> f(v[i]) ]; }
