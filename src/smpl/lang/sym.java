@@ -12,7 +12,6 @@ public interface sym {
   public static final int MAP = 11;
   public static final int QUERY = 53;
   public static final int GTEQ = 46;
-  public static final int SQRT = 32;
   public static final int INCREMENT = 23;
   public static final int LTEQ = 45;
   public static final int ASSIGNAMP = 36;
@@ -29,6 +28,7 @@ public interface sym {
   public static final int NOT = 50;
   public static final int AND = 48;
   public static final int LT = 44;
+  public static final int RADICAL = 32;
   public static final int CASES = 54;
   public static final int NIL = 20;
   public static final int OR = 49;
@@ -96,7 +96,7 @@ public interface sym {
   "EXPONENT",
   "DIVIDE",
   "ASSIGNDIVIDE",
-  "SQRT",
+  "RADICAL",
   "MOD",
   "ASSIGNMOD",
   "AMP",

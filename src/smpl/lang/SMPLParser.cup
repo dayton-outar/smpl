@@ -54,7 +54,7 @@ terminal PRINT, READ;
 terminal NIL;
 
 // operators: arithmetic
-terminal PLUS, ASSIGNADD, INCREMENT, MINUS, ASSIGNSUB, DECREMENT, TIMES, ASSIGNTIMES, EXPONENT, DIVIDE, ASSIGNDIVIDE, SQRT, MOD, ASSIGNMOD;
+terminal PLUS, ASSIGNADD, INCREMENT, MINUS, ASSIGNSUB, DECREMENT, TIMES, ASSIGNTIMES, EXPONENT, DIVIDE, ASSIGNDIVIDE, RADICAL, MOD, ASSIGNMOD;
 
 // operators: bitwise
 terminal AMP, ASSIGNAMP, BAR, ASSIGNBAR, CARET, ASSIGNCARET, TILDE;
@@ -100,7 +100,7 @@ precedence left PLUS, MINUS;
 precedence left INCREMENT, DECREMENT;
 precedence left TIMES, DIVIDE, MOD;
 precedence left EXPONENT;
-precedence left SQRT;
+precedence left RADICAL;
 precedence left TILDE;
 
 /* Grammar Rules */
@@ -201,7 +201,7 @@ expression ::= 	expression:e1 PLUS expression:e2	{: RESULT = e1 + e2;       	:}
 
 			| expression:e1 DIVIDE expression:e2	{: RESULT = e1 / e2;       	:}
 
-			| SQRT expression:e {: RESULT = (int)Math.sqrt(e); :}
+			| RADICAL expression:e {: RESULT = (int)Math.sqrt(e); :}
 
 			| expression:e1 MOD expression:e2		{: RESULT = e1 % e2;       	:}
 

@@ -78,7 +78,9 @@ id              = {alpha}|{alpha}{alphanum}|{num}{alphanum}
   "*="                          { return new Symbol(sym.ASSIGNTIMES); }
   "**"                          { return new Symbol(sym.EXPONENT); }
   "/"                           { return new Symbol(sym.DIVIDE);  }
-  "_/"                          { return new Symbol(sym.SQRT);    }
+  "÷"                           { return new Symbol(sym.DIVIDE);  }
+  "_/"                          { return new Symbol(sym.RADICAL);    }
+  "√"                           { return new Symbol(sym.RADICAL);    }
   "/="                          { return new Symbol(sym.ASSIGNDIVIDE); }
   "%"                           { return new Symbol(sym.MOD);   }
   "%="                          { return new Symbol(sym.ASSIGNMOD); }
