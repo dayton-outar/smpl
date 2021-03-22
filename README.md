@@ -4,9 +4,13 @@ SMPL is a small, but expressive toy programming language. Credits to Prof. Danie
 
 ## To-Do
 
-- [ ] Update documentation according to Github standards
-- [ ] Build SMPL according to specs
+- [x] Update specification
+- [x] Evolve grammar
+- [ ] Write architecture documentation in smpl folder
+- [ ] Document design of interpreter in smpl/
+- [ ] Build interpreter
 - [ ] Catch up on some Java and Java tools: Ant, Maven, etc.
+- [ ] Update documentation according to Github standards
 
 ## Notes
 
