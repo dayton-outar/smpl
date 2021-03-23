@@ -1,4 +1,6 @@
 import smpl.lang.*;
+import smpl.sys.Program;
+
 import java.io.*;
 import java_cup.runtime.*;
 
@@ -13,7 +15,11 @@ public class App {
 				System.out.println("  " + args[i] + "...");
 				try {
 					p = new SMPLParser(args[i]);
-                    p.parse();
+                    Symbol parseResult = p.parse();
+					
+					Program program = (Program)parseResult.value;
+					program.execute();
+
 				} catch (FileNotFoundException fnfe) {
 					System.out.println("File not found error: " +
 						fnfe.getMessage());
