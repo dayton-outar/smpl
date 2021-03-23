@@ -16,6 +16,7 @@ public interface sym {
   public static final int LTEQ = 45;
   public static final int ASSIGNAMP = 36;
   public static final int RBRAK = 10;
+  public static final int CONTINUE = 55;
   public static final int LPAREN = 5;
   public static final int SEMI = 2;
   public static final int ASSIGNADD = 22;
@@ -45,6 +46,7 @@ public interface sym {
   public static final int NUMBER = 15;
   public static final int MOD = 33;
   public static final int ASSIGNSUB = 25;
+  public static final int BREAK = 56;
   public static final int IMPLY = 52;
   public static final int EQ = 42;
   public static final int TIMES = 27;
@@ -118,7 +120,9 @@ public interface sym {
   "ASSIGN",
   "IMPLY",
   "QUERY",
-  "CASES"
+  "CASES",
+  "CONTINUE",
+  "BREAK"
   };
 }
 

@@ -66,7 +66,7 @@ terminal EQ, GT, LT, LTEQ, GTEQ, NOTEQ;
 terminal AND, OR, NOT;
 
 // operators: assignment
-terminal ASSIGN, IMPLY, QUERY, CASES;
+terminal ASSIGN, IMPLY, QUERY, CASES, CONTINUE, BREAK;
 
 /* Non terminals */
 non terminal			program;

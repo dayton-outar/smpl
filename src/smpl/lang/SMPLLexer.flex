@@ -122,6 +122,8 @@ id              = {alpha}|{alpha}{alphanum}|{num}{alphanum}
   ":"                           { return new Symbol(sym.COLON); }
   ":>"                          { return new Symbol(sym.PRINT); }
   "<:"                          { return new Symbol(sym.READ);  }
+  "--:"                         { return new Symbol(sym.BREAK); }
+  "-->"                         { return new Symbol(sym.CONTINUE);}
   ";"                           { return new Symbol(sym.SEMI);  }
 
   /* comments */
