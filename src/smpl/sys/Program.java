@@ -2,6 +2,9 @@ package smpl.sys;
 
 import java.util.Enumeration;
 import java.util.Vector;
+
+import smpl.sys.commands.ICommand;
+
 import java.util.Stack;
 
 /**

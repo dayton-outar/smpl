@@ -1,4 +1,4 @@
-package smpl.sys;
+package smpl.sys.expressions;
 
 /**
  * Embodies the sum of two expressions

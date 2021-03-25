@@ -1,4 +1,4 @@
-package smpl.sys;
+package smpl.sys.expressions;
 
 public class SquareRootExpression implements IExpression {
     
