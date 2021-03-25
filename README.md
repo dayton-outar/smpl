@@ -19,7 +19,7 @@ SMPL is a small, but expressive toy programming language. Credits to Prof. Danie
  - [Java 10 API](https://docs.oracle.com/javase/10/)
  - [Java 11 API](https://docs.oracle.com/en/java/javase/11/)
 
- ### Creating a .jar file
+### Creating a .jar file
 
 <small>Adapted from João Silva from [StackOverflow](https://stackoverflow.com/questions/4597866/java-creating-jar-file)</small>
 
@@ -79,19 +79,33 @@ The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More detail
 sudo apt install jflex
 ```
 
+Navigate to `src` folder.
+
 ```bash
-jflex SMPLLexer.flex
+jflex smpl/lang/SMPLLexer.flex -d smpl/lang
 ```
 
 Find JFlex manual [here](https://jflex.de/manual.html).
 
+For CLI manual, perform the following
+
+```bash
+jflex --help
+```
+
 Generate parser
 
 ```bash
-java -jar ../lib/java-cup-11b.jar -interface -parser SMPLParser SMPLParser.cup
+java -jar ../lib/java-cup-11b.jar -interface -destdir smpl/lang -parser SMPLParser smpl/lang/SMPLParser.cup
 ```
 
 Find Java CUP LALR Parser Generator [here](http://www2.cs.tum.edu/projects/cup/index.php).
+
+For CLI manual, perform the following
+
+```bash
+java -jar ../lib/java-cup-11b.jar -help
+```
 
 Compile all files
 
@@ -102,5 +116,5 @@ javac -cp ../lib/java-cup-11b-runtime.jar:. *.java
 Run main and pass text containing expression to it
 
 ```bash
-java -cp ../lib/java-cup-11b-runtime.jar:. App bomdas.txt
+java -cp ../lib/java-cup-11b-runtime.jar:. App ../test/bomdas.txt
 ```

@@ -3,6 +3,8 @@ package smpl.lang;
 import java_cup.runtime.*;
 import java.io.*;
 import java.util.Vector;
+import smpl.sys.*;
+import smpl.sys.expressions.*;
 
 parser code {:
 	SMPLLexer lexer;
@@ -70,7 +72,7 @@ terminal AND, OR, NOT;
 terminal ASSIGN, IMPLY, QUERY, CASES, CONTINUE, BREAK;
 
 /* Non terminals */
-non terminal				program;
+non terminal Program		program;
 non terminal Vector			statement_list;
 non terminal Vector			statement_block;
 non terminal				statement;
@@ -106,15 +108,18 @@ precedence left TILDE;
 
 /* Grammar Rules */
 
-program ::= statement_list:sl 						{: System.out.println(sl); :};
+program ::= statement_list:sl
+			{: RESULT = new Program(sl); :};
 
 statement_block ::= LBRACE statement_list:l RBRACE	{: RESULT = l; :}
 				;
 
-statement_list ::= statement:stmt statement_list:sl {: sl.addElement(stmt); RESULT = sl ; :} 
+statement_list ::= statement:stmt statement_list:sl
+			{: sl.addElement(stmt); RESULT = sl ; :} 
 				
-				| empty 							{: RESULT = new Vector(); :}
-				;
+			| empty
+			{: RESULT = new Vector(); :}
+			;
 
 statement ::= expression_list:l SEMI							{: RESULT = l;	:}
 
@@ -203,7 +208,8 @@ expression ::= 	expression:e1 PLUS expression:e2
             | expression:e1 TIMES expression:e2
 			{: RESULT = new MultiplicationExpression(e1, e2); :}
 
-			| expression:e1 EXPONENT expression:e2	{: RESULT = (int)Math.pow(e1, e2); :}
+			| expression:e1 EXPONENT expression:e2
+			{: RESULT = new ExponentExpression(e1, e2); :}
 
 			| expression:e1 DIVIDE expression:e2
 			{: RESULT = new DivisionExpression(e1, e2); :}
@@ -211,7 +217,8 @@ expression ::= 	expression:e1 PLUS expression:e2
 			| RADICAL expression:e
 			{: RESULT = new SquareRootExpression(e); :}
 
-			| expression:e1 MOD expression:e2		{: RESULT = e1 % e2;       	:}
+			| expression:e1 MOD expression:e2
+			{: RESULT = new ModulusExpression(e1, e2); :}
 
 			| expression:e1 AMP expression:e2		{: RESULT = e1 & e2;		:}
 
@@ -228,19 +235,19 @@ expression ::= 	expression:e1 PLUS expression:e2
 			{: RESULT = e; :}
 
 			| BAR IDENTIFIER:i BAR
-			{: RESULT = new LongExpression(45); // returns size of array or absolute of number :}
+			{: RESULT = new LongExpression(Long.valueOf(45)); // returns size of array or absolute of number :}
 
 			| IDENTIFIER:i LPAREN parameter_list:l RPAREN
-			{: RESULT = new LongExpression(5); :}
+			{: RESULT = new LongExpression(Long.valueOf(5)); :}
 
 			| IDENTIFIER:i LBRAK STRING RBRAK
-			{: RESULT = new LongExpression(7); :}
+			{: RESULT = new LongExpression(Long.valueOf(7)); :}
 
 			| IDENTIFIER:i LBRAK expression_list:e RBRAK
-			{: RESULT = new LongExpression(1); :}
+			{: RESULT = new LongExpression(Long.valueOf(1)); :}
 
 			| IDENTIFIER:i
-			{: RESULT = new LongExpression(2); :}
+			{: RESULT = new LongExpression(Long.valueOf(2)); :}
 
             | LONG:n
 			{: RESULT = new LongExpression(n); :}

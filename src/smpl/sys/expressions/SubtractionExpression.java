@@ -15,6 +15,6 @@ public class SubtractionExpression implements IExpression {
         Object obj1 = _exp1.evaluate();
         Object obj2 = _exp2.evaluate();
 
-        return ( obj1 instanceof Long ? Long.parseLong(obj1.toString()) : Double.parseDouble(obj1.toString()) ) - ( obj2 instanceof Long ? Long.parseLong(obj2.toString()) : Double.parseDouble(obj2.toString()) );
+        return ( obj1 instanceof Long ? Long.valueOf(obj1.toString()) : Double.valueOf(obj1.toString()) ) - ( obj2 instanceof Long ? Long.valueOf(obj2.toString()) : Double.valueOf(obj2.toString()) );
     }
 }

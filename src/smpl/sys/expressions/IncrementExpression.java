@@ -14,11 +14,11 @@ public class IncrementExpression implements IExpression {
         Object result = new Object();
 
         if (obj instanceof Double) {
-            double number = Double.parseDouble(obj.toString());
+            Double number = Double.valueOf(obj.toString());
             number++;
             result = number;
         } else {
-            long number = Long.parseLong(obj.toString());
+            Long number = Long.valueOf(obj.toString());
             number++;
             result = number;
         }
