@@ -44,7 +44,8 @@ init with {:
 terminal            SEMI, COLON, SPREAD, LPAREN, RPAREN, LBRACE, RBRACE, LBRAK, RBRAK, MAP, COMMA;
 terminal String		IDENTIFIER;
 terminal String		STRING;
-terminal Integer   	NUMBER;        // our scanner provides numbers as integers
+terminal Long   	LONG;
+terminal Double		DOUBLE;
 terminal Boolean	TRUE, FALSE;
 
 // display operators
@@ -69,24 +70,24 @@ terminal AND, OR, NOT;
 terminal ASSIGN, IMPLY, QUERY, CASES, CONTINUE, BREAK;
 
 /* Non terminals */
-non terminal			program;
-non terminal Vector		statement_list;
-non terminal Vector		statement_block;
-non terminal			statement;
-non terminal String		variable;
-non terminal Vector		intialize_list;
-non terminal Vector		dictionary;
-non terminal Vector		array;
-non terminal Vector		case_list;
-non terminal			case;
-non terminal Vector		if_clause_list;
-non terminal			if_clause;
-non terminal Integer    expression_list;
-non terminal Boolean	condition_list;
-non terminal Boolean	condition;
-non terminal Integer   	expression;      // used to store evaluated subexpressions
-non terminal Vector 	parameter_list;
-non terminal Vector		variable_list;
+non terminal				program;
+non terminal Vector			statement_list;
+non terminal Vector			statement_block;
+non terminal				statement;
+non terminal String			variable;
+non terminal Vector			intialize_list;
+non terminal Vector			dictionary;
+non terminal Vector			array;
+non terminal Vector			case_list;
+non terminal				case;
+non terminal Vector			if_clause_list;
+non terminal				if_clause;
+non terminal IExpression	expression_list;
+non terminal IExpression	condition_list;
+non terminal IExpression	condition;
+non terminal IExpression	expression;      // used to store evaluated subexpressions
+non terminal Vector 		parameter_list;
+non terminal Vector			variable_list;
 non terminal empty;
 
 /* Precedences. Highest precedence is at the bottom. */
@@ -187,21 +188,28 @@ expression_list ::= expression_list expression:e	{: RESULT = e;			:}
             | expression:e							{: RESULT = e;			:}
 			;
 
-expression ::= 	expression:e1 PLUS expression:e2	{: RESULT = e1 + e2;       	:}
+expression ::= 	expression:e1 PLUS expression:e2
+				{: RESULT = new AdditionExpression(e1, e2); :}
 
-			| expression:e INCREMENT			{: RESULT = e++;       	:}
+			| expression:e INCREMENT
+			{: RESULT = new IncrementExpression(e); :}
 
-            | expression:e1 MINUS expression:e2	{: RESULT = e1 - e2;       	:}
+            | expression:e1 MINUS expression:e2
+			{: RESULT = new SubtractionExpression(e1, e2); :}
 
-			| expression:e DECREMENT			{: RESULT = e--;       	:}
+			| expression:e DECREMENT
+			{: RESULT = new DecrementExpression(e); :}
 
-            | expression:e1 TIMES expression:e2	{: RESULT = e1 * e2;       	:}
+            | expression:e1 TIMES expression:e2
+			{: RESULT = new MultiplicationExpression(e1, e2); :}
 
 			| expression:e1 EXPONENT expression:e2	{: RESULT = (int)Math.pow(e1, e2); :}
 
-			| expression:e1 DIVIDE expression:e2	{: RESULT = e1 / e2;       	:}
+			| expression:e1 DIVIDE expression:e2
+			{: RESULT = new DivisionExpression(e1, e2); :}
 
-			| RADICAL expression:e {: RESULT = (int)Math.sqrt(e); :}
+			| RADICAL expression:e
+			{: RESULT = new SquareRootExpression(e); :}
 
 			| expression:e1 MOD expression:e2		{: RESULT = e1 % e2;       	:}
 
@@ -213,28 +221,42 @@ expression ::= 	expression:e1 PLUS expression:e2	{: RESULT = e1 + e2;       	:}
 
 			| TILDE expression:e					{: RESULT = ~e;		:}
 
-            | LPAREN MINUS expression:e RPAREN		{: RESULT = -e;				:}
+            | LPAREN MINUS expression:e RPAREN
+			{: RESULT = -e;				:}
 
-            | LPAREN expression_list:e RPAREN			{: RESULT = e;           	:}
+            | LPAREN expression_list:e RPAREN
+			{: RESULT = e; :}
 
-			| BAR IDENTIFIER:i BAR	{: RESULT = 45; // returns size of array or absolute of number :}
+			| BAR IDENTIFIER:i BAR
+			{: RESULT = new LongExpression(45); // returns size of array or absolute of number :}
 
-			| IDENTIFIER:i LPAREN parameter_list:l RPAREN		{: RESULT = 5; :}
+			| IDENTIFIER:i LPAREN parameter_list:l RPAREN
+			{: RESULT = new LongExpression(5); :}
 
-			| IDENTIFIER:i LBRAK STRING RBRAK 		{: RESULT = 7; :}
+			| IDENTIFIER:i LBRAK STRING RBRAK
+			{: RESULT = new LongExpression(7); :}
 
-			| IDENTIFIER:i LBRAK expression_list:n RBRAK 	{: RESULT = 1; :}
+			| IDENTIFIER:i LBRAK expression_list:e RBRAK
+			{: RESULT = new LongExpression(1); :}
 
-			| IDENTIFIER:i							{: RESULT = 2; // TBC .. I have a dilemma here. This clashes with a rule in statement but I need to to evaluate a variable in expressions		:}
+			| IDENTIFIER:i
+			{: RESULT = new LongExpression(2); :}
 
-            | NUMBER:n	      						{: RESULT = n;           	:}
+            | LONG:n
+			{: RESULT = new LongExpression(n); :}
 
-			| NIL									{: RESULT = null;			:}
+			| DOUBLE:n
+			{: RESULT = new DoubleExpression(n); :}
+
+			| NIL
+			{: RESULT = null; :}
              ;
 
-case_list ::= case:c case_list:l {: l.addElement(c); RESULT = l; :}
+case_list ::= case:c case_list:l
+			{: l.addElement(c); RESULT = l; :}
 
-			| empty	{: RESULT = new Vector(); :}
+			| empty
+			{: RESULT = new Vector(); :}
 			;
 
 case ::= STRING:s COLON expression_list:e SEMI {: RESULT = "CASE " + s + ": " + e; :}

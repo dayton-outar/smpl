@@ -52,10 +52,12 @@ eolcomment      = "//" {ic}* {lt}?
 doccomment      = "/**" {commentcontent} "*"+ "/"
 commentcontent  = ( [^*] | \*+ [^/*] )*
 
-num             = [0-9]+
+long            = [0-9]+
+double          = [0-9]*\.?[0-9]+
+num             = {int}|{double}
 alpha           = [A-Za-z_]+
-alphanum        = {alpha}|{num}
-id              = {alpha}|{alpha}{alphanum}|{num}{alphanum}
+alphanum        = {alpha}|{long}
+id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
 
 %state STRING
 
@@ -70,7 +72,8 @@ id              = {alpha}|{alpha}{alphanum}|{num}{alphanum}
   {id}                          { return new Symbol(sym.IDENTIFIER, yytext()); }
 
   /* literals */
-  {num}                         { return new Symbol(sym.NUMBER, Integer.valueOf(yytext())); }
+  {long}                        { return new Symbol(sym.LONG, Long.valueOf(yytext())); }
+  {double}                      { return new Symbol(sym.DOUBLE, Double.valueOf(yytext())); }
   \"                            { string.setLength(0); yybegin(STRING); }
 
   /* operators */  

@@ -9,15 +9,15 @@ import java.util.Stack;
  */
 public class Program {
 
-    Stack<Command> programStack;
+    Stack<ICommand> programStack;
     
     /**
      * Initialize program stack with list of statements from AST
      * 
      * @param stmts
      */
-    public Program(Vector<Command> stmts) {
-        Enumeration<Command> commandElements = stmts.elements();
+    public Program(Vector<ICommand> stmts) {
+        Enumeration<ICommand> commandElements = stmts.elements();
 
         while (commandElements.hasMoreElements()) {
             programStack.push(commandElements.nextElement());
@@ -26,7 +26,7 @@ public class Program {
 
     public void execute() {
         while (!programStack.isEmpty()) {
-            //programStack.pop().
+            programStack.pop().execute();
         }
     }
 }
