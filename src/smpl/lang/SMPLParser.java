@@ -739,7 +739,7 @@ class CUP$SMPLParser$actions {
 		String i = (String)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-5)).value;
 		int lleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).left;
 		int lright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).right;
-		Vector l = (Vector)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).value;
+		Vector<String> l = (Vector<String>)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).value;
 		int slleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int slright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		Vector sl = (Vector)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
@@ -913,13 +913,13 @@ class CUP$SMPLParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 21: // parameter_list ::= expression_list COMMA parameter_list 
             {
-              Vector RESULT =null;
+              Vector<IExpression> RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).right;
 		IExpression e = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).value;
 		int lleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int lright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
-		Vector l = (Vector)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
+		Vector<IExpression> l = (Vector<IExpression>)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
 		 l.addElement(e); RESULT = l; 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("parameter_list",16, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
@@ -928,11 +928,15 @@ class CUP$SMPLParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 22: // parameter_list ::= expression_list 
             {
-              Vector RESULT =null;
+              Vector<IExpression> RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression e = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 Vector l = new Vector(); l.addElement(e); RESULT = l;
+		 
+				Vector<IExpression> l = new Vector<IExpression>();
+				l.addElement(e);
+				RESULT = l;
+			
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("parameter_list",16, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -940,8 +944,8 @@ class CUP$SMPLParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 23: // parameter_list ::= empty 
             {
-              Vector RESULT =null;
-		 RESULT = new Vector(); 		
+              Vector<IExpression> RESULT =null;
+		 RESULT = new Vector<IExpression>(); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("parameter_list",16, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -949,13 +953,13 @@ class CUP$SMPLParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 24: // variable_list ::= variable COMMA variable_list 
             {
-              Vector RESULT =null;
+              Vector<String> RESULT =null;
 		int vleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).left;
 		int vright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).right;
 		String v = (String)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).value;
 		int lleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int lright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
-		Vector l = (Vector)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
+		Vector<String> l = (Vector<String>)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
 		 l.addElement(v); RESULT = l; 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("variable_list",17, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
@@ -964,11 +968,15 @@ class CUP$SMPLParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 25: // variable_list ::= variable 
             {
-              Vector RESULT =null;
+              Vector<String> RESULT =null;
 		int vleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int vright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		String v = (String)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 Vector l = new Vector(); l.addElement(v); RESULT = l;
+		
+				Vector<String> l = new Vector<String>();
+				l.addElement(v);
+				RESULT = l;
+			
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("variable_list",17, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -976,8 +984,8 @@ class CUP$SMPLParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 26: // variable_list ::= empty 
             {
-              Vector RESULT =null;
-		 RESULT = new Vector(); 
+              Vector<String> RESULT =null;
+		 RESULT = new Vector<String>(); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("variable_list",17, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1354,8 +1362,8 @@ class CUP$SMPLParser$actions {
 		String i = (String)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).value;
 		int lleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).left;
 		int lright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).right;
-		Vector l = (Vector)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
-		 RESULT = new LongExpression(Long.valueOf(5)); 
+		Vector<IExpression> l = (Vector<IExpression>)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
+		 RESULT = new FunctionExpression(i, l); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("expression",15, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1559,7 +1567,7 @@ class CUP$SMPLParser$actions {
 		int cleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression c = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = c;			
+		 RESULT = c; 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_list",13, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
