@@ -3,6 +3,7 @@ package smpl.sys.expressions;
 public class InvertExpression implements IExpression {
     
     IExpression _exp;
+    
     public InvertExpression(IExpression exp) {
         _exp = exp;
     }

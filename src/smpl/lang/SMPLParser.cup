@@ -281,32 +281,32 @@ if_clause_list ::= if_clause:c if_clause_list:l {: l.addElement(c); RESULT = l; 
 if_clause ::= condition_list:c COLON expression_list:e SEMI {: RESULT = "IF-ELSE " + c + ": " + e; :}
 			;
 
-condition_list ::= condition_list:c1 AND condition:c2	{: RESULT = (c1 && c2);	:}
+condition_list ::= condition_list:c1 AND condition:c2	{: RESULT = new LogicalAndExpression(c1, c2); :}
 
-				| condition_list:c1 OR condition:c2		{: RESULT = (c1 || c2);	:}
+				| condition_list:c1 OR condition:c2		{: RESULT = new LogicalOrExpression(c1, c2); :}
 
-				| NOT condition:c						{: RESULT = (!c);		:}
+				| NOT condition:c						{: RESULT = new LogicalNotExpression(c); :}
 
 				| condition:c							{: RESULT = c;			:}
 				;
 
-condition ::=  expression:e1 EQ expression:e2		{: RESULT = (e1.equals(e2));:}
+condition ::=  expression:e1 EQ expression:e2		{: RESULT = new EqualsExpression(e1, e2); :}
 
-            	| expression:e1 LT expression:e2	{: RESULT = (e1 < e2); 		:}
+            	| expression:e1 LT expression:e2	{: RESULT = new LesserThanExpression(e1, e2); :}
 
-            	| expression:e1 GT expression:e2	{: RESULT = (e1 > e2); 		:}
+            	| expression:e1 GT expression:e2	{: RESULT = new GreaterThanExpression(e1, e2); :}
 
-				| expression:e1 LTEQ expression:e2 	{: RESULT = (e1 <= e2); 	:}
+				| expression:e1 LTEQ expression:e2 	{: RESULT = new LesserThanOrEqualsExpression(e1, e2); :}
 
-				| expression:e1 GTEQ expression:e2	{: RESULT = (e1 >= e2); 	:}
+				| expression:e1 GTEQ expression:e2	{: RESULT = new GreaterThanOrEqualsExpression(e1, e2); 	:}
 
-				| expression:e1 NOTEQ expression:e2	{: RESULT = (e1 != e2); 	:}
+				| expression:e1 NOTEQ expression:e2	{: RESULT = new NotEqualsExpression(e1, e2); :}
 
-				| LPAREN condition:c RPAREN			{: RESULT = c;				:}
+				| LPAREN condition:c RPAREN			{: RESULT = c;	:}
 
-				| TRUE								{: RESULT = true;			:}
+				| TRUE								{: RESULT = new BooleanExpression(Boolean.valueOf(true)); :}
 
-				| FALSE								{: RESULT = false;			:}
+				| FALSE								{: RESULT = new BooleanExpression(Boolean.valueOf(false));	:}
                ;
 
 empty ::=;

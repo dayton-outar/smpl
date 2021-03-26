@@ -1520,7 +1520,7 @@ class CUP$SMPLParser$actions {
 		int c2left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int c2right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression c2 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = (c1 && c2);	
+		 RESULT = new LogicalAndExpression(c1, c2); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_list",13, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1535,7 +1535,7 @@ class CUP$SMPLParser$actions {
 		int c2left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int c2right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression c2 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = (c1 || c2);	
+		 RESULT = new LogicalOrExpression(c1, c2); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_list",13, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1547,7 +1547,7 @@ class CUP$SMPLParser$actions {
 		int cleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression c = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = (!c);		
+		 RESULT = new LogicalNotExpression(c); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_list",13, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1574,7 +1574,7 @@ class CUP$SMPLParser$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression e2 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = (e1.equals(e2));
+		 RESULT = new EqualsExpression(e1, e2); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition",14, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1589,7 +1589,7 @@ class CUP$SMPLParser$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression e2 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = (e1 < e2); 		
+		 RESULT = new LesserThanExpression(e1, e2); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition",14, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1604,7 +1604,7 @@ class CUP$SMPLParser$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression e2 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = (e1 > e2); 		
+		 RESULT = new GreaterThanExpression(e1, e2); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition",14, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1619,7 +1619,7 @@ class CUP$SMPLParser$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression e2 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = (e1 <= e2); 	
+		 RESULT = new LesserThanOrEqualsExpression(e1, e2); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition",14, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1634,7 +1634,7 @@ class CUP$SMPLParser$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression e2 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = (e1 >= e2); 	
+		 RESULT = new GreaterThanOrEqualsExpression(e1, e2); 	
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition",14, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1649,7 +1649,7 @@ class CUP$SMPLParser$actions {
 		int e2left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression e2 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = (e1 != e2); 	
+		 RESULT = new NotEqualsExpression(e1, e2); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition",14, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1661,7 +1661,7 @@ class CUP$SMPLParser$actions {
 		int cleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).right;
 		IExpression c = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
-		 RESULT = c;				
+		 RESULT = c;	
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition",14, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1670,7 +1670,7 @@ class CUP$SMPLParser$actions {
           case 77: // condition ::= TRUE 
             {
               IExpression RESULT =null;
-		 RESULT = true;			
+		 RESULT = new BooleanExpression(Boolean.valueOf(true)); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition",14, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1679,7 +1679,7 @@ class CUP$SMPLParser$actions {
           case 78: // condition ::= FALSE 
             {
               IExpression RESULT =null;
-		 RESULT = false;			
+		 RESULT = new BooleanExpression(Boolean.valueOf(false));	
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition",14, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
