@@ -220,16 +220,20 @@ expression ::= 	expression:e1 PLUS expression:e2
 			| expression:e1 MOD expression:e2
 			{: RESULT = new ModulusExpression(e1, e2); :}
 
-			| expression:e1 AMP expression:e2		{: RESULT = e1 & e2;		:}
+			| expression:e1 AMP expression:e2
+			{: RESULT = new BitwiseAndExpression(e1, e2); :}
 
-			| expression:e1 BAR expression:e2		{: RESULT = e1 | e2;		:}
+			| expression:e1 BAR expression:e2
+			{: RESULT = new BitwiseOrExpression(e1, e2); :}
 
-			| expression:e1 CARET expression:e2		{: RESULT = e1 ^ e2;		:}
+			| expression:e1 CARET expression:e2
+			{: RESULT = new BitwiseXorExpression(e1, e2); :}
 
-			| TILDE expression:e					{: RESULT = ~e;		:}
+			| TILDE expression:e
+			{: RESULT = new BitwiseInvertExpression(e); :}
 
             | LPAREN MINUS expression:e RPAREN
-			{: RESULT = -e;				:}
+			{: RESULT = new InvertExpression(e); :}
 
             | LPAREN expression_list:e RPAREN
 			{: RESULT = e; :}
