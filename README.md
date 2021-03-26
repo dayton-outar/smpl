@@ -11,6 +11,7 @@ SMPL is a small, but expressive toy programming language. Credits to Prof. Danie
 - [ ] Build interpreter
 - [ ] Catch up on some Java and Java tools: Ant, Maven, etc.
 - [ ] Update documentation according to Github standards
+- [ ] Automate with Maven or Ant
 
 ## Notes
 
