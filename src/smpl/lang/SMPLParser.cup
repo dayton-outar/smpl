@@ -72,23 +72,23 @@ terminal AND, OR, NOT;
 terminal ASSIGN, IMPLY, QUERY, CASES, CONTINUE, BREAK;
 
 /* Non terminals */
-non terminal Program		program;
-non terminal Vector			statement_list;
-non terminal Vector			statement_block;
-non terminal				statement;
-non terminal String			variable;
-non terminal Vector			intialize_list;
-non terminal Vector			dictionary;
-non terminal Vector			array;
-non terminal Vector			case_list;
-non terminal				case;
+non terminal Program				program;
+non terminal Vector<ICommand>		statement_list;
+non terminal Vector<ICommand>		statement_block;
+non terminal ICommand				statement;
+non terminal Vector					intialize_list;
+non terminal Vector					dictionary;
+non terminal Vector					array;
+non terminal Vector					case_list;
+non terminal						case;
 non terminal Vector					if_clause_list;
 non terminal						if_clause;
 non terminal IExpression			expression_list;
 non terminal IExpression			condition_list;
 non terminal IExpression			condition;
-non terminal IExpression			expression;      // used to store evaluated subexpressions
+non terminal IExpression			expression;
 non terminal Vector<IExpression> 	parameter_list;
+non terminal String					variable;
 non terminal Vector<String>			variable_list;
 non terminal empty;
 
@@ -111,19 +111,25 @@ precedence left TILDE;
 program ::= statement_list:sl
 			{: RESULT = new Program(sl); :};
 
-statement_block ::= LBRACE statement_list:l RBRACE	{: RESULT = l; :}
-				;
-
-statement_list ::= statement:stmt statement_list:sl
-			{: sl.addElement(stmt); RESULT = sl ; :} 
-				
-			| empty
-			{: RESULT = new Vector(); :}
+statement_block ::= LBRACE statement_list:l RBRACE
+			{: RESULT = l; :}
 			;
 
-statement ::= expression_list:l SEMI							{: RESULT = l;	:}
+statement_list ::= statement:stmt statement_list:sl
+			{: 
+				sl.addElement(stmt);
+				RESULT = sl;
+			:} 
+				
+			| empty
+			{: RESULT = new Vector<ICommand>(); :}
+			;
 
-			| IDENTIFIER:i ASSIGN expression_list:l SEMI		{: RESULT = "CMD " + i + " = " + l + "";	:}
+statement ::= expression_list:e SEMI
+			{: RESULT = new ExpressionCommand(e);	:}
+
+			| IDENTIFIER:i ASSIGN expression_list:l SEMI
+			{: RESULT = "CMD " + i + " = " + l + "";	:}
 
 			| IDENTIFIER:i ASSIGN LBRAK array:l RBRAK SEMI		{: RESULT = "ARRAY " + i + " = " + l; :}
 
@@ -145,14 +151,24 @@ statement ::= expression_list:l SEMI							{: RESULT = l;	:}
 
 			| LBRAK dictionary:l RBRAK SEMI		{: RESULT = "DICTIONARY = " + l; :}
 
-			| PRINT STRING:s SEMI	{: RESULT = s; :}
+			| PRINT STRING:s SEMI
+			{: RESULT = new PrintCommand(s); :}
 
 			| IDENTIFIER:i READ	SEMI	{: RESULT = "READ INTO " + i; :}
 			;
 
-intialize_list ::= IDENTIFIER:i ASSIGN expression_list:e COMMA intialize_list:l {: l.addElement(i + " = " + e); RESULT = l; :}
+intialize_list ::= IDENTIFIER:i ASSIGN expression_list:e COMMA intialize_list:l 
+			{: 
+				l.addElement(i + " = " + e); 
+				RESULT = l; 
+			:}
 			
-			| IDENTIFIER:i ASSIGN expression_list:e {: Vector l = new Vector(); l.addElement(i + " = " + e); RESULT = l;:}
+			| IDENTIFIER:i ASSIGN expression_list:e 
+			{: 
+				Vector<ICommand> l = new Vector<ICommand>();
+				l.addElement(i + " = " + e);
+				RESULT = l;
+			:}
 			;
 
 parameter_list ::= expression_list:e COMMA parameter_list:l
@@ -183,32 +199,56 @@ variable_list ::= variable:v COMMA variable_list:l
 			{: RESULT = new Vector<String>(); :}
 			;
 
-variable ::= COLON IDENTIFIER:i			{: RESULT = i; :}
+variable ::= COLON IDENTIFIER:i	
+			{: RESULT = i; :}
 			;
 
 dictionary ::= STRING:s MAP expression_list:e COMMA dictionary:l {: l.addElement(s + " => " + e); RESULT = l; :}
 
-			| STRING:s MAP expression_list:e {: Vector l = new Vector(); l.addElement(s + " => " + e); RESULT = l; :}
+			| STRING:s MAP expression_list:e 
+			{:
+				Vector l = new Vector();
+				l.addElement(s + " => " + e);
+				RESULT = l;
+			:}
 			;
 
-array ::= expression_list:e COMMA array:l		{: l.addElement(e); RESULT = l;:}
+array ::= expression_list:e COMMA array:l
+			{: l.addElement(e); RESULT = l;:}
 
-			| expression_list:n COLON IDENTIFIER:i IMPLY expression_list:e COMMA array:l {: l.addElement("EXPAND " + n + " " + i + " -> "); RESULT = l; :}
+			| expression_list:n COLON IDENTIFIER:i IMPLY expression_list:e COMMA array:l 
+			{: 
+				l.addElement("EXPAND " + n + " " + i + " -> "); 
+				RESULT = l; 
+			:}
 
-			| expression_list:e		{: Vector l = new Vector(); l.addElement(e); RESULT = l;:}
+			| expression_list:e	
+			{: 
+				Vector l = new Vector(); 
+				l.addElement(e); 
+				RESULT = l;
+			:}
 
-			| expression_list:n COLON IDENTIFIER:i IMPLY expression_list:e  {: Vector l = new Vector(); l.addElement("EXPAND " + n + " " + i + " -> "); RESULT = l; :}
+			| expression_list:n COLON IDENTIFIER:i IMPLY expression_list:e 
+			{:
+				Vector l = new Vector();
+				l.addElement("EXPAND " + n + " " + i + " -> ");
+				RESULT = l;
+			:}
 
-			| empty									{: RESULT = new Vector(); :}
+			| empty	
+			{: RESULT = new Vector(); :}
 			;
 
-expression_list ::= expression_list expression:e	{: RESULT = e;			:}
+expression_list ::= expression_list expression:e
+			{: RESULT = e; :}
 
-            | expression:e							{: RESULT = e;			:}
+            | expression:e
+			{: RESULT = e; :}
 			;
 
 expression ::= 	expression:e1 PLUS expression:e2
-				{: RESULT = new AdditionExpression(e1, e2); :}
+			{: RESULT = new AdditionExpression(e1, e2); :}
 
 			| expression:e INCREMENT
 			{: RESULT = new IncrementExpression(e); :}
@@ -258,14 +298,14 @@ expression ::= 	expression:e1 PLUS expression:e2
 			| IDENTIFIER:i LPAREN parameter_list:l RPAREN
 			{: RESULT = new FunctionExpression(i, l); :}
 
-			| IDENTIFIER:i LBRAK STRING RBRAK
-			{: RESULT = new LongExpression(Long.valueOf(7)); :}
+			| IDENTIFIER:i LBRAK STRING:x RBRAK
+			{: RESULT = new DictionaryIndexExpression(i, x); :}
 
 			| IDENTIFIER:i LBRAK expression_list:e RBRAK
-			{: RESULT = new LongExpression(Long.valueOf(1)); :}
+			{: RESULT = new ArrayIndexExpression(i, e); :}
 
 			| IDENTIFIER:i
-			{: RESULT = new LongExpression(Long.valueOf(2)); :}
+			{: RESULT = new VariableExpression(i); :}
 
             | LONG:n
 			{: RESULT = new LongExpression(n); :}
@@ -284,56 +324,60 @@ case_list ::= case:c case_list:l
 			{: RESULT = new Vector(); :}
 			;
 
-case ::= STRING:s COLON expression_list:e SEMI {: RESULT = "CASE " + s + ": " + e; :}
+case ::= STRING:s COLON expression_list:e SEMI
+			{: RESULT = "CASE " + s + ": " + e; :}
 			;
 
-if_clause_list ::= if_clause:c if_clause_list:l {: l.addElement(c); RESULT = l; :}
+if_clause_list ::= if_clause:c if_clause_list:l 
+			{: l.addElement(c); RESULT = l; :}
 
-			| empty	{: RESULT = new Vector(); :}
+			| empty	
+			{: RESULT = new Vector(); :}
 			;
 
-if_clause ::= condition_list:c COLON expression_list:e SEMI {: RESULT = "IF-ELSE " + c + ": " + e; :}
+if_clause ::= condition_list:c COLON expression_list:e SEMI 
+			{: RESULT = "IF-ELSE " + c + ": " + e; :}
 			;
 
 condition_list ::= condition_list:c1 AND condition:c2
-				{: RESULT = new LogicalAndExpression(c1, c2); :}
+			{: RESULT = new LogicalAndExpression(c1, c2); :}
 
-				| condition_list:c1 OR condition:c2
-				{: RESULT = new LogicalOrExpression(c1, c2); :}
+			| condition_list:c1 OR condition:c2
+			{: RESULT = new LogicalOrExpression(c1, c2); :}
 
-				| NOT condition:c
-				{: RESULT = new LogicalNotExpression(c); :}
+			| NOT condition:c
+			{: RESULT = new LogicalNotExpression(c); :}
 
-				| condition:c
-				{: RESULT = c; :}
-				;
+			| condition:c
+			{: RESULT = c; :}
+			;
 
 condition ::=  expression:e1 EQ expression:e2
-				{: RESULT = new EqualsExpression(e1, e2); :}
+			{: RESULT = new EqualsExpression(e1, e2); :}
 
-            	| expression:e1 LT expression:e2
-				{: RESULT = new LesserThanExpression(e1, e2); :}
+			| expression:e1 LT expression:e2
+			{: RESULT = new LesserThanExpression(e1, e2); :}
 
-            	| expression:e1 GT expression:e2
-				{: RESULT = new GreaterThanExpression(e1, e2); :}
+            | expression:e1 GT expression:e2
+			{: RESULT = new GreaterThanExpression(e1, e2); :}
 
-				| expression:e1 LTEQ expression:e2
-				{: RESULT = new LesserThanOrEqualsExpression(e1, e2); :}
+			| expression:e1 LTEQ expression:e2
+			{: RESULT = new LesserThanOrEqualsExpression(e1, e2); :}
 
-				| expression:e1 GTEQ expression:e2
-				{: RESULT = new GreaterThanOrEqualsExpression(e1, e2); 	:}
+			| expression:e1 GTEQ expression:e2
+			{: RESULT = new GreaterThanOrEqualsExpression(e1, e2); 	:}
 
-				| expression:e1 NOTEQ expression:e2
-				{: RESULT = new NotEqualsExpression(e1, e2); :}
+			| expression:e1 NOTEQ expression:e2
+			{: RESULT = new NotEqualsExpression(e1, e2); :}
 
-				| LPAREN condition:c RPAREN
-				{: RESULT = c;	:}
+			| LPAREN condition:c RPAREN
+			{: RESULT = c;	:}
 
-				| TRUE
-				{: RESULT = new BooleanExpression(Boolean.valueOf(true)); :}
+			| TRUE
+			{: RESULT = new BooleanExpression(Boolean.valueOf(true)); :}
 
-				| FALSE
-				{: RESULT = new BooleanExpression(Boolean.valueOf(false));	:}
-               ;
+			| FALSE
+			{: RESULT = new BooleanExpression(Boolean.valueOf(false));	:}
+            ;
 
 empty ::=;

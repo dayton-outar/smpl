@@ -14,8 +14,8 @@ public class FunctionExpression implements IExpression {
 
     @Override
     public Object evaluate() {
-        // TODO Auto-generated method stub
+        // TODO: Evaluate parameters. Find function body from either stack or heap and execute and return the value of that.
+        // The scope is decided here
         return 5;
     }
-    
 }
