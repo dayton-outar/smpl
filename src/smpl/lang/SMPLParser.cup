@@ -3,6 +3,7 @@ package smpl.lang;
 import java_cup.runtime.*;
 import java.io.*;
 import java.util.Vector;
+import java.util.Hashtable;
 import smpl.sys.*;
 import smpl.sys.expressions.*;
 
@@ -72,24 +73,24 @@ terminal AND, OR, NOT;
 terminal ASSIGN, IMPLY, QUERY, CASES, CONTINUE, BREAK;
 
 /* Non terminals */
-non terminal Program				program;
-non terminal Vector<ICommand>		statement_list;
-non terminal Vector<ICommand>		statement_block;
-non terminal ICommand				statement;
-non terminal Vector					intialize_list;
-non terminal Vector					dictionary;
-non terminal Vector					array;
-non terminal Vector					case_list;
-non terminal						case;
-non terminal Vector					if_clause_list;
-non terminal						if_clause;
-non terminal IExpression			expression_list;
-non terminal IExpression			condition_list;
-non terminal IExpression			condition;
-non terminal IExpression			expression;
-non terminal Vector<IExpression> 	parameter_list;
-non terminal String					variable;
-non terminal Vector<String>			variable_list;
+non terminal Program						program;
+non terminal Vector<ICommand>				statement_list;
+non terminal Vector<ICommand>				statement_block;
+non terminal ICommand						statement;
+non terminal Vector<ICommand>				intialize_list;
+non terminal Hashtable<String,IExpression>	dictionary;
+non terminal Vector<IExpression>			array;
+non terminal Vector							case_list;
+non terminal								case;
+non terminal Vector							if_clause_list;
+non terminal								if_clause;
+non terminal IExpression					expression_sequence;
+non terminal IExpression					condition_list;
+non terminal IExpression					condition;
+non terminal IExpression					expression;
+non terminal Vector<IExpression> 			parameter_list;
+non terminal String							variable;
+non terminal Vector<String>					variable_list;
 non terminal empty;
 
 /* Precedences. Highest precedence is at the bottom. */
@@ -125,45 +126,56 @@ statement_list ::= statement:stmt statement_list:sl
 			{: RESULT = new Vector<ICommand>(); :}
 			;
 
-statement ::= expression_list:e SEMI
+statement ::= expression_sequence:e SEMI
 			{: RESULT = new ExpressionCommand(e);	:}
 
-			| IDENTIFIER:i ASSIGN expression_list:l SEMI
-			{: RESULT = "CMD " + i + " = " + l + "";	:}
+			| IDENTIFIER:i ASSIGN expression_sequence:e SEMI
+			{: RESULT = new AssignemntExpressionCommand(i, e); :}
 
-			| IDENTIFIER:i ASSIGN LBRAK array:l RBRAK SEMI		{: RESULT = "ARRAY " + i + " = " + l; :}
+			| IDENTIFIER:i ASSIGN LBRAK array:l RBRAK SEMI
+			{: RESULT = "ARRAY " + i + " = " + l; :}
 
-			| IDENTIFIER:i ASSIGN LBRAK dictionary:l RBRAK SEMI		{: RESULT = "DICTIONARY " + i + " = " + l; :}
+			| IDENTIFIER:i ASSIGN LBRAK dictionary:l RBRAK SEMI
+			{: RESULT = "DICTIONARY " + i + " = " + l; :}
 
-			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN statement_block:sl {: RESULT = "CMD " + i + " = (" + l + ") {\n" + sl + "\n}"; :}
+			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN statement_block:sl
+			{: RESULT = "CMD " + i + " = (" + l + ") {\n" + sl + "\n}"; :}
 
-			| condition_list:l QUERY expression_list:e SEMI			{: RESULT = "CMD condition ? " + e; :}
+			| condition_list:l QUERY expression_sequence:e SEMI
+			{: RESULT = "CMD condition ? " + e; :}
 
-			| condition_list:l QUERY expression_list:e1 COLON expression_list:e2 SEMI	{: RESULT = "CMD condition ? " + e1 + " : " + e2; :}
+			| condition_list:l QUERY expression_sequence:e1 COLON expression_sequence:e2 SEMI
+			{: RESULT = "CMD condition ? " + e1 + " : " + e2; :}
 
-			| CASES LBRACE if_clause_list:l RBRACE	{: RESULT = "IF-ELSES " + l; :}
+			| CASES LBRACE if_clause_list:l RBRACE
+			{: RESULT = "IF-ELSES " + l; :}
 
-			| CASES LPAREN expression_list:e RPAREN LBRACE case_list:l RBRACE	{: RESULT = "CASE ( " + e + " ) " + l; :}
+			| CASES LPAREN expression_sequence:e RPAREN LBRACE case_list:l RBRACE
+			{: RESULT = "CASE ( " + e + " ) " + l; :}
 
-			| LPAREN intialize_list:il SEMI condition_list:cl SEMI expression_list:e RPAREN statement_block:sl {: RESULT = "LOOP (" + il + "; " + cl + "; " + e + ") {\n" + sl + "\n}"; :}
+			| LPAREN intialize_list:il SEMI condition_list:cl SEMI expression_sequence:e RPAREN statement_block:sl
+			{: RESULT = "LOOP (" + il + "; " + cl + "; " + e + ") {\n" + sl + "\n}"; :}
 
-			| LBRAK array:l RBRAK SEMI		{: RESULT = "ARRAY = " + l; :}
+			| LBRAK array:l RBRAK SEMI
+			{: RESULT = "ARRAY = " + l; :}
 
-			| LBRAK dictionary:l RBRAK SEMI		{: RESULT = "DICTIONARY = " + l; :}
+			| LBRAK dictionary:l RBRAK SEMI
+			{: RESULT = "DICTIONARY = " + l; :}
 
 			| PRINT STRING:s SEMI
 			{: RESULT = new PrintCommand(s); :}
 
-			| IDENTIFIER:i READ	SEMI	{: RESULT = "READ INTO " + i; :}
+			| IDENTIFIER:i READ	SEMI
+			{: RESULT = "READ INTO " + i; :}
 			;
 
-intialize_list ::= IDENTIFIER:i ASSIGN expression_list:e COMMA intialize_list:l 
+intialize_list ::= IDENTIFIER:i ASSIGN expression_sequence:e COMMA intialize_list:l 
 			{: 
 				l.addElement(i + " = " + e); 
 				RESULT = l; 
 			:}
 			
-			| IDENTIFIER:i ASSIGN expression_list:e 
+			| IDENTIFIER:i ASSIGN expression_sequence:e 
 			{: 
 				Vector<ICommand> l = new Vector<ICommand>();
 				l.addElement(i + " = " + e);
@@ -171,10 +183,10 @@ intialize_list ::= IDENTIFIER:i ASSIGN expression_list:e COMMA intialize_list:l
 			:}
 			;
 
-parameter_list ::= expression_list:e COMMA parameter_list:l
+parameter_list ::= expression_sequence:e COMMA parameter_list:l
 			{: l.addElement(e); RESULT = l; :}
 
-			| expression_list:e
+			| expression_sequence:e
 			{: 
 				Vector<IExpression> l = new Vector<IExpression>();
 				l.addElement(e);
@@ -203,9 +215,13 @@ variable ::= COLON IDENTIFIER:i
 			{: RESULT = i; :}
 			;
 
-dictionary ::= STRING:s MAP expression_list:e COMMA dictionary:l {: l.addElement(s + " => " + e); RESULT = l; :}
+dictionary ::= STRING:s MAP expression_sequence:e COMMA dictionary:l
+			{:
+				l.addElement(s + " => " + e);
+				RESULT = l;
+			:}
 
-			| STRING:s MAP expression_list:e 
+			| STRING:s MAP expression_sequence:e 
 			{:
 				Vector l = new Vector();
 				l.addElement(s + " => " + e);
@@ -213,34 +229,37 @@ dictionary ::= STRING:s MAP expression_list:e COMMA dictionary:l {: l.addElement
 			:}
 			;
 
-array ::= expression_list:e COMMA array:l
-			{: l.addElement(e); RESULT = l;:}
+array ::= expression_sequence:e COMMA array:l
+			{:
+				l.addElement(e);
+				RESULT = l;
+			:}
 
-			| expression_list:n COLON IDENTIFIER:i IMPLY expression_list:e COMMA array:l 
+			| expression_sequence:n COLON IDENTIFIER:i IMPLY expression_sequence:e COMMA array:l 
 			{: 
-				l.addElement("EXPAND " + n + " " + i + " -> "); 
+				l.addElement(new ArrayInitializationExpression(n, i, e)); 
 				RESULT = l; 
 			:}
 
-			| expression_list:e	
+			| expression_sequence:e	
 			{: 
-				Vector l = new Vector(); 
+				Vector<IExpression> l = new Vector<IExpression>(); 
 				l.addElement(e); 
 				RESULT = l;
 			:}
 
-			| expression_list:n COLON IDENTIFIER:i IMPLY expression_list:e 
+			| expression_sequence:n COLON IDENTIFIER:i IMPLY expression_sequence:e 
 			{:
-				Vector l = new Vector();
-				l.addElement("EXPAND " + n + " " + i + " -> ");
+				Vector<IExpression> l = new Vector<IExpression>();
+				l.addElement(new ArrayInitializationExpression(n, i, e));
 				RESULT = l;
 			:}
 
 			| empty	
-			{: RESULT = new Vector(); :}
+			{: RESULT = new Vector<IExpression>(); :}
 			;
 
-expression_list ::= expression_list expression:e
+expression_sequence ::= expression_sequence expression:e
 			{: RESULT = e; :}
 
             | expression:e
@@ -289,7 +308,7 @@ expression ::= 	expression:e1 PLUS expression:e2
             | LPAREN MINUS expression:e RPAREN
 			{: RESULT = new InvertExpression(e); :}
 
-            | LPAREN expression_list:e RPAREN
+            | LPAREN expression_sequence:e RPAREN
 			{: RESULT = e; :}
 
 			| BAR IDENTIFIER:i BAR
@@ -301,7 +320,7 @@ expression ::= 	expression:e1 PLUS expression:e2
 			| IDENTIFIER:i LBRAK STRING:x RBRAK
 			{: RESULT = new DictionaryIndexExpression(i, x); :}
 
-			| IDENTIFIER:i LBRAK expression_list:e RBRAK
+			| IDENTIFIER:i LBRAK expression_sequence:e RBRAK
 			{: RESULT = new ArrayIndexExpression(i, e); :}
 
 			| IDENTIFIER:i
@@ -324,7 +343,7 @@ case_list ::= case:c case_list:l
 			{: RESULT = new Vector(); :}
 			;
 
-case ::= STRING:s COLON expression_list:e SEMI
+case ::= STRING:s COLON expression_sequence:e SEMI
 			{: RESULT = "CASE " + s + ": " + e; :}
 			;
 
@@ -335,7 +354,7 @@ if_clause_list ::= if_clause:c if_clause_list:l
 			{: RESULT = new Vector(); :}
 			;
 
-if_clause ::= condition_list:c COLON expression_list:e SEMI 
+if_clause ::= condition_list:c COLON expression_sequence:e SEMI 
 			{: RESULT = "IF-ELSE " + c + ": " + e; :}
 			;
 
