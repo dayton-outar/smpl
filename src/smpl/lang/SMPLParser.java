@@ -11,6 +11,7 @@ import java.util.Vector;
 import java.util.Hashtable;
 import smpl.sys.*;
 import smpl.sys.expressions.*;
+import smpl.sys.commands.*;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -1027,7 +1028,7 @@ class CUP$SMPLParser$actions {
 		int lright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		Hashtable<String,IExpression> l = (Hashtable<String,IExpression>)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
 		
-				l.addElement(s + " => " + e);
+				l.put(s, e);
 				RESULT = l;
 			
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("dictionary",5, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-4)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
@@ -1045,8 +1046,8 @@ class CUP$SMPLParser$actions {
 		int eright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression e = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
 		
-				Vector l = new Vector();
-				l.addElement(s + " => " + e);
+				Hashtable<String,IExpression> l = new Hashtable<String,IExpression>();
+				l.put(s, e);
 				RESULT = l;
 			
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("dictionary",5, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);

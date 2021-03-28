@@ -6,6 +6,7 @@ import java.util.Vector;
 import java.util.Hashtable;
 import smpl.sys.*;
 import smpl.sys.expressions.*;
+import smpl.sys.commands.*;
 
 parser code {:
 	SMPLLexer lexer;
@@ -217,14 +218,14 @@ variable ::= COLON IDENTIFIER:i
 
 dictionary ::= STRING:s MAP expression_sequence:e COMMA dictionary:l
 			{:
-				l.addElement(s + " => " + e);
+				l.put(s, e);
 				RESULT = l;
 			:}
 
 			| STRING:s MAP expression_sequence:e 
 			{:
-				Vector l = new Vector();
-				l.addElement(s + " => " + e);
+				Hashtable<String,IExpression> l = new Hashtable<String,IExpression>();
+				l.put(s, e);
 				RESULT = l;
 			:}
 			;
