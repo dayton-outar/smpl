@@ -1,5 +1,7 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+
 public class ArrayInitializationExpression implements IExpression {
 
     IExpression _num;
@@ -13,7 +15,7 @@ public class ArrayInitializationExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
+    public IValue evaluate() {
         // TODO Auto-generated method stub
         
         // Use ArrayList<>

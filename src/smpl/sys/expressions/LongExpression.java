@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+import smpl.sys.values.LongValue;
+
 public class LongExpression implements IExpression {
     
     Long _num;
@@ -9,7 +12,7 @@ public class LongExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        return _num;
+    public IValue evaluate() {
+        return new LongValue(_num);
     }
 }

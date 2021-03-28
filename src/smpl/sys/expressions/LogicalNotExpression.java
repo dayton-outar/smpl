@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+import smpl.sys.values.ILogicValue;
+
 public class LogicalNotExpression implements IExpression {
 
     IExpression _exp;
@@ -9,12 +12,8 @@ public class LogicalNotExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        Object obj = _exp.evaluate();
-        
-        Boolean r = !Boolean.valueOf(obj.toString());
-
-        return r;
+    public IValue evaluate() {
+        return ((ILogicValue)_exp.evaluate()).not();
     }
     
 }

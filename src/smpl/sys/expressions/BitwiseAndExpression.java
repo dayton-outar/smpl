@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+import smpl.sys.values.INumValue;
+
 public class BitwiseAndExpression implements IExpression {
     
     IExpression _exp1;
@@ -11,9 +14,7 @@ public class BitwiseAndExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        // TODO Auto-generated method stub
-        // &
-        return null;
+    public IValue evaluate() {
+        return ((INumValue)_exp1.evaluate()).ban((INumValue)_exp2.evaluate());
     }
 }

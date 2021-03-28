@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+import smpl.sys.values.LongValue;
+
 public class ArrayIndexExpression implements IExpression {
     
     String _var;
@@ -11,10 +14,8 @@ public class ArrayIndexExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        // TODO: Evaluate the index. Get the array from the heap and then evaluate the index of that array ... or send back the value
-        Object ix = _exp.evaluate();
-        
-        return 1;
+    public IValue evaluate() {
+        // TODO: Evaluate the index. Get the array from the heap and then evaluate the index of that array ... or send back the value        
+        return new LongValue(Long.valueOf(1)); // TODO: Get value of array index from heap
     }
 }

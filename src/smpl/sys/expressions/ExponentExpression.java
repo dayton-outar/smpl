@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+import smpl.sys.values.INumValue;
+
 public class ExponentExpression implements IExpression {
 
     IExpression _exp1;
@@ -11,22 +14,8 @@ public class ExponentExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        Object obj1 = _exp1.evaluate();
-        Object obj2 = _exp2.evaluate();
-        
-        Double result = Math.pow( Double.valueOf(obj1.toString()), Double.valueOf(obj2.toString()) );
-        double remainder = result % 1;
-
-        Object r;
-
-        if (remainder == 0.0) {
-            r = result.longValue();
-        } else {
-            r = result;
-        }
-
-        return r;
+    public IValue evaluate() {
+        return ((INumValue)_exp1.evaluate()).pow((INumValue)_exp2.evaluate());
     }
     
 }

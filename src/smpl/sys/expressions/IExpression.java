@@ -1,5 +1,7 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+
 public interface IExpression {
-    public Object evaluate();
+    public IValue evaluate();
 }

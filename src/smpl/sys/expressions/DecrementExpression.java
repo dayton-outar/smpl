@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+import smpl.sys.values.INumValue;
+
 public class DecrementExpression implements IExpression {
     
     IExpression _exp;
@@ -9,20 +12,7 @@ public class DecrementExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        Object obj = _exp.evaluate();
-        Object result = new Object();
-
-        if (obj instanceof Double) {
-            Double number = Double.valueOf(obj.toString());
-            number--;
-            result = number;
-        } else {
-            Long number = Long.valueOf(obj.toString());
-            number--;
-            result = number;
-        }
-
-        return result;
+    public IValue evaluate() {
+        return ( (INumValue)_exp.evaluate() ).inc();
     }
 }

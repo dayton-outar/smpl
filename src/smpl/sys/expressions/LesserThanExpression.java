@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+import smpl.sys.values.INumValue;
+
 public class LesserThanExpression implements IExpression {
 
     IExpression _exp1;
@@ -11,10 +14,8 @@ public class LesserThanExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        // TODO Auto-generated method stub
-        // e1 < e2
-        return null;
+    public IValue evaluate() {
+        return ((INumValue)_exp1.evaluate()).lt((INumValue)_exp2.evaluate());
     }
     
 }

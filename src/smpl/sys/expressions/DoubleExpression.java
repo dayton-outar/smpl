@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.DoubleValue;
+import smpl.sys.values.IValue;
+
 public class DoubleExpression implements IExpression {
     
     Double _num;
@@ -9,7 +12,7 @@ public class DoubleExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        return _num;
+    public IValue evaluate() {
+        return new DoubleValue(_num);
     }
 }

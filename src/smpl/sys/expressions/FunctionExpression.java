@@ -2,6 +2,9 @@ package smpl.sys.expressions;
 
 import java.util.Vector;
 
+import smpl.sys.values.IValue;
+import smpl.sys.values.LongValue;
+
 public class FunctionExpression implements IExpression {
 
     String _function;
@@ -13,9 +16,9 @@ public class FunctionExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
+    public IValue evaluate() {
         // TODO: Evaluate parameters. Find function body from either stack or heap and execute and return the value of that.
         // The scope is decided here
-        return 5;
+        return new LongValue(Long.valueOf(7)); // TODO: Get value of function from heap
     }
 }

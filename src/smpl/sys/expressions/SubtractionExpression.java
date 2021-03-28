@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.INumValue;
+import smpl.sys.values.IValue;
+
 public class SubtractionExpression implements IExpression {
 
     IExpression _exp1;
@@ -11,10 +14,7 @@ public class SubtractionExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        Object obj1 = _exp1.evaluate();
-        Object obj2 = _exp2.evaluate();
-
-        return ( obj1 instanceof Long ? Long.valueOf(obj1.toString()) : Double.valueOf(obj1.toString()) ) - ( obj2 instanceof Long ? Long.valueOf(obj2.toString()) : Double.valueOf(obj2.toString()) );
+    public IValue evaluate() {
+        return ((INumValue)_exp1.evaluate()).sub((INumValue)_exp2.evaluate());
     }
 }

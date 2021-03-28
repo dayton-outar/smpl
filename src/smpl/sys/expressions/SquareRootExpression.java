@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.INumValue;
+import smpl.sys.values.IValue;
+
 public class SquareRootExpression implements IExpression {
     
     IExpression _exp;
@@ -9,18 +12,7 @@ public class SquareRootExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        Object obj = _exp.evaluate();
-        Object result = new Object();
-
-        if (obj instanceof Double) {
-            Double number = Double.valueOf(obj.toString());
-            result = Math.sqrt(number.doubleValue());
-        } else {
-            Long number = Long.valueOf(obj.toString());
-            result = Math.sqrt(number.doubleValue());
-        }
-
-        return result;
+    public IValue evaluate() {
+        return ((INumValue)_exp.evaluate()).sqr();
     }
 }

@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+import smpl.sys.values.INumValue;
+
 public class InvertExpression implements IExpression {
     
     IExpression _exp;
@@ -9,18 +12,7 @@ public class InvertExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        Object obj = _exp.evaluate();
-        
-        Object r;
-        if (obj instanceof Long) {
-            long lv = Long.valueOf(obj.toString());
-            r = Long.valueOf(-lv);
-        } else {
-            double dv = Double.valueOf(obj.toString());
-            r = Double.valueOf(-dv);
-        }
-
-        return r;
+    public IValue evaluate() {
+        return ( (INumValue)_exp.evaluate() ).inv();
     }    
 }

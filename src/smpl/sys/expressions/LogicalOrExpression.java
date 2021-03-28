@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+import smpl.sys.values.ILogicValue;
+
 public class LogicalOrExpression implements IExpression {
 
     IExpression _exp1;
@@ -11,13 +14,8 @@ public class LogicalOrExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        Object obj1 = _exp1.evaluate();
-        Object obj2 = _exp2.evaluate();
-
-        Boolean r = Boolean.logicalOr(Boolean.valueOf(obj1.toString()), Boolean.valueOf(obj2.toString()));
-        
-        return r;
+    public IValue evaluate() {        
+        return ((ILogicValue)_exp1.evaluate()).or( (ILogicValue) _exp2.evaluate());
     }
     
 }

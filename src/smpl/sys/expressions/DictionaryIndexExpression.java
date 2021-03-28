@@ -1,5 +1,8 @@
 package smpl.sys.expressions;
 
+import smpl.sys.values.IValue;
+import smpl.sys.values.LongValue;
+
 public class DictionaryIndexExpression implements IExpression {
     
     String _var;
@@ -11,9 +14,7 @@ public class DictionaryIndexExpression implements IExpression {
     }
 
     @Override
-    public Object evaluate() {
-        // TODO: Auto-generated method stub
-        
-        return 7;
+    public IValue evaluate() {
+        return new LongValue(Long.valueOf(7)); // TODO: Get value of dictionary index from heap
     }
 }
