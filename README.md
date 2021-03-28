@@ -119,3 +119,9 @@ Run main and pass text containing expression to it
 ```bash
 java -cp ../lib/java-cup-11b-runtime.jar:. App ../test/bomdas.txt
 ```
+
+Running documentation generator
+
+```bash
+javadoc -cp ../lib/java-cup-11b-runtime.jar:. smpl/**/*.java
+```
