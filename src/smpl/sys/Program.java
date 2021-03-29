@@ -21,6 +21,7 @@ public class Program {
      */
     public Program(Vector<ICommand> stmts) {
         Enumeration<ICommand> commandElements = stmts.elements();
+        programStack = new Stack<ICommand>();
 
         while (commandElements.hasMoreElements()) {
             programStack.push(commandElements.nextElement());
