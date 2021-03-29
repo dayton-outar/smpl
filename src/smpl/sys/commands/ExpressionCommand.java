@@ -1,6 +1,7 @@
 package smpl.sys.commands;
 
 import smpl.sys.expressions.IExpression;
+import smpl.sys.values.IValue;
 
 public class ExpressionCommand implements ICommand {
     
@@ -12,7 +13,7 @@ public class ExpressionCommand implements ICommand {
 
     @Override
     public void execute() {
-        Object obj = _exp.evaluate();
+        IValue obj = _exp.evaluate();
 
         // TODO: Replace print screen with placing value in heap or stack for return to calling statement
         System.out.println(obj.toString());

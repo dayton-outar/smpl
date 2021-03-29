@@ -139,4 +139,9 @@ public class DoubleValue implements INumValue {
     public IValue ltoreq(INumValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() <= val.doubleValue() ) );
     }
+
+    @Override
+    public String toString() {
+        return _val.toString();
+    }
 }

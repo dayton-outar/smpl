@@ -26,4 +26,9 @@ public class BooleanValue implements ILogicValue {
     public IValue not() {
         return new BooleanValue( Boolean.valueOf( !this.booleanValue() ) );
     }
+
+    @Override
+    public String toString() {
+        return _val.toString();
+    }
 }
