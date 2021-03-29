@@ -95,7 +95,7 @@ non terminal Vector<String>					variable_list;
 non terminal empty;
 
 /* Precedences. Highest precedence is at the bottom. */
-precedence nonassoc LPAREN, RPAREN, COLON, QUERY;
+precedence nonassoc LPAREN, RPAREN, LBRAK, RBRAK, COLON, QUERY;
 precedence left OR;
 precedence left AND;
 precedence left NOT;
@@ -133,12 +133,6 @@ statement ::= expression_sequence:e SEMI
 			| IDENTIFIER:i ASSIGN expression_sequence:e SEMI
 			{: RESULT = new AssignmentExpressionCommand(i, e); :}
 
-			| IDENTIFIER:i ASSIGN LBRAK array:l RBRAK SEMI
-			{: RESULT = "ARRAY " + i + " = " + l; :}
-
-			| IDENTIFIER:i ASSIGN LBRAK dictionary:l RBRAK SEMI
-			{: RESULT = "DICTIONARY " + i + " = " + l; :}
-
 			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN statement_block:sl
 			{: RESULT = "CMD " + i + " = (" + l + ") {\n" + sl + "\n}"; :}
 
@@ -157,29 +151,23 @@ statement ::= expression_sequence:e SEMI
 			| LPAREN intialize_list:il SEMI condition_list:cl SEMI expression_sequence:e RPAREN statement_block:sl
 			{: RESULT = "LOOP (" + il + "; " + cl + "; " + e + ") {\n" + sl + "\n}"; :}
 
-			| LBRAK array:l RBRAK SEMI
-			{: RESULT = "ARRAY = " + l; :}
-
-			| LBRAK dictionary:l RBRAK SEMI
-			{: RESULT = "DICTIONARY = " + l; :}
-
 			| PRINT STRING:s SEMI
 			{: RESULT = new PrintCommand(s); :}
 
 			| IDENTIFIER:i READ	SEMI
-			{: RESULT = "READ INTO " + i; :}
+			{: RESULT = new ReadCommand(i); :}
 			;
 
 intialize_list ::= IDENTIFIER:i ASSIGN expression_sequence:e COMMA intialize_list:l 
 			{: 
-				l.addElement(i + " = " + e); 
+				l.addElement(new AssignmentExpressionCommand(i, e)); 
 				RESULT = l; 
 			:}
 			
 			| IDENTIFIER:i ASSIGN expression_sequence:e 
 			{: 
 				Vector<ICommand> l = new Vector<ICommand>();
-				l.addElement(i + " = " + e);
+				l.addElement(new AssignmentExpressionCommand(i, e));
 				RESULT = l;
 			:}
 			;
@@ -326,6 +314,12 @@ expression ::= 	expression:e1 PLUS expression:e2
 
 			| IDENTIFIER:i
 			{: RESULT = new VariableExpression(i); :}
+			
+			| LBRAK array:l RBRAK
+			{: RESULT = new ArrayExpression(l); :}
+
+			| LBRAK dictionary:l RBRAK
+			{: RESULT = new DictionaryExpression(l); :}
 
             | LONG:n
 			{: RESULT = new LongExpression(n); :}
