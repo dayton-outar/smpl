@@ -7,6 +7,8 @@ import java.util.Hashtable;
 import smpl.sys.*;
 import smpl.sys.expressions.*;
 import smpl.sys.commands.*;
+import smpl.sys.values.Cases;
+import smpl.sys.values.Elses;
 
 parser code {:
 	SMPLLexer lexer;
@@ -83,10 +85,10 @@ non terminal Hashtable<String,IExpression>	dictionary;
 non terminal Vector<IExpression>			array;
 non terminal Vector							case_list;
 non terminal								case;
-non terminal Vector							if_clause_list;
-non terminal								if_clause;
+non terminal Vector<Elses>					if_clause_list;
+non terminal Elses							if_clause;
 non terminal IExpression					expression_sequence;
-non terminal IExpression					condition_list;
+non terminal IExpression					condition_sequence;
 non terminal IExpression					condition;
 non terminal IExpression					expression;
 non terminal Vector<IExpression> 			parameter_list;
@@ -134,22 +136,22 @@ statement ::= expression_sequence:e SEMI
 			{: RESULT = new AssignmentExpressionCommand(i, e); :}
 
 			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN statement_block:sl
-			{: RESULT = "CMD " + i + " = (" + l + ") {\n" + sl + "\n}"; :}
+			{: RESULT = new AssignmentFunctionCommand(i, l, sl); :}
 
-			| condition_list:l QUERY expression_sequence:e SEMI
-			{: RESULT = "CMD condition ? " + e; :}
+			| condition_sequence:c QUERY expression_sequence:e SEMI
+			{: RESULT = new IfCommand(c, e); :}
 
-			| condition_list:l QUERY expression_sequence:e1 COLON expression_sequence:e2 SEMI
-			{: RESULT = "CMD condition ? " + e1 + " : " + e2; :}
+			| condition_sequence:c QUERY expression_sequence:e1 COLON expression_sequence:e2 SEMI
+			{: RESULT = new IfElseCommand(c, e1, e2); :}
 
 			| CASES LBRACE if_clause_list:l RBRACE
-			{: RESULT = "IF-ELSES " + l; :}
+			{: RESULT = new ElsesCommand(l); :}
 
 			| CASES LPAREN expression_sequence:e RPAREN LBRACE case_list:l RBRACE
-			{: RESULT = "CASE ( " + e + " ) " + l; :}
+			{: RESULT = new CasesCommand(e, l); :}
 
-			| LPAREN intialize_list:il SEMI condition_list:cl SEMI expression_sequence:e RPAREN statement_block:sl
-			{: RESULT = "LOOP (" + il + "; " + cl + "; " + e + ") {\n" + sl + "\n}"; :}
+			| LPAREN intialize_list:il SEMI condition_sequence:c SEMI expression_sequence:e RPAREN statement_block:sl
+			{: RESULT = new LoopCommand(il, c, e, sl); :}
 
 			| PRINT STRING:s SEMI
 			{: RESULT = new PrintCommand(s); :}
@@ -332,31 +334,37 @@ expression ::= 	expression:e1 PLUS expression:e2
              ;
 
 case_list ::= case:c case_list:l
-			{: l.addElement(c); RESULT = l; :}
+			{:
+				l.addElement(c);
+				RESULT = l;
+			:}
 
 			| empty
-			{: RESULT = new Vector(); :}
+			{: RESULT = new Vector<Cases>(); :}
 			;
 
 case ::= STRING:s COLON expression_sequence:e SEMI
-			{: RESULT = "CASE " + s + ": " + e; :}
+			{: RESULT = new Cases(s, e); :}
 			;
 
 if_clause_list ::= if_clause:c if_clause_list:l 
-			{: l.addElement(c); RESULT = l; :}
+			{: 
+				l.addElement(c);
+				RESULT = l;
+			:}
 
 			| empty	
-			{: RESULT = new Vector(); :}
+			{: RESULT = new Vector<Elses>(); :}
 			;
 
-if_clause ::= condition_list:c COLON expression_sequence:e SEMI 
-			{: RESULT = "IF-ELSE " + c + ": " + e; :}
+if_clause ::= condition_sequence:c COLON expression_sequence:e SEMI 
+			{: RESULT = new Elses(c, e); :}
 			;
 
-condition_list ::= condition_list:c1 AND condition:c2
+condition_sequence ::= condition_sequence:c1 AND condition:c2
 			{: RESULT = new LogicalAndExpression(c1, c2); :}
 
-			| condition_list:c1 OR condition:c2
+			| condition_sequence:c1 OR condition:c2
 			{: RESULT = new LogicalOrExpression(c1, c2); :}
 
 			| NOT condition:c

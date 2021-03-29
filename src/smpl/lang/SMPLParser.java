@@ -12,6 +12,8 @@ import java.util.Hashtable;
 import smpl.sys.*;
 import smpl.sys.expressions.*;
 import smpl.sys.commands.*;
+import smpl.sys.values.Cases;
+import smpl.sys.values.Elses;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -102,12 +104,12 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
     "\054\016\001\002\000\024\007\043\013\023\017\042\021" +
     "\004\022\031\027\014\043\015\050\030\054\016\001\002" +
     "\000\006\002\ufffd\012\ufffd\001\002\000\004\002\001\001" +
-    "\002\000\010\063\150\064\152\070\205\001\002\000\070" +
-    "\004\uffe1\007\uffe1\010\uffe1\013\uffe1\017\uffe1\021\uffe1\022" +
-    "\uffe1\027\uffe1\030\056\032\051\033\050\035\057\036\060" +
-    "\040\061\041\052\043\uffe1\044\054\046\062\050\053\052" +
-    "\055\054\uffe1\055\136\056\137\057\140\060\141\061\134" +
-    "\062\135\001\002\000\030\007\043\013\023\014\uffb4\017" +
+    "\002\000\070\004\uffe1\007\uffe1\010\uffe1\013\uffe1\017\uffe1" +
+    "\021\uffe1\022\uffe1\027\uffe1\030\056\032\051\033\050\035" +
+    "\057\036\060\040\061\041\052\043\uffe1\044\054\046\062" +
+    "\050\053\052\055\054\uffe1\055\145\056\146\057\147\060" +
+    "\150\061\143\062\144\001\002\000\010\063\134\064\136" +
+    "\070\205\001\002\000\030\007\043\013\023\014\uffb4\017" +
     "\042\020\163\021\004\022\031\027\014\043\015\050\030" +
     "\054\016\001\002\000\006\007\037\011\036\001\002\000" +
     "\016\004\uffb5\005\uffb5\010\uffb5\063\uffb5\064\uffb5\070\uffb5" +
@@ -280,13 +282,25 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
     "\012\uffc5\020\uffc5\001\002\000\032\007\125\013\023\017" +
     "\042\021\004\022\031\023\011\024\025\027\014\033\044" +
     "\043\015\050\030\054\016\001\002\000\004\012\uffc3\001" +
-    "\002\000\004\012\157\001\002\000\010\005\151\063\150" +
-    "\064\152\001\002\000\044\030\056\032\051\033\050\035" +
-    "\057\036\060\040\061\041\052\044\054\046\062\050\053" +
-    "\052\055\055\136\056\137\057\140\060\141\061\134\062" +
-    "\135\001\002\000\034\007\125\012\uffb4\013\023\017\042" +
+    "\002\000\004\012\157\001\002\000\044\030\056\032\051" +
+    "\033\050\035\057\036\060\040\061\041\052\044\054\046" +
+    "\062\050\053\052\055\055\145\056\146\057\147\060\150" +
+    "\061\143\062\144\001\002\000\010\005\135\063\134\064" +
+    "\136\001\002\000\034\007\125\012\uffb4\013\023\017\042" +
     "\021\004\022\031\023\011\024\025\027\014\043\015\050" +
     "\030\054\016\065\006\001\002\000\004\012\uffc4\001\002" +
+    "\000\030\007\125\013\023\017\042\021\004\022\031\023" +
+    "\011\024\025\027\014\043\015\050\030\054\016\001\002" +
+    "\000\024\007\043\013\023\017\042\021\004\022\031\027" +
+    "\014\043\015\050\030\054\016\001\002\000\030\007\125" +
+    "\013\023\017\042\021\004\022\031\023\011\024\025\027" +
+    "\014\043\015\050\030\054\016\001\002\000\014\004\uffc0" +
+    "\005\uffc0\063\uffc0\064\uffc0\070\uffc0\001\002\000\026\004" +
+    "\141\007\043\013\023\017\042\021\004\022\031\027\014" +
+    "\043\015\050\030\054\016\001\002\000\034\007\uffc2\012" +
+    "\uffc2\013\uffc2\017\uffc2\021\uffc2\022\uffc2\023\uffc2\024\uffc2" +
+    "\027\uffc2\043\uffc2\050\uffc2\054\uffc2\065\uffc2\001\002\000" +
+    "\014\004\uffc1\005\uffc1\063\uffc1\064\uffc1\070\uffc1\001\002" +
     "\000\024\007\043\013\023\017\042\021\004\022\031\027" +
     "\014\043\015\050\030\054\016\001\002\000\024\007\043" +
     "\013\023\017\042\021\004\022\031\027\014\043\015\050" +
@@ -314,19 +328,7 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
     "\052\055\063\uffb8\064\uffb8\070\uffb8\001\002\000\044\004" +
     "\uffb9\005\uffb9\010\uffb9\030\056\032\051\033\050\035\057" +
     "\036\060\040\061\041\052\044\054\046\062\050\053\052" +
-    "\055\063\uffb9\064\uffb9\070\uffb9\001\002\000\030\007\125" +
-    "\013\023\017\042\021\004\022\031\023\011\024\025\027" +
-    "\014\043\015\050\030\054\016\001\002\000\024\007\043" +
-    "\013\023\017\042\021\004\022\031\027\014\043\015\050" +
-    "\030\054\016\001\002\000\030\007\125\013\023\017\042" +
-    "\021\004\022\031\023\011\024\025\027\014\043\015\050" +
-    "\030\054\016\001\002\000\014\004\uffc0\005\uffc0\063\uffc0" +
-    "\064\uffc0\070\uffc0\001\002\000\026\004\155\007\043\013" +
-    "\023\017\042\021\004\022\031\027\014\043\015\050\030" +
-    "\054\016\001\002\000\034\007\uffc2\012\uffc2\013\uffc2\017" +
-    "\uffc2\021\uffc2\022\uffc2\023\uffc2\024\uffc2\027\uffc2\043\uffc2" +
-    "\050\uffc2\054\uffc2\065\uffc2\001\002\000\014\004\uffc1\005" +
-    "\uffc1\063\uffc1\064\uffc1\070\uffc1\001\002\000\042\002\ufff7" +
+    "\055\063\uffb9\064\uffb9\070\uffb9\001\002\000\042\002\ufff7" +
     "\007\ufff7\012\ufff7\013\ufff7\017\ufff7\021\ufff7\022\ufff7\023" +
     "\ufff7\024\ufff7\025\ufff7\027\ufff7\043\ufff7\050\ufff7\054\ufff7" +
     "\065\ufff7\071\ufff7\001\002\000\004\010\161\001\002\000" +
@@ -391,7 +393,7 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
     "\231\001\002\000\004\004\220\001\002\000\032\007\125" +
     "\013\023\017\042\021\004\022\031\023\011\024\025\027" +
     "\014\043\015\050\030\054\016\065\006\001\002\000\010" +
-    "\004\222\063\150\064\152\001\002\000\024\007\043\013" +
+    "\004\222\063\134\064\136\001\002\000\024\007\043\013" +
     "\023\017\042\021\004\022\031\027\014\043\015\050\030" +
     "\054\016\001\002\000\026\007\043\010\224\013\023\017" +
     "\042\021\004\022\031\027\014\043\015\050\030\054\016" +
@@ -441,11 +443,11 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
     "\000\255\000\022\002\012\003\017\005\004\015\007\016" +
-    "\020\017\026\020\021\024\016\001\001\000\002\001\001" +
-    "\000\020\003\256\005\004\015\007\016\020\017\026\020" +
-    "\021\024\016\001\001\000\006\017\255\020\130\001\001" +
+    "\021\017\026\020\020\024\016\001\001\000\002\001\001" +
+    "\000\020\003\256\005\004\015\007\016\021\017\026\020" +
+    "\020\024\016\001\001\000\006\017\255\020\127\001\001" +
     "\000\002\001\001\000\004\020\045\001\001\000\002\001" +
-    "\001\000\012\006\216\015\044\017\157\020\021\001\001" +
+    "\001\000\012\006\216\015\044\017\157\020\020\001\001" +
     "\000\002\001\001\000\002\001\001\000\004\020\213\001" +
     "\001\000\004\020\212\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\014\007" +
@@ -453,7 +455,7 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\016\013\126\014\131\016\127\017\026\020\130\024\125" +
+    "\016\013\126\014\131\016\130\017\026\020\127\024\125" +
     "\001\001\000\006\015\037\020\040\001\001\000\004\020" +
     "\045\001\001\000\002\001\001\000\002\001\001\000\006" +
     "\015\044\020\040\001\001\000\004\020\073\001\001\000" +
@@ -477,17 +479,17 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\006\015\122\020\040\001\001\000\004\020\045" +
     "\001\001\000\002\001\001\000\010\015\044\017\157\020" +
-    "\021\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\020\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\016\013\132\014\131\016" +
-    "\127\017\026\020\130\024\125\001\001\000\002\001\001" +
-    "\000\004\020\146\001\001\000\004\020\145\001\001\000" +
-    "\004\020\144\001\001\000\004\020\143\001\001\000\004" +
-    "\020\142\001\001\000\004\020\141\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\006\017\155\020" +
-    "\130\001\001\000\006\015\153\020\040\001\001\000\006" +
-    "\017\152\020\130\001\001\000\002\001\001\000\004\020" +
-    "\045\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\130\017\026\020\127\024\125\001\001\000\002\001\001" +
+    "\000\006\017\141\020\127\001\001\000\006\015\137\020" +
+    "\040\001\001\000\006\017\136\020\127\001\001\000\002" +
+    "\001\001\000\004\020\045\001\001\000\002\001\001\000" +
+    "\002\001\001\000\004\020\155\001\001\000\004\020\154" +
+    "\001\001\000\004\020\153\001\001\000\004\020\152\001" +
+    "\001\000\004\020\151\001\001\000\004\020\150\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\004\020" +
     "\045\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
@@ -501,11 +503,11 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
     "\001\001\000\006\015\210\020\040\001\001\000\002\001" +
     "\001\000\004\020\045\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\010\016\220\017\026\020\130" +
+    "\001\000\002\001\001\000\010\016\220\017\026\020\127" +
     "\001\001\000\002\001\001\000\006\015\222\020\040\001" +
     "\001\000\004\020\045\001\001\000\004\004\224\001\001" +
     "\000\002\001\001\000\020\003\226\005\004\015\007\016" +
-    "\020\017\026\020\021\024\016\001\001\000\002\001\001" +
+    "\021\017\026\020\020\024\016\001\001\000\002\001\001" +
     "\000\002\001\001\000\006\015\231\020\040\001\001\000" +
     "\004\020\045\001\001\000\004\006\234\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
@@ -722,40 +724,40 @@ class CUP$SMPLParser$actions {
 		int slleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int slright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		Vector<ICommand> sl = (Vector<ICommand>)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = "CMD " + i + " = (" + l + ") {\n" + sl + "\n}"; 
+		 RESULT = new AssignmentFunctionCommand(i, l, sl); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("statement",3, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-5)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // statement ::= condition_list QUERY expression_sequence SEMI 
+          case 8: // statement ::= condition_sequence QUERY expression_sequence SEMI 
             {
               ICommand RESULT =null;
-		int lleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).left;
-		int lright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).right;
-		IExpression l = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).value;
+		int cleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).right;
+		IExpression c = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).value;
 		int eleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).right;
 		IExpression e = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
-		 RESULT = "CMD condition ? " + e; 
+		 RESULT = new IfCommand(c, e); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("statement",3, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // statement ::= condition_list QUERY expression_sequence COLON expression_sequence SEMI 
+          case 9: // statement ::= condition_sequence QUERY expression_sequence COLON expression_sequence SEMI 
             {
               ICommand RESULT =null;
-		int lleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-5)).left;
-		int lright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-5)).right;
-		IExpression l = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-5)).value;
+		int cleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-5)).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-5)).right;
+		IExpression c = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-5)).value;
 		int e1left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).right;
 		IExpression e1 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).value;
 		int e2left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).right;
 		IExpression e2 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
-		 RESULT = "CMD condition ? " + e1 + " : " + e2; 
+		 RESULT = new IfElseCommand(c, e1, e2); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("statement",3, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-5)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -766,8 +768,8 @@ class CUP$SMPLParser$actions {
               ICommand RESULT =null;
 		int lleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).left;
 		int lright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).right;
-		Vector l = (Vector)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
-		 RESULT = "IF-ELSES " + l; 
+		Vector<Elses> l = (Vector<Elses>)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
+		 RESULT = new ElsesCommand(l); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("statement",3, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -782,28 +784,28 @@ class CUP$SMPLParser$actions {
 		int lleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).left;
 		int lright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).right;
 		Vector l = (Vector)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
-		 RESULT = "CASE ( " + e + " ) " + l; 
+		 RESULT = new CasesCommand(e, l); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("statement",3, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-6)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // statement ::= LPAREN intialize_list SEMI condition_list SEMI expression_sequence RPAREN statement_block 
+          case 12: // statement ::= LPAREN intialize_list SEMI condition_sequence SEMI expression_sequence RPAREN statement_block 
             {
               ICommand RESULT =null;
 		int illeft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-6)).left;
 		int ilright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-6)).right;
 		Vector<ICommand> il = (Vector<ICommand>)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-6)).value;
-		int clleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-4)).left;
-		int clright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-4)).right;
-		IExpression cl = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-4)).value;
+		int cleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-4)).left;
+		int cright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-4)).right;
+		IExpression c = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-4)).value;
 		int eleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).right;
 		IExpression e = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).value;
 		int slleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int slright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		Vector<ICommand> sl = (Vector<ICommand>)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 RESULT = "LOOP (" + il + "; " + cl + "; " + e + ") {\n" + sl + "\n}"; 
+		 RESULT = new LoopCommand(il, c, e, sl); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("statement",3, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-7)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1460,7 +1462,10 @@ class CUP$SMPLParser$actions {
 		int lleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int lright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		Vector l = (Vector)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 l.addElement(c); RESULT = l; 
+		
+				l.addElement(c);
+				RESULT = l;
+			
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("case_list",7, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1469,7 +1474,7 @@ class CUP$SMPLParser$actions {
           case 59: // case_list ::= empty 
             {
               Vector RESULT =null;
-		 RESULT = new Vector(); 
+		 RESULT = new Vector<Cases>(); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("case_list",7, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1484,7 +1489,7 @@ class CUP$SMPLParser$actions {
 		int eleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).right;
 		IExpression e = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
-		 RESULT = "CASE " + s + ": " + e; 
+		 RESULT = new Cases(s, e); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("case",8, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1492,14 +1497,17 @@ class CUP$SMPLParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 61: // if_clause_list ::= if_clause if_clause_list 
             {
-              Vector RESULT =null;
+              Vector<Elses> RESULT =null;
 		int cleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).right;
-		Object c = (Object)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
+		Elses c = (Elses)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
 		int lleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int lright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
-		Vector l = (Vector)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
-		 l.addElement(c); RESULT = l; 
+		Vector<Elses> l = (Vector<Elses>)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
+		 
+				l.addElement(c);
+				RESULT = l;
+			
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("if_clause_list",9, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
@@ -1507,29 +1515,29 @@ class CUP$SMPLParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 62: // if_clause_list ::= empty 
             {
-              Vector RESULT =null;
-		 RESULT = new Vector(); 
+              Vector<Elses> RESULT =null;
+		 RESULT = new Vector<Elses>(); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("if_clause_list",9, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 63: // if_clause ::= condition_list COLON expression_sequence SEMI 
+          case 63: // if_clause ::= condition_sequence COLON expression_sequence SEMI 
             {
-              Object RESULT =null;
+              Elses RESULT =null;
 		int cleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).right;
 		IExpression c = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)).value;
 		int eleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).right;
 		IExpression e = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)).value;
-		 RESULT = "IF-ELSE " + c + ": " + e; 
+		 RESULT = new Elses(c, e); 
               CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("if_clause",10, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-3)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 64: // condition_list ::= condition_list AND condition 
+          case 64: // condition_sequence ::= condition_sequence AND condition 
             {
               IExpression RESULT =null;
 		int c1left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).left;
@@ -1539,12 +1547,12 @@ class CUP$SMPLParser$actions {
 		int c2right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression c2 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
 		 RESULT = new LogicalAndExpression(c1, c2); 
-              CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_list",12, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
+              CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_sequence",12, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 65: // condition_list ::= condition_list OR condition 
+          case 65: // condition_sequence ::= condition_sequence OR condition 
             {
               IExpression RESULT =null;
 		int c1left = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)).left;
@@ -1554,31 +1562,31 @@ class CUP$SMPLParser$actions {
 		int c2right = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression c2 = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
 		 RESULT = new LogicalOrExpression(c1, c2); 
-              CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_list",12, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
+              CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_sequence",12, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-2)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 66: // condition_list ::= NOT condition 
+          case 66: // condition_sequence ::= NOT condition 
             {
               IExpression RESULT =null;
 		int cleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression c = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
 		 RESULT = new LogicalNotExpression(c); 
-              CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_list",12, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
+              CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_sequence",12, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.elementAt(CUP$SMPLParser$top-1)), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 67: // condition_list ::= condition 
+          case 67: // condition_sequence ::= condition 
             {
               IExpression RESULT =null;
 		int cleft = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()).right;
 		IExpression c = (IExpression)((java_cup.runtime.Symbol) CUP$SMPLParser$stack.peek()).value;
 		 RESULT = c; 
-              CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_list",12, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
+              CUP$SMPLParser$result = parser.getSymbolFactory().newSymbol("condition_sequence",12, ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$SMPLParser$stack.peek()), RESULT);
             }
           return CUP$SMPLParser$result;
 
