@@ -127,7 +127,6 @@ javadoc -cp ../lib/java-cup-11b-runtime.jar:. -d ../doc smpl/**/*.java
 ```
 
 ## Further Reading
----
 
 1. Compilers: Principles, Techniques and Tools by Alfred V. Aho, Ravi Sethi and Jeffrey D. Ullman
 2. Compiler Design in C by Allen I. Hobub

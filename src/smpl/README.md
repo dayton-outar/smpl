@@ -1,6 +1,6 @@
 # Application Architecture
 
-SMPLParser.cup returns ICommand for statements and IExpression for expressions.
+SMPLParser.cup returns `ICommand` for statements and `IExpression` for expressions.
 
 The `ICommand` interface demands and implementation of `execute` for every class that uses it. Each class that implements the `ICommand` interface should have behaviour specific to its intended nature. ...TODO Should each implementation transform the current state of the application, which includes the heap and the stack?
 
