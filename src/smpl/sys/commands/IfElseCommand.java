@@ -21,7 +21,7 @@ public class IfElseCommand implements ICommand {
         
         IValue val = ((ILogicValue)_condition.evaluate()).booleanValue() ? _exp1.evaluate() : _exp2.evaluate();
 
-        System.out.println("CMD " + _condition.evaluate().toString() +" ? " + _exp1.evaluate().toString() + " : " + _exp2.evaluate().toString());
+        System.out.println("CMD " + _condition.evaluate() +" ? " + _exp1.evaluate() + " : " + _exp2.evaluate());
         
         // TODO: I think the value should go onto the stack or something
     }

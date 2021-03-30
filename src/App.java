@@ -23,6 +23,8 @@ public class App {
 				} catch (FileNotFoundException fnfe) {
 					System.out.println("File not found error: " +
 						fnfe.getMessage());
+				} catch (Exception e) {
+					System.out.println("| " + e.getMessage());
 				}
 			}
 		}
