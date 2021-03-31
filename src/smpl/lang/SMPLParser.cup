@@ -135,14 +135,35 @@ statement ::= expression_sequence:e SEMI
 			| IDENTIFIER:i ASSIGN expression_sequence:e SEMI
 			{: RESULT = new AssignmentExpressionCommand(i, e); :}
 
+			| IDENTIFIER:i ASSIGNADD expression_sequence:e SEMI
+			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNSUB expression_sequence:e SEMI
+			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNTIMES expression_sequence:e SEMI
+			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNDIVIDE expression_sequence:e SEMI
+			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNMOD expression_sequence:e SEMI
+			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNAMP expression_sequence:e SEMI
+			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNBAR expression_sequence:e SEMI
+			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNCARET expression_sequence:e SEMI
+			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+
 			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN statement_block:sl
 			{: RESULT = new AssignmentFunctionCommand(i, l, sl); :}
 
-			| condition_sequence:c QUERY expression_sequence:e SEMI
-			{: RESULT = new IfCommand(c, e); :}
-
-			| condition_sequence:c QUERY expression_sequence:e1 COLON expression_sequence:e2 SEMI
-			{: RESULT = new IfElseCommand(c, e1, e2); :}
+			| IDENTIFIER:i ASSIGN LPAREN SPREAD IDENTIFIER:p RPAREN statement_block:sl
+			{: RESULT = new AssignmentSpreadFunctionCommand(i, p, sl); :}
 
 			| CASES LBRACE if_clause_list:l RBRACE
 			{: RESULT = new ElsesCommand(l); :}
@@ -292,7 +313,7 @@ expression ::= 	expression:e1 PLUS expression:e2
 
 			| expression:e1 CARET expression:e2
 			{: RESULT = new BitwiseXorExpression(e1, e2); :}
-
+			
 			| TILDE expression:e
 			{: RESULT = new BitwiseInvertExpression(e); :}
 
@@ -301,6 +322,9 @@ expression ::= 	expression:e1 PLUS expression:e2
 
             | LPAREN expression_sequence:e RPAREN
 			{: RESULT = e; :}
+
+			| LPAREN condition_sequence:c RPAREN QUERY expression_sequence:e1 COLON expression_sequence:e2
+			{: RESULT = new QueryExpression(c, e1, e2); :}
 
 			| BAR IDENTIFIER:i BAR
 			{: RESULT = new LongExpression(Long.valueOf(45)); // returns size of array or absolute of number :}
