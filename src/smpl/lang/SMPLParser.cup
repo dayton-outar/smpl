@@ -142,28 +142,28 @@ statement ::= expression_sequence:e SEMI
 			{: RESULT = new AssignmentExpressionCommand(i, e); :}
 
 			| IDENTIFIER:i ASSIGNADD expression_sequence:e SEMI
-			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+			{: RESULT = new AssignmentAddExpressionCommand(i, e); :}
 
 			| IDENTIFIER:i ASSIGNSUB expression_sequence:e SEMI
-			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+			{: RESULT = new AssignmentSubExpressionCommand(i, e); :}
 
 			| IDENTIFIER:i ASSIGNTIMES expression_sequence:e SEMI
-			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+			{: RESULT = new AssignmentMulExpressionCommand(i, e); :}
 
 			| IDENTIFIER:i ASSIGNDIVIDE expression_sequence:e SEMI
-			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+			{: RESULT = new AssignmentDivExpressionCommand(i, e); :}
 
 			| IDENTIFIER:i ASSIGNMOD expression_sequence:e SEMI
-			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+			{: RESULT = new AssignmentModExpressionCommand(i, e); :}
 
 			| IDENTIFIER:i ASSIGNAMP expression_sequence:e SEMI
-			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+			{: RESULT = new AssignmentAmpExpressionCommand(i, e); :}
 
 			| IDENTIFIER:i ASSIGNBAR expression_sequence:e SEMI
-			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+			{: RESULT = new AssignmentBarExpressionCommand(i, e); :}
 
 			| IDENTIFIER:i ASSIGNCARET expression_sequence:e SEMI
-			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+			{: RESULT = new AssignmentInvExpressionCommand(i, e); :}
 
 			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN statement_block:sl
 			{: RESULT = new AssignmentFunctionCommand(i, l, sl); :}
