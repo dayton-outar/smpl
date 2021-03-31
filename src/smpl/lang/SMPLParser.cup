@@ -202,7 +202,10 @@ intialize_list ::= IDENTIFIER:i ASSIGN expression_sequence:e COMMA intialize_lis
 			;
 
 parameter_list ::= expression_sequence:e COMMA parameter_list:l
-			{: l.addElement(e); RESULT = l; :}
+			{:
+				l.addElement(e);
+				RESULT = l;
+			:}
 
 			| expression_sequence:e
 			{: 

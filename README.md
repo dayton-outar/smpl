@@ -108,6 +108,12 @@ For CLI manual, perform the following
 java -jar ../lib/java-cup-11b.jar -help
 ```
 
+Clean all old generated class files
+
+```bash
+find smpl -type f -name "*.class" -delete
+```
+
 Compile all files
 
 ```bash
