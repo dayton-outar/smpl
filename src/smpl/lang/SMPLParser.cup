@@ -132,6 +132,12 @@ statement_list ::= statement:stmt statement_list:sl
 statement ::= expression_sequence:e SEMI
 			{: RESULT = new ExpressionCommand(e);	:}
 
+			| expression:e INCREMENT SEMI
+			{: RESULT = new IncrementCommand(e); :}
+
+			| expression:e DECREMENT SEMI
+			{: RESULT = new DecrementCommand(e); :}
+
 			| IDENTIFIER:i ASSIGN expression_sequence:e SEMI
 			{: RESULT = new AssignmentExpressionCommand(i, e); :}
 
@@ -281,14 +287,8 @@ expression_sequence ::= expression_sequence expression:e
 expression ::= 	expression:e1 PLUS expression:e2
 			{: RESULT = new AdditionExpression(e1, e2); :}
 
-			| expression:e INCREMENT
-			{: RESULT = new IncrementExpression(e); :}
-
             | expression:e1 MINUS expression:e2
 			{: RESULT = new SubtractionExpression(e1, e2); :}
-
-			| expression:e DECREMENT
-			{: RESULT = new DecrementExpression(e); :}
 
             | expression:e1 TIMES expression:e2
 			{: RESULT = new MultiplicationExpression(e1, e2); :}
