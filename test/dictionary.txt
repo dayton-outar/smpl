@@ -1,1 +1,3 @@
 d = [ "apples" => 3, "bananas" => 4, "watermelons" => 5];
+
+[ "nike" => 3, "adidas" => 4, "ck" => 5];

@@ -24,7 +24,8 @@ public class App {
 					System.out.println("File not found error: " +
 						fnfe.getMessage());
 				} catch (Exception e) {
-					System.out.println("Loaded program failed to compile");
+					System.out.println(e.getMessage());
+					//System.out.println("Loaded program failed to compile");
 				}
 			}
 		}

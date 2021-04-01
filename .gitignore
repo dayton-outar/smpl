@@ -1,2 +1,4 @@
 *.gz
 *.class
+
+src/Test.java
