@@ -476,45 +476,13 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "mbl.l"
 #line 2 "mbl.l"
-   enum yytokentype {
-     NUMBER = 1,
-     ADD = 4,
-     SUB = 5,
-     MUL = 6,
-     DIV = 7,
-     ABS = 8,
-     RAD = 9,
-     MOD = 10,
-     AMP = 11,
-     XOR = 12,
-     TIL = 13,
-     IMP = 14,
-     NOT = 15,
-     AND = 16,
-     OR = 17,
-     QRY = 18,
-     GT = 19,
-     GEQ = 20,
-     LT = 21,
-     LEQ = 22,
-     NEQ = 23,
-     EQ = 24,
-     LPR = 25,
-     RPR = 26,
-     LBR = 27,
-     RBR = 28,
-     LBK = 29,
-     RBK = 30,
-     COM = 31,
-     COL = 32,
-     SEMI = 33,
-     EOL = 264 /* end of line */
-   };
+// Links .y (yacc file tokens) to this .l (lexer file)
+#include "mbl.tab.h"
 
-   int yylval;
+int yylval;
 
-#line 517 "lex.yy.c"
-#line 518 "lex.yy.c"
+#line 485 "lex.yy.c"
+#line 486 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -731,9 +699,9 @@ YY_DECL
 		}
 
 	{
-#line 41 "mbl.l"
+#line 9 "mbl.l"
 
-#line 737 "lex.yy.c"
+#line 705 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -792,181 +760,181 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 42 "mbl.l"
+#line 10 "mbl.l"
 { return ADD; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 43 "mbl.l"
+#line 11 "mbl.l"
 { return SUB; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 44 "mbl.l"
+#line 12 "mbl.l"
 { return MUL; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 45 "mbl.l"
+#line 13 "mbl.l"
 { return DIV; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 46 "mbl.l"
+#line 14 "mbl.l"
 { return ABS; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 47 "mbl.l"
+#line 15 "mbl.l"
 { return RAD; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 48 "mbl.l"
+#line 16 "mbl.l"
 { return MOD; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 49 "mbl.l"
+#line 17 "mbl.l"
 { return AMP; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 50 "mbl.l"
+#line 18 "mbl.l"
 { return XOR; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 51 "mbl.l"
+#line 19 "mbl.l"
 { return TIL; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 52 "mbl.l"
+#line 20 "mbl.l"
 { return IMP; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 53 "mbl.l"
+#line 21 "mbl.l"
 { return NOT; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 54 "mbl.l"
+#line 22 "mbl.l"
 { return AND; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 55 "mbl.l"
+#line 23 "mbl.l"
 { return OR;  }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 56 "mbl.l"
+#line 24 "mbl.l"
 { return QRY; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 57 "mbl.l"
+#line 25 "mbl.l"
 { return GT;  }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 58 "mbl.l"
+#line 26 "mbl.l"
 { return GEQ; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 59 "mbl.l"
+#line 27 "mbl.l"
 { return LT;  }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 60 "mbl.l"
+#line 28 "mbl.l"
 { return LEQ; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 61 "mbl.l"
+#line 29 "mbl.l"
 { return NEQ; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 62 "mbl.l"
+#line 30 "mbl.l"
 { return EQ;  }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 63 "mbl.l"
+#line 31 "mbl.l"
 { return LPR; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 64 "mbl.l"
+#line 32 "mbl.l"
 { return RPR; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 65 "mbl.l"
+#line 33 "mbl.l"
 { return LBR; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 66 "mbl.l"
+#line 34 "mbl.l"
 { return RBR; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 67 "mbl.l"
+#line 35 "mbl.l"
 { return LBK; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 68 "mbl.l"
+#line 36 "mbl.l"
 { return RBK; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 69 "mbl.l"
+#line 37 "mbl.l"
 { return COM; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 70 "mbl.l"
+#line 38 "mbl.l"
 { return COL; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 71 "mbl.l"
+#line 39 "mbl.l"
 { return SEMI;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 73 "mbl.l"
+#line 41 "mbl.l"
 { yylval = atoi(yytext); return NUMBER; }
 	YY_BREAK
 case 32:
 /* rule 32 can match eol */
 YY_RULE_SETUP
-#line 74 "mbl.l"
+#line 42 "mbl.l"
 { return EOL; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 75 "mbl.l"
+#line 43 "mbl.l"
 { /* ignore white space */ }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 76 "mbl.l"
+#line 44 "mbl.l"
 { printf("Mystery character %c\n", *yytext); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 77 "mbl.l"
+#line 45 "mbl.l"
 ECHO;
 	YY_BREAK
-#line 970 "lex.yy.c"
+#line 938 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1971,6 +1939,5 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 77 "mbl.l"
-
+#line 45 "mbl.l"
 

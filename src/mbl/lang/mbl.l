@@ -1,40 +1,8 @@
 %{
-   enum yytokentype {
-     NUMBER = 1,
-     ADD = 4,
-     SUB = 5,
-     MUL = 6,
-     DIV = 7,
-     ABS = 8,
-     RAD = 9,
-     MOD = 10,
-     AMP = 11,
-     XOR = 12,
-     TIL = 13,
-     IMP = 14,
-     NOT = 15,
-     AND = 16,
-     OR = 17,
-     QRY = 18,
-     GT = 19,
-     GEQ = 20,
-     LT = 21,
-     LEQ = 22,
-     NEQ = 23,
-     EQ = 24,
-     LPR = 25,
-     RPR = 26,
-     LBR = 27,
-     RBR = 28,
-     LBK = 29,
-     RBK = 30,
-     COM = 31,
-     COL = 32,
-     SEMI = 33,
-     EOL = 264 /* end of line */
-   };
+// Links .y (yacc file tokens) to this .l (lexer file)
+#include "mbl.tab.h"
 
-   int yylval;
+int yylval;
 
 %}
 

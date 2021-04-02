@@ -2,16 +2,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern FILE *fp;
-
 int yylex();
 int yyerror(char *);
 %}
 
 /* declare tokens */
 %token NUMBER
-%token ADD SUB MUL DIV ABS
-%token OP CP
+%token ADD SUB MUL DIV ABS RAD MOD AMP XOR TIL IMP NOT AND OR GT GEQ LT LEQ NEQ EQ
+%token QRY LPR RPR LBR RBR LBK RBK COM COL
+%token SEMI
 %token EOL
 
 %%
@@ -33,12 +32,12 @@ factor: term
  ;
 
 term: NUMBER
- | ABS term { $$ = $2 >= 0? $2 : - $2; }
- | OP exp CP { $$ = $2; }
+ | ABS term ABS { $$ = $2 >= 0? $2 : - $2; }
  ;
+
 %%
 
-int main()
+int main(int argc, char **argv)
 {
   printf("> "); 
   yyparse();
