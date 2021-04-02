@@ -1,5 +1,7 @@
 package smpl.sys.expressions;
 
+import java.util.Hashtable;
+
 import smpl.sys.values.IValue;
 import smpl.sys.values.INumValue;
 
@@ -14,7 +16,7 @@ public class BitwiseOrExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate() {
-        return ((INumValue)_exp1.evaluate()).bor((INumValue)_exp2.evaluate());
+    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+        return ((INumValue)_exp1.evaluate(dictionary)).bor((INumValue)_exp2.evaluate(dictionary));
     }
 }

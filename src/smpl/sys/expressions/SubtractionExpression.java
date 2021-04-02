@@ -1,5 +1,7 @@
 package smpl.sys.expressions;
 
+import java.util.Hashtable;
+
 import smpl.sys.values.INumValue;
 import smpl.sys.values.IValue;
 
@@ -14,7 +16,7 @@ public class SubtractionExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate() {
-        return ((INumValue)_exp1.evaluate()).sub((INumValue)_exp2.evaluate());
+    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+        return ((INumValue)_exp1.evaluate(dictionary)).sub((INumValue)_exp2.evaluate(dictionary));
     }
 }

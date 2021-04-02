@@ -1,5 +1,7 @@
 package smpl.sys.expressions;
 
+import java.util.Hashtable;
+
 import smpl.sys.values.IValue;
 import smpl.sys.values.ILogicValue;
 
@@ -12,8 +14,8 @@ public class LogicalNotExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate() {
-        return ((ILogicValue)_exp.evaluate()).not();
+    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+        return ((ILogicValue)_exp.evaluate(dictionary)).not();
     }
     
 }

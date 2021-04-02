@@ -1,5 +1,7 @@
 package smpl.sys.commands;
 
+import smpl.sys.util.ProgramState;
+
 public class PrintCommand implements ICommand {
     
     String _message;
@@ -10,7 +12,7 @@ public class PrintCommand implements ICommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(ProgramState state) {
         System.out.println(_message);
     }
 }

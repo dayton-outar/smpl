@@ -1,5 +1,7 @@
 package smpl.sys.expressions;
 
+import java.util.Hashtable;
+
 import smpl.sys.values.IValue;
 import smpl.sys.values.INumValue;
 
@@ -12,7 +14,7 @@ public class InvertExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate() {
-        return ( (INumValue)_exp.evaluate() ).inv();
+    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+        return ( (INumValue)_exp.evaluate(dictionary) ).inv();
     }    
 }

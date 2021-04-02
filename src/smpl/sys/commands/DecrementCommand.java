@@ -1,6 +1,7 @@
 package smpl.sys.commands;
 
 import smpl.sys.expressions.IExpression;
+import smpl.sys.util.ProgramState;
 import smpl.sys.values.INumValue;
 import smpl.sys.values.IValue;
 
@@ -13,8 +14,8 @@ public class DecrementCommand implements ICommand {
     }
 
     @Override
-    public void execute() {
-        IValue val = ( (INumValue)_exp.evaluate() ).dec();
+    public void execute(ProgramState state) {
+        IValue val = ( (INumValue)_exp.evaluate( state.getDictionary() )).dec();
 
         System.out.println(val.toString());
     }

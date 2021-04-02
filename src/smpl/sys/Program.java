@@ -4,6 +4,7 @@ import java.util.Enumeration;
 import java.util.Vector;
 
 import smpl.sys.commands.ICommand;
+import smpl.sys.util.ProgramState;
 
 import java.util.Stack;
 
@@ -28,9 +29,11 @@ public class Program {
         }
     }
 
-    public void execute() {
+    public void execute(ProgramState state) {
+        state.setStack( programStack );
+
         while (!programStack.isEmpty()) {
-            programStack.pop().execute();
+            programStack.pop().execute(state);
         }
     }
 }

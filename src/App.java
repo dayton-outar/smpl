@@ -1,5 +1,6 @@
 import smpl.lang.*;
 import smpl.sys.Program;
+import smpl.sys.util.ProgramState;
 
 import java.io.*;
 import java_cup.runtime.*;
@@ -18,7 +19,7 @@ public class App {
                     Symbol parseResult = p.parse();
 					
 					Program program = (Program)parseResult.value;
-					program.execute();
+					program.execute( new ProgramState() );
 
 				} catch (FileNotFoundException fnfe) {
 					System.out.println("File not found error: " +

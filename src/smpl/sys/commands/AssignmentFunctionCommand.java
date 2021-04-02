@@ -2,6 +2,8 @@ package smpl.sys.commands;
 
 import java.util.Vector;
 
+import smpl.sys.util.ProgramState;
+
 public class AssignmentFunctionCommand implements ICommand {
 
     String _var;
@@ -15,7 +17,7 @@ public class AssignmentFunctionCommand implements ICommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(ProgramState state) {
         // Adapted from https://beginnersbook.com/2014/07/how-to-convert-vector-to-string-array-in-java/
         System.out.println("CMD " + _var + " = (" + String.join(", ", _parameters.toArray(new String[_parameters.size()])) + ") {\n" + _statements.toString() + "\n}");
     }

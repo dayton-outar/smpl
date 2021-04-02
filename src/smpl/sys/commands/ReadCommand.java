@@ -1,5 +1,7 @@
 package smpl.sys.commands;
 
+import smpl.sys.util.ProgramState;
+
 public class ReadCommand implements ICommand {
     
     String _var;
@@ -8,7 +10,7 @@ public class ReadCommand implements ICommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(ProgramState state) {
         System.out.println("READ INTO " + _var);       
     }
 }

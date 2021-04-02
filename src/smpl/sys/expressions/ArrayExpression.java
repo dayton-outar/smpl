@@ -1,5 +1,6 @@
 package smpl.sys.expressions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import smpl.sys.values.IValue;
@@ -13,7 +14,7 @@ public class ArrayExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate() {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) {
         // TODO Auto-generated method stub
         return null;
     }

@@ -1,5 +1,7 @@
 package smpl.sys.expressions;
 
+import java.util.Hashtable;
+
 import smpl.sys.values.IValue;
 
 public class ArrayInitializationExpression implements IExpression {
@@ -15,11 +17,11 @@ public class ArrayInitializationExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate() {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) {
         // TODO Auto-generated method stub
         
         // Use ArrayList<>
-        System.out.println("EXPAND " + _num.evaluate() + " " + _var + " -> " + _exp.evaluate());
+        System.out.println("EXPAND " + _num.evaluate(dictionary) + " " + _var + " -> " + _exp.evaluate(dictionary));
 
         return null;
     }

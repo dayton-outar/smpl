@@ -1,5 +1,7 @@
 package smpl.sys.expressions;
 
+import java.util.Hashtable;
+
 import smpl.sys.values.IValue;
 import smpl.sys.values.ILogicValue;
 
@@ -14,8 +16,8 @@ public class LogicalOrExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate() {        
-        return ((ILogicValue)_exp1.evaluate()).or( (ILogicValue) _exp2.evaluate());
+    public IValue evaluate(Hashtable<String, IValue> dictionary) {        
+        return ((ILogicValue)_exp1.evaluate(dictionary)).or( (ILogicValue) _exp2.evaluate(dictionary));
     }
     
 }

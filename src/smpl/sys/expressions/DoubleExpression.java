@@ -1,5 +1,7 @@
 package smpl.sys.expressions;
 
+import java.util.Hashtable;
+
 import smpl.sys.values.DoubleValue;
 import smpl.sys.values.IValue;
 
@@ -12,7 +14,7 @@ public class DoubleExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate() {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) {
         return new DoubleValue(_num);
     }
 }

@@ -1,6 +1,7 @@
 package smpl.sys.commands;
 
 import smpl.sys.expressions.IExpression;
+import smpl.sys.util.ProgramState;
 
 public class AssignmentSubExpressionCommand implements ICommand {
     
@@ -13,7 +14,7 @@ public class AssignmentSubExpressionCommand implements ICommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(ProgramState state) {
         // TODO Auto-generated method stub
         
     }

@@ -1,5 +1,7 @@
 package smpl.sys.expressions;
 
+import java.util.Hashtable;
+
 import smpl.sys.values.IValue;
 import smpl.sys.values.INumValue;
 
@@ -14,8 +16,8 @@ public class NotEqualsExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate() {
-        return ((INumValue)_exp1.evaluate()).noteq((INumValue)_exp2.evaluate());
+    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+        return ((INumValue)_exp1.evaluate(dictionary)).noteq((INumValue)_exp2.evaluate(dictionary));
     }
     
 }

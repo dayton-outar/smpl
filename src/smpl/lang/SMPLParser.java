@@ -12,8 +12,7 @@ import java.util.Hashtable;
 import smpl.sys.*;
 import smpl.sys.expressions.*;
 import smpl.sys.commands.*;
-import smpl.sys.values.Cases;
-import smpl.sys.values.Elses;
+import smpl.sys.util.*;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.

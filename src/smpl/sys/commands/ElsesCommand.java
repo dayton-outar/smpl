@@ -1,7 +1,8 @@
 package smpl.sys.commands;
 
 import java.util.Vector;
-import smpl.sys.values.Elses;
+import smpl.sys.util.Elses;
+import smpl.sys.util.ProgramState;
 
 public class ElsesCommand implements ICommand {
     
@@ -12,7 +13,7 @@ public class ElsesCommand implements ICommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(ProgramState state) {
         // TODO Auto-generated method stub
         
     }

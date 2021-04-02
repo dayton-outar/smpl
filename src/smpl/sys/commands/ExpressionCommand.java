@@ -1,6 +1,7 @@
 package smpl.sys.commands;
 
 import smpl.sys.expressions.IExpression;
+import smpl.sys.util.ProgramState;
 import smpl.sys.values.IValue;
 
 public class ExpressionCommand implements ICommand {
@@ -12,8 +13,8 @@ public class ExpressionCommand implements ICommand {
     }
 
     @Override
-    public void execute() {
-        IValue obj = _exp.evaluate();
+    public void execute(ProgramState state) {
+        IValue obj = _exp.evaluate(state.getDictionary());
 
         // TODO: Replace print screen with placing value in heap or stack for return to calling statement
         System.out.println(obj.toString());

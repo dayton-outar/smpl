@@ -1,14 +1,14 @@
-package smpl.sys.values;
+package smpl.sys.util;
 
 import smpl.sys.expressions.IExpression;
 
-public class Cases {
-    
-    String _value;
+public class Elses {
+
+    IExpression _condition;
     IExpression _expression;
 
-    public Cases(String value, IExpression expression) {
-        this._value = value;
+    public Elses(IExpression condition, IExpression expression) {
+        this._condition = condition;
         this._expression = expression;
     }
 
@@ -17,8 +17,8 @@ public class Cases {
      * 
      * @return IExpression
      */
-    public String getCaseValue() {
-        return _value;
+    public IExpression getCondition() {
+        return _condition;
     }
 
     /**

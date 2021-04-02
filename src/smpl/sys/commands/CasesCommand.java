@@ -3,7 +3,8 @@ package smpl.sys.commands;
 import java.util.Vector;
 
 import smpl.sys.expressions.IExpression;
-import smpl.sys.values.Cases;
+import smpl.sys.util.Cases;
+import smpl.sys.util.ProgramState;
 
 public class CasesCommand implements ICommand {
     
@@ -16,7 +17,7 @@ public class CasesCommand implements ICommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(ProgramState state) {
         // TODO Auto-generated method stub
         
     }

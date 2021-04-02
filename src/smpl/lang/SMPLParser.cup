@@ -7,8 +7,7 @@ import java.util.Hashtable;
 import smpl.sys.*;
 import smpl.sys.expressions.*;
 import smpl.sys.commands.*;
-import smpl.sys.values.Cases;
-import smpl.sys.values.Elses;
+import smpl.sys.util.*;
 
 parser code {:
 	SMPLLexer lexer;

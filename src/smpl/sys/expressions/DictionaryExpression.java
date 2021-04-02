@@ -1,6 +1,5 @@
 package smpl.sys.expressions;
 
-import java.beans.Expression;
 import java.util.Hashtable;
 
 import smpl.sys.values.IValue;
@@ -14,7 +13,7 @@ public class DictionaryExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate() {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) {
         return null;
     }
     

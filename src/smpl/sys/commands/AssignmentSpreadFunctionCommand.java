@@ -2,6 +2,8 @@ package smpl.sys.commands;
 
 import java.util.Vector;
 
+import smpl.sys.util.ProgramState;
+
 public class AssignmentSpreadFunctionCommand implements ICommand {
     
     String _var;
@@ -15,7 +17,7 @@ public class AssignmentSpreadFunctionCommand implements ICommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(ProgramState state) {
         
     }
 }

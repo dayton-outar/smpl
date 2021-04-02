@@ -1,5 +1,6 @@
 package smpl.sys.expressions;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import smpl.sys.values.IValue;
@@ -16,7 +17,7 @@ public class FunctionExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate() {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) {
         // TODO: Evaluate parameters. Find function body from either stack or heap and execute and return the value of that.
         // The scope is decided here
         return new LongValue(Long.valueOf(7)); // TODO: Get value of function from heap
