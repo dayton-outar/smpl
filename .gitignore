@@ -1,3 +1,8 @@
+# Ignoring binaries
+*
+!*.*
+!*/
+
 *.gz
 *.class
 
