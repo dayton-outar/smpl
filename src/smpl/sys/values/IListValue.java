@@ -1,11 +1,8 @@
 package smpl.sys.values;
 
-public interface INumValue extends IValue {
-    boolean isDouble();
-    boolean isLong();
-    long longValue();
-    double doubleValue();
+public interface IListValue extends IValue {
     IValue add(INumValue val);
+    IValue add(IListValue val);
     IValue sub(INumValue val);
     IValue mul(INumValue val);
     IValue div(INumValue val);
@@ -25,5 +22,5 @@ public interface INumValue extends IValue {
     IValue lt(INumValue val);
     IValue noteq(INumValue val);
     IValue gtoreq(INumValue val);
-    IValue ltoreq(INumValue val);
+    IValue ltoreq(INumValue val);   
 }
