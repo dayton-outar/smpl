@@ -15,6 +15,6 @@ public class VariableExpression implements IExpression {
 
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) {
-        return new LongValue(Long.valueOf(5)); // TODO: Get value of variable from heap
+        return dictionary.get(_var);
     }    
 }

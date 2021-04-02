@@ -1,2 +1,7 @@
-bar + 1d + 1d1 + foo2;
-k;
+bar = 3;
+1d = 5;
+foo2 = 7;
+p = 5 * 1d;
+
+q = bar + 1d + foo2 + p;
+q++;
