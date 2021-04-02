@@ -1,8 +1,9 @@
 package smpl.sys.commands;
 
 
+import java.util.Hashtable;
+
 import smpl.sys.expressions.IExpression;
-import smpl.sys.util.ProgramState;
 import smpl.sys.values.INumValue;
 import smpl.sys.values.IValue;
 
@@ -15,9 +16,8 @@ public class IncrementCommand implements ICommand {
     }
 
     @Override
-    public void execute(ProgramState state) {        
-        IValue val = ( (INumValue)_exp.evaluate( state.getDictionary() ) ).inc();
-
-        System.out.println(val.toString());
+    public void execute(Hashtable<String, IValue> dictionary) {        
+        IValue val = ( (INumValue)_exp.evaluate( dictionary ) ).inc();
+        dictionary.put("__return", val); // Re-set as return value
     }
 }

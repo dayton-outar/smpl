@@ -82,8 +82,8 @@ non terminal ICommand						statement;
 non terminal Vector<ICommand>				intialize_list;
 non terminal Hashtable<String,IExpression>	dictionary;
 non terminal Vector<IExpression>			array;
-non terminal Vector							case_list;
-non terminal								case;
+non terminal Vector<Cases>					case_list;
+non terminal Cases							case;
 non terminal Vector<Elses>					if_clause_list;
 non terminal Elses							if_clause;
 non terminal IExpression					expression_sequence;
@@ -181,6 +181,9 @@ statement ::= expression_sequence:e SEMI
 
 			| PRINT STRING:s SEMI
 			{: RESULT = new PrintCommand(s); :}
+
+			| PRINT expression_sequence:e SEMI
+			{: RESULT = new PrintCommand(e); :}
 
 			| IDENTIFIER:i READ	SEMI
 			{: RESULT = new ReadCommand(i); :}

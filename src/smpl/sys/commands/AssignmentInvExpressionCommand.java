@@ -1,7 +1,10 @@
 package smpl.sys.commands;
 
+import java.util.Hashtable;
+
 import smpl.sys.expressions.IExpression;
-import smpl.sys.util.ProgramState;
+import smpl.sys.values.IValue;
+import smpl.sys.values.INumValue;
 
 public class AssignmentInvExpressionCommand implements ICommand {
     
@@ -14,8 +17,7 @@ public class AssignmentInvExpressionCommand implements ICommand {
     }
 
     @Override
-    public void execute(ProgramState state) {
-        // TODO Auto-generated method stub
-        
+    public void execute(Hashtable<String, IValue> dictionary) {
+        dictionary.put(_var, ((INumValue)_exp.evaluate(dictionary)).inv() );
     }
 }

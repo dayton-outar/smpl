@@ -3,7 +3,6 @@ package smpl.sys.commands;
 import java.util.Hashtable;
 
 import smpl.sys.expressions.IExpression;
-import smpl.sys.util.ProgramState;
 import smpl.sys.values.IValue;
 
 public class AssignmentExpressionCommand implements ICommand {
@@ -17,8 +16,7 @@ public class AssignmentExpressionCommand implements ICommand {
     }
 
     @Override
-    public void execute(ProgramState state) {
-        Hashtable<String, IValue> dictionary = state.getDictionary();
+    public void execute(Hashtable<String, IValue> dictionary) {
         dictionary.put(_var, _exp.evaluate(dictionary));
     }
 }

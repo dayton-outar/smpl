@@ -1,8 +1,10 @@
 package smpl.sys.commands;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
-import smpl.sys.util.ProgramState;
+import smpl.sys.values.IValue;
+import smpl.sys.values.FunctionValue;
 
 public class AssignmentSpreadFunctionCommand implements ICommand {
     
@@ -17,7 +19,11 @@ public class AssignmentSpreadFunctionCommand implements ICommand {
     }
 
     @Override
-    public void execute(ProgramState state) {
-        
+    public void execute(Hashtable<String, IValue> dictionary) {
+        // TODO: Parameter list must be dynamic
+        Vector<String> _parameters = new Vector<String>();
+        IValue _function = new FunctionValue(_var, _parameters, _statements);
+
+        dictionary.put(_var, _function);
     }
 }

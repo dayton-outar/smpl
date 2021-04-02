@@ -1,8 +1,10 @@
 package smpl.sys.commands;
 
-import smpl.sys.util.ProgramState;
+import java.util.Hashtable;
+
+import smpl.sys.values.IValue;
 
 public interface ICommand {
     
-    public void execute(ProgramState state);
+    public void execute(Hashtable<String, IValue> dictionary);
 }

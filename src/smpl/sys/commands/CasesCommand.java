@@ -1,10 +1,11 @@
 package smpl.sys.commands;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
 import smpl.sys.expressions.IExpression;
 import smpl.sys.util.Cases;
-import smpl.sys.util.ProgramState;
+import smpl.sys.values.IValue;
 
 public class CasesCommand implements ICommand {
     
@@ -17,7 +18,7 @@ public class CasesCommand implements ICommand {
     }
 
     @Override
-    public void execute(ProgramState state) {
+    public void execute(Hashtable<String, IValue> dictionary) {
         // TODO Auto-generated method stub
         
     }

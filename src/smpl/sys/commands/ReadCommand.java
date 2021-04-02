@@ -1,6 +1,8 @@
 package smpl.sys.commands;
 
-import smpl.sys.util.ProgramState;
+import java.util.Hashtable;
+
+import smpl.sys.values.IValue;
 
 public class ReadCommand implements ICommand {
     
@@ -10,7 +12,7 @@ public class ReadCommand implements ICommand {
     }
 
     @Override
-    public void execute(ProgramState state) {
-        System.out.println("READ INTO " + _var);       
+    public void execute(Hashtable<String, IValue> dictionary) {
+        System.out.println("READ INTO " + _var); // TODO: Use input stream to get value from key entry
     }
 }

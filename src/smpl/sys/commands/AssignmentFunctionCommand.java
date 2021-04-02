@@ -1,8 +1,10 @@
 package smpl.sys.commands;
 
+import java.util.Hashtable;
 import java.util.Vector;
 
-import smpl.sys.util.ProgramState;
+import smpl.sys.values.FunctionValue;
+import smpl.sys.values.IValue;
 
 public class AssignmentFunctionCommand implements ICommand {
 
@@ -17,9 +19,9 @@ public class AssignmentFunctionCommand implements ICommand {
     }
 
     @Override
-    public void execute(ProgramState state) {
-        // Adapted from https://beginnersbook.com/2014/07/how-to-convert-vector-to-string-array-in-java/
-        System.out.println("CMD " + _var + " = (" + String.join(", ", _parameters.toArray(new String[_parameters.size()])) + ") {\n" + _statements.toString() + "\n}");
-    }
-    
+    public void execute(Hashtable<String, IValue> dictionary) {
+        IValue _function = new FunctionValue(_var, _parameters, _statements);
+
+        dictionary.put(_var, _function);
+    }    
 }

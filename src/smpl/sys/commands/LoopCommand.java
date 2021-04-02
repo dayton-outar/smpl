@@ -4,7 +4,6 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 import smpl.sys.expressions.IExpression;
-import smpl.sys.util.ProgramState;
 import smpl.sys.values.IValue;
 
 public class LoopCommand implements ICommand {
@@ -22,10 +21,7 @@ public class LoopCommand implements ICommand {
     }
 
     @Override
-    public void execute(ProgramState state) {
-
-        Hashtable<String, IValue> dictionary = state.getDictionary();
-
+    public void execute(Hashtable<String, IValue> dictionary) {
         System.out.println("LOOP (" + _initializeList.toString() + "; " + _condition.evaluate(dictionary) + "; " + _incrementExpression.evaluate(dictionary) + ") {\n" + _statements.toString() + "\n}");
     }
     

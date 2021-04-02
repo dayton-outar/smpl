@@ -3,8 +3,9 @@ package smpl.sys.expressions;
 import java.util.Hashtable;
 import java.util.Vector;
 
+import smpl.sys.Program;
+import smpl.sys.values.FunctionValue;
 import smpl.sys.values.IValue;
-import smpl.sys.values.LongValue;
 
 public class FunctionExpression implements IExpression {
 
@@ -18,8 +19,18 @@ public class FunctionExpression implements IExpression {
 
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) {
-        // TODO: Evaluate parameters. Find function body from either stack or heap and execute and return the value of that.
-        // The scope is decided here
-        return new LongValue(Long.valueOf(7)); // TODO: Get value of function from heap
+        FunctionValue fv = (FunctionValue)dictionary.get(_function);
+        Program prog = new Program( fv.getStatements() );
+
+        Hashtable<String, IValue> programDictionary = new Hashtable<String, IValue>();
+        Vector<String> variables = fv.getParameters();
+        for (int x = 0; x < variables.size(); x++) {
+            programDictionary.put( variables.elementAt(x), _parameters.elementAt(x).evaluate(dictionary) );
+        }
+        
+        programDictionary.putAll(dictionary); // Use this to use variables in global scope (or calling scope)
+        prog.execute( programDictionary );
+        
+        return programDictionary.get("__return"); // Re-set as return value;
     }
 }

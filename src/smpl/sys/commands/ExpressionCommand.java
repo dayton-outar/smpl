@@ -1,7 +1,8 @@
 package smpl.sys.commands;
 
+import java.util.Hashtable;
+
 import smpl.sys.expressions.IExpression;
-import smpl.sys.util.ProgramState;
 import smpl.sys.values.IValue;
 
 public class ExpressionCommand implements ICommand {
@@ -13,10 +14,8 @@ public class ExpressionCommand implements ICommand {
     }
 
     @Override
-    public void execute(ProgramState state) {
-        IValue val = _exp.evaluate(state.getDictionary());
-
-        // TODO: Replace print screen with placing value in heap or stack for return to calling statement
-        System.out.println(val.toString());
+    public void execute(Hashtable<String, IValue> dictionary) {
+        IValue val = _exp.evaluate( dictionary );
+        dictionary.put("__return", val); // Re-set as return value
     }
 }

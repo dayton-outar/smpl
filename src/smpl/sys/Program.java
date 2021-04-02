@@ -1,10 +1,11 @@
 package smpl.sys;
 
 import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Vector;
 
 import smpl.sys.commands.ICommand;
-import smpl.sys.util.ProgramState;
+import smpl.sys.values.IValue;
 
 import java.util.Stack;
 
@@ -29,11 +30,9 @@ public class Program {
         }
     }
 
-    public void execute(ProgramState state) {
-        state.setStack( programStack );
-
+    public void execute(Hashtable<String, IValue> dictionary) {
         while (!programStack.isEmpty()) {
-            programStack.pop().execute(state);
+            programStack.pop().execute(dictionary);
         }
     }
 }

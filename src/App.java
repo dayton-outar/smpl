@@ -1,8 +1,10 @@
 import smpl.lang.*;
 import smpl.sys.Program;
-import smpl.sys.util.ProgramState;
+import smpl.sys.values.IValue;
 
 import java.io.*;
+import java.util.Hashtable;
+
 import java_cup.runtime.*;
 
 public class App {
@@ -19,7 +21,7 @@ public class App {
                     Symbol parseResult = p.parse();
 					
 					Program program = (Program)parseResult.value;
-					program.execute( new ProgramState() );
+					program.execute( new Hashtable<String, IValue>() );
 
 				} catch (FileNotFoundException fnfe) {
 					System.out.println("File not found error: " +
