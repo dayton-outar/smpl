@@ -1,5 +1,11 @@
 %{
-#  include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+extern FILE *fp;
+
+int yylex();
+int yyerror(char *);
 %}
 
 /* declare tokens */
@@ -31,13 +37,15 @@ term: NUMBER
  | OP exp CP { $$ = $2; }
  ;
 %%
-main()
+
+int main()
 {
   printf("> "); 
   yyparse();
 }
 
-yyerror(char *s)
+int yyerror(char *s)
 {
   fprintf(stderr, "error: %s\n", s);
+  exit(1);
 }

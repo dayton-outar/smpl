@@ -68,9 +68,15 @@
 /* First part of user prologue.  */
 #line 1 "mbl.y"
 
-#  include <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#line 74 "mbl.tab.c"
+extern FILE *fp;
+
+int yylex();
+int yyerror(char *);
+
+#line 80 "mbl.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -505,8 +511,8 @@ static const yytype_int8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    13,    13,    14,    15,    18,    19,    20,    21,    24,
-      25,    26,    29,    30,    31
+       0,    19,    19,    20,    21,    24,    25,    26,    27,    30,
+      31,    32,    35,    36,    37
 };
 #endif
 
@@ -1306,61 +1312,61 @@ yyreduce:
   switch (yyn)
     {
   case 3:
-#line 14 "mbl.y"
+#line 20 "mbl.y"
                     { printf("= %d\n> ", yyvsp[-1]); }
-#line 1312 "mbl.tab.c"
-    break;
-
-  case 4:
-#line 15 "mbl.y"
-                { printf("> "); }
 #line 1318 "mbl.tab.c"
     break;
 
-  case 6:
-#line 19 "mbl.y"
-               { yyval = yyvsp[-2] + yyvsp[0]; }
+  case 4:
+#line 21 "mbl.y"
+                { printf("> "); }
 #line 1324 "mbl.tab.c"
     break;
 
-  case 7:
-#line 20 "mbl.y"
-                  { yyval = yyvsp[-2] - yyvsp[0]; }
+  case 6:
+#line 25 "mbl.y"
+               { yyval = yyvsp[-2] + yyvsp[0]; }
 #line 1330 "mbl.tab.c"
     break;
 
-  case 8:
-#line 21 "mbl.y"
-                  { yyval = yyvsp[-2] | yyvsp[0]; }
+  case 7:
+#line 26 "mbl.y"
+                  { yyval = yyvsp[-2] - yyvsp[0]; }
 #line 1336 "mbl.tab.c"
     break;
 
-  case 10:
-#line 25 "mbl.y"
-                   { yyval = yyvsp[-2] * yyvsp[0]; }
+  case 8:
+#line 27 "mbl.y"
+                  { yyval = yyvsp[-2] | yyvsp[0]; }
 #line 1342 "mbl.tab.c"
     break;
 
-  case 11:
-#line 26 "mbl.y"
-                   { yyval = yyvsp[-2] / yyvsp[0]; }
+  case 10:
+#line 31 "mbl.y"
+                   { yyval = yyvsp[-2] * yyvsp[0]; }
 #line 1348 "mbl.tab.c"
     break;
 
-  case 13:
-#line 30 "mbl.y"
-            { yyval = yyvsp[0] >= 0? yyvsp[0] : - yyvsp[0]; }
+  case 11:
+#line 32 "mbl.y"
+                   { yyval = yyvsp[-2] / yyvsp[0]; }
 #line 1354 "mbl.tab.c"
     break;
 
-  case 14:
-#line 31 "mbl.y"
-             { yyval = yyvsp[-1]; }
+  case 13:
+#line 36 "mbl.y"
+            { yyval = yyvsp[0] >= 0? yyvsp[0] : - yyvsp[0]; }
 #line 1360 "mbl.tab.c"
     break;
 
+  case 14:
+#line 37 "mbl.y"
+             { yyval = yyvsp[-1]; }
+#line 1366 "mbl.tab.c"
+    break;
 
-#line 1364 "mbl.tab.c"
+
+#line 1370 "mbl.tab.c"
 
       default: break;
     }
@@ -1592,15 +1598,17 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 33 "mbl.y"
+#line 39 "mbl.y"
 
-main()
+
+int main()
 {
   printf("> "); 
   yyparse();
 }
 
-yyerror(char *s)
+int yyerror(char *s)
 {
   fprintf(stderr, "error: %s\n", s);
+  exit(1);
 }
