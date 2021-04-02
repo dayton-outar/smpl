@@ -57,7 +57,7 @@
 ">"         { return GT;  }
 "≥"         { return GEQ; }
 "<"         { return LT;  }
-"≠"         { return LEQ; }
+"≤"         { return LEQ; }
 "≠"         { return NEQ; }
 "="         { return EQ;  }
 "("         { return LPR; }
