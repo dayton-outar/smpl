@@ -1,6 +1,7 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 int yylex();
 int yyerror(char *);
@@ -8,9 +9,8 @@ int yyerror(char *);
 
 /* declare tokens */
 %token NUMBER
-%token ADD SUB MUL DIV ABS RAD MOD AMP XOR TIL IMP NOT AND OR GT GEQ LT LEQ NEQ EQ
+%token ADD SUB ABS AMP XOR MUL DIV MOD RAD TIL IMP NOT AND OR GT GEQ LT LEQ NEQ EQ
 %token QRY LPR RPR LBR RBR LBK RBK COM COL
-%token SEMI
 %token EOL
 
 %%
@@ -24,12 +24,19 @@ exp: factor
  | exp ADD exp { $$ = $1 + $3; }
  | exp SUB factor { $$ = $1 - $3; }
  | exp ABS factor { $$ = $1 | $3; }
+ | exp AMP factor { $$ = $1 & $3; }
+ | exp XOR factor { $$ = $1 ^ $3; }
  ;
 
-factor: term
- | factor MUL term { $$ = $1 * $3; }
- | factor DIV term { $$ = $1 / $3; }
+factor: rad
+ | factor MUL rad { $$ = $1 * $3; }
+ | factor DIV rad { $$ = $1 / $3; }
+ | factor MOD rad { $$ = $1 % $3; }
  ;
+
+rad: term
+  | RAD term { $$ = sqrt((double)$2); }
+  ;
 
 term: NUMBER
  | ABS term ABS { $$ = $2 >= 0? $2 : - $2; }

@@ -36,7 +36,6 @@ int yylval;
 "]"         { return RBK; }
 ","         { return COM; }
 ":"         { return COL; }
-";"         { return SEMI;}
 
 [0-9]+      { yylval = atoi(yytext); return NUMBER; }
 \n          { return EOL; }

@@ -12,6 +12,7 @@ SMPL is a small, but expressive toy programming language. Credits to Prof. Danie
     - Complete implementation for complex constrol strucutres: cases, elses, loops
     - Complete implementation for spread parameters
     - Complete implementation for reading in data entry
+    - Implement custom exception for evaluation validation errors
 - [x] Write build script in Ant
 - [ ] Write unit tests and example scripts
 - [ ] Document application architecture in smpl/
