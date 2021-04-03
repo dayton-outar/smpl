@@ -80,7 +80,7 @@ _SMPL_ ***Identifiers***:
 ***Function calls*** are denoted by the function name followed immediately by a sequence of comma-separated argument expressions enclosed in parentheses. The following expressions are ***legal function calls***: `f(a, b)`, `g()`, `foo(a, b, c, d)`.
 
 _SMPL_ ***operators*** include:
-- Arithmetic operators: `+`, `+=`, `++` `-`, `-=`, `--`, `*`, `*=`, `**`, `/`, `/=`, `_/`, `%`, `%=`
+- Arithmetic operators: `+`, `+=`, `++` `-`, `-=`, `--`, `*`, `*=`, `**`, `/`, `/=`, `√`, `%`, `%=`
 - Bitwise operators: `&`, `|`, `^`, `~`
 - Relational operators: `==`<sup><a href="#footnote-11">11</a></sup>, `>`, `<`, `<=`, `>=`, `!=`
 - Logical operators: `&&`, `||`, `!`

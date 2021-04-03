@@ -66,6 +66,8 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
 <YYINITIAL> "true"              { return new Symbol(sym.TRUE);  }
 <YYINITIAL> "false"             { return new Symbol(sym.FALSE); }
 <YYINITIAL> "nil"               { return new Symbol(sym.NIL);   }
+<YYINITIAL> "}"                 { return new Symbol(sym.RBRACE);  }
+<YYINITIAL> "{"                 { return new Symbol(sym.LBRACE);  }
 
 <YYINITIAL> {
   /* identifiers */
@@ -78,11 +80,11 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
 
   /* operators */  
   "*"                           { return new Symbol(sym.TIMES); }
+  "×"                           { return new Symbol(sym.TIMES); }
   "*="                          { return new Symbol(sym.ASSIGNTIMES); }
   "**"                          { return new Symbol(sym.EXPONENT); }
   "/"                           { return new Symbol(sym.DIVIDE);  }
   "÷"                           { return new Symbol(sym.DIVIDE);  }
-  "_/"                          { return new Symbol(sym.RADICAL);    }
   "√"                           { return new Symbol(sym.RADICAL);    }
   "/="                          { return new Symbol(sym.ASSIGNDIVIDE); }
   "%"                           { return new Symbol(sym.MOD);   }
@@ -96,38 +98,41 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
   "&"                           { return new Symbol(sym.AMP);   }
   "&="                          { return new Symbol(sym.ASSIGNAMP); }
   "|"                           { return new Symbol(sym.BAR);   }
-  "|="                          { return new Symbol(sym.ASSIGNBAR); }
-  "^"                           { return new Symbol(sym.CARET); }
+  "|="                          { return new Symbol(sym.ASSIGNBAR);   }
+  "^"                           { return new Symbol(sym.CARET);       }
   "^="                          { return new Symbol(sym.ASSIGNCARET); }
-  "~"                           { return new Symbol(sym.TILDE); }
-  "->"                          { return new Symbol(sym.IMPLY); }
-  "!"                           { return new Symbol(sym.NOT);   }
-  "&&"                          { return new Symbol(sym.AND);   }
-  "||"                          { return new Symbol(sym.OR);    }
-  "?"                           { return new Symbol(sym.QUERY); }
-  "?:"                          { return new Symbol(sym.CASES);  }
-  "=="                          { return new Symbol(sym.EQ);    }
-  ">"                           { return new Symbol(sym.GT);    }
-  ">="                          { return new Symbol(sym.GTEQ);  }
-  "<"                           { return new Symbol(sym.LT);    }
-  "<="                          { return new Symbol(sym.LTEQ);  }
-  "!="                          { return new Symbol(sym.NOTEQ); }
-  "="                           { return new Symbol(sym.ASSIGN);}
-  "..."                         { return new Symbol(sym.SPREAD);}
-  "("                           { return new Symbol(sym.LPAREN);}
-  ")"                           { return new Symbol(sym.RPAREN);}
-  "{"                           { return new Symbol(sym.LBRACE);}
-  "}"                           { return new Symbol(sym.RBRACE);}
-  "=>"                          { return new Symbol(sym.MAP);   }
-  "["                           { return new Symbol(sym.LBRAK); }
-  "]"                           { return new Symbol(sym.RBRAK); }
-  ","                           { return new Symbol(sym.COMMA); }
-  ":"                           { return new Symbol(sym.COLON); }
-  ":>"                          { return new Symbol(sym.PRINT); }
-  "<:"                          { return new Symbol(sym.READ);  }
-  "--:"                         { return new Symbol(sym.BREAK); }
+  "~"                           { return new Symbol(sym.TILDE);       }
+  "->"                          { return new Symbol(sym.IMPLY);   }
+  "⇒"                           { return new Symbol(sym.IMPLY);   }
+  "!"                           { return new Symbol(sym.NOT);     }
+  "&&"                          { return new Symbol(sym.AND);     }
+  "||"                          { return new Symbol(sym.OR);      }
+  "?"                           { return new Symbol(sym.QUERY);   }
+  "?:"                          { return new Symbol(sym.CASES);   }
+  "=="                          { return new Symbol(sym.EQ);      }
+  ">"                           { return new Symbol(sym.GT);      }
+  ">="                          { return new Symbol(sym.GTEQ);    }
+  "≥"                           { return new Symbol(sym.GTEQ);    }
+  "<"                           { return new Symbol(sym.LT);      }
+  "<="                          { return new Symbol(sym.LTEQ);    }
+  "≤"                           { return new Symbol(sym.LTEQ);    }
+  "!="                          { return new Symbol(sym.NOTEQ);   }
+  "≠"                           { return new Symbol(sym.NOTEQ);   }
+  "="                           { return new Symbol(sym.ASSIGN);  }
+  "..."                         { return new Symbol(sym.SPREAD);  }
+  "("                           { return new Symbol(sym.LPAREN);  }
+  ")"                           { return new Symbol(sym.RPAREN);  }
+  "=>"                          { return new Symbol(sym.MAP);     }
+  "["                           { return new Symbol(sym.LBRAK);   }
+  "]"                           { return new Symbol(sym.RBRAK);   }
+  ","                           { return new Symbol(sym.COMMA);   }
+  ":"                           { return new Symbol(sym.COLON);   }
+  ":>"                          { return new Symbol(sym.PRINT);   }
+  "<:"                          { return new Symbol(sym.READ);    }
+  "π"                           { return new Symbol(sym.PI);      }
+  "--:"                         { return new Symbol(sym.BREAK);   }
   "-->"                         { return new Symbol(sym.CONTINUE);}
-  ";"                           { return new Symbol(sym.SEMI);  }
+  ";"                           { return new Symbol(sym.SEMI);    }
 
   /* comments */
   {comment}                     { /* ignore */ }

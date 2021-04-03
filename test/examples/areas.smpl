@@ -1,0 +1,23 @@
+// Area of square
+square = (:x) { x**2; }
+
+:> "Area of square of 3";
+:> square(3);
+
+// Area of trapezoid
+trapezoid = (:x, :y, :h) { ((x+y)/2) × h; }
+
+:> "Area of trapezoid with large top 4, bottom 2 and height of 5";
+:> trapezoid(4, 2, 5);
+
+// Area of circle
+circle = (:r) { π × r**2; }
+
+:> "Area of circle of radius of 3";
+:> circle(3);
+
+// Area of cone
+cone = (:r, :s) { π × r × s; }
+
+:> "Area of cone of radius of 3 and arc of 5";
+:> cone(3, 5);

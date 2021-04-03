@@ -53,6 +53,9 @@ terminal Long   	LONG;
 terminal Double		DOUBLE;
 terminal Boolean	TRUE, FALSE;
 
+// special value tokens
+terminal PI;
+
 // display operators
 terminal PRINT, READ;
 
@@ -332,7 +335,7 @@ expression ::= 	expression:e1 PLUS expression:e2
 			{: RESULT = new QueryExpression(c, e1, e2); :}
 
 			| BAR IDENTIFIER:i BAR
-			{: RESULT = new LongExpression(Long.valueOf(45)); // returns size of array or absolute of number :}
+			{: RESULT = new LongExpression(Long.valueOf(45)); // TODO: returns size of array or absolute of number :}
 
 			| IDENTIFIER:i LPAREN parameter_list:l RPAREN
 			{: RESULT = new FunctionExpression(i, l); :}
@@ -357,6 +360,9 @@ expression ::= 	expression:e1 PLUS expression:e2
 
 			| DOUBLE:n
 			{: RESULT = new DoubleExpression(n); :}
+
+			| PI
+			{: RESULT = new DoubleExpression(3.14159); :}
 
 			| NIL
 			{: RESULT = null; :}

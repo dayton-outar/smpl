@@ -20,6 +20,9 @@ public class FunctionExpression implements IExpression {
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) {
         FunctionValue fv = (FunctionValue)dictionary.get(_function);
+        //if (fv == null)
+        //    throw new Exception("The function " + _function + " was not declared");
+
         Program prog = new Program( fv.getStatements() );
 
         Hashtable<String, IValue> programDictionary = new Hashtable<String, IValue>();
