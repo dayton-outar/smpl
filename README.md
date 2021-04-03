@@ -6,13 +6,19 @@ SMPL is a small, but expressive toy programming language. Credits to Prof. Danie
 
 - [x] Update specification
 - [x] Evolve grammar
-- [x] Build interpreter
+- [ ] Build interpreter
+    - Address all source TODOS and FIXME
+    - Complete implementation for array and dictionary data structures
+    - Complete implementation for complex constrol strucutres: cases, elses, loops
+    - Complete implementation for spread parameters
+    - Complete implementation for reading in data entry
 - [x] Write build script in Ant
 - [ ] Write unit tests and example scripts
 - [ ] Document application architecture in smpl/
 - [ ] Create javadoc Ant task for generating markdown for all source files
 - [ ] Calibrate documentation according to Github standards
 - [ ] Build CI pipeline with Github actions
+- [ ] Build [MathJax](https://www.mathjax.org/) translator. SMPL --> MathJax
 
 ## Notes
 
