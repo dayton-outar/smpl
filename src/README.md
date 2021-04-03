@@ -866,6 +866,3 @@ public class Blah extends SomeClass {
    }
 }
 ```
-
-## C Code Conventions
-
