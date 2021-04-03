@@ -140,7 +140,7 @@ ant
 Run main and pass text containing expression to it
 
 ```bash
-java -cp lib/java-cup-11b-runtime.jar:bin App test/identifiers.txt test/hypotenuse.txt
+java -cp lib/java-cup-11b-runtime.jar:bin App test/examples/identifiers.smpl test/examples/hypotenuse.smpl
 ```
 
 ## Further Reading
