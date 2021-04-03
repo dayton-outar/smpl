@@ -1,6 +1,10 @@
 # SMPL
 
-SMPL is a small, but expressive toy programming language. Credits to Prof. Daniel Coore for the [specification](./src/smpl/lang). This repo contains the prototype of the SMPL project that uses the Java platform and uses JFlex and CUP tools. Plans are in mind to build this project using C by making use of the Lex & Yacc tools (or, better yet, Flex & Bison<sup>[+](https://aquamentus.com/flex_bison.html)</sup>).
+SMPL is a small, but expressive math programming language.
+
+Credits to Prof. Daniel Coore for the [specification](./src/smpl/lang).
+
+This repo contains the prototype of the SMPL project that uses the Java platform and uses JFlex and CUP tools. Plans are in mind to build this project using C by making use of the Lex & Yacc tools (or, better yet, Flex & Bison<sup>[+](https://aquamentus.com/flex_bison.html)</sup>).
 
 ## To-Do
 
