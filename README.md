@@ -7,6 +7,7 @@ SMPL is a small, but expressive toy programming language. Credits to Prof. Danie
 - [x] Update specification
 - [x] Evolve grammar
 - [x] Build interpreter
+- [x] Write build script in Ant
 - [ ] Write unit tests and example scripts
 - [ ] Document application architecture in smpl/
 - [ ] Create javadoc Ant task for generating markdown for all source files
