@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="build-app-source" name="SMPL - Simple Math Programming Language">
+
+    <property name="message" value="This is SMPL! The Simple Math Programming Language" />
+    <property name="smpl-lang-dir" location="src/smpl/lang" />
+    <property name="smpl-parser-name" value="SMPLParser" />
+    <property name="smpl-cup-file" location="src/smpl/lang/SMPLParser.cup" />
+
+    <path id="cup.classpath">
+        <pathelement location="lib/java-cup-11b.jar" />
+    </path>
+    <path id="jflex.classpath">
+        <pathelement location="lib/jflex-full-1.8.2.jar" />
+    </path>
+
+    <target name="ping">
+        <echo>${message}</echo>
+    </target>
+
+    <taskdef name="jflex"
+        classname="jflex.anttask.JFlexTask"
+        classpathref="jflex.classpath" />
+    
+    <target name="build-lexer">
+        <jflex file="${smpl-lang-dir}/SMPLLexer.flex" />
+    </target>
+
+    <taskdef name="cup"
+        classname="java_cup.anttask.CUPTask"
+        classpathref="cup.classpath" />
+
+    <target name="build-parser" depends="build-lexer">        
+        <cup srcfile="${smpl-cup-file}"
+            destdir="src"
+            parser="SMPLParser"
+            interface="true"
+            locations="false">
+        </cup>
+    </target>
+
+    <target name="build-app-source" depends="build-parser">
+        <javac srcdir="src"
+            destdir="bin"
+            deprecation="true"
+            classpathref="cup.classpath" />
+    </target>
+
+</project>

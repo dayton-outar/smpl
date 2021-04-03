@@ -18,6 +18,7 @@ public class IncrementCommand implements ICommand {
     @Override
     public void execute(Hashtable<String, IValue> dictionary) {        
         IValue val = ( (INumValue)_exp.evaluate( dictionary ) ).inc();
+        // TODO: Missing assignment to put back into dictionary
         dictionary.put("__return", val); // Re-set as return value
     }
 }

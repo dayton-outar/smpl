@@ -83,7 +83,7 @@ sudo apt install jflex
 Navigate to `src` folder.
 
 ```bash
-jflex smpl/lang/SMPLLexer.flex -d smpl/lang
+jflex src/smpl/lang/SMPLLexer.flex -d src/smpl/lang
 ```
 
 Find JFlex manual [here](https://jflex.de/manual.html).
@@ -97,7 +97,7 @@ jflex --help
 Generate parser
 
 ```bash
-java -jar ../lib/java-cup-11b.jar -interface -destdir smpl/lang -parser SMPLParser smpl/lang/SMPLParser.cup
+java -jar lib/java-cup-11b.jar -interface -destdir src/smpl/lang -parser SMPLParser src/smpl/lang/SMPLParser.cup
 ```
 
 Find Java CUP LALR Parser Generator [here](http://www2.cs.tum.edu/projects/cup/index.php).
@@ -105,31 +105,41 @@ Find Java CUP LALR Parser Generator [here](http://www2.cs.tum.edu/projects/cup/i
 For CLI manual, perform the following
 
 ```bash
-java -jar ../lib/java-cup-11b.jar -help
+java -jar lib/java-cup-11b.jar -help
 ```
 
 Clean all old generated class files
 
 ```bash
-find smpl -type f -name "*.class" -delete
+find bin -type f -name "*.class" -delete
 ```
 
 Compile all files
 
 ```bash
-javac -cp ../lib/java-cup-11b-runtime.jar:. *.java
-```
-
-Run main and pass text containing expression to it
-
-```bash
-java -cp ../lib/java-cup-11b-runtime.jar:. App ../test/bomdas.txt
+javac -cp lib/java-cup-11b-runtime.jar:. src/*.java
 ```
 
 Running documentation generator
 
 ```bash
-javadoc -cp ../lib/java-cup-11b-runtime.jar:. -d ../doc smpl/**/*.java
+javadoc -cp lib/java-cup-11b-runtime.jar:. -d doc src/smpl/**/*.java
+```
+
+Installing Ant
+```bash
+sudo apt-get install ant
+```
+
+To perform all the above commands in proper sequence,
+```bash
+ant
+```
+
+Run main and pass text containing expression to it
+
+```bash
+java -cp lib/java-cup-11b-runtime.jar:bin App test/identifiers.txt test/hypotenuse.txt
 ```
 
 ## Further Reading
@@ -137,3 +147,4 @@ javadoc -cp ../lib/java-cup-11b-runtime.jar:. -d ../doc smpl/**/*.java
 1. Compilers: Principles, Techniques and Tools by Alfred V. Aho, Ravi Sethi and Jeffrey D. Ullman
 2. Compiler Design in C by Allen I. Hobub
 3. flex &amp; bison by John Levine
+4. Ant: The Definitive Guide by Steve Holzner
