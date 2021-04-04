@@ -1,5 +1,7 @@
 package smpl.sys.values;
 
+import java.util.Vector;
+
 /**
  * @author Dayton Outar
  * 
@@ -50,47 +52,47 @@ public class DoubleValue implements IValue {
     }
 
     @Override
-    public IValue add(IValue val) {
+    public IValue add(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() + val.doubleValue() ) );
     }
 
     @Override
-    public IValue sub(IValue val) {
+    public IValue sub(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() - val.doubleValue() ) );
     }
 
     @Override
-    public IValue mul(IValue val) {
+    public IValue mul(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() * val.doubleValue() ) );
     }
 
     @Override
-    public IValue div(IValue val) {
+    public IValue div(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() / val.doubleValue() ) );
     }
 
     @Override
-    public IValue mod(IValue val) {
+    public IValue mod(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() % val.doubleValue() ) );
     }
 
     @Override
-    public IValue pow(IValue val) {
+    public IValue pow(DoubleValue val) {
         return new DoubleValue( Math.pow( this.doubleValue(), val.doubleValue() ) );
     }
 
     @Override
-    public IValue ban(IValue val) {
+    public IValue ban(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() & val.longValue() ) );
     }
 
     @Override
-    public IValue bor(IValue val) {
+    public IValue bor(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() | val.longValue() ) );
     }
 
     @Override
-    public IValue bxr(IValue val) {
+    public IValue bxr(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() ^ val.longValue() ) );
     }
 
@@ -126,37 +128,325 @@ public class DoubleValue implements IValue {
     }
 
     @Override
-    public IValue eq(IValue val) {
+    public IValue eq(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() == val.doubleValue() ) );
     }
 
     @Override
-    public IValue gt(IValue val) {
+    public IValue gt(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() > val.doubleValue() ) );
     }
 
     @Override
-    public IValue lt(IValue val) {
+    public IValue lt(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() < val.doubleValue() ) );
     }
 
     @Override
-    public IValue noteq(IValue val) {
+    public IValue noteq(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() != val.doubleValue() ) );
     }
 
     @Override
-    public IValue gtoreq(IValue val) {
+    public IValue gtoreq(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() >= val.doubleValue() ) );
     }
 
     @Override
-    public IValue ltoreq(IValue val) {
+    public IValue ltoreq(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() <= val.doubleValue() ) );
     }
 
     @Override
     public String toString() {
         return _val.toString();
+    }
+
+    @Override
+    public Vector<IValue> arrayValues() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue add(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue add(LongValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue add(ArrayValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue sub(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue sub(LongValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue sub(ArrayValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue mul(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue mul(LongValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue mul(ArrayValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue div(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue div(LongValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue div(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue mod(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue mod(LongValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue mod(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue pow(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue pow(LongValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue pow(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue ban(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue ban(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue bor(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue bor(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue bxr(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue bxr(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue eq(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue eq(DoubleValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue eq(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue gt(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue gt(DoubleValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue gt(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue lt(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue lt(DoubleValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue lt(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue noteq(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue noteq(DoubleValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue noteq(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue gtoreq(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue gtoreq(DoubleValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue gtoreq(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue ltoreq(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue ltoreq(DoubleValue val) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue ltoreq(ArrayValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue and(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue and(BooleanValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue or(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue or(BooleanValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue not() throws Exception {
+        // TODO Auto-generated method stub
+        return null;
     }
 }
