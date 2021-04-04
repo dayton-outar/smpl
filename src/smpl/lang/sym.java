@@ -8,64 +8,66 @@ package smpl.lang;
 /** CUP generated interface containing symbol constants. */
 public interface sym {
   /* terminals */
-  public static final int DIVIDE = 32;
+  public static final int DIVIDE = 34;
   public static final int MAP = 11;
-  public static final int QUERY = 55;
-  public static final int GTEQ = 48;
-  public static final int INCREMENT = 25;
-  public static final int LTEQ = 47;
+  public static final int QUERY = 57;
+  public static final int GTEQ = 50;
+  public static final int INCREMENT = 27;
+  public static final int LTEQ = 49;
   public static final int PI = 19;
-  public static final int ASSIGNAMP = 38;
+  public static final int ASSIGNAMP = 40;
   public static final int RBRAK = 10;
   public static final int DOUBLE = 16;
-  public static final int CONTINUE = 57;
+  public static final int CONTINUE = 59;
   public static final int LPAREN = 5;
   public static final int SEMI = 2;
-  public static final int ASSIGNADD = 24;
-  public static final int ASSIGNMOD = 36;
-  public static final int MINUS = 26;
-  public static final int DECREMENT = 28;
-  public static final int TILDE = 43;
-  public static final int BAR = 39;
+  public static final int ASSIGNADD = 26;
+  public static final int SIGMA = 21;
+  public static final int ASSIGNMOD = 38;
+  public static final int MINUS = 28;
+  public static final int DECREMENT = 30;
+  public static final int TILDE = 45;
+  public static final int BAR = 41;
   public static final int RPAREN = 6;
-  public static final int NOT = 52;
-  public static final int AND = 50;
-  public static final int LT = 46;
-  public static final int RADICAL = 34;
-  public static final int CASES = 56;
-  public static final int NIL = 22;
-  public static final int OR = 51;
+  public static final int NOT = 54;
+  public static final int AND = 52;
+  public static final int LT = 48;
+  public static final int RADICAL = 36;
+  public static final int CASES = 58;
+  public static final int NIL = 24;
+  public static final int OR = 53;
   public static final int COMMA = 12;
-  public static final int ASSIGNDIVIDE = 33;
-  public static final int PLUS = 23;
-  public static final int ASSIGN = 53;
-  public static final int CARET = 41;
+  public static final int ASSIGNDIVIDE = 35;
+  public static final int PLUS = 25;
+  public static final int ASSIGN = 55;
+  public static final int CARET = 43;
   public static final int EOF = 0;
-  public static final int AMP = 37;
+  public static final int AMP = 39;
   public static final int TRUE = 17;
   public static final int error = 1;
-  public static final int ASSIGNCARET = 42;
-  public static final int MOD = 35;
-  public static final int ASSIGNSUB = 27;
-  public static final int BREAK = 58;
-  public static final int IMPLY = 54;
-  public static final int EQ = 44;
-  public static final int TIMES = 29;
+  public static final int ASSIGNCARET = 44;
+  public static final int MOD = 37;
+  public static final int ASSIGNSUB = 29;
+  public static final int BREAK = 60;
+  public static final int IMPLY = 56;
+  public static final int EQ = 46;
+  public static final int TIMES = 31;
   public static final int SPREAD = 4;
   public static final int COLON = 3;
   public static final int LBRACE = 7;
-  public static final int READ = 21;
-  public static final int ASSIGNTIMES = 30;
+  public static final int READ = 23;
+  public static final int ASSIGNTIMES = 32;
   public static final int LBRAK = 9;
   public static final int RBRACE = 8;
+  public static final int EULER = 20;
   public static final int LONG = 15;
   public static final int STRING = 14;
   public static final int FALSE = 18;
-  public static final int ASSIGNBAR = 40;
-  public static final int GT = 45;
-  public static final int PRINT = 20;
-  public static final int EXPONENT = 31;
-  public static final int NOTEQ = 49;
+  public static final int ASSIGNBAR = 42;
+  public static final int GT = 47;
+  public static final int PRINT = 22;
+  public static final int EXPONENT = 33;
+  public static final int NOTEQ = 51;
   public static final int IDENTIFIER = 13;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -88,6 +90,8 @@ public interface sym {
   "TRUE",
   "FALSE",
   "PI",
+  "EULER",
+  "SIGMA",
   "PRINT",
   "READ",
   "NIL",

@@ -54,7 +54,7 @@ terminal Double		DOUBLE;
 terminal Boolean	TRUE, FALSE;
 
 // special value tokens
-terminal PI;
+terminal PI, EULER, SIGMA;
 
 // display operators
 terminal PRINT, READ;

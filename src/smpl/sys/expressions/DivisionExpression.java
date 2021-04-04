@@ -3,7 +3,6 @@ package smpl.sys.expressions;
 import java.util.Hashtable;
 
 import smpl.sys.values.IValue;
-import smpl.sys.values.INumValue;
 public class DivisionExpression implements IExpression {
     
     IExpression _exp1;
@@ -16,6 +15,6 @@ public class DivisionExpression implements IExpression {
 
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) {
-        return ((INumValue)_exp1.evaluate(dictionary)).div((INumValue)_exp2.evaluate(dictionary));
+        return _exp1.evaluate(dictionary).div( _exp2.evaluate(dictionary) );
     }
 }

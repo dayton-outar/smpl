@@ -3,7 +3,6 @@ package smpl.sys.expressions;
 import java.util.Hashtable;
 
 import smpl.sys.values.IValue;
-import smpl.sys.values.INumValue;
 
 /**
  * Embodies the sum of two expressions
@@ -20,6 +19,6 @@ public class AdditionExpression implements IExpression {
 
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) {
-        return ((INumValue)_exp1.evaluate(dictionary)).add( (INumValue)_exp2.evaluate(dictionary) );
+        return _exp1.evaluate(dictionary).add( _exp2.evaluate(dictionary) );
     }
 }

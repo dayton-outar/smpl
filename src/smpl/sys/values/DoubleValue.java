@@ -4,11 +4,16 @@ package smpl.sys.values;
  * @author Dayton Outar
  * 
  */
-public class DoubleValue implements INumValue {
+public class DoubleValue implements IValue {
     
     Double _val;
     public DoubleValue(Double val) {
         _val = val;
+    }
+
+    @Override
+    public boolean isNumber() {
+        return true;
     }
 
     @Override
@@ -19,6 +24,11 @@ public class DoubleValue implements INumValue {
     @Override
     public boolean isDouble() {
         return true;
+    }
+
+    @Override
+    public boolean isArray() {
+        return false;
     }
 
     /**
@@ -35,47 +45,52 @@ public class DoubleValue implements INumValue {
     }
 
     @Override
-    public IValue add(INumValue val) {
+    public boolean booleanValue() {
+        return _val == 0;
+    }
+
+    @Override
+    public IValue add(IValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() + val.doubleValue() ) );
     }
 
     @Override
-    public IValue sub(INumValue val) {
+    public IValue sub(IValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() - val.doubleValue() ) );
     }
 
     @Override
-    public IValue mul(INumValue val) {
+    public IValue mul(IValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() * val.doubleValue() ) );
     }
 
     @Override
-    public IValue div(INumValue val) {
+    public IValue div(IValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() / val.doubleValue() ) );
     }
 
     @Override
-    public IValue mod(INumValue val) {
+    public IValue mod(IValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() % val.doubleValue() ) );
     }
 
     @Override
-    public IValue pow(INumValue val) {
+    public IValue pow(IValue val) {
         return new DoubleValue( Math.pow( this.doubleValue(), val.doubleValue() ) );
     }
 
     @Override
-    public IValue ban(INumValue val) {
+    public IValue ban(IValue val) {
         return new LongValue( Long.valueOf( this.longValue() & val.longValue() ) );
     }
 
     @Override
-    public IValue bor(INumValue val) {
+    public IValue bor(IValue val) {
         return new LongValue( Long.valueOf( this.longValue() | val.longValue() ) );
     }
 
     @Override
-    public IValue bxr(INumValue val) {
+    public IValue bxr(IValue val) {
         return new LongValue( Long.valueOf( this.longValue() ^ val.longValue() ) );
     }
 
@@ -111,32 +126,32 @@ public class DoubleValue implements INumValue {
     }
 
     @Override
-    public IValue eq(INumValue val) {
+    public IValue eq(IValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() == val.doubleValue() ) );
     }
 
     @Override
-    public IValue gt(INumValue val) {
+    public IValue gt(IValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() > val.doubleValue() ) );
     }
 
     @Override
-    public IValue lt(INumValue val) {
+    public IValue lt(IValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() < val.doubleValue() ) );
     }
 
     @Override
-    public IValue noteq(INumValue val) {
+    public IValue noteq(IValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() != val.doubleValue() ) );
     }
 
     @Override
-    public IValue gtoreq(INumValue val) {
+    public IValue gtoreq(IValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() >= val.doubleValue() ) );
     }
 
     @Override
-    public IValue ltoreq(INumValue val) {
+    public IValue ltoreq(IValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() <= val.doubleValue() ) );
     }
 
