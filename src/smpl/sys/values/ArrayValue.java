@@ -32,4 +32,13 @@ public class ArrayValue implements IValue {
     public double doubleValue() {
         return 0;
     }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        sb.append("[");
+        sb.append( String.join(", ", _val.toArray(new String[_val.size()]) ) );
+        sb.append("]");
+        return sb.toString();
+    }
 }
