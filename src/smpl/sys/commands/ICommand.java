@@ -6,5 +6,5 @@ import smpl.sys.values.IValue;
 
 public interface ICommand {
     
-    public void execute(Hashtable<String, IValue> dictionary);
+    public void execute(Hashtable<String, IValue> dictionary) throws Exception;
 }

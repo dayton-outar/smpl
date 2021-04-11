@@ -14,8 +14,12 @@ public class ElsesCommand implements ICommand {
     }
 
     @Override
-    public void execute(Hashtable<String, IValue> dictionary) {
-        // TODO Auto-generated method stub
-        
+    public void execute(Hashtable<String, IValue> dictionary) throws Exception {
+        for (Elses elses : _elses) {
+            if ( elses.getCondition().evaluate(dictionary).booleanValue() ) {
+                elses.getExpression().evaluate(dictionary);
+                break;
+            }
+        }
     }
 }

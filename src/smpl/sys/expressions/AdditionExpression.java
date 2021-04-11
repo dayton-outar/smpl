@@ -18,7 +18,7 @@ public class AdditionExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
         return _exp1.evaluate(dictionary).add( _exp2.evaluate(dictionary) );
     }
 }

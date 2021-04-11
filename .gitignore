@@ -12,3 +12,6 @@ src/mbl/**/*.c
 src/mbl/**/*.h
 
 src/Test.java
+
+# Ignore documents
+*.pdf
