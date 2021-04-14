@@ -17,7 +17,7 @@ public class ArrayInitializationExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
         // TODO Auto-generated method stub
         
         // Use ArrayList<>

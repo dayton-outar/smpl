@@ -3,7 +3,6 @@ package smpl.sys.expressions;
 import java.util.Hashtable;
 
 import smpl.sys.values.IValue;
-import smpl.sys.values.INumValue;
 
 public class ModulusExpression implements IExpression {
     
@@ -16,7 +15,7 @@ public class ModulusExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
-        return ((INumValue)_exp1.evaluate(dictionary)).mod((INumValue)_exp2.evaluate(dictionary));
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
+        return _exp1.evaluate(dictionary).mod( _exp2.evaluate(dictionary) );
     }
 }

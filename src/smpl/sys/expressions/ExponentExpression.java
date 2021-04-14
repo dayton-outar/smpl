@@ -3,7 +3,6 @@ package smpl.sys.expressions;
 import java.util.Hashtable;
 
 import smpl.sys.values.IValue;
-import smpl.sys.values.INumValue;
 
 public class ExponentExpression implements IExpression {
 
@@ -16,8 +15,8 @@ public class ExponentExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
-        return ((INumValue)_exp1.evaluate(dictionary)).pow((INumValue)_exp2.evaluate(dictionary));
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
+        return _exp1.evaluate(dictionary).pow( _exp2.evaluate(dictionary) );
     }
     
 }

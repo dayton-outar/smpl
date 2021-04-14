@@ -20,7 +20,7 @@ public class PrintCommand implements ICommand {
     }
 
     @Override
-    public void execute(Hashtable<String, IValue> dictionary) {
+    public void execute(Hashtable<String, IValue> dictionary) throws Exception {
         if (_message.isEmpty()) {
             System.out.println(_exp.evaluate(dictionary));
         } else {

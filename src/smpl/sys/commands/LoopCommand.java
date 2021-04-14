@@ -21,7 +21,7 @@ public class LoopCommand implements ICommand {
     }
 
     @Override
-    public void execute(Hashtable<String, IValue> dictionary) {
+    public void execute(Hashtable<String, IValue> dictionary) throws Exception {
         System.out.println("LOOP (" + _initializeList.toString() + "; " + _condition.evaluate(dictionary) + "; " + _incrementExpression.evaluate(dictionary) + ") {\n" + _statements.toString() + "\n}");
     }
     

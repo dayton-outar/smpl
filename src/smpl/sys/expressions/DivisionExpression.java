@@ -14,7 +14,7 @@ public class DivisionExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
         return _exp1.evaluate(dictionary).div( _exp2.evaluate(dictionary) );
     }
 }

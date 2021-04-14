@@ -14,7 +14,7 @@ public class ExpressionCommand implements ICommand {
     }
 
     @Override
-    public void execute(Hashtable<String, IValue> dictionary) {
+    public void execute(Hashtable<String, IValue> dictionary) throws Exception {
         IValue val = _exp.evaluate( dictionary );
         dictionary.put("__return", val); // Re-set as return value
     }

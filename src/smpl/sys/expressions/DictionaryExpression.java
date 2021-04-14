@@ -13,7 +13,7 @@ public class DictionaryExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
         return null;
     }
     

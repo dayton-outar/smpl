@@ -66,7 +66,7 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
 <YYINITIAL> "false"             { return new Symbol(sym.FALSE); }
 <YYINITIAL> "nil"               { return new Symbol(sym.NIL);   }
 <YYINITIAL> "}"                 { return new Symbol(sym.RBRACE);}
-<INJEXP>    "}"                 { yybegin(STRING);  }
+<INJEXP>    "}"                 { string.append("}"); yybegin(STRING);  }
 <YYINITIAL> "{"                 { return new Symbol(sym.LBRACE);}
 <YYINITIAL> ";"                 { return new Symbol(sym.SEMI);  }
 

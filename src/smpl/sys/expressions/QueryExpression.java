@@ -2,7 +2,6 @@ package smpl.sys.expressions;
 
 import java.util.Hashtable;
 
-import smpl.sys.values.ILogicValue;
 import smpl.sys.values.IValue;
 
 public class QueryExpression implements IExpression {
@@ -18,7 +17,7 @@ public class QueryExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
-        return ((ILogicValue)_condition.evaluate(dictionary)).booleanValue() ? _exp1.evaluate(dictionary) : _exp2.evaluate(dictionary);
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
+        return _condition.evaluate(dictionary).booleanValue() ? _exp1.evaluate(dictionary) : _exp2.evaluate(dictionary);
     }
 }

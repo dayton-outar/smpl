@@ -3,7 +3,6 @@ package smpl.sys.expressions;
 import java.util.Hashtable;
 
 import smpl.sys.values.IValue;
-import smpl.sys.values.ILogicValue;
 
 public class LogicalAndExpression implements IExpression {
 
@@ -16,8 +15,8 @@ public class LogicalAndExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
-        return ((ILogicValue)_exp1.evaluate(dictionary)).and( (ILogicValue) _exp2.evaluate(dictionary));
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
+        return _exp1.evaluate(dictionary).and(  _exp2.evaluate(dictionary));
     }
     
 }

@@ -19,7 +19,7 @@ public class AssignmentFunctionCommand implements ICommand {
     }
 
     @Override
-    public void execute(Hashtable<String, IValue> dictionary) {
+    public void execute(Hashtable<String, IValue> dictionary) throws Exception {
         IValue _function = new FunctionValue(_var, _parameters, _statements);
 
         dictionary.put(_var, _function);

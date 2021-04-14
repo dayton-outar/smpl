@@ -4,7 +4,6 @@ import java.util.Hashtable;
 
 import smpl.sys.expressions.IExpression;
 import smpl.sys.values.IValue;
-import smpl.sys.values.INumValue;
 
 public class AssignmentInvExpressionCommand implements ICommand {
     
@@ -17,7 +16,7 @@ public class AssignmentInvExpressionCommand implements ICommand {
     }
 
     @Override
-    public void execute(Hashtable<String, IValue> dictionary) {
-        dictionary.put(_var, ((INumValue)_exp.evaluate(dictionary)).inv() );
+    public void execute(Hashtable<String, IValue> dictionary) throws Exception {
+        dictionary.put(_var, _exp.evaluate(dictionary).inv() );
     }
 }

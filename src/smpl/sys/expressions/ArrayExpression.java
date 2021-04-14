@@ -14,7 +14,7 @@ public class ArrayExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
         // TODO Auto-generated method stub
         return null;
     }

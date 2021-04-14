@@ -2,7 +2,6 @@ package smpl.sys.expressions;
 
 import java.util.Hashtable;
 
-import smpl.sys.values.INumValue;
 import smpl.sys.values.IValue;
 
 public class SquareRootExpression implements IExpression {
@@ -14,7 +13,7 @@ public class SquareRootExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
-        return ((INumValue)_exp.evaluate(dictionary)).sqr();
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
+        return _exp.evaluate(dictionary).sqr();
     }
 }

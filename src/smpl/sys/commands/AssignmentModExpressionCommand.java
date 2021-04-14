@@ -4,7 +4,6 @@ import java.util.Hashtable;
 
 import smpl.sys.expressions.IExpression;
 import smpl.sys.values.IValue;
-import smpl.sys.values.INumValue;
 
 public class AssignmentModExpressionCommand implements ICommand {
     
@@ -17,7 +16,7 @@ public class AssignmentModExpressionCommand implements ICommand {
     }
 
     @Override
-    public void execute(Hashtable<String, IValue> dictionary) {
-        dictionary.put(_var, ((INumValue)_exp.evaluate(dictionary)).mod((INumValue)dictionary.get(_var)) );
+    public void execute(Hashtable<String, IValue> dictionary) throws Exception {
+        dictionary.put(_var, _exp.evaluate(dictionary).mod( dictionary.get(_var) ) );
     }
 }

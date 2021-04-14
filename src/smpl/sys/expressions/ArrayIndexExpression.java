@@ -16,7 +16,7 @@ public class ArrayIndexExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
         // TODO: Evaluate the index. Get the array from the heap and then evaluate the index of that array ... or send back the value        
         return new LongValue(Long.valueOf(1)); // TODO: Get value of array index from heap
     }

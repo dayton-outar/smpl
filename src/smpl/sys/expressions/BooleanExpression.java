@@ -14,7 +14,7 @@ public class BooleanExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) {
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
         return new BooleanValue(_val);
     }
     

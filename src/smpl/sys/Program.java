@@ -30,7 +30,7 @@ public class Program {
         }
     }
 
-    public void execute(Hashtable<String, IValue> dictionary) {
+    public void execute(Hashtable<String, IValue> dictionary) throws Exception {
         while (!programStack.isEmpty()) {
             programStack.pop().execute(dictionary);
         }

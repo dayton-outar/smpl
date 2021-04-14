@@ -16,7 +16,7 @@ public class AssignmentExpressionCommand implements ICommand {
     }
 
     @Override
-    public void execute(Hashtable<String, IValue> dictionary) {
+    public void execute(Hashtable<String, IValue> dictionary) throws Exception {
         dictionary.put(_var, _exp.evaluate(dictionary));
     }
 }

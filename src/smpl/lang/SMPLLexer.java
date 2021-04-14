@@ -884,7 +884,7 @@ public class SMPLLexer implements java_cup.runtime.Scanner {
             // fall through
           case 109: break;
           case 40: 
-            { yybegin(STRING);
+            { string.append("}"); yybegin(STRING);
             } 
             // fall through
           case 110: break;
