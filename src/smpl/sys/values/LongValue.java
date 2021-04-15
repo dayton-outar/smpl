@@ -158,7 +158,11 @@ public class LongValue implements IValue {
 
     @Override
     public IValue pow(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        if ( val.isArray() ) {
+            return this.pow( (ArrayValue) val);
+        } else {
+            return val.isLong() ? this.pow( (LongValue) val) : this.pow( (DoubleValue) val);
+        }
     }
 
     @Override

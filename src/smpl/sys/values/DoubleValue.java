@@ -77,8 +77,34 @@ public class DoubleValue implements IValue {
     }
 
     @Override
+    public IValue pow(IValue val) throws Exception {
+        if ( val.isArray() ) {
+            return this.pow( (ArrayValue) val);
+        } else {
+            return val.isLong() ? this.pow( (LongValue) val) : this.pow( (DoubleValue) val);
+        }
+    }
+
+    @Override
+    public IValue pow(LongValue val) {
+        return new DoubleValue( Math.pow( this.doubleValue(), val.doubleValue() ) );
+    }
+
+    @Override
     public IValue pow(DoubleValue val) {
         return new DoubleValue( Math.pow( this.doubleValue(), val.doubleValue() ) );
+    }
+
+    @Override
+    public IValue pow(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 2**[1, 3, 2] => [2, 8, 4]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.pow(ival) );
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
@@ -254,24 +280,6 @@ public class DoubleValue implements IValue {
 
     @Override
     public IValue mod(ArrayValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue pow(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue pow(LongValue val) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue pow(ArrayValue val) throws Exception {
         // TODO Auto-generated method stub
         return null;
     }
