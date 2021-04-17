@@ -4,10 +4,6 @@ square = (:x) { x**2.5; }
 :> "Area of square of 3";
 :> square(3);
 
-arr = 2**[1, 2, 3];
-
-:> arr;
-
 // Area of trapezoid
 trapezoid = (:x, :y, :h) { ((x+y)/2) × h; }
 

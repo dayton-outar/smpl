@@ -45,6 +45,150 @@ public class ArrayValue implements IValue {
     }
 
     @Override
+    public Vector<IValue> arrayValues() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue add(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue sub(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue mul(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue div(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue mod(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue pow(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue ban(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue bor(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue bxr(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue biv() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue inc() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue dec() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue inv() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue sqr() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue eq(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue gt(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue lt(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue noteq(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue gtoreq(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue ltoreq(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue and(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue or(IValue val) throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public IValue not() throws Exception {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("[");
