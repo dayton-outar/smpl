@@ -51,80 +51,105 @@ public class LongValue implements IValue {
 
     @Override
     public IValue add(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        if ( val.isArray() ) {
+            return this.add( (ArrayValue) val);
+        } else {
+            return val.isLong() ? this.add( (LongValue) val) : this.add( (DoubleValue) val);
+        }
     }
 
-    @Override
     public IValue add(DoubleValue val) {
         return val.add(this);
     }
 
-    @Override
     public IValue add(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() + val.longValue() ) );
     }
 
-    @Override
-    public IValue add(ArrayValue val) {
-        return val.add(this);
+    public IValue add(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 2 + [1, 3, 2] => [3, 5, 4]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.add( ival ) );
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
     public IValue sub(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        if ( val.isArray() ) {
+            return this.sub( (ArrayValue) val);
+        } else {
+            return val.isLong() ? this.sub( (LongValue) val) : this.sub( (DoubleValue) val);
+        }
     }
 
-    @Override
     public IValue sub(DoubleValue val) {
         return val.sub(this);
     }
 
-    @Override
     public IValue sub(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() - val.longValue() ) );
     }
 
-    @Override
-    public IValue sub(ArrayValue val) {
-        return val.sub(this);
+    public IValue sub(ArrayValue val) throws Exception{
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 1 - [1, 3, 2] => [0, 2, 1]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.sub( ival ) );
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
     public IValue mul(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        if ( val.isArray() ) {
+            return this.mul( (ArrayValue) val);
+        } else {
+            return val.isLong() ? this.mul( (LongValue) val) : this.mul( (DoubleValue) val);
+        }
     }
 
-    @Override
     public IValue mul(DoubleValue val) {
         return val.mul(this);
     }
 
-    @Override
     public IValue mul(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() * val.longValue() ) );
     }
 
-    @Override
-    public IValue mul(ArrayValue val) {
-        return val.mul(this);
+    public IValue mul(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 1 - [1, 3, 2] => [0, 2, 1]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.mul( ival ) );
+        }
+        
+        return new ArrayValue( lvs );
     }
     
     @Override
     public IValue div(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        if ( val.isArray() ) {
+            return this.div( (ArrayValue) val);
+        } else {
+            return val.isLong() ? this.div( (LongValue) val) : this.div( (DoubleValue) val);
+        }
     }
 
-    @Override
     public IValue div(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() / val.doubleValue() ) );
     }
 
-    @Override
     public IValue div(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() / val.longValue() ) );
     }
 
-    @Override
     public IValue div(ArrayValue val) throws Exception {
         Vector<IValue> lvs = new Vector<IValue>();
 
@@ -138,22 +163,30 @@ public class LongValue implements IValue {
     
     @Override
     public IValue mod(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        if ( val.isArray() ) {
+            return this.mod( (ArrayValue) val);
+        } else {
+            return val.isLong() ? this.mod( (LongValue) val) : this.mod( (DoubleValue) val);
+        }
     }
 
-    @Override
     public IValue mod(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.longValue() % val.doubleValue() ) );
     }
 
-    @Override
     public IValue mod(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() % val.longValue() ) );
     }
 
-    @Override
-    public IValue mod(ArrayValue val) {
-        return val.mod(this);
+    public IValue mod(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 1 - [1, 3, 2] => [0, 2, 1]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.mod( ival ) );
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
@@ -164,18 +197,15 @@ public class LongValue implements IValue {
             return val.isLong() ? this.pow( (LongValue) val) : this.pow( (DoubleValue) val);
         }
     }
-
-    @Override
+    
     public IValue pow(DoubleValue val) {
         return new DoubleValue( Math.pow( this.doubleValue(), val.doubleValue() ) );
     }
 
-    @Override
     public IValue pow(LongValue val) {
         return new LongValue( (long)Math.pow( this.doubleValue(), val.doubleValue() ) );
     }
 
-    @Override
     public IValue pow(ArrayValue val) throws Exception {
         Vector<IValue> lvs = new Vector<IValue>();
 
@@ -186,19 +216,20 @@ public class LongValue implements IValue {
         
         return new ArrayValue( lvs );
     }
-
-    //..
+    
     @Override
     public IValue ban(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        if ( val.isArray() ) {
+            return this.ban( (ArrayValue) val);
+        } else {
+            return this.ban( (LongValue) val);
+        }
     }
-
-    @Override
+    
     public IValue ban(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() & val.longValue() ) );
     }
-
-    @Override
+    
     public IValue ban(ArrayValue val) throws Exception {
         Vector<IValue> lvs = new Vector<IValue>();
 
@@ -209,18 +240,20 @@ public class LongValue implements IValue {
         
         return new ArrayValue( lvs );
     }
-
+    
     @Override
     public IValue bor(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        if ( val.isArray() ) {
+            return this.bor( (ArrayValue) val);
+        } else {
+            return this.bor( (LongValue) val);
+        }
     }
-
-    @Override
+    
     public IValue bor(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() | val.longValue() ) );
     }
-
-    @Override
+    
     public IValue bor(ArrayValue val) throws Exception {
         Vector<IValue> lvs = new Vector<IValue>();
 
@@ -231,18 +264,20 @@ public class LongValue implements IValue {
         
         return new ArrayValue( lvs );
     }
-
+    
     @Override
     public IValue bxr(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        if ( val.isArray() ) {
+            return this.bxr( (ArrayValue) val);
+        } else {
+            return this.bxr( (LongValue) val);
+        }
     }
-
-    @Override
+    
     public IValue bxr(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() ^ val.longValue() ) );
     }
-
-    @Override
+    
     public IValue bxr(ArrayValue val) throws Exception {
         Vector<IValue> lvs = new Vector<IValue>();
 
@@ -284,150 +319,130 @@ public class LongValue implements IValue {
     public IValue sqr() {
         return new DoubleValue( Math.sqrt( this.doubleValue() ) ); // TODO: Return as long instead of double?
     }
-
+    
     @Override
     public IValue eq(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        if ( val.isArray() ) {
+            return this.eq( (ArrayValue) val );
+        } else {
+            return val.isLong() ? this.eq( (LongValue) val ) : this.eq( (DoubleValue) val );
+        }
     }
 
-    @Override
     public IValue eq(DoubleValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() == val.doubleValue() ) );
     }
 
-    @Override
     public IValue eq(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.longValue() == val.longValue() ) );
     }
 
-    @Override
     public IValue eq(ArrayValue val) throws Exception {
         return new BooleanValue(false);
     }
 
     @Override
     public IValue gt(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        if ( val.isArray() ) {
+            return this.gt( (ArrayValue) val );
+        } else {
+            return val.isLong() ? this.gt( (LongValue) val ) : this.gt( (DoubleValue) val );
+        }
     }
 
-    @Override
     public IValue gt(DoubleValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() > val.doubleValue() ) );
     }
 
-    @Override
     public IValue gt(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.longValue() > val.longValue() ) );
     }
 
-    @Override
     public IValue gt(ArrayValue val) throws Exception {
         return new BooleanValue(false);
     }
 
+    //...
     @Override
     public IValue lt(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        return val.isLong() ? this.lt( (LongValue) val ) : this.lt( (DoubleValue) val );
     }
 
-    @Override
     public IValue lt(DoubleValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() < val.doubleValue() ) );
     }
 
-    @Override
     public IValue lt(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.longValue() < val.longValue() ) );
     }
 
-    @Override
     public IValue lt(ArrayValue val) throws Exception {
         return new BooleanValue(false);
     }
 
     @Override
     public IValue noteq(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        return val.isLong() ? this.noteq( (LongValue) val ) : this.noteq( (DoubleValue) val );
     }
 
-    @Override
     public IValue noteq(DoubleValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() != val.doubleValue() ) );
     }
 
-    @Override
     public IValue noteq(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.longValue() != val.longValue() ) );
     }
 
-    @Override
     public IValue noteq(ArrayValue val) throws Exception {
         return new BooleanValue(false);
     }
 
     @Override
     public IValue gtoreq(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        return val.isLong() ? this.gtoreq( (LongValue) val ) : this.gtoreq( (DoubleValue) val );
     }
 
-    @Override
     public IValue gtoreq(DoubleValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() >= val.doubleValue() ) );
     }
 
-    @Override
     public IValue gtoreq(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.longValue() >= val.longValue() ) );
     }
 
-    @Override
     public IValue gtoreq(ArrayValue val) throws Exception {
         return new BooleanValue(false);
     }
 
     @Override
     public IValue ltoreq(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        return val.isLong() ? this.gtoreq( (LongValue) val ) : this.gtoreq( (DoubleValue) val );
     }
 
-    @Override
     public IValue ltoreq(DoubleValue val) {
         return new BooleanValue( Boolean.valueOf( this.doubleValue() <= val.doubleValue() ) );
     }
 
-    @Override
     public IValue ltoreq(LongValue val) {
         return new BooleanValue( Boolean.valueOf( this.longValue() <= val.longValue() ) );
     }
 
-    @Override
     public IValue ltoreq(ArrayValue val) throws Exception {
         return new BooleanValue(false);
     }
 
     @Override
     public IValue and(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        return new BooleanValue(this.booleanValue() && val.booleanValue());
     }
 
-    @Override
-    public IValue and(BooleanValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
-    }
-
-    @Override
     public IValue or(IValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
-    }
-
-    @Override
-    public IValue or(BooleanValue val) throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        return new BooleanValue(this.booleanValue() || val.booleanValue());
     }
 
     @Override
     public IValue not() throws Exception {
-        throw new Exception("Implementation for this type does not exist");
+        return new BooleanValue( !this.booleanValue() );
     }
 
     @Override

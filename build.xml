@@ -42,6 +42,7 @@
         <javac srcdir="src"
             destdir="bin"
             deprecation="true"
+            includeantruntime="false"
             classpathref="cup.classpath" />
     </target>
 

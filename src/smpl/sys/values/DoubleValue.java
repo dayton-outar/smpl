@@ -52,28 +52,148 @@ public class DoubleValue implements IValue {
     }
 
     @Override
+    public Vector<IValue> arrayValues() {
+        return null;
+    }
+
+    @Override
+    public IValue add(IValue val) throws Exception {
+        if (val.isArray()) {
+            return this.add( (ArrayValue) val );
+        } else {
+            return this.add( new DoubleValue(val.doubleValue()) );
+        }
+    }
+
     public IValue add(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() + val.doubleValue() ) );
     }
 
+    public IValue add(LongValue val) {
+        return this.add( new DoubleValue(val.doubleValue()) );
+    }
+
+    public IValue add(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 2 + [1, 3, 2] => [3, 5, 4]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.add( ival ) );
+        }
+        
+        return new ArrayValue( lvs );
+    }
+
     @Override
+    public IValue sub(IValue val) throws Exception {
+        if (val.isArray()) {
+            return this.sub( (ArrayValue) val );
+        } else {
+            return this.sub( new DoubleValue(val.doubleValue()) );
+        }
+    }
+
     public IValue sub(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() - val.doubleValue() ) );
     }
 
+    public IValue sub(LongValue val) {
+        return this.sub( new DoubleValue(val.doubleValue()) );
+    }
+
+    public IValue sub(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 2 - [1, 3, 2] => [1, -1, 0]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.sub( ival ) );
+        }
+        
+        return new ArrayValue( lvs );
+    }
+
     @Override
+    public IValue mul(IValue val) throws Exception {
+        if (val.isArray()) {
+            return this.mul( (ArrayValue) val );
+        } else {
+            return this.mul( new DoubleValue(val.doubleValue()) );
+        }
+    }
+
     public IValue mul(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() * val.doubleValue() ) );
     }
 
+    public IValue mul(LongValue val) {
+        return this.mul( new DoubleValue(val.doubleValue()) );
+    }
+
+    public IValue mul(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 3 * [1, 3, 2] => [3, 9, 6]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.mul( ival ) );
+        }
+        
+        return new ArrayValue( lvs );
+    }
+
     @Override
+    public IValue div(IValue val) throws Exception {
+        if (val.isArray()) {
+            return this.div( (ArrayValue) val );
+        } else {
+            return this.div( new DoubleValue(val.doubleValue()) );
+        }
+    }
+
     public IValue div(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() / val.doubleValue() ) );
     }
 
+    public IValue div(LongValue val) {
+        return this.div( new DoubleValue(val.doubleValue()) );
+    }
+
+    public IValue div(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 4 / [1, 3, 2] => [4, 0.75, 2]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.div( ival ) );
+        }
+        
+        return new ArrayValue( lvs );
+    }
+
     @Override
+    public IValue mod(IValue val) throws Exception {
+        if (val.isArray()) {
+            return this.mod( (ArrayValue) val );
+        } else {
+            return this.mod( new DoubleValue(val.doubleValue()) );
+        }
+    }
+
     public IValue mod(DoubleValue val) {
         return new DoubleValue( Double.valueOf( this.doubleValue() % val.doubleValue() ) );
+    }
+
+    public IValue mod(LongValue val) {
+        return this.mod( new DoubleValue(val.doubleValue()) );
+    }
+
+    public IValue mod(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 4 % [1, 3, 2] => [1, 3, 0]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.mod( ival ) );
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
@@ -85,17 +205,14 @@ public class DoubleValue implements IValue {
         }
     }
 
-    @Override
     public IValue pow(LongValue val) {
         return new DoubleValue( Math.pow( this.doubleValue(), val.doubleValue() ) );
     }
 
-    @Override
     public IValue pow(DoubleValue val) {
         return new DoubleValue( Math.pow( this.doubleValue(), val.doubleValue() ) );
     }
 
-    @Override
     public IValue pow(ArrayValue val) throws Exception {
         Vector<IValue> lvs = new Vector<IValue>();
 
@@ -108,13 +225,51 @@ public class DoubleValue implements IValue {
     }
 
     @Override
+    public IValue ban(IValue val) throws Exception {
+        if (val.isArray()) {
+            return this.ban( (ArrayValue) val );
+        } else {
+            return this.ban( (LongValue) val );
+        }
+    }
+
     public IValue ban(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() & val.longValue() ) );
     }
 
+    public IValue ban(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 2**[1, 3, 2] => [2, 8, 4]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.ban(ival) );
+        }
+        
+        return new ArrayValue( lvs );
+    }
+
     @Override
+    public IValue bor(IValue val) throws Exception {
+        if (val.isArray()) {
+            return this.bor( (ArrayValue) val );
+        } else {
+            return this.bor( (LongValue) val );
+        }
+    }
+
     public IValue bor(LongValue val) {
         return new LongValue( Long.valueOf( this.longValue() | val.longValue() ) );
+    }
+
+    public IValue bor(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform 2**[1, 3, 2] => [2, 8, 4]
+        for (IValue ival : val.arrayValues()) {
+            lvs.add( this.bor(ival) );
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
@@ -188,125 +343,8 @@ public class DoubleValue implements IValue {
         return _val.toString();
     }
 
-    @Override
-    public Vector<IValue> arrayValues() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue add(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue add(LongValue val) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue add(ArrayValue val) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue sub(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue sub(LongValue val) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue sub(ArrayValue val) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue mul(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue mul(LongValue val) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue mul(ArrayValue val) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue div(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue div(LongValue val) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue div(ArrayValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue mod(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue mod(LongValue val) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue mod(ArrayValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue ban(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue ban(ArrayValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue bor(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue bor(ArrayValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    //...
+    
 
     @Override
     public IValue bxr(IValue val) throws Exception {
@@ -435,19 +473,7 @@ public class DoubleValue implements IValue {
     }
 
     @Override
-    public IValue and(BooleanValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public IValue or(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IValue or(BooleanValue val) throws Exception {
         // TODO Auto-generated method stub
         return null;
     }

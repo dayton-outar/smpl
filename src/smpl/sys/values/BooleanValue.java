@@ -45,16 +45,6 @@ public class BooleanValue implements IValue {
     }
 
     @Override
-    public IValue and(BooleanValue val) {
-        return new BooleanValue( Boolean.valueOf( this.booleanValue() && val.booleanValue() ) );
-    }
-
-    @Override
-    public IValue or(BooleanValue val) {
-        return new BooleanValue( Boolean.valueOf( this.booleanValue() || val.booleanValue() ) );
-    }
-
-    @Override
     public IValue not() {
         return new BooleanValue( Boolean.valueOf( !this.booleanValue() ) );
     }
@@ -196,19 +186,16 @@ public class BooleanValue implements IValue {
         return null;
     }
 
-    @Override
     public IValue pow(DoubleValue val) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
     public IValue pow(LongValue val) {
         // TODO Auto-generated method stub
         return null;
     }
 
-    @Override
     public IValue pow(ArrayValue val) throws Exception {
         // TODO Auto-generated method stub
         return null;
