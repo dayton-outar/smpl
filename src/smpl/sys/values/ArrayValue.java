@@ -46,8 +46,7 @@ public class ArrayValue implements IValue {
 
     @Override
     public Vector<IValue> arrayValues() {
-        // TODO Auto-generated method stub
-        return null;
+        return _val;
     }
 
     @Override
@@ -191,9 +190,20 @@ public class ArrayValue implements IValue {
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer();
+        Vector<String> stringValues = valueStrings();
+
         sb.append("[");
-        sb.append( String.join(", ", _val.toArray(new String[_val.size()]) ) );
+        sb.append( String.join(", ", stringValues.toArray(new String[stringValues.size()]) ) );
         sb.append("]");
         return sb.toString();
+    }
+
+    private Vector<String> valueStrings(){
+        Vector<String> stringValue = new Vector<String>();
+        for (IValue iValue : _val) {
+            stringValue.add( iValue.toString() );
+        }
+
+        return stringValue;
     }
 }

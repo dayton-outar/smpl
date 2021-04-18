@@ -1,8 +1,11 @@
 package smpl.sys.expressions;
 
 import java.util.Hashtable;
+import java.util.Vector;
 
 import smpl.sys.values.IValue;
+import smpl.sys.values.LongValue;
+import smpl.sys.values.ArrayValue;
 
 public class ArrayInitializationExpression implements IExpression {
 
@@ -18,11 +21,16 @@ public class ArrayInitializationExpression implements IExpression {
 
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
-        // TODO Auto-generated method stub
+        Vector<IValue> vals = new Vector<IValue>();
+        Hashtable<String, IValue> aid = new Hashtable<String, IValue>();
+        aid.putAll(dictionary); // Include global scope
         
-        // Use ArrayList<>
-        System.out.println("EXPAND " + _num.evaluate(dictionary) + " " + _var + " -> " + _exp.evaluate(dictionary));
+        long size =_num.evaluate(dictionary).longValue();
+        for (long x = 0; x < size; x++) {
+            aid.put(_var, new LongValue(x));
+            vals.add(_exp.evaluate(aid));
+        }
 
-        return null;
+        return new ArrayValue(vals);
     }
 }
