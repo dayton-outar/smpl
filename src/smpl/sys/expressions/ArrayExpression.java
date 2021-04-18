@@ -21,8 +21,8 @@ public class ArrayExpression implements IExpression {
         
         Collections.reverse(_expressions);
 
-        for (IExpression _exp : _expressions) { // FIXME: Array loading in reverse order
-            IValue av = _exp.evaluate(dictionary);
+        for (IExpression _exp : _expressions) {
+            IValue av = _exp.evaluate(dictionary); // FIXME: Only merge ArrayInitializationExpression
             if (av.isArray()) {
                 vals.addAll( av.arrayValues() );
             } else {

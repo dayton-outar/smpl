@@ -51,44 +51,86 @@ public class ArrayValue implements IValue {
 
     @Override
     public IValue add(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        if (val.isArray()) {
+            return this.add( (ArrayValue) val );
+        } else {
+            return val.isLong() ? val.add( (ArrayValue) this) : val.add( (ArrayValue) this );
+        }
+    }
+
+    public IValue add(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+        Vector<IValue> vals = val.arrayValues();
+
+        // The intention is to perform [2, 3] + [1, 3, 2] => [3, 6, 2]
+        int max = _val.size() >= vals.size() ? _val.size() : vals.size();        
+        for (int x = 0; x < max; x++) {
+            if (x < _val.size() & x < vals.size()) {
+                lvs.add( _val.get(x).add( vals.get(x) ) );
+            } else {
+                if ( x >= _val.size() ) {
+                    lvs.add( vals.get(x) );
+                } else {
+                    lvs.add( _val.get(x) );
+                }
+            }
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
     public IValue sub(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        if (val.isArray()) {
+            return this.sub( (ArrayValue) val );
+        } else {
+            return val.isLong() ? val.sub( (ArrayValue) this) : val.sub( (ArrayValue) this );
+        }
     }
 
     @Override
     public IValue mul(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        if (val.isArray()) {
+            return this.mul( (ArrayValue) val );
+        } else {
+            return val.isLong() ? val.mul( (ArrayValue) this) : val.mul( (ArrayValue) this );
+        }
     }
 
     @Override
     public IValue div(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        if (val.isArray()) {
+            return this.mul( (ArrayValue) val );
+        } else {
+            return val.isLong() ? val.mul( (ArrayValue) this) : val.mul( (ArrayValue) this );
+        }
     }
 
     @Override
     public IValue mod(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        if (val.isArray()) {
+            return this.mul( (ArrayValue) val );
+        } else {
+            return val.isLong() ? val.mul( (ArrayValue) this) : val.mul( (ArrayValue) this );
+        }
     }
 
     @Override
     public IValue pow(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        if (val.isArray()) {
+            return this.mul( (ArrayValue) val );
+        } else {
+            return val.isLong() ? val.mul( (ArrayValue) this) : val.mul( (ArrayValue) this );
+        }
     }
 
     @Override
     public IValue ban(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        if (val.isArray()) {
+            return this.mul( (ArrayValue) val );
+        } else {
+            return val.isLong() ? val.mul( (ArrayValue) this) : val.mul( (ArrayValue) this );
+        }
     }
 
     @Override
