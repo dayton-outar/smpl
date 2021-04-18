@@ -317,7 +317,7 @@ public class LongValue implements IValue {
 
     @Override
     public IValue sqr() {
-        return new DoubleValue( Math.sqrt( this.doubleValue() ) ); // TODO: Return as long instead of double?
+        return new DoubleValue( Math.sqrt( this.doubleValue() ) );
     }
     
     @Override
