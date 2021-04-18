@@ -88,6 +88,28 @@ public class ArrayValue implements IValue {
         }
     }
 
+    public IValue sub(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+        Vector<IValue> vals = val.arrayValues();
+
+        // The intention is to perform [2, 3] + [1, 3, 2] => [3, 6, 2]
+        int max = _val.size() >= vals.size() ? _val.size() : vals.size();        
+        for (int x = 0; x < max; x++) {
+            if (x < _val.size() & x < vals.size()) {
+                lvs.add( _val.get(x).sub( vals.get(x) ) );
+            } else {
+                if ( x >= _val.size() ) {
+                    IValue v = vals.get(x);
+                    lvs.add( v.isLong() ? (new LongValue(0l)).sub( v ) : (new DoubleValue(0.0)).sub( v ) );
+                } else {
+                    lvs.add( _val.get(x) );
+                }
+            }
+        }
+        
+        return new ArrayValue( lvs );
+    }
+
     @Override
     public IValue mul(IValue val) throws Exception {
         if (val.isArray()) {
@@ -97,22 +119,88 @@ public class ArrayValue implements IValue {
         }
     }
 
+    public IValue mul(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+        Vector<IValue> vals = val.arrayValues();
+
+        // The intention is to perform [2, 3] + [1, 3, 2] => [3, 6, 2]
+        int max = _val.size() >= vals.size() ? _val.size() : vals.size();        
+        for (int x = 0; x < max; x++) {
+            if (x < _val.size() & x < vals.size()) {
+                lvs.add( _val.get(x).mul( vals.get(x) ) );
+            } else {
+                if ( x >= _val.size() ) {
+                    IValue v = vals.get(x);
+                    lvs.add( v.isLong() ? (new LongValue(0l)).mul( v ) : (new DoubleValue(0.0)).mul( v ) );
+                } else {
+                    lvs.add( _val.get(x) );
+                }
+            }
+        }
+        
+        return new ArrayValue( lvs );
+    }
+
     @Override
     public IValue div(IValue val) throws Exception {
         if (val.isArray()) {
-            return this.mul( (ArrayValue) val );
+            return this.div( (ArrayValue) val );
         } else {
-            return val.isLong() ? val.mul( (ArrayValue) this) : val.mul( (ArrayValue) this );
+            return val.isLong() ? val.div( (ArrayValue) this) : val.div( (ArrayValue) this );
         }
+    }
+
+    public IValue div(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+        Vector<IValue> vals = val.arrayValues();
+
+        // The intention is to perform [2, 3] + [1, 3, 2] => [3, 6, 2]
+        int max = _val.size() >= vals.size() ? _val.size() : vals.size();        
+        for (int x = 0; x < max; x++) {
+            if (x < _val.size() & x < vals.size()) {
+                lvs.add( _val.get(x).div( vals.get(x) ) );
+            } else {
+                if ( x >= _val.size() ) {
+                    IValue v = vals.get(x);
+                    lvs.add( v.isLong() ? (new LongValue(0l)).div( v ) : (new DoubleValue(0.0)).div( v ) );
+                } else {
+                    lvs.add( _val.get(x) );
+                }
+            }
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
     public IValue mod(IValue val) throws Exception {
         if (val.isArray()) {
-            return this.mul( (ArrayValue) val );
+            return this.mod( (ArrayValue) val );
         } else {
-            return val.isLong() ? val.mul( (ArrayValue) this) : val.mul( (ArrayValue) this );
+            return val.isLong() ? val.mod( (ArrayValue) this) : val.mod( (ArrayValue) this );
         }
+    }
+
+    public IValue mod(ArrayValue val) throws Exception {
+        Vector<IValue> lvs = new Vector<IValue>();
+        Vector<IValue> vals = val.arrayValues();
+
+        // The intention is to perform [2, 3] + [1, 3, 2] => [3, 6, 2]
+        int max = _val.size() >= vals.size() ? _val.size() : vals.size();        
+        for (int x = 0; x < max; x++) {
+            if (x < _val.size() & x < vals.size()) {
+                lvs.add( _val.get(x).mod( vals.get(x) ) );
+            } else {
+                if ( x >= _val.size() ) {
+                    IValue v = vals.get(x);
+                    lvs.add( v.isLong() ? (new LongValue(0l)).mod( v ) : (new DoubleValue(0.0)).mod( v ) );
+                } else {
+                    lvs.add( _val.get(x) );
+                }
+            }
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
