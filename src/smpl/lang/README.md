@@ -61,7 +61,7 @@ Vector initialisation is quite flexible. A vector may be initialised by specifyi
 | &#12296;id<sub>dic</sub>&#12297;`["`_i_`"]`<sup><a href="#footnote-7">7</a></sup> | Return the object that is mapped to _i_ in this dictionary. |
 | `[`&#12296;e<sub>1</sub>&#12297;, &hellip;,&#12296;e<sub>n</sub>&#12297;`]`<sup><a href="#footnote-8">8</a></sup> | Return a newly allocated vector initialised with the given specifications<br/>Each specification is either an expression or of the form<br/>&#12296;expr<sub>size</sub>&#12297; : &#12296;expr<sub>init</sub>&#12297; |
 | &#12296;id<sub>vec</sub>&#12297;`[`&#12296;n&#12297;`]` | Return the <i>n<sup>th</sup></i> element of vector _vec_(indexed from 0).<br/>When on the LHS of an assignment, sets the <i>n<sup>th</sup></i> element to the RHS. |
-| `|`&#12296;id<sub>dic/vec</sub>&#12297;`|`<sup><a href="#footnote-9">9</a></sup> | Return the length of the dictionary or vector. |
+| `|` &#12296;id<sub>dic/vec</sub>&#12297; `|`<sup><a href="#footnote-9">9</a></sup> | Return the length of the dictionary or vector. |
 
 Table 2: Compound Data Expressions
 
@@ -143,7 +143,6 @@ vappend = (:v1, :v2) { [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ]; }
 
 Here are a few ideas for extensions to _SMPL_ :
 
-- Linear algebra. Allow arithmetic and bitwise operators to be used by vectors.
 - Interpolated string. Implementation of interpolated strings seem to be a challenging prospect for the [lexer](https://stackoverflow.com/questions/57971191/implementing-string-interpolation-in-flex-bison).
 - Macros. A limited form of language extension can be accomplished through the use of macros. It should not be too difficult to extend _SMPL_ to include macros that are declared and used in
     a similar way to procedures.
