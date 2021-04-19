@@ -45,11 +45,6 @@ public class BooleanValue implements IValue {
     }
 
     @Override
-    public IValue not() {
-        return new BooleanValue( Boolean.valueOf( !this.booleanValue() ) );
-    }
-
-    @Override
     public Vector<IValue> arrayValues() {
         return null;
     }
@@ -156,12 +151,16 @@ public class BooleanValue implements IValue {
 
     @Override
     public IValue and(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return new BooleanValue(this.booleanValue() && val.booleanValue());
+    }
+
+    public IValue or(IValue val) throws Exception {
+        return new BooleanValue(this.booleanValue() || val.booleanValue());
     }
 
     @Override
-    public IValue or(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+    public IValue not() {
+        return new BooleanValue( Boolean.valueOf( !this.booleanValue() ) );
     }
 
     @Override
