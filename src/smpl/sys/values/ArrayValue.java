@@ -351,32 +351,62 @@ public class ArrayValue implements IValue {
 
     @Override
     public IValue biv() {
-        // TODO Auto-generated method stub
-        return null;
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform ~[7, 5, 90] => [-8, -6, -91]
+        for (IValue ival : _val) {
+            lvs.add( ival.biv() );
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
     public IValue inc() {
-        // TODO Auto-generated method stub
-        return null;
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform [7, 5, 90]++ => [8, 6, 91]
+        for (IValue ival : _val) {
+            lvs.add( ival.inc() );
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
     public IValue dec() {
-        // TODO Auto-generated method stub
-        return null;
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform [7, 5, 90]-- => [6, 4, 89]
+        for (IValue ival : _val) {
+            lvs.add( ival.dec() );
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
     public IValue inv() {
-        // TODO Auto-generated method stub
-        return null;
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform [7, 5, 90]-- => [6, 4, 89]
+        for (IValue ival : _val) {
+            lvs.add( ival.inv() );
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override
     public IValue sqr() {
-        // TODO Auto-generated method stub
-        return null;
+        Vector<IValue> lvs = new Vector<IValue>();
+
+        // The intention is to perform [7, 5, 90]-- => [6, 4, 89]
+        for (IValue ival : _val) {
+            lvs.add( ival.sqr() );
+        }
+        
+        return new ArrayValue( lvs );
     }
 
     @Override

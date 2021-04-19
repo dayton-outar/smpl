@@ -7,15 +7,16 @@ import smpl.sys.values.IValue;
 
 public class DecrementCommand implements ICommand {
     
-    IExpression _exp;
+    String _var;
 
-    public DecrementCommand(IExpression exp) {
-        _exp = exp;
+    public DecrementCommand(String var) {
+        _var = var;
     }
 
     @Override
     public void execute(Hashtable<String, IValue> dictionary) throws Exception {
-        IValue val = _exp.evaluate( dictionary ).dec();
-        dictionary.put("__return", val); // Re-set as return value
+        dictionary.put(_var, dictionary.get(_var).dec() );
+
+        dictionary.put("__return", dictionary.get(_var));
     }
 }

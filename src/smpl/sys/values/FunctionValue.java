@@ -66,13 +66,11 @@ public class FunctionValue implements IValue {
 
     @Override
     public Vector<IValue> arrayValues() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public IValue add(IValue val) throws Exception {
-        // TODO Auto-generated method stub
         return null;
     }
 

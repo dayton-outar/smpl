@@ -3,21 +3,20 @@ package smpl.sys.commands;
 
 import java.util.Hashtable;
 
-import smpl.sys.expressions.IExpression;
 import smpl.sys.values.IValue;
 
 public class IncrementCommand implements ICommand {
     
-    IExpression _exp;
+    String _var;
 
-    public IncrementCommand(IExpression exp) {
-        _exp = exp;
+    public IncrementCommand(String var) {
+        _var = var;
     }
 
     @Override
-    public void execute(Hashtable<String, IValue> dictionary) throws Exception {        
-        IValue val = _exp.evaluate( dictionary ).inc();
-        // TODO: Missing assignment to put back into dictionary
-        dictionary.put("__return", val); // Re-set as return value
+    public void execute(Hashtable<String, IValue> dictionary) throws Exception {
+        dictionary.put(_var, dictionary.get(_var).inc() );
+
+        dictionary.put("__return", dictionary.get(_var));
     }
 }

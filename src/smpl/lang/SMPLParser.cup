@@ -134,11 +134,11 @@ statement_list ::= statement:stmt statement_list:sl
 statement ::= expression_sequence:e SEMI
 			{: RESULT = new ExpressionCommand(e);	:}
 
-			| expression:e INCREMENT SEMI
-			{: RESULT = new IncrementCommand(e); :}
+			| IDENTIFIER:i INCREMENT SEMI
+			{: RESULT = new IncrementCommand(i); :}
 
-			| expression:e DECREMENT SEMI
-			{: RESULT = new DecrementCommand(e); :}
+			| IDENTIFIER:i DECREMENT SEMI
+			{: RESULT = new DecrementCommand(i); :}
 
 			| IDENTIFIER:i ASSIGN expression_sequence:e SEMI
 			{: RESULT = new AssignmentExpressionCommand(i, e); :}

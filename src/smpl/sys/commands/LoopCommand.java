@@ -22,7 +22,16 @@ public class LoopCommand implements ICommand {
 
     @Override
     public void execute(Hashtable<String, IValue> dictionary) throws Exception {
-        System.out.println("LOOP (" + _initializeList.toString() + "; " + _condition.evaluate(dictionary) + "; " + _incrementExpression.evaluate(dictionary) + ") {\n" + _statements.toString() + "\n}");
+        for (ICommand cmd : _initializeList) {
+            cmd.execute(dictionary);
+        }
+
+        while( _condition.evaluate(dictionary).booleanValue() ) {
+            for (ICommand stmt : _statements) {
+                stmt.execute(dictionary);
+            }
+            _incrementExpression.evaluate(dictionary);
+        }
     }
     
 }
