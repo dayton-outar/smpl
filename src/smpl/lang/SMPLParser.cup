@@ -29,7 +29,9 @@ parser code {:
 	public void syntax_error(Symbol cur_token) {
 		System.err.print("Line " + lexer.getLine() +
 				         " near char " + lexer.getChar() + ": ");
+
 		report_error("Syntax error while reading: ", cur_token);
+
 		System.err.println ("Last token read is " +
 					        lexer.getText());
 	}
@@ -89,6 +91,7 @@ non terminal Hashtable<String,IExpression>	dictionary;
 non terminal Vector<IExpression>			array;
 non terminal Vector<Cases>					case_list;
 non terminal Cases							case;
+non terminal Vector<String>					case_expressions;
 non terminal Vector<Elses>					if_clause_list;
 non terminal Elses							if_clause;
 non terminal IExpression					expression_sequence;
@@ -386,8 +389,22 @@ case_list ::= case:c case_list:l
 			{: RESULT = new Vector<Cases>(); :}
 			;
 
-case ::= STRING:s COLON expression_sequence:e SEMI
-			{: RESULT = new Cases(s, e); :}
+case ::= case_expressions:l statement:s
+			{: RESULT = new Cases(l, s); :}
+			;
+
+case_expressions ::= case_expressions:l STRING:i COLON
+			{:
+				l.addElement(i);
+				RESULT = l;
+			:}
+
+			| STRING:i COLON
+			{:
+				Vector<String> l = new Vector<String>();
+				l.addElement(i);
+				RESULT = l;
+			:}
 			;
 
 if_clause_list ::= if_clause:c if_clause_list:l 

@@ -12,8 +12,9 @@ This repo contains the prototype of the SMPL project that uses the Java platform
 - [x] Evolve grammar
 - [ ] Build interpreter
     - Address all source TODOS and FIXME
-    - Complete implementation for array and dictionary data structures
-    - Complete implementation for complex constrol strucutres: cases, elses, loops
+    - Complete implementation for dictionary data structure
+    - Make cases able to evaluate and compare expression rather than string
+    - Allow infinite loops when no condition expression is provided -> `(;;)`
     - Complete implementation for spread parameters
     - Complete implementation for reading in data entry
     - Fix recursion issue

@@ -1,32 +1,34 @@
 package smpl.sys.util;
 
-import smpl.sys.expressions.IExpression;
+import java.util.Vector;
+
+import smpl.sys.commands.ICommand;
 
 public class Cases {
     
-    String _value;
-    IExpression _expression;
+    Vector<String> _values;
+    ICommand _statement;
 
-    public Cases(String value, IExpression expression) {
-        this._value = value;
-        this._expression = expression;
+    public Cases(Vector<String> values, ICommand statement) {
+        _values = values;
+        _statement = statement;
     }
 
     /**
-     * Get condition
+     * Get case value
      * 
-     * @return IExpression
+     * @return Vector<String>
      */
-    public String getCaseValue() {
-        return _value;
+    public Vector<String> getCaseValues() {
+        return _values;
     }
 
     /**
      * Get expression
      * 
-     * @return IExpression
+     * @return ICommand
      */
-    public IExpression getExpression() {
-        return _expression;
+    public ICommand getStatement() {
+        return _statement;
     }
 }
