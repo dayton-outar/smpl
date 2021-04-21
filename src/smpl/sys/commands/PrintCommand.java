@@ -10,7 +10,6 @@ public class PrintCommand implements ICommand {
     String _message = "";
     IExpression _exp;
 
-    // TODO: Will need to change to accommodate array of strings and expressions
     public PrintCommand(String message) {
         _message = message;
     }

@@ -15,9 +15,7 @@ public class ReadCommand implements ICommand {
     }
 
     @Override
-    public void execute(Hashtable<String, IValue> dictionary) {
-        System.out.println("READ INTO " + _var); // TODO: Exception handling for execute need to be added to interface
-        
+    public void execute(Hashtable<String, IValue> dictionary) {        
         DataInputStream in  = new DataInputStream(System.in);
         try {
             String val = in.readLine();

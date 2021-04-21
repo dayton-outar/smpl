@@ -16,7 +16,6 @@ This repo contains the prototype of the SMPL project that uses the Java platform
     - Make cases able to evaluate and compare expression rather than string
     - Allow infinite loops when no condition expression is provided -> `(;;)`
     - Complete implementation for spread parameters
-    - Complete implementation for reading in data entry
     - Fix recursion issue
 - [x] Write build script in Ant
 - [ ] Write unit tests and example scripts
