@@ -22,13 +22,18 @@ public class LoopCommand implements ICommand {
 
     @Override
     public void execute(Hashtable<String, IValue> dictionary) throws Exception {
-        _initialize.execute(dictionary);
+        if (_initialize != null) {
+            _initialize.execute(dictionary);
+        }        
 
         while( _condition.evaluate(dictionary).booleanValue() ) {
             for (ICommand stmt : _statements) {
                 stmt.execute(dictionary);
             }
-            _stepper.execute(dictionary);
+            
+            if ( _stepper != null) {
+                _stepper.execute(dictionary);
+            }
         }
     }
     

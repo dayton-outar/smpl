@@ -416,7 +416,7 @@ public class LongValue implements IValue {
 
     @Override
     public IValue ltoreq(IValue val) throws Exception {
-        return val.isLong() ? this.gtoreq( (LongValue) val ) : this.gtoreq( (DoubleValue) val );
+        return val.isLong() ? this.ltoreq( (LongValue) val ) : this.ltoreq( (DoubleValue) val );
     }
 
     public IValue ltoreq(DoubleValue val) {

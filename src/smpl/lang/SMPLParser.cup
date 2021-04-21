@@ -83,6 +83,7 @@ non terminal Vector<ICommand>				statement_list;
 non terminal Vector<ICommand>				statement_block;
 non terminal ICommand						statement;
 non terminal ICommand						assignment_statement;
+non terminal ICommand						stepper;
 non terminal ICommand						intialize_statement;
 non terminal Hashtable<String,IExpression>	dictionary;
 non terminal Vector<IExpression>			array;
@@ -150,7 +151,7 @@ statement ::= expression_sequence:e SEMI
 			| CASES LPAREN expression_sequence:e RPAREN LBRACE case_list:l RBRACE
 			{: RESULT = new CasesCommand(e, l); :}
 
-			| LPAREN intialize_statement:i SEMI condition_sequence:c SEMI assignment_statement:s RPAREN statement_block:sl
+			| LPAREN intialize_statement:i SEMI condition_sequence:c SEMI stepper:s RPAREN statement_block:sl
 			{: RESULT = new LoopCommand(i, c, s, sl); :}
 
 			| PRINT STRING:s SEMI
@@ -167,6 +168,16 @@ intialize_statement ::= IDENTIFIER:i ASSIGN expression_sequence:e
 			{:
 				RESULT = new AssignmentExpressionCommand(i, e);
 			:}
+
+			| empty
+			{: RESULT = null; :}
+			;
+
+stepper ::= assignment_statement:s
+			{: RESULT = s; :}
+
+			| empty
+			{: RESULT = null; :}
 			;
 
 assignment_statement ::= IDENTIFIER:i INCREMENT
@@ -363,7 +374,7 @@ expression ::= 	expression:e1 PLUS expression:e2
 
 			| NIL
 			{: RESULT = null; :}
-             ;
+            ;
 
 case_list ::= case:c case_list:l
 			{:
