@@ -8,29 +8,27 @@ import smpl.sys.values.IValue;
 
 public class LoopCommand implements ICommand {
 
-    Vector<ICommand> _initializeList;
+    ICommand _initialize;
     IExpression _condition;
-    IExpression _incrementExpression;
+    ICommand _stepper;
     Vector<ICommand> _statements;
 
-    public LoopCommand(Vector<ICommand> initializeList, IExpression condition, IExpression incrementExpression, Vector<ICommand> statements) {
-        _initializeList = initializeList;
+    public LoopCommand(ICommand initialize, IExpression condition, ICommand stepper, Vector<ICommand> statements) {
+        _initialize = initialize;
         _condition = condition;
-        _incrementExpression = incrementExpression;
+        _stepper = stepper;
         _statements = statements;
     }
 
     @Override
     public void execute(Hashtable<String, IValue> dictionary) throws Exception {
-        for (ICommand cmd : _initializeList) {
-            cmd.execute(dictionary);
-        }
+        _initialize.execute(dictionary);
 
         while( _condition.evaluate(dictionary).booleanValue() ) {
             for (ICommand stmt : _statements) {
                 stmt.execute(dictionary);
             }
-            _incrementExpression.evaluate(dictionary);
+            _stepper.execute(dictionary);
         }
     }
     

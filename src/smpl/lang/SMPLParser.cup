@@ -82,7 +82,8 @@ non terminal Program						program;
 non terminal Vector<ICommand>				statement_list;
 non terminal Vector<ICommand>				statement_block;
 non terminal ICommand						statement;
-non terminal Vector<ICommand>				intialize_list;
+non terminal ICommand						assignment_statement;
+non terminal ICommand						intialize_statement;
 non terminal Hashtable<String,IExpression>	dictionary;
 non terminal Vector<IExpression>			array;
 non terminal Vector<Cases>					case_list;
@@ -134,38 +135,8 @@ statement_list ::= statement:stmt statement_list:sl
 statement ::= expression_sequence:e SEMI
 			{: RESULT = new ExpressionCommand(e);	:}
 
-			| IDENTIFIER:i INCREMENT SEMI
-			{: RESULT = new IncrementCommand(i); :}
-
-			| IDENTIFIER:i DECREMENT SEMI
-			{: RESULT = new DecrementCommand(i); :}
-
-			| IDENTIFIER:i ASSIGN expression_sequence:e SEMI
-			{: RESULT = new AssignmentExpressionCommand(i, e); :}
-
-			| IDENTIFIER:i ASSIGNADD expression_sequence:e SEMI
-			{: RESULT = new AssignmentAddExpressionCommand(i, e); :}
-
-			| IDENTIFIER:i ASSIGNSUB expression_sequence:e SEMI
-			{: RESULT = new AssignmentSubExpressionCommand(i, e); :}
-
-			| IDENTIFIER:i ASSIGNTIMES expression_sequence:e SEMI
-			{: RESULT = new AssignmentMulExpressionCommand(i, e); :}
-
-			| IDENTIFIER:i ASSIGNDIVIDE expression_sequence:e SEMI
-			{: RESULT = new AssignmentDivExpressionCommand(i, e); :}
-
-			| IDENTIFIER:i ASSIGNMOD expression_sequence:e SEMI
-			{: RESULT = new AssignmentModExpressionCommand(i, e); :}
-
-			| IDENTIFIER:i ASSIGNAMP expression_sequence:e SEMI
-			{: RESULT = new AssignmentAmpExpressionCommand(i, e); :}
-
-			| IDENTIFIER:i ASSIGNBAR expression_sequence:e SEMI
-			{: RESULT = new AssignmentBarExpressionCommand(i, e); :}
-
-			| IDENTIFIER:i ASSIGNCARET expression_sequence:e SEMI
-			{: RESULT = new AssignmentInvExpressionCommand(i, e); :}
+			| assignment_statement:s SEMI
+			{: RESULT = s;	:}
 
 			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN statement_block:sl
 			{: RESULT = new AssignmentFunctionCommand(i, l, sl); :}
@@ -179,8 +150,8 @@ statement ::= expression_sequence:e SEMI
 			| CASES LPAREN expression_sequence:e RPAREN LBRACE case_list:l RBRACE
 			{: RESULT = new CasesCommand(e, l); :}
 
-			| LPAREN intialize_list:il SEMI condition_sequence:c SEMI expression_sequence:e RPAREN statement_block:sl
-			{: RESULT = new LoopCommand(il, c, e, sl); :}
+			| LPAREN intialize_statement:i SEMI condition_sequence:c SEMI assignment_statement:s RPAREN statement_block:sl
+			{: RESULT = new LoopCommand(i, c, s, sl); :}
 
 			| PRINT STRING:s SEMI
 			{: RESULT = new PrintCommand(s); :}
@@ -192,18 +163,44 @@ statement ::= expression_sequence:e SEMI
 			{: RESULT = new ReadCommand(i); :}
 			;
 
-intialize_list ::= IDENTIFIER:i ASSIGN expression_sequence:e COMMA intialize_list:l 
-			{: 
-				l.addElement(new AssignmentExpressionCommand(i, e)); 
-				RESULT = l; 
+intialize_statement ::= IDENTIFIER:i ASSIGN expression_sequence:e 
+			{:
+				RESULT = new AssignmentExpressionCommand(i, e);
 			:}
-			
-			| IDENTIFIER:i ASSIGN expression_sequence:e 
-			{: 
-				Vector<ICommand> l = new Vector<ICommand>();
-				l.addElement(new AssignmentExpressionCommand(i, e));
-				RESULT = l;
-			:}
+			;
+
+assignment_statement ::= IDENTIFIER:i INCREMENT
+			{: RESULT = new IncrementCommand(i); :}
+
+			| IDENTIFIER:i DECREMENT
+			{: RESULT = new DecrementCommand(i); :}
+
+			| IDENTIFIER:i ASSIGN expression_sequence:e
+			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNADD expression_sequence:e
+			{: RESULT = new AssignmentAddExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNSUB expression_sequence:e
+			{: RESULT = new AssignmentSubExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNTIMES expression_sequence:e
+			{: RESULT = new AssignmentMulExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNDIVIDE expression_sequence:e
+			{: RESULT = new AssignmentDivExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNMOD expression_sequence:e
+			{: RESULT = new AssignmentModExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNAMP expression_sequence:e
+			{: RESULT = new AssignmentAmpExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNBAR expression_sequence:e
+			{: RESULT = new AssignmentBarExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGNCARET expression_sequence:e
+			{: RESULT = new AssignmentInvExpressionCommand(i, e); :}
 			;
 
 parameter_list ::= expression_sequence:e COMMA parameter_list:l
