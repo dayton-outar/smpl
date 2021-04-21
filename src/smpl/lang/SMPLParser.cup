@@ -400,8 +400,8 @@ if_clause_list ::= if_clause:c if_clause_list:l
 			{: RESULT = new Vector<Elses>(); :}
 			;
 
-if_clause ::= condition_sequence:c COLON expression_sequence:e SEMI 
-			{: RESULT = new Elses(c, e); :}
+if_clause ::= condition_sequence:c COLON statement:s 
+			{: RESULT = new Elses(c, s); :}
 			;
 
 condition_sequence ::= condition_sequence:c1 AND condition:c2

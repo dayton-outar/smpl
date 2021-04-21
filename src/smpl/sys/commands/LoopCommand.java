@@ -2,6 +2,7 @@ package smpl.sys.commands;
 
 import java.util.Hashtable;
 import java.util.Vector;
+import java.util.Collections;
 
 import smpl.sys.expressions.IExpression;
 import smpl.sys.values.IValue;
@@ -24,7 +25,9 @@ public class LoopCommand implements ICommand {
     public void execute(Hashtable<String, IValue> dictionary) throws Exception {
         if (_initialize != null) {
             _initialize.execute(dictionary);
-        }        
+        }
+
+        Collections.reverse(_statements);
 
         while( _condition.evaluate(dictionary).booleanValue() ) {
             for (ICommand stmt : _statements) {

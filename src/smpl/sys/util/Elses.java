@@ -1,15 +1,16 @@
 package smpl.sys.util;
 
+import smpl.sys.commands.ICommand;
 import smpl.sys.expressions.IExpression;
 
 public class Elses {
 
     IExpression _condition;
-    IExpression _expression;
+    ICommand _statement;
 
-    public Elses(IExpression condition, IExpression expression) {
+    public Elses(IExpression condition, ICommand statement) {
         this._condition = condition;
-        this._expression = expression;
+        this._statement = statement;
     }
 
     /**
@@ -24,9 +25,9 @@ public class Elses {
     /**
      * Get expression
      * 
-     * @return IExpression
+     * @return ICommand
      */
-    public IExpression getExpression() {
-        return _expression;
+    public ICommand getStatement() {
+        return _statement;
     }
 }
