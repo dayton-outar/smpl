@@ -411,56 +411,137 @@ public class ArrayValue implements IValue {
 
     @Override
     public IValue eq(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        BooleanValue bv = new BooleanValue(false);
+
+        if ( val instanceof ArrayValue ) {
+            Vector<IValue> vals = val.arrayValues();
+
+            // The intention is to perform [2, 3, 3] = [2, 3, 3] => true
+            if ( _val.size() == vals.size() ) {
+                for (int x = 0; x < _val.size(); x++) {
+                    if ( !(_val.get(x).eq( vals.get(x) ).booleanValue()) )
+                        break;
+                }
+                bv = new BooleanValue(true);
+            }
+        }
+        
+        return bv;
     }
 
     @Override
     public IValue gt(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        BooleanValue bv = new BooleanValue(false);
+
+        if ( val instanceof ArrayValue ) {
+            Vector<IValue> vals = val.arrayValues();
+
+            // The intention is to perform [3, 3, 3] > [2, 3, 3] => false
+            if ( _val.size() == vals.size() ) {
+                for (int x = 0; x < _val.size(); x++) {
+                    if ( !(_val.get(x).gt( vals.get(x) ).booleanValue()) )
+                        break;
+                }
+                bv = new BooleanValue(true);
+            }
+        }
+        
+        return bv;
     }
 
     @Override
     public IValue lt(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        BooleanValue bv = new BooleanValue(false);
+
+        if ( val instanceof ArrayValue ) {
+            Vector<IValue> vals = val.arrayValues();
+
+            // The intention is to perform [3, 3, 3] > [2, 3, 3] => false
+            if ( _val.size() == vals.size() ) {
+                for (int x = 0; x < _val.size(); x++) {
+                    if ( !(_val.get(x).lt( vals.get(x) ).booleanValue()) )
+                        break;
+                }
+                bv = new BooleanValue(true);
+            }
+        }
+        
+        return bv;
     }
 
     @Override
     public IValue noteq(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        BooleanValue bv = new BooleanValue(false);
+
+        if ( val instanceof ArrayValue ) {
+            Vector<IValue> vals = val.arrayValues();
+
+            // The intention is to perform [3, 3, 3] > [2, 3, 3] => false
+            if ( _val.size() == vals.size() ) {
+                for (int x = 0; x < _val.size(); x++) {
+                    if ( !(_val.get(x).noteq( vals.get(x) ).booleanValue()) )
+                        break;
+                }
+                bv = new BooleanValue(true);
+            }
+        }
+        
+        return bv;
     }
 
     @Override
     public IValue gtoreq(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        BooleanValue bv = new BooleanValue(false);
+
+        if ( val instanceof ArrayValue ) {
+            Vector<IValue> vals = val.arrayValues();
+
+            // The intention is to perform [3, 3, 3] > [2, 3, 3] => false
+            if ( _val.size() == vals.size() ) {
+                for (int x = 0; x < _val.size(); x++) {
+                    if ( !(_val.get(x).gtoreq( vals.get(x) ).booleanValue()) )
+                        break;
+                }
+                bv = new BooleanValue(true);
+            }
+        }
+        
+        return bv;
     }
 
     @Override
     public IValue ltoreq(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        BooleanValue bv = new BooleanValue(false);
+
+        if ( val instanceof ArrayValue ) {
+            Vector<IValue> vals = val.arrayValues();
+
+            // The intention is to perform [3, 3, 3] > [2, 3, 3] => false
+            if ( _val.size() == vals.size() ) {
+                for (int x = 0; x < _val.size(); x++) {
+                    if ( !(_val.get(x).ltoreq( vals.get(x) ).booleanValue()) )
+                        break;
+                }
+                bv = new BooleanValue(true);
+            }
+        }
+        
+        return bv;
     }
 
     @Override
     public IValue and(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        throw new Exception("Implementation does not exist for this type");
     }
 
     @Override
     public IValue or(IValue val) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        throw new Exception("Implementation does not exist for this type");
     }
 
     @Override
     public IValue not() throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        throw new Exception("Implementation does not exist for this type");
     }
 
     @Override
