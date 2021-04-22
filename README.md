@@ -11,10 +11,9 @@ This repo contains the prototype of the SMPL project that uses the Java platform
 - [x] Update specification
 - [x] Evolve grammar
 - [ ] Build interpreter
-    - Address all source TODOS and FIXME
+    - Address all source TODOS
     - Complete implementation for dictionary data structure
     - Make cases able to evaluate and compare expression rather than string
-    - Allow infinite loops when no condition expression is provided -> `(;;)`
     - Complete implementation for spread parameters
     - Fix recursion issue
 - [x] Write build script in Ant

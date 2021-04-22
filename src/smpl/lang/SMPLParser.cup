@@ -95,6 +95,7 @@ non terminal Vector<String>					case_expressions;
 non terminal Vector<Elses>					if_clause_list;
 non terminal Elses							if_clause;
 non terminal IExpression					expression_sequence;
+non terminal IExpression					loop_condition;
 non terminal IExpression					condition_sequence;
 non terminal IExpression					condition;
 non terminal IExpression					expression;
@@ -154,7 +155,7 @@ statement ::= expression_sequence:e SEMI
 			| CASES LPAREN expression_sequence:e RPAREN LBRACE case_list:l RBRACE
 			{: RESULT = new CasesCommand(e, l); :}
 
-			| LPAREN intialize_statement:i SEMI condition_sequence:c SEMI stepper:s RPAREN statement_block:sl
+			| LPAREN intialize_statement:i SEMI loop_condition:c SEMI stepper:s RPAREN statement_block:sl
 			{: RESULT = new LoopCommand(i, c, s, sl); :}
 
 			| PRINT STRING:s SEMI
@@ -419,6 +420,13 @@ if_clause_list ::= if_clause:c if_clause_list:l
 
 if_clause ::= condition_sequence:c COLON statement:s 
 			{: RESULT = new Elses(c, s); :}
+			;
+
+loop_condition ::= condition_sequence:c
+			{: RESULT = c; :}
+
+			| empty
+			{: RESULT = new BooleanExpression(Boolean.valueOf(true)); :}
 			;
 
 condition_sequence ::= condition_sequence:c1 AND condition:c2

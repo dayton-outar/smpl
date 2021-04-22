@@ -786,7 +786,7 @@ If an expression containing a binary operator appears before the `?` in the tern
 ```
 ##### 10.5.4 Special Comments
 
-Use `FIXME` to flag something that is bogus and broken.
+Use `FIXME` to flag something that is broken or requires review or refactoring.
 
 ### 11 - Code Examples
 
