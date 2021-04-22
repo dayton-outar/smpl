@@ -17,7 +17,8 @@ This repo contains the prototype of the SMPL project that uses the Java platform
     - Complete implementation for spread parameters
     - Fix recursion issue
 - [x] Write build script in Ant
-- [ ] Write unit tests and example scripts
+- [x] Write example scripts
+- [ ] Write unit tests
 - [ ] Document application architecture in smpl/
 - [ ] Create javadoc Ant task for generating markdown for all source files
 - [ ] Calibrate documentation according to Github standards
