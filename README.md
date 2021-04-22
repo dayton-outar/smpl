@@ -19,7 +19,7 @@ This repo contains the prototype of the SMPL project that uses the Java platform
 - [x] Write build script in Ant
 - [x] Write example scripts
 - [ ] Write unit tests
-- [-] Document application architecture in smpl/
+- [ ] Document application architecture in smpl/
 - [ ] Create javadoc Ant task for generating markdown for all source files
 - [ ] Calibrate documentation according to Github standards
 - [ ] Build CI pipeline with Github actions
