@@ -2,9 +2,13 @@
 
 ## Code Organization
 
-SMPLParser.cup returns `ICommand` for statements and `IExpression` for expressions. The `ICommand` implementations are done within files that are within the `smpl.sys.commands` package and found within _[sys/commands](sys/commands)_ folder path in this folder.
+SMPLParser.cup returns `ICommand` for statements and `IExpression` for expressions. The lexer and the parser are found within the _[lang](lang)_ folder. Both the lexer and the parser are created by generators. The generator that is used in this project to create the lexer is called [JFlex](https://jflex.de/manual.html). **JFlex** takes in a _flex_ file that contains specification that makes heavy use of regular expressions to identify tokens within a string.
 
-The `ICommand` interface demands and implementation of `execute` for every class that uses it. Each class that implements the `ICommand` interface should have behaviour specific to its intended nature. ...TODO Should each implementation transform the current state of the application, which includes the heap and the stack?
+> [JFlex], a lexical analyser generator takes as input a specification with a set of regular expressions and corresponding actions. It generates a program (a lexer) that reads input, matches the input against the regular expressions in the spec file, and runs the corresponding action if a regular expression matched. Lexers usually are the first front-end step in compilers, matching keywords, comments, operators, etc, and generating an input token stream for parsers. They can also be used for many other purposes.
+
+The `ICommand` implementations are done within files that are within the `smpl.sys.commands` package and found within _[sys/commands](sys/commands)_ folder path in this folder. The implementations of `ICommand` would initialize that particular command and contain unique process flow within the `execute` function. Each `ICommand` class has behaviour specific to its intended nature. A main hashtable is passed from the beginning of the program stack onto all commands within that stack. That main hashtable maintains the _global scope_ for variables in the script that is being interpreted.
+
+
 
 
 ## Java Libraries Used
