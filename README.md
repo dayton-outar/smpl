@@ -6,6 +6,8 @@ Credits to Prof. Daniel Coore for the original specification. Herein this projec
 
 This repo contains the prototype of the SMPL project that uses the Java platform and uses JFlex and CUP tools. Plans are in mind to build this project using C by making use of the Lex & Yacc tools (or, better yet, Flex & Bison<sup>[+](https://aquamentus.com/flex_bison.html)</sup>).
 
+Find tutorials [here](tests/examples).
+
 ## Notes
 
  - [Java 8 API](https://docs.oracle.com/javase/8/docs/) <sup><a href="https://docs.oracle.com/javase/8/docs/api/overview-summary.html">&#8251;</a></sup>
