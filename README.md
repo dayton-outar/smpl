@@ -13,6 +13,7 @@ This repo contains the prototype of the SMPL project that uses the Java platform
 - [ ] Build interpreter
     - Address all source TODOS
     - Complete implementation for dictionary data structure
+    - Complete interpolated string
     - Make cases able to evaluate and compare expression rather than string
     - Complete implementation for spread parameters
     - Fix recursion issue

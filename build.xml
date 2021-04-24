@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="build-app-source" name="SMPL - Simple Math Programming Language">
+<project default="build-lib" name="SMPL - Simple Math Programming Language">
 
     <property name="message" value="This is SMPL! The Simple Math Programming Language" />
     <property name="smpl-lang-dir" location="src/smpl/lang" />
@@ -38,12 +38,17 @@
         </cup>
     </target>
 
-    <target name="build-app-source" depends="build-parser">
+    <target name="compile" depends="build-parser">
         <javac srcdir="src"
             destdir="bin"
             deprecation="true"
             includeantruntime="false"
             classpathref="cup.classpath" />
+    </target>
+
+    <target name="build-lib" depends="build-parser">
+        <jar destfile="lib/coore-outar-smpl-1.0.0.jar"
+            basedir="bin" />
     </target>
 
 </project>
