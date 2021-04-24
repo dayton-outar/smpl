@@ -6,29 +6,6 @@ Credits to Prof. Daniel Coore for the original specification. Herein this projec
 
 This repo contains the prototype of the SMPL project that uses the Java platform and uses JFlex and CUP tools. Plans are in mind to build this project using C by making use of the Lex & Yacc tools (or, better yet, Flex & Bison<sup>[+](https://aquamentus.com/flex_bison.html)</sup>).
 
-## To-Do
-
-- [x] Update specification
-- [x] Evolve grammar
-- [ ] Build interpreter
-    - Address all source TODOS
-    - Complete implementation for dictionary data structure
-    - Complete interpolated string
-    - Make cases able to evaluate and compare expression rather than string
-    - Complete implementation for spread parameters
-    - Fix recursion issue
-- [x] Write build script in Ant
-- [x] Write example scripts
-- [ ] Write unit tests
-- [x] Document application architecture in smpl/
-- [ ] Update Coding Convention src/ README
-- [ ] Update tests/examples/ README
-- [ ] Update tests/ README
-- [x] Create javadoc Ant task for generating markdown for all source files
-- [ ] Update root README according to Github standards
-- [ ] Build CI pipeline with Github actions
-- [ ] Build [MathJax](https://www.mathjax.org/) translator. SMPL --> MathJax
-
 ## Notes
 
  - [Java 8 API](https://docs.oracle.com/javase/8/docs/) <sup><a href="https://docs.oracle.com/javase/8/docs/api/overview-summary.html">&#8251;</a></sup>
