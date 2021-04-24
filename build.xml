@@ -48,7 +48,8 @@
 
     <target name="build-lib" depends="build-parser">
         <jar destfile="lib/coore-outar-smpl-1.0.0.jar"
-            basedir="bin/smpl" />
+            basedir="bin"
+            excludes="bin/App.class" />
     </target>
 
 </project>
