@@ -20,9 +20,12 @@ This repo contains the prototype of the SMPL project that uses the Java platform
 - [x] Write build script in Ant
 - [x] Write example scripts
 - [ ] Write unit tests
-- [ ] Document application architecture in smpl/
-- [ ] Create javadoc Ant task for generating markdown for all source files
-- [ ] Calibrate documentation according to Github standards
+- [x] Document application architecture in smpl/
+- [ ] Update Coding Convention src/ README
+- [ ] Update tests/examples/ README
+- [ ] Update tests/ README
+- [x] Create javadoc Ant task for generating markdown for all source files
+- [ ] Update root README according to Github standards
 - [ ] Build CI pipeline with Github actions
 - [ ] Build [MathJax](https://www.mathjax.org/) translator. SMPL --> MathJax
 

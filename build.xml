@@ -52,4 +52,12 @@
             excludes="bin/App.class" />
     </target>
 
+    <target name="build-doc" depends="build-parser">
+        <javadoc packagenames="smpl.*"
+            destdir="doc"
+            sourcepath="src"
+            author="true"
+            version="true" />
+    </target>
+
 </project>
