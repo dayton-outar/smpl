@@ -1,11 +1,5 @@
 ## Java Code Conventions
 
-September 12, 1997
-
-&copy; 1997, Sun Microsystems, Inc. All rights reserved.
-
-2550 Garcia Avenue, Mountain View, California 94043-1100 U.S.A.
-
 ### 1 - Introduction
 
 #### 1.1 Why Have Code Conventions.
@@ -18,7 +12,7 @@ Code conventions are important to programmers for a number of reasons:
 
 #### 1.2 Acknowledgments
 
-This document reflects the Java language coding standards presented in theJava Language Specification, from Sun Microsystems. Major contributions are from Peter King, Patrick Naughton, Mike DeMoney, Jonni Kanerva, Kathy Walrath, and Scott Hommel.
+This document reflects the Java language coding standards presented in the Java Language Specification, from Sun Microsystems. Major contributions are from Peter King, Patrick Naughton, Mike DeMoney, Jonni Kanerva, Kathy Walrath, and Scott Hommel.
 
 ### 2 - File Names
 
@@ -184,7 +178,7 @@ if ((condition1 && condition2) || (condition3 && condition4)
 Here are three acceptable ways to format ternary expressions:
 
 ```java
-alpha = (aLongBooleanExpression)? beta : gamma;
+alpha = (aLongBooleanExpression) ? beta : gamma;
 
 alpha = (aLongBooleanExpression) ? beta
                                  : gamma;
@@ -476,7 +470,7 @@ if (condition) //AVOID! THIS OMITS THE BRACES {}!
 A `for` statement should have the following form:
 
 ```java
-for (initialization;condition; update) {
+for (initialization; condition; update) {
    statements;
 }
 ```
@@ -484,7 +478,7 @@ for (initialization;condition; update) {
 An empty `for` statement (one in which all the work is done in the initialization, condition, and update clauses) should have the following form:
 
 ```java
-for (initialization;condition; update);
+for (initialization; condition; update);
 ```
 
 When using the comma operator in the initialization or update clause of aforstatement, avoid the complexity of using more than three variables. If needed, use separate statements before thefor loop (for the initialization clause) or at the end of the loop (for the update clause).
@@ -602,8 +596,7 @@ Blank spaces should be used in the following circumstances:
 
    ```java
    myMethod((byte) aNum, (Object) x);
-   myFunc((int) (cp + 5), ((int) (i + 3))
-   + 1);
+   myFunc((int) (cp + 5), ((int) (i + 3)) + 1);
    ```
 
 ### 9 - Naming Conventions
@@ -733,6 +726,7 @@ If an expression containing a binary operator appears before the `?` in the tern
 ##### 10.5.4 Special Comments
 
 Use `FIXME` to flag something that is broken or requires review or refactoring.
+Use `TODO` to flag something that needs to be done.<sup><a href="#footnote-1">1</a></sup>
 
 ### 11 - Code Examples
 
@@ -812,3 +806,10 @@ public class Blah extends SomeClass {
    }
 }
 ```
+
+---
+&copy; 1997, Sun Microsystems, Inc. All rights reserved.
+
+&copy; 2021 Dayton Outar
+
+<a id="footnote-1"><sup>1</sup></a> Added `TODO` since it has become ubiquitous in all languages to comment in areas that the programmer can get back to completing a thought
