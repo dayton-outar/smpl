@@ -57,10 +57,6 @@ Finally, you can execute it:
 java -jar myJar.jar
 ```
 
-### Dissertation
-
-[This](https://andreil26.github.io/me/uniprojects/2019/06/21/lexer_parser.html) dissertation can prove to be useful in the documentation. Can it be simplified any more?
-
 ### Miscellaneous
 
 This will be a symbolic language almost like a language expressed by academic Mathematicians. So, [this resource](https://byjus.com/maths/math-symbols/) listing the symbols will prove to be useful. May need to also pull out my Discrete Mathematics text book.
