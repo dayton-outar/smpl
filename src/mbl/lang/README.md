@@ -9,7 +9,7 @@ Now, there are so many programming languages and there is an academic way that m
 n=1
 ```
 
-This is proof of concept that is an excuse for using _flex_ and _bison_.
+This is proof of concept that is an excuse for using _flex_ and _[bison](https://www.gnu.org/software/bison/manual/)_.
 ## Usage
 
 To compile this interpreter perform the following,
@@ -22,3 +22,4 @@ You can find details in the _Makefile_
 ## References
 
 1. [Using Lex with Yacc](https://silcnitc.github.io/ywl.html) by Ashwathy T Revi, Subisha V
+2. flex &amp; bison by John Levine
