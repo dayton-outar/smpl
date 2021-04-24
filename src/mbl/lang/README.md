@@ -2,7 +2,7 @@
 
 This is a preview into the possibility of using the _C_ programming language and tools such as _flex_ and _bison_ to create _mbl_ (a Mathematically Beautiful Language).
 
-Now, there are so many programming languages and there is an academic way that mathematicians express themselves in writing formulas (which is a function) by using symbols that are not readily available on the QWERTY keyboard. The idea here is to construct a language that makes use of unicode and/or a tool such as [MathJax](https://www.mathjax.org/) to write the mathematical expressions but also to evaluate those expressions. Imagine a programming language that can evaluate πr² (where π is built-in value and r is a variable). Or what about,
+Now, there are so many programming languages and there is an academic way that mathematicians express themselves in writing formulas (which is a function) by using symbols that are not readily available on the QWERTY keyboard. The idea here is to construct a language that makes use of unicode and/or a tool such as [MathJax](https://www.mathjax.org/) to write the mathematical expressions but also to evaluate those expressions. Imagine a programming language that can evaluate πr² (where π is built-in value and r is a variable). Or what about the following expression?
 ```
 4
 Σ n
