@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TestRunner",
+            "request": "launch",
+            "mainClass": "TestRunner",
+            "projectName": "smpl_a65f9bd"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
