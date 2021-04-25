@@ -1,2 +1,7 @@
 /* return a newly allocated vector obtained by applying f to each element of v. */
-vmap = (:f, :v) { [ size(v): i -> f(v[i]) ]; }
+cubed = (:x) { x**3; }
+
+vmap = (:f, :v) { [ | v |: i -> f( v[i] ) ]; }
+
+:> "Map cube function to [ 2, 5, 9 ]";
+:> vmap( cubed, [2, 5, 9] );
