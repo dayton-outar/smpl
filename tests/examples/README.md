@@ -29,7 +29,7 @@ rectangle = (:w, :h) { w * h; } // Same as A = w × h
 :> rectangle(5, 6); // Outputs 30
 ```
 
-
+![Triangle](/.attachments/triangulo.png)
 ```
 // Area of triangle
 triangle = (:b, :h) {
@@ -40,6 +40,7 @@ triangle = (:b, :h) {
 ```
 Take note that both the asterisk and the unicode times symbol can be used as a multiplication operator
 
+![Trapezoid](/.attachments/trapezio.png)
 
 ```
 // Area of trapezoid
@@ -48,6 +49,7 @@ trapezoid = (:x, :y, :h) { ((x+y)/2) × h; }
 :> trapezoid(4, 2, 5); // Outputs 15
 ```
 
+![Circle](/.attachments/circulo.png)
 
 ```
 // Area of circle
@@ -56,6 +58,7 @@ circle = (:r) { π × r**2; }
 :> circle(3); // Outputs 28.27431
 ```
 
+![Cone](/.attachments/cone.png)
 
 ```
 // Area of cone
@@ -75,6 +78,13 @@ sphere = (:r) {
 
 ```
 
+![Pythagoras Theorem](./attachments/pythagoras-theorem.png)
+
+```
+hypotenuse = (:a, :b) { √(a**2 + b**2); }
+
+:> hypotenuse(3, 4); // Outputs 5.0
+```
 
 ### Linear Algebra
 
@@ -82,11 +92,7 @@ sphere = (:r) {
 
 ### Trigonometry
 
-```
-hypotenuse = (:a, :b) { √(a**2 + b**2); }
 
-:> hypotenuse(3, 4); // Outputs 5.0
-```
 
 ### Probability
 
