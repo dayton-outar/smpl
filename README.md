@@ -1,3 +1,11 @@
+<div align="center">
+  <img src=".attachments/snipe-eel-smpl.png" />
+  <br/>
+  <b>A simple math programming language</b>
+  <br/>
+  <br/>
+</div>
+
 # SMPL
 
 SMPL is a small, but expressive math programming language.
