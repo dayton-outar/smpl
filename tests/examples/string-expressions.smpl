@@ -1,2 +1,2 @@
 b = 5 * 4;
-:> "The price for bananas is ${b × 0.8}";
+:> "The price for bananas is ${b × 0.8}"; // FIXME: Interpolated string not yet working
