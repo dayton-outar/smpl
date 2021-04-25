@@ -78,7 +78,7 @@ sphere = (:r) {
 
 ```
 
-![Pythagoras Theorem](/.attachments/pythagoras-theorem.png)
+![Pythagoras Theorem](/.attachments/pythagoras-theorem-4-hypotenuse.png)
 
 ```
 hypotenuse = (:a, :b) { √(a**2 + b**2); }
