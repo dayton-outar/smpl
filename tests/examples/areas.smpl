@@ -21,3 +21,10 @@ cone = (:r, :s) { π × r × s; }
 
 :> "Area of cone of radius of 3 and arc of 5";
 :> cone(3, 5);
+
+triangle = (:b, :h) {
+    (b × h) / 2;
+}
+
+:> "Area of triangle of base of 6 and height 9";
+:> triangle(6, 9);
