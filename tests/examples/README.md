@@ -12,6 +12,7 @@ What can we achieve using _SMPL_?
 
 ### Geometry
 
+![Square Shape](/.attachments/quadrado.png)
 
 ```
 // Area of square
@@ -19,7 +20,7 @@ square = (:l) { l**2; } // Same as A = l²
 
 :> square(4); // Outputs 16
 ```
-
+![Rectangle Shape](/.attachments/retangulo.png)
 
 ```
 // Area of rectangle
@@ -63,6 +64,7 @@ cone = (:r, :s) { π × r × s; }
 :> cone(3, 5); // Outputs
 ```
 
+![Sphere](/.attachments/esfera.png)
 ```
 // Volume of sphere
 sphere = (:r) {
