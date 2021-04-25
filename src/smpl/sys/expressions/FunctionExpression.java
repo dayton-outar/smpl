@@ -20,18 +20,20 @@ public class FunctionExpression implements IExpression {
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
         FunctionValue fv = (FunctionValue)dictionary.get(_function);
-        //if (fv == null)
-        //    throw new Exception("The function " + _function + " was not declared");
+        if (fv == null)
+            throw new Exception("The function, " + _function + ", was not declared");
 
         Program prog = new Program( fv.getStatements() );
 
         Hashtable<String, IValue> programDictionary = new Hashtable<String, IValue>();
+        // Use variables in global scope (or calling scope)
+        programDictionary.putAll(dictionary);
         Vector<String> variables = fv.getParameters();
         for (int x = 0; x < variables.size(); x++) {
             programDictionary.put( variables.elementAt(x), _parameters.elementAt(x).evaluate(dictionary) );
         }
         
-        programDictionary.putAll(dictionary); // Use this to use variables in global scope (or calling scope)
+        
         prog.execute( programDictionary );
         
         return programDictionary.get("__return"); // Re-set as return value;

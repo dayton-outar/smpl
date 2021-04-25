@@ -1,3 +1,4 @@
-fact = (:n) { (n <= 1) ? 1 : n * fact(n - 1); }
+fact = (:n) { (n <= 1) ? 1 : n * fact( n - 1 ); }
 
-:> fact(3);
+:> "Testing factorial";
+:> fact(3); // FIXME: Recursions not working

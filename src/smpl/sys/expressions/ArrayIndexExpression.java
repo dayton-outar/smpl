@@ -17,7 +17,20 @@ public class ArrayIndexExpression implements IExpression {
 
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
-        // TODO: Evaluate the index. Get the array from the heap and then evaluate the index of that array ... or send back the value        
-        return new LongValue(Long.valueOf(1)); // TODO: Get value of array index from heap
+        IValue rval;
+        IValue val = dictionary.get(_var);
+        LongValue index = new LongValue( _exp.evaluate(dictionary).longValue() );
+
+        if ( val.isArray() ) {
+            int ix = (int) index.longValue();
+
+            if ( ix >= 0 || ix <= (val.arrayValues().size() - 1) ) {
+                rval = val.arrayValues().get( (int) index.longValue() );
+            } else
+                throw new Exception("Index is out of bounds");            
+        } else
+            throw new Exception("Data type not appropriate for finding index");
+
+        return rval;
     }
 }

@@ -46,13 +46,13 @@
             classpathref="cup.classpath" />
     </target>
 
-    <target name="build-lib" depends="build-parser">
+    <target name="build-lib" depends="compile">
         <jar destfile="lib/coore-outar-smpl-1.0.0.jar"
             basedir="bin"
             excludes="bin/App.class" />
     </target>
 
-    <target name="build-doc" depends="build-parser">
+    <target name="build-doc" depends="compile">
         <javadoc packagenames="smpl.*"
             destdir="doc"
             sourcepath="src"

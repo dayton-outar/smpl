@@ -48,7 +48,7 @@ init with {:
 :};
 
 // special symbols
-terminal            SEMI, COLON, SPREAD, LPAREN, RPAREN, LBRACE, RBRACE, LBRAK, RBRAK, MAP, COMMA;
+terminal            SEMI, COLON, LPAREN, RPAREN, LBRACE, RBRACE, LBRAK, RBRAK, MAP, COMMA;
 terminal String		IDENTIFIER;
 terminal String		STRING;
 terminal Long   	LONG;
@@ -145,9 +145,6 @@ statement ::= expression_sequence:e SEMI
 
 			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN statement_block:sl
 			{: RESULT = new AssignmentFunctionCommand(i, l, sl); :}
-
-			| IDENTIFIER:i ASSIGN LPAREN SPREAD IDENTIFIER:p RPAREN statement_block:sl
-			{: RESULT = new AssignmentSpreadFunctionCommand(i, p, sl); :}
 
 			| CASES LBRACE if_clause_list:l RBRACE
 			{: RESULT = new ElsesCommand(l); :}
@@ -347,7 +344,7 @@ expression ::= 	expression:e1 PLUS expression:e2
 			{: RESULT = new QueryExpression(c, e1, e2); :}
 
 			| BAR IDENTIFIER:i BAR
-			{: RESULT = new LongExpression(Long.valueOf(45)); // TODO: returns size of array or absolute of number :}
+			{: RESULT = new SizeOfExpression(i); :}
 
 			| IDENTIFIER:i LPAREN parameter_list:l RPAREN
 			{: RESULT = new FunctionExpression(i, l); :}

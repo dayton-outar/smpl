@@ -120,7 +120,6 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
   "!="                          { return new Symbol(sym.NOTEQ);       }
   "≠"                           { return new Symbol(sym.NOTEQ);       }
   "="                           { return new Symbol(sym.ASSIGN);      }
-  "..."                         { return new Symbol(sym.SPREAD);      }
   "("                           { return new Symbol(sym.LPAREN);      }
   ")"                           { return new Symbol(sym.RPAREN);      }
   "=>"                          { return new Symbol(sym.MAP);         }
