@@ -14,6 +14,8 @@ Credits to Prof. Daniel Coore for the original specification. Herein this projec
 
 This repo contains the prototype of the SMPL project that uses the Java platform and uses JFlex and CUP tools. Plans are in mind to build this project using C by making use of the Lex & Yacc tools (or, better yet, Flex & Bison<sup>[+](https://aquamentus.com/flex_bison.html)</sup>).
 
+JFlex and CUP, which is the Java version modeled off flex and bison (formerly lex and yacc), in my opinion, is far more superior than [ANTLR](https://www.antlr.org/) <sup><a href="https://theantlrguy.atlassian.net/wiki/spaces/ANTLR3/pages/2687102/Five+minute+introduction+to+ANTLR+3">[+]</a></sup>. The only benefit to be had from using ANTLR is its attempt to involve as many target programming language as is it possible. For the experienced programmer, this isn't enough to influence a decision to use it.
+
 Find tutorials [here](tests/examples).
 
 ## Notes
