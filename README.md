@@ -86,7 +86,7 @@ Plan to maintain the language as loosely typed. So, using Java [this StackOverfl
  - [Setting an Application's Entry Point with the JAR Tool](http://download.oracle.com/javase/tutorial/deployment/jar/appman.html)
 
 
-## Dependency Management
+#### Dependency Management
 
 The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
 
@@ -156,7 +156,7 @@ Run main and pass text containing expression to it
 java -cp lib/java-cup-11b-runtime.jar:bin App test/examples/identifiers.smpl test/examples/hypotenuse.smpl
 ```
 
-## Interpolated String Concept
+### Interpolated String Concept
 
 Adapted from [StackOverflow](https://stackoverflow.com/questions/57971191/implementing-string-interpolation-in-flex-bison)
 
