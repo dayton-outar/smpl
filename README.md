@@ -1,10 +1,12 @@
 <div align="center">
   <img src=".attachments/snipe-eel-smpl.png" />
   <br/>
-  <b>A simple math programming language</b>
+  <b>a simple math programming language</b>
   <br/>
   <br/>
 </div>
+
+[This README is currently a messy sketch of notes]
 
 # SMPL
 
@@ -18,12 +20,33 @@ JFlex and CUP, which is the Java version modeled off flex and bison (formerly le
 
 Find tutorials [here](tests/examples).
 
-## Notes
+## Requirements
+
+...
 
  - [Java 8 API](https://docs.oracle.com/javase/8/docs/) <sup><a href="https://docs.oracle.com/javase/8/docs/api/overview-summary.html">&#8251;</a></sup>
  - [Java 9 API](https://docs.oracle.com/javase/9/)
  - [Java 10 API](https://docs.oracle.com/javase/10/)
  - [Java 11 API](https://docs.oracle.com/en/java/javase/11/)
+
+## Installation
+
+...
+
+## Usage
+
+...
+
+## Contributing
+
+### Folder Structure
+
+The workspace contains two folders by default, where:
+
+- `src`: the folder to maintain sources
+- `lib`: the folder to maintain dependencies
+
+...
 
 ### Creating a .jar file
 
@@ -62,16 +85,6 @@ Plan to maintain the language as loosely typed. So, using Java [this StackOverfl
  - [Creating a JAR File](http://download.oracle.com/javase/tutorial/deployment/jar/build.html)
  - [Setting an Application's Entry Point with the JAR Tool](http://download.oracle.com/javase/tutorial/deployment/jar/appman.html)
 
-## Getting Started
-
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
 
 ## Dependency Management
 
