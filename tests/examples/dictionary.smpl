@@ -6,3 +6,5 @@ q = [ "nike" => 3, "adidas" => 4, "ck" => 5];
 :> q;
 
 :> d["apples"];
+:> q["adidas"];
+:> d["apples"] * q["adidas"];
