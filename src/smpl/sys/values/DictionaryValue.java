@@ -9,6 +9,9 @@ import java.util.Vector;
 import java.util.Map.Entry;
 
 import smpl.sys.expressions.AdditionExpression;
+import smpl.sys.expressions.BitwiseAndExpression;
+import smpl.sys.expressions.BitwiseOrExpression;
+import smpl.sys.expressions.BitwiseXorExpression;
 import smpl.sys.expressions.DivisionExpression;
 import smpl.sys.expressions.ExponentExpression;
 import smpl.sys.expressions.IExpression;
@@ -192,17 +195,59 @@ public class DictionaryValue implements IValue {
 
     @Override
     public IValue ban(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.ban( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.ban( (DictionaryValue) this) : val.ban( (DictionaryValue) this );
+        }
+    }
+
+    public IValue ban(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new BitwiseAndExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue bor(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.bor( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.bor( (DictionaryValue) this) : val.bor( (DictionaryValue) this );
+        }
+    }
+
+    public IValue bor(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new BitwiseOrExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue bxr(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.bxr( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.bxr( (DictionaryValue) this) : val.bxr( (DictionaryValue) this );
+        }
+    }
+
+    public IValue bxr(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new BitwiseXorExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
