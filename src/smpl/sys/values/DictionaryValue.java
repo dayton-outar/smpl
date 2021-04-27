@@ -9,7 +9,11 @@ import java.util.Vector;
 import java.util.Map.Entry;
 
 import smpl.sys.expressions.AdditionExpression;
+import smpl.sys.expressions.DivisionExpression;
+import smpl.sys.expressions.ExponentExpression;
 import smpl.sys.expressions.IExpression;
+import smpl.sys.expressions.ModulusExpression;
+import smpl.sys.expressions.MultiplicationExpression;
 import smpl.sys.expressions.SubtractionExpression;
 
 public class DictionaryValue implements IValue {
@@ -112,22 +116,78 @@ public class DictionaryValue implements IValue {
 
     @Override
     public IValue mul(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.mul( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.mul( (DictionaryValue) this) : val.mul( (DictionaryValue) this );
+        }
+    }
+
+    public IValue mul(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new MultiplicationExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue div(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.div( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.div( (DictionaryValue) this) : val.div( (DictionaryValue) this );
+        }
+    }
+
+    public IValue div(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new DivisionExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue mod(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.mod( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.mod( (DictionaryValue) this) : val.mod( (DictionaryValue) this );
+        }
+    }
+
+    public IValue mod(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new ModulusExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue pow(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.pow( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.pow( (DictionaryValue) this) : val.pow( (DictionaryValue) this );
+        }
+    }
+
+    public IValue pow(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new ExponentExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
