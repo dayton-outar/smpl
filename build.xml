@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="build-lib" name="SMPL - Simple Math Programming Language">
+<project default="compile" name="SMPL - Simple Math Programming Language">
+
+    <property name="version" value="1.0.0" />
 
     <property name="message" value="This is SMPL! The Simple Math Programming Language" />
     <property name="smpl-lang-dir" location="src/smpl/lang" />
@@ -47,7 +49,7 @@
     </target>
 
     <target name="build-lib" depends="compile">
-        <jar destfile="lib/coore-outar-smpl-1.0.0.jar"
+        <jar destfile="lib/coore-outar-smpl-${version}.jar"
             basedir="bin"
             excludes="bin/App.class" />
     </target>
