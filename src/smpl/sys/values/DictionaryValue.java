@@ -4,9 +4,13 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.Vector;
+import java.util.Map.Entry;
 
+import smpl.sys.expressions.AdditionExpression;
 import smpl.sys.expressions.IExpression;
+import smpl.sys.expressions.SubtractionExpression;
 
 public class DictionaryValue implements IValue {
 
@@ -70,12 +74,40 @@ public class DictionaryValue implements IValue {
 
     @Override
     public IValue add(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.add( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.add( (DictionaryValue) this) : val.add( (DictionaryValue) this );
+        }
+    }
+
+    public IValue add(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new AdditionExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue sub(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.sub( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.sub( (DictionaryValue) this) : val.sub( (DictionaryValue) this );
+        }
+    }
+
+    public IValue sub(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new SubtractionExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
@@ -201,17 +233,17 @@ public class DictionaryValue implements IValue {
     private Vector<String> valueStrings() throws Exception {
         Vector<String> stringValue = new Vector<String>();
 
+        TreeMap<String, IExpression> sorted = new TreeMap<String, IExpression>( _dictionary );
+
         // Adapted from https://www.javacodeexamples.com/iterate-through-java-hashtable-example/3149
-        //get the entry set using the entrySet method
-        Set<Map.Entry<String, IExpression>> entries = _dictionary.entrySet();
+        // Get the entry set using the entrySet method
+        Set<Entry<String, IExpression>> entries = sorted.entrySet();
  
-        //get an iterator
-        Iterator<Map.Entry<String, IExpression>> itr = entries.iterator();
+        // Get an iterator
+        Iterator<Entry<String, IExpression>> itr = entries.iterator();
  
-        //iterate using the iterator
-        Map.Entry<String, IExpression> entry = null;
         while( itr.hasNext() ){
-            entry = itr.next();
+            Entry<String, IExpression> entry = itr.next();
             stringValue.add( String.format( "\"%1$s\" => %2$s", entry.getKey(), entry.getValue().evaluate(_heap).toString() ) );
         }
 

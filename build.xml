@@ -49,7 +49,7 @@
     </target>
 
     <target name="build-lib" depends="compile">
-        <jar destfile="lib/coore-outar-smpl-${version}.jar"
+        <jar destfile="lib/smpl-coore-outar-${version}.jar"
             basedir="bin"
             excludes="bin/App.class" />
     </target>
