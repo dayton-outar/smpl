@@ -1,6 +1,5 @@
 package smpl.sys.expressions;
 
-import java.util.Collections;
 import java.util.Hashtable;
 
 import smpl.sys.values.DictionaryValue;
