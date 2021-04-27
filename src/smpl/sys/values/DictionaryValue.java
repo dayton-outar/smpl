@@ -1,34 +1,21 @@
 package smpl.sys.values;
 
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 
-import smpl.sys.commands.ICommand;
 import smpl.sys.expressions.IExpression;
 
-public class FunctionValue implements IValue {
-    
-    String _var;
-    Vector<String> _parameters;
-    Vector<ICommand> _statements;
+public class DictionaryValue implements IValue {
 
-    public FunctionValue(String var, Vector<String> parameters, Vector<ICommand> statements) {
-        _var = var;
-        _parameters = parameters;
-        _statements = statements;
-    }
+    Hashtable<String, IExpression> _dictionary;
+    Hashtable<String, IValue> _heap;
 
-    public Vector<String> getParameters() {
-        return _parameters;
-    }
-
-    public Vector<ICommand> getStatements() {
-        return _statements;
-    }
-
-    public String toString() {
-        return _var + " = (" + String.join(", ", _parameters.toArray(new String[_parameters.size()])) + ") { \n" + 
-                String.join("\n", _statements.toArray(new String[_statements.size()]) ) + "\n}";
+    public DictionaryValue(Hashtable<String, IExpression> dictionary, Hashtable<String, IValue> heap) {
+        _dictionary = dictionary;
+        _heap = heap;
     }
 
     @Override
@@ -53,7 +40,7 @@ public class FunctionValue implements IValue {
 
     @Override
     public boolean isDictionary() {
-        return false;
+        return true;
     }
 
     @Override
@@ -78,7 +65,7 @@ public class FunctionValue implements IValue {
 
     @Override
     public Hashtable<String, IExpression> getDictionary() {
-        return null;
+        return _dictionary;
     }
 
     @Override
@@ -88,42 +75,42 @@ public class FunctionValue implements IValue {
 
     @Override
     public IValue sub(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue mul(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue div(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue mod(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue pow(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue ban(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue bor(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue bxr(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
@@ -153,46 +140,81 @@ public class FunctionValue implements IValue {
 
     @Override
     public IValue eq(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue gt(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue lt(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue noteq(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue gtoreq(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue ltoreq(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue and(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue or(IValue val) throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
     }
 
     @Override
     public IValue not() throws Exception {
-        throw new Exception("Implementation does not exist for this type");
+        return null;
+    }
+    
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        Vector<String> stringValues = new Vector<String>();
+
+        try {
+            stringValues = valueStrings();
+        } catch (Exception e) {}
+
+        sb.append("[ ");
+        sb.append( String.join(", ", stringValues.toArray(new String[stringValues.size()]) ) );
+        sb.append(" ]");
+        return sb.toString();
+    }
+
+    private Vector<String> valueStrings() throws Exception {
+        Vector<String> stringValue = new Vector<String>();
+
+        // Adapted from https://www.javacodeexamples.com/iterate-through-java-hashtable-example/3149
+        //get the entry set using the entrySet method
+        Set<Map.Entry<String, IExpression>> entries = _dictionary.entrySet();
+ 
+        //get an iterator
+        Iterator<Map.Entry<String, IExpression>> itr = entries.iterator();
+ 
+        //iterate using the iterator
+        Map.Entry<String, IExpression> entry = null;
+        while( itr.hasNext() ){
+            entry = itr.next();
+            stringValue.add( String.format( "\"%1$s\" => %2$s", entry.getKey(), entry.getValue().evaluate(_heap).toString() ) );
+        }
+
+        return stringValue;
     }
 }

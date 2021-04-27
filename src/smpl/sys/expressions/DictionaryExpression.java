@@ -1,7 +1,9 @@
 package smpl.sys.expressions;
 
+import java.util.Collections;
 import java.util.Hashtable;
 
+import smpl.sys.values.DictionaryValue;
 import smpl.sys.values.IValue;
 
 public class DictionaryExpression implements IExpression {
@@ -13,8 +15,8 @@ public class DictionaryExpression implements IExpression {
     }
 
     @Override
-    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
-        return null;
+    public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {        
+        return new DictionaryValue(_expressions, dictionary);
     }
     
 }

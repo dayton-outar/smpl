@@ -1,6 +1,9 @@
 package smpl.sys.values;
 
+import java.util.Hashtable;
 import java.util.Vector;
+
+import smpl.sys.expressions.IExpression;
 
 /**
  * @author Dayton Outar
@@ -33,6 +36,11 @@ public class DoubleValue implements IValue {
         return false;
     }
 
+    @Override
+    public boolean isDictionary() {
+        return false;
+    }
+
     /**
      * Returns the value of this object as long data type
      */
@@ -53,6 +61,11 @@ public class DoubleValue implements IValue {
 
     @Override
     public Vector<IValue> arrayValues() {
+        return null;
+    }
+
+    @Override
+    public Hashtable<String, IExpression> getDictionary() {
         return null;
     }
 

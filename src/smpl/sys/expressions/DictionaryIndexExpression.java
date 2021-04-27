@@ -3,7 +3,6 @@ package smpl.sys.expressions;
 import java.util.Hashtable;
 
 import smpl.sys.values.IValue;
-import smpl.sys.values.LongValue;
 
 public class DictionaryIndexExpression implements IExpression {
     
@@ -17,6 +16,14 @@ public class DictionaryIndexExpression implements IExpression {
 
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
-        return new LongValue(Long.valueOf(7)); // TODO: Get value of dictionary index from heap
+        IValue rval;
+        IValue val = dictionary.get(_var);
+
+        if ( val.isDictionary() ) {
+            rval = val.getDictionary().get(_ix).evaluate(dictionary);   
+        } else
+            throw new Exception("Data type not appropriate for finding index");
+
+        return rval;
     }
 }

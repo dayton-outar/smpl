@@ -1,3 +1,8 @@
-d = [ "apples" => 3, "bananas" => 4, "watermelons" => 5];
+d = [ "apples" => 3*8, "bananas" => 4**2, "watermelons" => 5];
 
-[ "nike" => 3, "adidas" => 4, "ck" => 5];
+q = [ "nike" => 3, "adidas" => 4, "ck" => 5];
+
+:> d;
+:> q;
+
+:> d["apples"];

@@ -250,7 +250,7 @@ variable ::= COLON IDENTIFIER:i
 			{: RESULT = i; :}
 			;
 
-dictionary ::= STRING:s MAP expression_sequence:e COMMA dictionary:l
+dictionary ::= dictionary:l COMMA STRING:s MAP expression_sequence:e
 			{:
 				l.put(s, e);
 				RESULT = l;

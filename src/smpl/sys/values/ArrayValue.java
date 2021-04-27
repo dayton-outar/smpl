@@ -1,6 +1,9 @@
 package smpl.sys.values;
 
+import java.util.Hashtable;
 import java.util.Vector;
+
+import smpl.sys.expressions.IExpression;
 
 public class ArrayValue implements IValue {
 
@@ -30,6 +33,11 @@ public class ArrayValue implements IValue {
     }
 
     @Override
+    public boolean isDictionary() {
+        return false;
+    }
+
+    @Override
     public long longValue() {
         return 0;
     }
@@ -47,6 +55,11 @@ public class ArrayValue implements IValue {
     @Override
     public Vector<IValue> arrayValues() {
         return _val;
+    }
+
+    @Override
+    public Hashtable<String, IExpression> getDictionary() {
+        return null;
     }
 
     @Override
