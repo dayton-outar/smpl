@@ -379,6 +379,9 @@ expression ::= 	expression:e1 PLUS expression:e2
 			| PI
 			{: RESULT = new DoubleExpression(3.14159); :}
 
+			| EULER
+			{: RESULT = new DoubleExpression(2.7182818284590452353602874713527); :}
+
 			| NIL
 			{: RESULT = null; :}
             ;
