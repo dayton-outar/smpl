@@ -2,7 +2,6 @@ package smpl.sys.values;
 
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.Vector;
@@ -10,13 +9,25 @@ import java.util.Map.Entry;
 
 import smpl.sys.expressions.AdditionExpression;
 import smpl.sys.expressions.BitwiseAndExpression;
+import smpl.sys.expressions.BitwiseInvertExpression;
 import smpl.sys.expressions.BitwiseOrExpression;
 import smpl.sys.expressions.BitwiseXorExpression;
 import smpl.sys.expressions.DivisionExpression;
+import smpl.sys.expressions.EqualsExpression;
 import smpl.sys.expressions.ExponentExpression;
+import smpl.sys.expressions.GreaterThanExpression;
+import smpl.sys.expressions.GreaterThanOrEqualsExpression;
 import smpl.sys.expressions.IExpression;
+import smpl.sys.expressions.InvertExpression;
+import smpl.sys.expressions.LesserThanExpression;
+import smpl.sys.expressions.LesserThanOrEqualsExpression;
+import smpl.sys.expressions.LogicalAndExpression;
+import smpl.sys.expressions.LogicalNotExpression;
+import smpl.sys.expressions.LogicalOrExpression;
 import smpl.sys.expressions.ModulusExpression;
 import smpl.sys.expressions.MultiplicationExpression;
+import smpl.sys.expressions.NotEqualsExpression;
+import smpl.sys.expressions.SquareRootExpression;
 import smpl.sys.expressions.SubtractionExpression;
 
 public class DictionaryValue implements IValue {
@@ -252,7 +263,12 @@ public class DictionaryValue implements IValue {
 
     @Override
     public IValue biv() {
-        return null;
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.put( k, new BitwiseInvertExpression( v ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
@@ -267,57 +283,168 @@ public class DictionaryValue implements IValue {
 
     @Override
     public IValue inv() {
-        return null;
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.put( k, new InvertExpression( v ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue sqr() {
-        return null;
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.put( k, new SquareRootExpression( v ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue eq(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.eq( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.eq( (DictionaryValue) this) : val.eq( (DictionaryValue) this );
+        }
+    }
+
+    public IValue eq(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new EqualsExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue gt(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.gt( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.gt( (DictionaryValue) this) : val.gt( (DictionaryValue) this );
+        }
+    }
+
+    public IValue gt(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new GreaterThanExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue lt(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.lt( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.lt( (DictionaryValue) this) : val.lt( (DictionaryValue) this );
+        }
+    }
+
+    public IValue lt(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new LesserThanExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue noteq(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.noteq( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.noteq( (DictionaryValue) this) : val.noteq( (DictionaryValue) this );
+        }
+    }
+
+    public IValue noteq(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new NotEqualsExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue gtoreq(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.gtoreq( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.gtoreq( (DictionaryValue) this) : val.gtoreq( (DictionaryValue) this );
+        }
+    }
+
+    public IValue gtoreq(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new GreaterThanOrEqualsExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue ltoreq(IValue val) throws Exception {
-        return null;
+        if (val.isDictionary()) {
+            return this.ltoreq( (DictionaryValue) val );
+        } else {
+            return val.isLong() ? val.ltoreq( (DictionaryValue) this) : val.ltoreq( (DictionaryValue) this );
+        }
+    }
+
+    public IValue ltoreq(DictionaryValue val) throws Exception {
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new LesserThanOrEqualsExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue and(IValue val) throws Exception {
-        return null;
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new LogicalAndExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue or(IValue val) throws Exception {
-        return null;
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+        dvs.putAll( val.getDictionary() );
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.merge( k, v, (v1, v2) -> new LogicalOrExpression( v2, v1 ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
 
     @Override
     public IValue not() throws Exception {
-        return null;
+        Hashtable<String, IExpression> dvs = new Hashtable<String, IExpression>();
+
+        // Adapted from https://www.programiz.com/java-programming/library/hashmap/merge
+        _dictionary.forEach( (k, v) -> dvs.put( k, new LogicalNotExpression( v ) ) );
+        
+        return new DictionaryValue( dvs, _heap );
     }
     
     @Override

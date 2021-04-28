@@ -161,6 +161,9 @@ statement ::= expression_sequence:e SEMI
 			| PRINT expression_sequence:e SEMI
 			{: RESULT = new PrintCommand(e); :}
 
+			| PRINT condition:c SEMI
+			{: RESULT = new PrintCommand(c); :}
+
 			| IDENTIFIER:i READ	SEMI
 			{: RESULT = new ReadCommand(i); :}
 			;
@@ -189,6 +192,9 @@ assignment_statement ::= IDENTIFIER:i INCREMENT
 
 			| IDENTIFIER:i ASSIGN expression_sequence:e
 			{: RESULT = new AssignmentExpressionCommand(i, e); :}
+
+			| IDENTIFIER:i ASSIGN condition:c
+			{: RESULT = new AssignmentExpressionCommand(i, c); :}
 
 			| IDENTIFIER:i ASSIGNADD expression_sequence:e
 			{: RESULT = new AssignmentAddExpressionCommand(i, e); :}
