@@ -66,9 +66,35 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
 <YYINITIAL> "false"             { return new Symbol(sym.FALSE); }
 <YYINITIAL> "nil"               { return new Symbol(sym.NIL);   }
 <YYINITIAL> "}"                 { return new Symbol(sym.RBRACE);}
-<INJEXP>    "}"                 { string.append("}"); yybegin(STRING);  }
-<YYINITIAL> "{"                 { return new Symbol(sym.LBRACE);}
-<YYINITIAL> ";"                 { return new Symbol(sym.SEMI);  }
+<INJEXP>    "}"                 {
+                                    string.delete(0, string.length());
+                                    yybegin(STRING);
+                                }
+<YYINITIAL> {
+  "{"                           { return new Symbol(sym.LBRACE);}
+  ";"                           { return new Symbol(sym.SEMI);  }
+
+  /* operators */
+  "*="                          { return new Symbol(sym.ASSIGNTIMES); }
+  "/="                          { return new Symbol(sym.ASSIGNDIVIDE);}
+  "%="                          { return new Symbol(sym.ASSIGNMOD);   }
+  "+="                          { return new Symbol(sym.ASSIGNADD);   }
+  "-="                          { return new Symbol(sym.ASSIGNSUB);   }
+  "&="                          { return new Symbol(sym.ASSIGNAMP);   }
+  "|="                          { return new Symbol(sym.ASSIGNBAR);   }
+  "^="                          { return new Symbol(sym.ASSIGNCARET); }
+  "="                           { return new Symbol(sym.ASSIGN);      }
+  "++"                          { return new Symbol(sym.INCREMENT);   }
+  "--"                          { return new Symbol(sym.DECREMENT);   }
+  "?:"                          { return new Symbol(sym.CASES);       }
+
+  /* I/O */
+  ":>"                          { return new Symbol(sym.PRINT);       }
+  "<:"                          { return new Symbol(sym.READ);        }
+
+  "--:"                         { return new Symbol(sym.BREAK);       }
+  "-->"                         { return new Symbol(sym.CONTINUE);    }
+}
 
 <YYINITIAL,INJEXP> {
   /* identifiers */
@@ -77,31 +103,24 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
   /* literals */
   {long}                        { return new Symbol(sym.LONG, Long.valueOf(yytext())); }
   {double}                      { return new Symbol(sym.DOUBLE, Double.valueOf(yytext())); }
-  \"                            { string.setLength(0); yybegin(STRING); }
+  \"                            {
+                                    string.setLength(0);
+                                    yybegin(STRING);
+                                }
 
-  /* operators */  
+  /* operators */
   "*"                           { return new Symbol(sym.TIMES);       }
-  "×"                           { return new Symbol(sym.TIMES);       }
-  "*="                          { return new Symbol(sym.ASSIGNTIMES); }
+  "×"                           { return new Symbol(sym.TIMES);       }  
   "**"                          { return new Symbol(sym.EXPONENT);    }
   "/"                           { return new Symbol(sym.DIVIDE);      }
   "÷"                           { return new Symbol(sym.DIVIDE);      }
-  "√"                           { return new Symbol(sym.RADICAL);     }
-  "/="                          { return new Symbol(sym.ASSIGNDIVIDE);}
+  "√"                           { return new Symbol(sym.RADICAL);     }  
   "%"                           { return new Symbol(sym.MOD);         }
-  "%="                          { return new Symbol(sym.ASSIGNMOD);   }
   "+"                           { return new Symbol(sym.PLUS);        }
-  "+="                          { return new Symbol(sym.ASSIGNADD);   }
-  "++"                          { return new Symbol(sym.INCREMENT);   }
   "-"                           { return new Symbol(sym.MINUS);       }
-  "-="                          { return new Symbol(sym.ASSIGNSUB);   }
-  "--"                          { return new Symbol(sym.DECREMENT);   }
-  "&"                           { return new Symbol(sym.AMP);         }
-  "&="                          { return new Symbol(sym.ASSIGNAMP);   }
+  "&"                           { return new Symbol(sym.AMP);         }  
   "|"                           { return new Symbol(sym.BAR);         }
-  "|="                          { return new Symbol(sym.ASSIGNBAR);   }
-  "^"                           { return new Symbol(sym.CARET);       }
-  "^="                          { return new Symbol(sym.ASSIGNCARET); }
+  "^"                           { return new Symbol(sym.CARET);       }  
   "~"                           { return new Symbol(sym.TILDE);       }
   "->"                          { return new Symbol(sym.IMPLY);       }
   "⇒"                           { return new Symbol(sym.IMPLY);       }
@@ -109,7 +128,6 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
   "&&"                          { return new Symbol(sym.AND);         }
   "||"                          { return new Symbol(sym.OR);          }
   "?"                           { return new Symbol(sym.QUERY);       }
-  "?:"                          { return new Symbol(sym.CASES);       }
   "=="                          { return new Symbol(sym.EQ);          }
   ">"                           { return new Symbol(sym.GT);          }
   ">="                          { return new Symbol(sym.GTEQ);        }
@@ -119,7 +137,6 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
   "≤"                           { return new Symbol(sym.LTEQ);        }
   "!="                          { return new Symbol(sym.NOTEQ);       }
   "≠"                           { return new Symbol(sym.NOTEQ);       }
-  "="                           { return new Symbol(sym.ASSIGN);      }
   "("                           { return new Symbol(sym.LPAREN);      }
   ")"                           { return new Symbol(sym.RPAREN);      }
   "=>"                          { return new Symbol(sym.MAP);         }
@@ -127,14 +144,9 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
   "]"                           { return new Symbol(sym.RBRAK);       }
   ","                           { return new Symbol(sym.COMMA);       }
   ":"                           { return new Symbol(sym.COLON);       }
-  ":>"                          { return new Symbol(sym.PRINT);       }
-  "<:"                          { return new Symbol(sym.READ);        }
   "π"                           { return new Symbol(sym.PI);          }
   "ℇ"                           { return new Symbol(sym.EULER);       }
   "∑"                           { return new Symbol(sym.SIGMA);       }
-  "--:"                         { return new Symbol(sym.BREAK);       }
-  "-->"                         { return new Symbol(sym.CONTINUE);    }
-  
 
   /* comments */
   {comment}                     { /* ignore */ }
@@ -146,17 +158,19 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
 <STRING> {
   \"                            {
                                     yybegin(YYINITIAL);
-                                    return new Symbol(sym.STRING,
-                                       string.toString()); 
+                                    return new Symbol(sym.STRING, string.toString());
                                 }
-  [^\n\r\"\\${]+                  { string.append( yytext() ); }
+  [^\n\r\"\\${]+                { string.append( yytext() ); }
   \\t                           { string.append('\t'); }
   \\n                           { string.append('\n'); }
 
   \\r                           { string.append('\r'); }
   \\\"                          { string.append('\"'); }
   \\                            { string.append('\\'); }
-  "${"                          { yybegin(INJEXP); }
+  "${"                          { 
+                                    yybegin(INJEXP);
+                                    return new Symbol(sym.STRING, string.toString());
+                                }
 }
 
 /* error fallback */

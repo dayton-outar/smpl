@@ -13,6 +13,11 @@ public class LongValue implements IValue {
     }
 
     @Override
+    public boolean isString() {
+        return false;
+    }
+
+    @Override
     public boolean isNumber() {
         return true;
     }

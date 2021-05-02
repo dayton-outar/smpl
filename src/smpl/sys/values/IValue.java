@@ -6,6 +6,7 @@ import java.util.Vector;
 import smpl.sys.expressions.IExpression;
 
 public interface IValue {
+    boolean isString();
     boolean isNumber();
     boolean isDouble();
     boolean isLong();
