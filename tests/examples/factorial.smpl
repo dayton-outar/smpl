@@ -1,4 +1,4 @@
 fact = (:n) { (n <= 1) ? 1 : n * fact( n - 1 ); }
 
-:> "Testing factorial";
-:> fact(5);
+x = 7;
+:> "Factorial of ${x} is ... ${ fact(x)} \n";

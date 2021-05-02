@@ -6,8 +6,8 @@ a--;
 a--;
 :> a;
 
-:> "Euler";
-:> ℇ;
+:> "Euler ${ ℇ }\n";
 
-:> "Checking out something ...";
+:> "Checking out something ... ";
 :> 8.0**(1/3); // FIXME: Cube root should be working but it's not
+:> "\n";

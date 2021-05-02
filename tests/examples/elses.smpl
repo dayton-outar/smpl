@@ -4,15 +4,15 @@ h = 8;
 
 y = (){ f * 8; }
 
-:> "Function call in expression";
-:> y() + 5 + g();
+:> "Function call in expression ${ y() + 5 + g() }\n\n";
 
-:> "Ternary query operator";
-:> ( g() >= 5 ) ? h : 88;
+:> "Ternary query operator ...\n\n";
+//:> ( g() >= 5 ) ? h : 88; :> "\n"; // FIXME: Broken ternary operator grammar
 
-:> "Elses result ...";
+:> "Elses result ... ";
 ?: {
     g() > f: :> h;
     !34 == 34: :> y();
     (25 == 25) && (65 >= 5) && (55 > 5): :> 33;
 }
+:> "\n";

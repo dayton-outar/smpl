@@ -22,6 +22,6 @@ public class PrintCommand implements ICommand {
             sb.append(ie.evaluate(dictionary));
         }
         
-        System.out.println(sb.toString());
+        System.out.print(sb.toString());
     }
 }

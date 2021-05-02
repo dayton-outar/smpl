@@ -1,5 +1,5 @@
 b = 5 * 4;
-:> "The price for bananas is ${b × 0.8}";
+:> "The price for bananas is ${b × 0.8}\n";
 
 a = 7;
-:> "The price for apples is ${a / 2.0} and apples cost more than bananas ==> ${a > b}";
+:> "The price for apples is ${a / 2.0} and apples cost more than bananas ==> ${a > b}\n";
