@@ -83,7 +83,6 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
   "&="                          { return new Symbol(sym.ASSIGNAMP);   }
   "|="                          { return new Symbol(sym.ASSIGNBAR);   }
   "^="                          { return new Symbol(sym.ASSIGNCARET); }
-  "="                           { return new Symbol(sym.ASSIGN);      }
   "++"                          { return new Symbol(sym.INCREMENT);   }
   "--"                          { return new Symbol(sym.DECREMENT);   }
   "?:"                          { return new Symbol(sym.CASES);       }
@@ -109,6 +108,7 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
                                 }
 
   /* operators */
+  "="                           { return new Symbol(sym.ASSIGN);      }
   "*"                           { return new Symbol(sym.TIMES);       }
   "×"                           { return new Symbol(sym.TIMES);       }  
   "**"                          { return new Symbol(sym.EXPONENT);    }
@@ -147,6 +147,12 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
   "π"                           { return new Symbol(sym.PI);          }
   "ℇ"                           { return new Symbol(sym.EULER);       }
   "∑"                           { return new Symbol(sym.SIGMA);       }
+  "sin"                         { return new Symbol(sym.SIN);         }
+  "cos"                         { return new Symbol(sym.COS);         }
+  "tan"                         { return new Symbol(sym.TAN);         }
+  "csc"                         { return new Symbol(sym.CSC);         }
+  "sec"                         { return new Symbol(sym.SEC);         }
+  "cot"                         { return new Symbol(sym.COT);         }
 
   /* comments */
   {comment}                     { /* ignore */ }

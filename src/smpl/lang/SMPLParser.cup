@@ -56,7 +56,7 @@ terminal Double		DOUBLE;
 terminal Boolean	TRUE, FALSE;
 
 // special value tokens
-terminal PI, EULER, SIGMA;
+terminal PI, EULER, SIGMA, SIN, COS, TAN, CSC, SEC, COT;
 
 // display operators
 terminal PRINT, READ;
@@ -115,7 +115,7 @@ precedence left AMP, BAR, CARET;
 precedence left PLUS, MINUS;
 precedence left INCREMENT, DECREMENT;
 precedence left TIMES, DIVIDE, MOD;
-precedence left EXPONENT;
+precedence left EXPONENT, SIGMA;
 precedence left RADICAL;
 precedence left TILDE;
 
@@ -375,10 +375,13 @@ math_expression ::= math_expression:e1 PLUS math_expression:e2
 			| TILDE math_expression:e
 			{: RESULT = new BitwiseInvertExpression(e); :}
 
+			| math_expression:l SIGMA IDENTIFIER:i ASSIGN math_expression:f COLON math_expression:e
+			{: RESULT = new SigmaNotationExpression(l, f, i, e); :}
+
             | LPAREN MINUS math_expression:e RPAREN
 			{: RESULT = new InvertExpression(e); :}
 
-            | LPAREN expression_sequence:e RPAREN
+            | LPAREN math_expression:e RPAREN
 			{: RESULT = e; :}
 
 			| LPAREN condition_sequence:c RPAREN QUERY expression_sequence:e1 COLON expression_sequence:e2
@@ -393,7 +396,7 @@ math_expression ::= math_expression:e1 PLUS math_expression:e2
 			| IDENTIFIER:i LBRAK STRING:x RBRAK
 			{: RESULT = new DictionaryIndexExpression(i, x); :}
 
-			| IDENTIFIER:i LBRAK expression_sequence:e RBRAK
+			| IDENTIFIER:i LBRAK math_expression:e RBRAK
 			{: RESULT = new ArrayIndexExpression(i, e); :}
 
 			| IDENTIFIER:i

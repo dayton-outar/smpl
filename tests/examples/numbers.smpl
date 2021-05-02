@@ -1,12 +1,15 @@
 a = 7;
-:> a;
+:> a; :> "\n";
 a++;
-:> a;
+:> a; :> "\n";
 a--;
 a--;
-:> a;
+:> a; :> "\n";
+
+:> (-8); :> "\n";
 
 :> "Euler ${ ℇ }\n";
+:> "Sigma notation for 4n is ${ 6 ∑ n=1 : 4*n }\n";
 
 :> "Checking out something ... ";
 :> 8.0**(1/3); // FIXME: Cube root should be working but it's not
