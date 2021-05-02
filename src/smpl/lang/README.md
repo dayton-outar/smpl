@@ -38,7 +38,7 @@ _SMPL_ can denote the following types of literals:
 Table 1: Escaped codes for control characters in strings
 
 - String constants are denoted between double quotes `"`. Within a string, certain control characters can be denoted by an escape sequence. Table 1 lists the set of escape sequences that should be recognised within _SMPL_ strings.<sup><a href="#footnote-5">5</a></sup>
-- Strings can be interpolated with mathematical and conditional expressions like so,
+- Strings can be interpolated with mathematical and conditional expressions like so,<sup><a href="#footnote-22">22</a></sup>
   `"The total is ${ num * 8 } and average is ${ total / 3 } ... ${ total > num }"`
 - The boolean constants are _`true`_ and _`false`_.
 - The empty list is denoted by _`nil`_.
