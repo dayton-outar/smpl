@@ -38,6 +38,8 @@ _SMPL_ can denote the following types of literals:
 Table 1: Escaped codes for control characters in strings
 
 - String constants are denoted between double quotes `"`. Within a string, certain control characters can be denoted by an escape sequence. Table 1 lists the set of escape sequences that should be recognised within _SMPL_ strings.<sup><a href="#footnote-5">5</a></sup>
+- Strings can be interpolated with mathematical and conditional expressions like so,
+  `"The total is ${ num * 8 } and average is ${ total / 3 } ... ${ total > num }"`
 - The boolean constants are _`true`_ and _`false`_.
 - The empty list is denoted by _`nil`_.
 
@@ -143,7 +145,6 @@ vappend = (:v1, :v2) { [ size(v1): (i) -> v1[i], size(v2): (i) -> v2[i] ]; }
 
 Here are a few ideas for extensions to _SMPL_ :
 
-- Interpolated string. Implementation of interpolated strings seem to be a challenging prospect for the [lexer](https://stackoverflow.com/questions/57971191/implementing-string-interpolation-in-flex-bison).
 - Macros. A limited form of language extension can be accomplished through the use of macros. It should not be too difficult to extend _SMPL_ to include macros that are declared and used in
     a similar way to procedures.
 - Call by: reference, lazy and name parameter passing conventions. At the moment _SMPL_ supports only call by value (CBV). It could be extended to allow procedure declarations that
@@ -198,5 +199,7 @@ Here are a few ideas for extensions to _SMPL_ :
 <a id="footnote-20"><sup>20</sup></a> `read()` and `readint()` was replaced by `<:` as part of the philosophy to make the language more symbolic and minimalistic
 
 <a id="footnote-21"><sup>21</sup></a> Implementing extension for _Additional control structures_ in first iteration.
+
+<a id="footnote-22"><sup>22</sup></a> Ideas for implementing one-pass lexer to parse interpolated string came from [here](https://stackoverflow.com/questions/57971191/implementing-string-interpolation-in-flex-bison)
 
 &copy; Dayton Outar

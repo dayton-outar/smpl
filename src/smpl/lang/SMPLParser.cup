@@ -94,7 +94,7 @@ non terminal Cases							case;
 non terminal Vector<String>					case_expressions;
 non terminal Vector<Elses>					if_clause_list;
 non terminal Elses							if_clause;
-non terminal IExpression					expression_sequence; // TODO: Awkward. Can't remember the meaning of this
+non terminal IExpression					expression_sequence; // FIXME: Awkward. Can't remember the meaning of this
 non terminal IExpression					loop_condition;
 non terminal IExpression					condition_sequence;
 non terminal IExpression					condition;
@@ -301,6 +301,25 @@ expressions ::= expressions:l math_expression:e
 				RESULT = l;
 			:}
 
+			| expressions:l STRING:s
+			{:
+				l.addElement(new StringExpression(s));
+				RESULT = l;
+			:}
+
+			| expressions:l condition:c
+			{:
+				l.addElement(c);
+				RESULT = l;
+			:}
+
+			| math_expression:e
+			{:
+				Vector<IExpression> l = new Vector<IExpression>();
+				l.addElement(e);
+				RESULT = l;
+			:}
+
 			| STRING:s
 			{:
 				Vector<IExpression> l = new Vector<IExpression>();
@@ -312,13 +331,6 @@ expressions ::= expressions:l math_expression:e
 			{:
 				Vector<IExpression> l = new Vector<IExpression>();
 				l.addElement(c);
-				RESULT = l;
-			:}
-
-			| math_expression:e
-			{:
-				Vector<IExpression> l = new Vector<IExpression>();
-				l.addElement(e);
 				RESULT = l;
 			:}
 			;

@@ -18,6 +18,7 @@ public class App {
 				System.out.println("  " + args[i] + "...");
 				try {
 					p = new SMPLParser(args[i]);
+					
                     Symbol parseResult = p.parse();
 					
 					Program program = (Program)parseResult.value;
@@ -28,7 +29,7 @@ public class App {
 						fnfe.getMessage());
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
-					//System.out.println("Loaded program failed to compile");
+					System.out.println("Loaded program failed to compile");
 				}
 			}
 		}
