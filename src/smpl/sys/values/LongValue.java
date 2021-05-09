@@ -77,7 +77,7 @@ public class LongValue implements IValue {
     }
 
     public IValue add(DoubleValue val) {
-        return val.add(this);
+        return new DoubleValue( Double.valueOf( this.doubleValue() + val.doubleValue() ) );
     }
 
     public IValue add(LongValue val) {
@@ -105,7 +105,7 @@ public class LongValue implements IValue {
     }
 
     public IValue sub(DoubleValue val) {
-        return val.sub(this);
+        return new DoubleValue( Double.valueOf( this.doubleValue() - val.doubleValue() ) );
     }
 
     public IValue sub(LongValue val) {
@@ -133,7 +133,7 @@ public class LongValue implements IValue {
     }
 
     public IValue mul(DoubleValue val) {
-        return val.mul(this);
+        return new DoubleValue( Double.valueOf( this.doubleValue() * val.doubleValue() ) );
     }
 
     public IValue mul(LongValue val) {

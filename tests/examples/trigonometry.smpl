@@ -1,0 +1,25 @@
+fact = (:n) { (n <= 1) ? 1 : n * fact( n - 1 ); }
+
+// To get a better approximation for cos(r), you need more terms in your Taylor polynomial.
+sin = (:n) {
+    r = ( n / 180.0 ) * π;
+    v = r - ( (r**3)/fact(3) ) + ( (r**5)/fact(5) ) - ( (r**7)/fact(7) ) + ( (r**9)/fact(9) ) - ( (r**11)/fact(11) );
+    v;
+}
+
+cos = (:n) {
+    r = ( n / 180.0 ) * π;
+    v = 1 - ( (r**2)/fact(2) ) + ( (r**4)/fact(4) ) - ( (r**6)/fact(6) ) + ( (r**8)/fact(8) ) - ( (r**10)/fact(10) );
+    v;
+}
+
+tan = (:n) {
+    t = sin(n) ÷ √( 1 - sin(n)**2 );
+    t;
+}
+
+:> "Sine of 30 degrees is ${ sin(30) }\n";
+
+:> "Cosine of 30 degrees is ${ cos(30) }\n";
+
+:> "Tangent of 30 degrees is ${ tan(30) }\n";
