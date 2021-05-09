@@ -125,6 +125,11 @@ So, _**v**<sub>1</sub>_ can be represented as,
 :> v[1];
 ```
 
+![Matrix Addition](/.attachments/matrix-addition.png)
+
+![Scalar Division](/.attachments/scalar-division.png)
+
+![Scalar Multiplication](/.attachments/scalar-multiplication.png)
 
 ### Trigonometry
 
