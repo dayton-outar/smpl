@@ -383,7 +383,7 @@ math_expression ::= math_expression:e1 PLUS math_expression:e2
             | LPAREN math_expression:e RPAREN
 			{: RESULT = e; :}
 
-			| LPAREN condition_sequence:c RPAREN QUERY expression_sequence:e1 COLON expression_sequence:e2
+			| LPAREN condition:c RPAREN QUERY math_expression:e1 COLON math_expression:e2
 			{: RESULT = new QueryExpression(c, e1, e2); :}
 
 			| BAR IDENTIFIER:i BAR

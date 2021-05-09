@@ -104,7 +104,7 @@ id              = {alpha}|{alpha}{alphanum}
   {binary}                      { return new Symbol(sym.BINARY, yytext().substring(2)); }
   {hex}                         { return new Symbol(sym.HEX, yytext().substring(2)); }
   {octal}                       { return new Symbol(sym.OCTAL, yytext().substring(2)); }
-  {double}                      { return new Symbol(sym.DOUBLE, yytext()); }
+  {double}                      { return new Symbol(sym.DOUBLE, Double.valueOf(yytext())); }
   \"                            {
                                     string.setLength(0);
                                     yybegin(STRING);

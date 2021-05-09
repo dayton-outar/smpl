@@ -88,12 +88,37 @@ hypotenuse = (:a, :b) { √(a**2 + b**2); }
 
 ### Algebra
 
- - Factorial
- - Permutations
- - Probabilies
+A **matrix** is a 2-dimensional array of numbers
+
+![3 x 4 Matrix](/.attachments/3x4-matrix.png)
+
+_**M**_ is a 3 × 4 matrix: it has 3 rows and 4 columns.
+
+This can be represented in smpl as,
+
+```
+M = [ [1, 2, 3, 4], [0, 0, 0, 0], [4, 3, 2, 1] ]; // if we think of the first index parameter is the row and the second index parameter column
+```
+
+Matrices consist of **entries**.
+
+_**M**_<sub>i, j</sub> is the entry in the _i_<sup>th</sup> row and _j_<sup>th</sup> column of _**M**_.
+
+So, _**M**_<sub>0, 0</sub> can be represented as,
+
+```
+:> M[0, 0]; // Output: 1
+```
+
+A **vector** is a 1 × _n_ matrix
+
 
 ### Trigonometry
 
+
+ - Factorial
+ - Permutations
+ - Probabilies
 
 ### Calculus
 

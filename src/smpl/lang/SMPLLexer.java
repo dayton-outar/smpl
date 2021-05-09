@@ -923,7 +923,7 @@ public class SMPLLexer implements java_cup.runtime.Scanner {
             // fall through
           case 113: break;
           case 44: 
-            { return new Symbol(sym.DOUBLE, yytext());
+            { return new Symbol(sym.DOUBLE, Double.valueOf(yytext()));
             } 
             // fall through
           case 114: break;
