@@ -88,6 +88,18 @@ hypotenuse = (:a, :b) { √(a**2 + b**2); }
 
 ### Algebra
 
+#### Factorial
+
+```
+fact = (:n) { (n <= 1) ? 1 : n * fact( n - 1 ); }
+
+x = 7;
+:> "Factorial of ${x} is ... ${ fact(x)} \n";
+```
+
+
+#### Linear Algebra
+
 A **matrix** is a 2-dimensional array of numbers
 
 ![3 x 4 Matrix](/.attachments/3x4-matrix.png)
