@@ -8,7 +8,15 @@ import smpl.sys.expressions.IExpression;
 public class LongValue implements IValue {
     
     Long _val;
+    int _radix;
+
     public LongValue(Long val) {
+        _radix = 10;
+        _val = val;
+    }
+
+    public LongValue(Long val, int radix) {
+        _radix = radix;
         _val = val;
     }
 
@@ -465,6 +473,6 @@ public class LongValue implements IValue {
 
     @Override
     public String toString() {
-        return _val.toString();
+        return Long.toString(_val, _radix);
     }
 }

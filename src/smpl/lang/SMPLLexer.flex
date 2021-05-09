@@ -56,6 +56,10 @@ long            = [0-9]+
 double          = [0-9]*\.?[0-9]+
 alpha           = [A-Za-z_]+
 alphanum        = {alpha}|{long}
+binary          = 0b[01]+
+// TODO: Hex being read as an identifier
+hex             = 0x[0-9A-Fa-f]+
+octal           = 0o[0-7]+
 id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
 
 %state STRING INJEXP
@@ -98,7 +102,10 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
 
   /* literals */
   {long}                        { return new Symbol(sym.LONG, Long.valueOf(yytext())); }
-  {double}                      { return new Symbol(sym.DOUBLE, Double.valueOf(yytext())); }
+  {binary}                      { return new Symbol(sym.BINARY, yytext().substring(2)); }
+  {hex}                         { return new Symbol(sym.HEX, yytext().substring(2)); }
+  {octal}                       { return new Symbol(sym.OCTAL, yytext().substring(2)); }
+  {double}                      { return new Symbol(sym.DOUBLE, yytext()); }
   \"                            {
                                     string.setLength(0);
                                     yybegin(STRING);
