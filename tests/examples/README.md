@@ -97,20 +97,33 @@ _**M**_ is a 3 × 4 matrix: it has 3 rows and 4 columns.
 This can be represented in smpl as,
 
 ```
-M = [ [1, 2, 3, 4], [0, 0, 0, 0], [4, 3, 2, 1] ]; // if we think of the first index parameter is the row and the second index parameter column
+// if we think of the first index parameter is the row and the second index parameter column
+M = [ [1, 2, 3, 4], [0, 0, 0, 0], [4, 3, 2, 1] ];
 ```
 
 Matrices consist of **entries**.
 
-_**M**_<sub>i, j</sub> is the entry in the _i_<sup>th</sup> row and _j_<sup>th</sup> column of _**M**_.
+_**M**<sub>i, j</sub>_ is the entry in the _i<sup>th</sup>_ row and _j<sup>th</sup>_ column of _**M**_.
 
-So, _**M**_<sub>0, 0</sub> can be represented as,
+So, _**M**<sub>0, 0</sub>_ can be represented as,
 
 ```
 :> M[0, 0]; // Output: 1
 ```
 
 A **vector** is a 1 × _n_ matrix
+
+For example, the expression below is a 4-dimensional vector,
+
+_**v**_ = [4, 3, 2, 1]
+
+_**v**_<sub>i</sub> is the _i<sup>th</sup>_ entry of the vector
+
+So, _**v**<sub>1</sub>_ can be represented as,
+
+```
+:> v[1];
+```
 
 
 ### Trigonometry
