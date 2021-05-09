@@ -56,7 +56,7 @@ terminal Double		DOUBLE;
 terminal Boolean	TRUE, FALSE;
 
 // special value tokens
-terminal PI, EULER, SIGMA, SIN, COS, TAN, CSC, SEC, COT;
+terminal PI, EULER, SIGMA;
 
 // display operators
 terminal PRINT, READ;
@@ -77,7 +77,7 @@ terminal EQ, GT, LT, LTEQ, GTEQ, NOTEQ;
 terminal AND, OR, NOT;
 
 // operators: assignment
-terminal ASSIGN, IMPLY, QUERY, CASES, CONTINUE, BREAK;
+terminal ASSIGN, IMPLY, QUERY, CASES;
 
 /* Non terminals */
 non terminal Program						program;
@@ -143,7 +143,7 @@ statement ::= expression_sequence:e SEMI
 
 			| assignment_statement:s SEMI
 			{: RESULT = s;	:}
-
+        
 			| IDENTIFIER:i ASSIGN LPAREN variable_list:l RPAREN statement_block:sl
 			{: RESULT = new AssignmentFunctionCommand(i, l, sl); :}
 

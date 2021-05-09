@@ -90,9 +90,6 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
   /* I/O */
   ":>"                          { return new Symbol(sym.PRINT);       }
   "<:"                          { return new Symbol(sym.READ);        }
-
-  "--:"                         { return new Symbol(sym.BREAK);       }
-  "-->"                         { return new Symbol(sym.CONTINUE);    }
 }
 
 <YYINITIAL,INJEXP> {
@@ -147,12 +144,6 @@ id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
   "π"                           { return new Symbol(sym.PI);          }
   "ℇ"                           { return new Symbol(sym.EULER);       }
   "∑"                           { return new Symbol(sym.SIGMA);       }
-  "sin"                         { return new Symbol(sym.SIN);         }
-  "cos"                         { return new Symbol(sym.COS);         }
-  "tan"                         { return new Symbol(sym.TAN);         }
-  "csc"                         { return new Symbol(sym.CSC);         }
-  "sec"                         { return new Symbol(sym.SEC);         }
-  "cot"                         { return new Symbol(sym.COT);         }
 
   /* comments */
   {comment}                     { /* ignore */ }
