@@ -2,7 +2,6 @@ package smpl.sys.expressions;
 
 import java.util.Hashtable;
 
-import smpl.sys.expressions.IExpression;
 import smpl.sys.values.IValue;
 import smpl.sys.values.LongValue;
 

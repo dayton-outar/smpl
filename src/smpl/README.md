@@ -43,3 +43,4 @@ This application makes use of a number of Java libraries that can be found in th
 2. [SourceMaking](https://sourcemaking.com/)
 3. [Refactoring.Guru](https://refactoring.guru/)
 4. [Creating a Lexer and Parser using JFlex and CUP](https://andreil26.github.io/me/uniprojects/2019/06/21/lexer_parser.html) by Andrei Lazar
+2. [A Guide to Java Streams in Java 8](https://stackify.com/streams-guide-java-8/)

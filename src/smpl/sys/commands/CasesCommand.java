@@ -4,7 +4,6 @@ import java.util.Hashtable;
 import java.util.Vector;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import smpl.sys.expressions.IExpression;
 import smpl.sys.util.Cases;

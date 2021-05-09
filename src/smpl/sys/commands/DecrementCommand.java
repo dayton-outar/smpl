@@ -2,7 +2,6 @@ package smpl.sys.commands;
 
 import java.util.Hashtable;
 
-import smpl.sys.expressions.IExpression;
 import smpl.sys.values.IValue;
 
 public class DecrementCommand implements ICommand {
