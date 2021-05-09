@@ -86,15 +86,14 @@ hypotenuse = (:a, :b) { √(a**2 + b**2); }
 :> hypotenuse(3, 4); // Outputs 5.0
 ```
 
-### Linear Algebra
+### Algebra
 
-
+ - Factorial
+ - Permutations
+ - Probabilies
 
 ### Trigonometry
 
-
-
-### Probability
 
 ### Calculus
 

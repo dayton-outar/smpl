@@ -31,7 +31,7 @@ This application makes use of a number of Java libraries that can be found in th
  - [Stack](https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html)
  - [Vector](https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html)
  - [Hashtable](https://docs.oracle.com/javase/8/docs/api/java/util/Hashtable.html)
- * [Stream](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
+ - [Stream](https://docs.oracle.com/javase/8/docs/api/java/util/stream/Stream.html)
  - [String](https://docs.oracle.com/javase/8/docs/api/java/lang/String.html)
  - [Long](https://docs.oracle.com/javase/8/docs/api/java/lang/Long.html)
  - [Double](https://docs.oracle.com/javase/8/docs/api/java/lang/Double.html)
