@@ -91,7 +91,7 @@ non terminal Hashtable<String,IExpression>	dictionary;
 non terminal Vector<IExpression>			array;
 non terminal Vector<Cases>					case_list;
 non terminal Cases							case;
-non terminal Vector<String>					case_expressions;
+non terminal Vector<IExpression>					case_expressions;
 non terminal Vector<Elses>					if_clause_list;
 non terminal Elses							if_clause;
 non terminal IExpression					expression_sequence; // FIXME: Awkward. Can't remember the meaning of this
@@ -438,16 +438,16 @@ case ::= case_expressions:l statement:s
 			{: RESULT = new Cases(l, s); :}
 			;
 
-case_expressions ::= case_expressions:l STRING:i COLON
+case_expressions ::= case_expressions:l math_expression:e COLON
 			{:
-				l.addElement(i);
+				l.addElement(e);
 				RESULT = l;
 			:}
 
-			| STRING:i COLON
+			| math_expression:e COLON
 			{:
-				Vector<String> l = new Vector<String>();
-				l.addElement(i);
+				Vector<IExpression> l = new Vector<IExpression>();
+				l.addElement(e);
 				RESULT = l;
 			:}
 			;

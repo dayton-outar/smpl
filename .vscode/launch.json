@@ -23,7 +23,7 @@
             "request": "launch",
             "mainClass": "App",
             "projectName": "smpl_a65f9bd",
-            "args": "/home/dayton/Documents/Projects/smpl/tests/examples/dictionary.smpl"
+            "args": "/home/dayton/Documents/Projects/smpl/tests/examples/cases.smpl"
         }
     ]
 }

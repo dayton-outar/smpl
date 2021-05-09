@@ -3,14 +3,15 @@ package smpl.sys.util;
 import java.util.Vector;
 
 import smpl.sys.commands.ICommand;
+import smpl.sys.expressions.IExpression;
 
 public class Cases {
     
-    Vector<String> _values;
+    Vector<IExpression> _expressions;
     ICommand _statement;
 
-    public Cases(Vector<String> values, ICommand statement) {
-        _values = values;
+    public Cases(Vector<IExpression> expressions, ICommand statement) {
+        _expressions = expressions;
         _statement = statement;
     }
 
@@ -19,8 +20,8 @@ public class Cases {
      * 
      * @return Vector<String>
      */
-    public Vector<String> getCaseValues() {
-        return _values;
+    public Vector<IExpression> getCaseValues() {
+        return _expressions;
     }
 
     /**
