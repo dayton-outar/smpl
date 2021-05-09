@@ -77,9 +77,9 @@ _SMPL_ ***Identifiers***:
  - Can contain at least one non-digit character
  - Must not contain any special characters (Only alpha-numeric characters allowed)
  
- The following are ***legal identifiers***: `foo`, `bar1`, `1bar`, `ba1r`.<sup><a href="#footnote-10">10</a></sup>
+ The following are ***legal identifiers***: `foo`, `bar1`, `ba1r`.<sup><a href="#footnote-10">10</a></sup>
  
- The following are _illegal identifiers_: `#bar`, `12`, `(foo)`, `{bar}`, `[baz]`, `foo`, `bar`, `foo:bar`, `foo!`, `bar?`, `fo#o`, `foo.bar`.
+ The following are _illegal identifiers_: `#bar`, `12`, `1bar`, `(foo)`, `{bar}`, `[baz]`, `foo`, `bar`, `foo:bar`, `foo!`, `bar?`, `fo#o`, `foo.bar`.
 
 ***Function calls*** are denoted by the function name followed immediately by a sequence of comma-separated argument expressions enclosed in parentheses. The following expressions are ***legal function calls***: `f(a, b)`, `g()`, `foo(a, b, c, d)`.
 

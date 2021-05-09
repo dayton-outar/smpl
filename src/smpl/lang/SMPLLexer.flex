@@ -57,10 +57,9 @@ double          = [0-9]*\.?[0-9]+
 alpha           = [A-Za-z_]+
 alphanum        = {alpha}|{long}
 binary          = 0b[01]+
-// TODO: Hex being read as an identifier
 hex             = 0x[0-9A-Fa-f]+
 octal           = 0o[0-7]+
-id              = {alpha}|{alpha}{alphanum}|{alphanum}{alpha}
+id              = {alpha}|{alpha}{alphanum}
 
 %state STRING INJEXP
 
