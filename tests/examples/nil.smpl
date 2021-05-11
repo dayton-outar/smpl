@@ -1,1 +1,2 @@
-:> (k == nil) ? 5 : 0;
+k = [];
+:> (k == true) ? 5 : 0; // FIXME: Why this not working
