@@ -1,3 +1,0 @@
-M = [ [1, 2, 3, 4], [0, 0, 0, 0], [4, 3, 2, 1] ]; // if we think of the first index parameter is the row and the second index parameter column
-:> "M = ${M[0][0]}";
-:> "\n";
