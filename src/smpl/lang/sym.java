@@ -8,54 +8,53 @@ package smpl.lang;
 /** CUP generated interface containing symbol constants. */
 public interface sym {
   /* terminals */
-  public static final int DIVIDE = 36;
+  public static final int DIVIDE = 35;
   public static final int MAP = 10;
-  public static final int QUERY = 59;
-  public static final int GTEQ = 52;
-  public static final int INCREMENT = 29;
-  public static final int LTEQ = 51;
+  public static final int QUERY = 58;
+  public static final int GTEQ = 51;
+  public static final int INCREMENT = 28;
+  public static final int LTEQ = 50;
   public static final int PI = 21;
-  public static final int ASSIGNAMP = 42;
+  public static final int ASSIGNAMP = 41;
   public static final int OCTAL = 16;
   public static final int RBRAK = 9;
   public static final int DOUBLE = 18;
   public static final int LPAREN = 4;
   public static final int SEMI = 2;
-  public static final int ASSIGNADD = 28;
+  public static final int ASSIGNADD = 27;
   public static final int HEX = 15;
   public static final int SIGMA = 23;
-  public static final int ASSIGNMOD = 40;
-  public static final int MINUS = 30;
-  public static final int DECREMENT = 32;
-  public static final int TILDE = 47;
-  public static final int BAR = 43;
+  public static final int ASSIGNMOD = 39;
+  public static final int MINUS = 29;
+  public static final int DECREMENT = 31;
+  public static final int TILDE = 46;
+  public static final int BAR = 42;
   public static final int RPAREN = 5;
-  public static final int NOT = 56;
-  public static final int AND = 54;
-  public static final int LT = 50;
-  public static final int RADICAL = 38;
-  public static final int CASES = 60;
-  public static final int NIL = 26;
-  public static final int OR = 55;
+  public static final int NOT = 55;
+  public static final int AND = 53;
+  public static final int LT = 49;
+  public static final int RADICAL = 37;
+  public static final int CASES = 59;
+  public static final int OR = 54;
   public static final int COMMA = 11;
-  public static final int ASSIGNDIVIDE = 37;
-  public static final int PLUS = 27;
-  public static final int ASSIGN = 57;
-  public static final int CARET = 45;
+  public static final int ASSIGNDIVIDE = 36;
+  public static final int PLUS = 26;
+  public static final int ASSIGN = 56;
+  public static final int CARET = 44;
   public static final int EOF = 0;
-  public static final int AMP = 41;
+  public static final int AMP = 40;
   public static final int TRUE = 19;
   public static final int error = 1;
-  public static final int ASSIGNCARET = 46;
-  public static final int MOD = 39;
-  public static final int ASSIGNSUB = 31;
-  public static final int IMPLY = 58;
-  public static final int EQ = 48;
-  public static final int TIMES = 33;
+  public static final int ASSIGNCARET = 45;
+  public static final int MOD = 38;
+  public static final int ASSIGNSUB = 30;
+  public static final int IMPLY = 57;
+  public static final int EQ = 47;
+  public static final int TIMES = 32;
   public static final int COLON = 3;
   public static final int LBRACE = 6;
   public static final int READ = 25;
-  public static final int ASSIGNTIMES = 34;
+  public static final int ASSIGNTIMES = 33;
   public static final int LBRAK = 8;
   public static final int RBRACE = 7;
   public static final int EULER = 22;
@@ -63,11 +62,11 @@ public interface sym {
   public static final int STRING = 13;
   public static final int BINARY = 14;
   public static final int FALSE = 20;
-  public static final int ASSIGNBAR = 44;
-  public static final int GT = 49;
-  public static final int EXPONENT = 35;
+  public static final int ASSIGNBAR = 43;
+  public static final int GT = 48;
   public static final int PRINT = 24;
-  public static final int NOTEQ = 53;
+  public static final int EXPONENT = 34;
+  public static final int NOTEQ = 52;
   public static final int IDENTIFIER = 12;
   public static final String[] terminalNames = new String[] {
   "EOF",
@@ -96,7 +95,6 @@ public interface sym {
   "SIGMA",
   "PRINT",
   "READ",
-  "NIL",
   "PLUS",
   "ASSIGNADD",
   "INCREMENT",

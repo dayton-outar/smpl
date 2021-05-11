@@ -67,7 +67,6 @@ id              = {alpha}|{alpha}{alphanum}
 
 <YYINITIAL> "true"              { return new Symbol(sym.TRUE);  }
 <YYINITIAL> "false"             { return new Symbol(sym.FALSE); }
-<YYINITIAL> "nil"               { return new Symbol(sym.NIL);   }
 <YYINITIAL> "}"                 { return new Symbol(sym.RBRACE);}
 <INJEXP>    "}"                 {
                                     string.delete(0, string.length());

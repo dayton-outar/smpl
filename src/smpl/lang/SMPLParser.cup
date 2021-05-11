@@ -60,9 +60,6 @@ terminal PI, EULER, SIGMA;
 // display operators
 terminal PRINT, READ;
 
-// list operators
-terminal NIL;
-
 // operators: arithmetic
 terminal PLUS, ASSIGNADD, INCREMENT, MINUS, ASSIGNSUB, DECREMENT, TIMES, ASSIGNTIMES, EXPONENT, DIVIDE, ASSIGNDIVIDE, RADICAL, MOD, ASSIGNMOD;
 
@@ -410,9 +407,6 @@ math_expression ::= math_expression:e1 PLUS math_expression:e2
 
 			| EULER
 			{: RESULT = new DoubleExpression(2.7182818284590452353602874713527); :}
-
-			| NIL
-			{: RESULT = null; :}
             ;
 
 index_expressions ::= index_expressions:l LBRAK string_expression:s RBRAK
