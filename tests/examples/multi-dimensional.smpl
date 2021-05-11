@@ -1,0 +1,2 @@
+:> "M[0, 0] = ${M[0][0]}"; // FIXME: How do we index multi-dimensional array?
+:> "\n";

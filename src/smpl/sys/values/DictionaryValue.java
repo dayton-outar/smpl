@@ -82,7 +82,7 @@ public class DictionaryValue implements IValue {
 
     @Override
     public boolean booleanValue() {
-        return false;
+        return ( _dictionary != null && _dictionary.size() > 0 );
     }
 
     @Override

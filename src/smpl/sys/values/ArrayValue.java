@@ -54,7 +54,7 @@ public class ArrayValue implements IValue {
 
     @Override
     public boolean booleanValue() {
-        return false;
+        return ( _val != null && _val.size() > 0 );
     }
 
     @Override
