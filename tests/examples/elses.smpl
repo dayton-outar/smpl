@@ -4,6 +4,9 @@ h = 8;
 
 y = (){ f * 8; }
 
+:> ( [2, 3, 4] > [1, 2, 3] ) ? "Boom" : "Yow";
+:> "\n";
+
 :> "Function call in expression ${ y() + 5 + g() }\n\n";
 
 :> "Ternary query operator ...\n\n";
