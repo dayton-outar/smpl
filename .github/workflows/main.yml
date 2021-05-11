@@ -34,6 +34,5 @@ jobs:
 
       # Runs the ant on the build.xml file
       - name: Build with Ant
-        run: ant -noinput -buildfile build.xml
-          echo Add other actions to build,
-          echo test, and deploy your project.
+        run: echo $PWD
+          ant -noinput -buildfile build.xml
