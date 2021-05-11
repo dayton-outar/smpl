@@ -98,6 +98,7 @@ non terminal IExpression					logical_expression;
 non terminal IExpression					condition;
 non terminal IExpression					math_expression;
 non terminal IExpression					expression;
+non terminal Vector<IExpression>			index_expressions;
 non terminal CombinedStringExpression		string_expression;
 non terminal Vector<IExpression> 			parameter_list;
 non terminal String							variable;
@@ -377,11 +378,8 @@ math_expression ::= math_expression:e1 PLUS math_expression:e2
 			| IDENTIFIER:i LPAREN parameter_list:l RPAREN
 			{: RESULT = new FunctionExpression(i, l); :}
 
-			| IDENTIFIER:i LBRAK STRING:x RBRAK
-			{: RESULT = new DictionaryIndexExpression(i, x); // TODO: Set this up to take multiple expression for multi-dimension :}
-
-			| IDENTIFIER:i LBRAK math_expression:e RBRAK
-			{: RESULT = new ArrayIndexExpression(i, e); // TODO: Set this up to take multiple expression for multi-dimension :}
+			| IDENTIFIER:i index_expressions:l
+			{: RESULT = new ComplexDataIndexExpression(i, l); :}
 
 			| IDENTIFIER:i
 			{: RESULT = new VariableExpression(i); :}
@@ -416,6 +414,33 @@ math_expression ::= math_expression:e1 PLUS math_expression:e2
 			| NIL
 			{: RESULT = null; :}
             ;
+
+index_expressions ::= index_expressions:l LBRAK string_expression:s RBRAK
+			{:
+				l.addElement(s);
+				RESULT = l;
+			:}
+
+			| index_expressions:l LBRAK math_expression:e RBRAK
+			{:
+				l.addElement(e);
+				RESULT = l;
+			:}
+
+			| LBRAK string_expression:s RBRAK
+			{:
+				Vector<IExpression> l = new Vector<IExpression>();
+				l.addElement(s);
+				RESULT = l;
+			:}
+
+			| LBRAK math_expression:e RBRAK
+			{:
+				Vector<IExpression> l = new Vector<IExpression>();
+				l.addElement(e);
+				RESULT = l;
+			:}
+			;
 
 case_list ::= case:c case_list:l
 			{:
