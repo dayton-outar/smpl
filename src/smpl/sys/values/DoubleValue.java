@@ -219,16 +219,8 @@ public class DoubleValue implements IValue {
         if ( val.isArray() ) {
             return this.pow( (ArrayValue) val);
         } else {
-            return val.isLong() ? this.pow( (LongValue) val) : this.pow( (DoubleValue) val);
+            return new DoubleValue( Math.pow( this.doubleValue(), val.doubleValue() ) );
         }
-    }
-
-    public IValue pow(LongValue val) {
-        return new DoubleValue( Math.pow( this.doubleValue(), val.doubleValue() ) );
-    }
-
-    public IValue pow(DoubleValue val) {
-        return new DoubleValue( Math.pow( this.doubleValue(), val.doubleValue() ) );
     }
 
     public IValue pow(ArrayValue val) throws Exception {

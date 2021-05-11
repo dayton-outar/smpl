@@ -173,7 +173,9 @@ public class LongValue implements IValue {
     }
 
     public IValue div(LongValue val) {
-        return new LongValue( Long.valueOf( this.longValue() / val.longValue() ) );
+        Double dividend = this.doubleValue() / val.doubleValue();
+        double remainder = dividend % 1.0; // TODO: Refactor. Duplicated code
+        return ( remainder == 0.0 ) ? new LongValue( dividend.longValue() ) : new DoubleValue( dividend ) ;
     }
 
     public IValue div(ArrayValue val) throws Exception {
@@ -220,16 +222,10 @@ public class LongValue implements IValue {
         if ( val.isArray() ) {
             return this.pow( (ArrayValue) val);
         } else {
-            return val.isLong() ? this.pow( (LongValue) val) : this.pow( (DoubleValue) val);
+            Double exponent = Math.pow( this.doubleValue(), val.doubleValue() );
+            double remainder = exponent % 1.0; // TODO: Refactor. Duplicated code
+            return ( remainder == 0.0 ) ? new LongValue( exponent.longValue() ) : new DoubleValue( exponent ) ;
         }
-    }
-    
-    public IValue pow(DoubleValue val) {
-        return new DoubleValue( Math.pow( this.doubleValue(), val.doubleValue() ) );
-    }
-
-    public IValue pow(LongValue val) {
-        return new LongValue( (long)Math.pow( this.doubleValue(), val.doubleValue() ) );
     }
 
     public IValue pow(ArrayValue val) throws Exception {
