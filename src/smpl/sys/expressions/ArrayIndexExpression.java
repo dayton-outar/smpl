@@ -17,15 +17,14 @@ public class ArrayIndexExpression implements IExpression {
 
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
-        IValue rval;
-        IValue val = dictionary.get(_var);
+        IValue rval = dictionary.get(_var);
         LongValue index = new LongValue( _exp.evaluate(dictionary).longValue() );
 
-        if ( val.isArray() ) {
+        if ( rval.isArray() ) {
             int ix = (int) index.longValue();
 
-            if ( ix >= 0 && ix <= (val.arrayValues().size() - 1) ) {
-                rval = val.arrayValues().get( (int) index.longValue() );
+            if ( ix >= 0 && ix <= (rval.arrayValues().size() - 1) ) {
+                rval = rval.arrayValues().get( (int) index.longValue() );
             } else
                 throw new Exception("Index is out of bounds");
         } else

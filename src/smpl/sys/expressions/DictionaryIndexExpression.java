@@ -16,11 +16,10 @@ public class DictionaryIndexExpression implements IExpression {
 
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
-        IValue rval;
-        IValue val = dictionary.get(_var);
+        IValue rval = dictionary.get(_var);
 
-        if ( val.isDictionary() ) {
-            rval = val.getDictionary().get(_ix).evaluate(dictionary);   
+        if ( rval.isDictionary() ) {
+            rval = rval.getDictionary().get(_ix).evaluate(dictionary);   
         } else
             throw new Exception("Data type not appropriate for finding index");
 
