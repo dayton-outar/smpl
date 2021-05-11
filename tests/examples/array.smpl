@@ -1,9 +1,3 @@
-M = [ [1, 2, 3, 4], [0, 0, 0, 0], [4, 3, 2, 1] ]; // if we think of the first index parameter is the row and the second index parameter column
-:> "M = ${M}";
-:> "\n";
-:> "M[0, 0] = ${M[0]}";
-:> "\n";
-
 f = 3;
 c = [3:n -> n**f * 3, 55];
 :> c;
@@ -64,10 +58,21 @@ y++;
 
 :> "√[4, 8, 16] ==> ${ √[4, 8, 16] }\n\n";
 
-//:> ( [2, 3, 4] > [1, 2, 3] ) ? 99 : 50; // FIXME: Need to make strings legal in ternary operator
-//:> ( [2, 3, 6] > [2, 2, 5] ) ? 99 : 50;
+:> ( [2, 3, 4] > [1, 2, 3] ) ? "Boom" : "Yow";
+:> "\n";
+:> "\n";
+:> ( [2, 3, 6] > [2, 2, 5] ) ? 99 : 50;
+:> "\n";
+:> "\n";
 
 :> "Matrices\n";
+:> "\n";
 
 :> "${ [ [2, 0, 3], [3, 0, 2], [4, 0, 1] ] + [ [1, 0, 1], [1, 0, 1], [1, 0, 1] ] }\n";
 :> "${ [ [2, 0, 3], [3, 0, 2], [4, 0, 1] ] * 2 }\n";
+
+M = [ [1, 2, 3, 4], [0, 0, 0, 0], [4, 3, 2, 1] ]; // if we think of the first index parameter is the row and the second index parameter column
+:> "M = ${M}";
+:> "\n";
+//:> "M[0, 0] = ${M[0][0]}"; // FIXME: How do we index multi-dimensional array?
+//:> "\n";

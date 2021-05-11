@@ -90,15 +90,15 @@ non terminal Hashtable<String,IExpression>	dictionary;
 non terminal Vector<IExpression>			array;
 non terminal Vector<Cases>					case_list;
 non terminal Cases							case;
-non terminal Vector<IExpression>					case_expressions;
+non terminal Vector<IExpression>			case_expressions;
 non terminal Vector<Elses>					if_clause_list;
 non terminal Elses							if_clause;
-non terminal IExpression					expression_sequence; // FIXME: Awkward. Can't remember the meaning of this
 non terminal IExpression					loop_condition;
-non terminal IExpression					condition_sequence;
+non terminal IExpression					logical_expression;
 non terminal IExpression					condition;
 non terminal IExpression					math_expression;
-non terminal Vector<IExpression>			expressions;
+non terminal IExpression					expression;
+non terminal CombinedStringExpression		string_expression;
 non terminal Vector<IExpression> 			parameter_list;
 non terminal String							variable;
 non terminal Vector<String>					variable_list;
@@ -137,7 +137,7 @@ statement_list ::= statement:stmt statement_list:sl
 			{: RESULT = new Vector<ICommand>(); :}
 			;
 
-statement ::= expression_sequence:e SEMI
+statement ::= expression:e SEMI
 			{: RESULT = new ExpressionCommand(e);	:}
 
 			| assignment_statement:s SEMI
@@ -149,20 +149,20 @@ statement ::= expression_sequence:e SEMI
 			| CASES LBRACE if_clause_list:l RBRACE
 			{: RESULT = new ElsesCommand(l); :}
 
-			| CASES LPAREN expression_sequence:e RPAREN LBRACE case_list:l RBRACE
+			| CASES LPAREN expression:e RPAREN LBRACE case_list:l RBRACE
 			{: RESULT = new CasesCommand(e, l); :}
 
 			| LPAREN intialize_statement:i SEMI loop_condition:c SEMI stepper:s RPAREN statement_block:sl
 			{: RESULT = new LoopCommand(i, c, s, sl); :}
 
-			| PRINT expressions:l SEMI
-			{: RESULT = new PrintCommand(l); :}
+			| PRINT expression:e SEMI
+			{: RESULT = new PrintCommand(e); :}
 
 			| IDENTIFIER:i READ	SEMI
 			{: RESULT = new ReadCommand(i); :}
 			;
 
-intialize_statement ::= IDENTIFIER:i ASSIGN expression_sequence:e 
+intialize_statement ::= IDENTIFIER:i ASSIGN math_expression:e 
 			{:
 				RESULT = new AssignmentExpressionCommand(i, e);
 			:}
@@ -184,44 +184,44 @@ assignment_statement ::= IDENTIFIER:i INCREMENT
 			| IDENTIFIER:i DECREMENT
 			{: RESULT = new DecrementCommand(i); :}
 
-			| IDENTIFIER:i ASSIGN expression_sequence:e
+			| IDENTIFIER:i ASSIGN math_expression:e
 			{: RESULT = new AssignmentExpressionCommand(i, e); :}
 
 			| IDENTIFIER:i ASSIGN condition:c
 			{: RESULT = new AssignmentExpressionCommand(i, c); :}
 
-			| IDENTIFIER:i ASSIGNADD expression_sequence:e
+			| IDENTIFIER:i ASSIGNADD math_expression:e
 			{: RESULT = new AssignmentAddExpressionCommand(i, e); :}
 
-			| IDENTIFIER:i ASSIGNSUB expression_sequence:e
+			| IDENTIFIER:i ASSIGNSUB math_expression:e
 			{: RESULT = new AssignmentSubExpressionCommand(i, e); :}
 
-			| IDENTIFIER:i ASSIGNTIMES expression_sequence:e
+			| IDENTIFIER:i ASSIGNTIMES math_expression:e
 			{: RESULT = new AssignmentMulExpressionCommand(i, e); :}
 
-			| IDENTIFIER:i ASSIGNDIVIDE expression_sequence:e
+			| IDENTIFIER:i ASSIGNDIVIDE math_expression:e
 			{: RESULT = new AssignmentDivExpressionCommand(i, e); :}
 
-			| IDENTIFIER:i ASSIGNMOD expression_sequence:e
+			| IDENTIFIER:i ASSIGNMOD math_expression:e
 			{: RESULT = new AssignmentModExpressionCommand(i, e); :}
 
-			| IDENTIFIER:i ASSIGNAMP expression_sequence:e
+			| IDENTIFIER:i ASSIGNAMP math_expression:e
 			{: RESULT = new AssignmentAmpExpressionCommand(i, e); :}
 
-			| IDENTIFIER:i ASSIGNBAR expression_sequence:e
+			| IDENTIFIER:i ASSIGNBAR math_expression:e
 			{: RESULT = new AssignmentBarExpressionCommand(i, e); :}
 
-			| IDENTIFIER:i ASSIGNCARET expression_sequence:e
+			| IDENTIFIER:i ASSIGNCARET math_expression:e
 			{: RESULT = new AssignmentInvExpressionCommand(i, e); :}
 			;
 
-parameter_list ::= expression_sequence:e COMMA parameter_list:l
+parameter_list ::= math_expression:e COMMA parameter_list:l
 			{:
 				l.addElement(e);
 				RESULT = l;
 			:}
 
-			| expression_sequence:e
+			| math_expression:e
 			{: 
 				Vector<IExpression> l = new Vector<IExpression>();
 				l.addElement(e);
@@ -250,13 +250,13 @@ variable ::= COLON IDENTIFIER:i
 			{: RESULT = i; :}
 			;
 
-dictionary ::= dictionary:l COMMA STRING:s MAP expression_sequence:e
+dictionary ::= dictionary:l COMMA STRING:s MAP math_expression:e
 			{:
 				l.put(s, e);
 				RESULT = l;
 			:}
 
-			| STRING:s MAP expression_sequence:e 
+			| STRING:s MAP math_expression:e 
 			{:
 				Hashtable<String,IExpression> l = new Hashtable<String,IExpression>();
 				l.put(s, e);
@@ -264,26 +264,26 @@ dictionary ::= dictionary:l COMMA STRING:s MAP expression_sequence:e
 			:}
 			;
 
-array ::= expression_sequence:e COMMA array:l
+array ::= math_expression:e COMMA array:l
 			{:
 				l.addElement(e);
 				RESULT = l;
 			:}
 
-			| expression_sequence:n COLON IDENTIFIER:i IMPLY expression_sequence:e COMMA array:l 
+			| math_expression:n COLON IDENTIFIER:i IMPLY math_expression:e COMMA array:l 
 			{: 
 				l.addElement(new ArrayInitializationExpression(n, i, e)); 
 				RESULT = l; 
 			:}
 
-			| expression_sequence:e	
+			| math_expression:e	
 			{: 
 				Vector<IExpression> l = new Vector<IExpression>(); 
 				l.addElement(e); 
 				RESULT = l;
 			:}
 
-			| expression_sequence:n COLON IDENTIFIER:i IMPLY expression_sequence:e 
+			| math_expression:n COLON IDENTIFIER:i IMPLY math_expression:e 
 			{:
 				Vector<IExpression> l = new Vector<IExpression>();
 				l.addElement(new ArrayInitializationExpression(n, i, e));
@@ -294,28 +294,27 @@ array ::= expression_sequence:e COMMA array:l
 			{: RESULT = new Vector<IExpression>(); :}
 			;
 
-expressions ::= expressions:l math_expression:e
-			{:
-				l.addElement(e);
-				RESULT = l;
-			:}
-
-			| expressions:l STRING:s
-			{:
-				l.addElement(new StringExpression(s));
-				RESULT = l;
-			:}
-
-			| expressions:l condition:c
-			{:
-				l.addElement(c);
-				RESULT = l;
-			:}
+expression ::= string_expression:s
+			{: RESULT = s; :}
 
 			| math_expression:e
+			{: RESULT = e; :}
+
+			| logical_expression:c
+			{: RESULT = c; :}
+			;
+
+string_expression ::= string_expression:l math_expression:e STRING:s
 			{:
-				Vector<IExpression> l = new Vector<IExpression>();
-				l.addElement(e);
+				l.add(e);
+				l.add(new StringExpression(s));
+				RESULT = l;
+			:}
+
+			| string_expression:l logical_expression:c STRING:s
+			{:
+				l.add(c);
+				l.add(new StringExpression(s));
 				RESULT = l;
 			:}
 
@@ -323,22 +322,8 @@ expressions ::= expressions:l math_expression:e
 			{:
 				Vector<IExpression> l = new Vector<IExpression>();
 				l.addElement(new StringExpression(s));
-				RESULT = l;
+				RESULT = new CombinedStringExpression(l);
 			:}
-
-			| condition:c
-			{:
-				Vector<IExpression> l = new Vector<IExpression>();
-				l.addElement(c);
-				RESULT = l;
-			:}
-			;
-
-expression_sequence ::= expression_sequence math_expression:e
-			{: RESULT = e; :}
-
-            | math_expression:e
-			{: RESULT = e; :}
 			;
 
 math_expression ::= math_expression:e1 PLUS math_expression:e2
@@ -383,7 +368,7 @@ math_expression ::= math_expression:e1 PLUS math_expression:e2
             | LPAREN math_expression:e RPAREN
 			{: RESULT = e; :}
 
-			| LPAREN condition:c RPAREN QUERY math_expression:e1 COLON math_expression:e2
+			| LPAREN condition:c RPAREN QUERY expression:e1 COLON expression:e2
 			{: RESULT = new QueryExpression(c, e1, e2); :}
 
 			| BAR IDENTIFIER:i BAR
@@ -393,10 +378,10 @@ math_expression ::= math_expression:e1 PLUS math_expression:e2
 			{: RESULT = new FunctionExpression(i, l); :}
 
 			| IDENTIFIER:i LBRAK STRING:x RBRAK
-			{: RESULT = new DictionaryIndexExpression(i, x); :}
+			{: RESULT = new DictionaryIndexExpression(i, x); // TODO: Set this up to take multiple expression for multi-dimension :}
 
 			| IDENTIFIER:i LBRAK math_expression:e RBRAK
-			{: RESULT = new ArrayIndexExpression(i, e); :}
+			{: RESULT = new ArrayIndexExpression(i, e); // TODO: Set this up to take multiple expression for multi-dimension :}
 
 			| IDENTIFIER:i
 			{: RESULT = new VariableExpression(i); :}
@@ -470,21 +455,21 @@ if_clause_list ::= if_clause:c if_clause_list:l
 			{: RESULT = new Vector<Elses>(); :}
 			;
 
-if_clause ::= condition_sequence:c COLON statement:s 
+if_clause ::= logical_expression:c COLON statement:s 
 			{: RESULT = new Elses(c, s); :}
 			;
 
-loop_condition ::= condition_sequence:c
+loop_condition ::= logical_expression:c
 			{: RESULT = c; :}
 
 			| empty
 			{: RESULT = new BooleanExpression(Boolean.valueOf(true)); :}
 			;
 
-condition_sequence ::= condition_sequence:c1 AND condition:c2
+logical_expression ::= logical_expression:c1 AND condition:c2
 			{: RESULT = new LogicalAndExpression(c1, c2); :}
 
-			| condition_sequence:c1 OR condition:c2
+			| logical_expression:c1 OR condition:c2
 			{: RESULT = new LogicalOrExpression(c1, c2); :}
 
 			| NOT condition:c

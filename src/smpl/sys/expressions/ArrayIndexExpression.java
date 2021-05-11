@@ -24,10 +24,10 @@ public class ArrayIndexExpression implements IExpression {
         if ( val.isArray() ) {
             int ix = (int) index.longValue();
 
-            if ( ix >= 0 || ix <= (val.arrayValues().size() - 1) ) {
+            if ( ix >= 0 && ix <= (val.arrayValues().size() - 1) ) {
                 rval = val.arrayValues().get( (int) index.longValue() );
             } else
-                throw new Exception("Index is out of bounds");            
+                throw new Exception("Index is out of bounds");
         } else
             throw new Exception("Data type not appropriate for finding index");
 
