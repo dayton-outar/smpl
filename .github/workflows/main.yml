@@ -34,5 +34,4 @@ jobs:
 
       # Runs the ant on the build.xml file
       - name: Build with Ant
-        run: echo $PWD
-          ant -noinput -buildfile build.xml
+        run: echo $PWD && ls
