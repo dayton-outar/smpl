@@ -597,10 +597,12 @@ public class SMPLLexer implements java_cup.runtime.Scanner {
         case '\u2028':  // fall through
         case '\u2029':
           yyline++;
+          yycolumn = 0;
           zzR = false;
           break;
         case '\r':
           yyline++;
+          yycolumn = 0;
           zzR = true;
           break;
         case '\n':
@@ -608,10 +610,12 @@ public class SMPLLexer implements java_cup.runtime.Scanner {
             zzR = false;
           else {
             yyline++;
+            yycolumn = 0;
           }
           break;
         default:
           zzR = false;
+          yycolumn += zzCharCount;
         }
       }
 
@@ -703,8 +707,7 @@ public class SMPLLexer implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { throw new Error("Illegal character <"+
-                                                        yytext()+">");
+            { throw new Error("Illegal character <..." + yytext() + "...>");
             } 
             // fall through
           case 70: break;

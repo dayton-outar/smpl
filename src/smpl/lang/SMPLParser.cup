@@ -18,12 +18,11 @@ parser code {:
 	public void syntax_error(Symbol cur_token) {
 		SMPLLexer lexer = (SMPLLexer) getScanner();
 
-		System.err.print("Line " + lexer.getLine() +
-				         " near char " + lexer.getChar() + ": ");
+		System.err.print( String.format("Line %1$s near character %2$s:\n", lexer.getLine(), lexer.getChar()) );
 
-		report_error("Syntax error while reading: ", cur_token);
+		report_error("Syntax error while reading: ", sym.terminalNames[cur_token.sym]);
 
-		System.err.println ("Last token read is " + lexer.getText());
+		System.err.println ( String.format("Last token read is ... %s.", lexer.getText()) );
 	}
 
 :};

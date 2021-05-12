@@ -28,7 +28,7 @@ public class App {
 						try {
 							parseSmpl(in);
 						} catch (Exception e) {
-							System.out.println( String.format("\u001B[31m$s\u001B[0m", e.getMessage()) );
+							System.out.println( String.format("\u001B[31m%s\u001B[0m", e.getMessage()) );
 							System.out.println("\u001B[31mLoaded program failed to compile\u001B[0m");
 						}
 					} else if ( file.isDirectory() ) {
@@ -41,7 +41,7 @@ public class App {
 							try {
 								parseSmpl(in);
 							} catch (Exception e) {
-								System.out.println( String.format("\u001B[31m$s\u001B[0m", e.getMessage()) );
+								System.out.println( String.format("\u001B[31m%s\u001B[0m", e.getMessage()) );
 								System.out.println("\u001B[31mLoaded program failed to compile\u001B[0m");
 							}
 						}

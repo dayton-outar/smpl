@@ -19,6 +19,7 @@ import java_cup.runtime.*;
 
 %unicode
 %line
+%column
 
 %{
   StringBuffer string = new StringBuffer();
@@ -176,5 +177,4 @@ id              = {alpha}|{alpha}{alphanum}
 }
 
 /* error fallback */
-[^]                              { throw new Error("Illegal character <"+
-                                                        yytext()+">"); }
+[^]                              { throw new Error("Illegal character <..." + yytext() + "...>"); }

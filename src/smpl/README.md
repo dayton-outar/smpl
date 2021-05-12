@@ -47,3 +47,4 @@ This application makes use of a number of Java libraries that can be found in th
 6. [Java IO: SequenceInputStream](http://tutorials.jenkov.com/java-io/sequenceinputstream.html#:~:text=The%20Java%20SequenceInputStream%20combines%20two,instances%20are%20read%20in%20sequence.) by Jakob Jenkov
 7. [java, print in bold](https://stackoverflow.com/questions/29109678/java-print-in-bold)
 8. [Simple ANSI colors](https://gist.github.com/dainkaplan/4651352)
+9. [Java String Format Examples](https://dzone.com/articles/java-string-format-examples)
