@@ -485,10 +485,10 @@ loop_condition ::= logical_expression:c
 			{: RESULT = new BooleanExpression(Boolean.valueOf(true)); :}
 			;
 
-logical_expression ::= logical_expression:c1 AND condition:c2
+logical_expression ::= logical_expression:c1 AND logical_expression:c2
 			{: RESULT = new LogicalAndExpression(c1, c2); :}
 
-			| logical_expression:c1 OR condition:c2
+			| logical_expression:c1 OR logical_expression:c2
 			{: RESULT = new LogicalOrExpression(c1, c2); :}
 
 			| NOT condition:c
@@ -498,8 +498,17 @@ logical_expression ::= logical_expression:c1 AND condition:c2
 			{: RESULT = c; :}
 			;
 
-condition ::=  math_expression:e1 EQ math_expression:e2
+condition ::=  math_expression:e1 EQ condition:c
+			{: RESULT = new EqualsExpression(e1, c); :}
+
+			| math_expression:e1 EQ math_expression:e2
 			{: RESULT = new EqualsExpression(e1, e2); :}
+
+			| math_expression:e1 NOTEQ condition:c
+			{: RESULT = new NotEqualsExpression(e1, c); :}
+
+			| math_expression:e1 NOTEQ math_expression:e2
+			{: RESULT = new NotEqualsExpression(e1, e2); :}
 
 			| math_expression:e1 LT math_expression:e2
 			{: RESULT = new LesserThanExpression(e1, e2); :}
@@ -512,9 +521,6 @@ condition ::=  math_expression:e1 EQ math_expression:e2
 
 			| math_expression:e1 GTEQ math_expression:e2
 			{: RESULT = new GreaterThanOrEqualsExpression(e1, e2); 	:}
-
-			| math_expression:e1 NOTEQ math_expression:e2
-			{: RESULT = new NotEqualsExpression(e1, e2); :}
 
 			| LPAREN condition:c RPAREN
 			{: RESULT = c;	:}

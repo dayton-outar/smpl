@@ -1,2 +1,3 @@
 k = [];
-:> (k == true) ? 5 : 0; // FIXME: Why this not working
+:> (k == true) ? 5 : 0;
+:> "\n";
