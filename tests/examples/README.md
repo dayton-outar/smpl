@@ -118,7 +118,7 @@ _**M**<sub>i, j</sub>_ is the entry in the _i<sup>th</sup>_ row and _j<sup>th</s
 So, _**M**<sub>0, 0</sub>_ can be represented as,
 
 ```
-:> M[0, 0]; // Output: 1
+:> M[0][0]; // Output: 1
 ```
 
 A **vector** is a 1 × _n_ matrix
@@ -132,14 +132,26 @@ _**v**_<sub>i</sub> is the _i<sup>th</sup>_ entry of the vector
 So, _**v**<sub>1</sub>_ can be represented as,
 
 ```
-:> v[1];
+:> v[1]; // Output: 3
 ```
+##### Matrix Addition
+
+- **Matrix addition** is simply adding the entries of two or more matrices one by one
+- This summation results in another matrix:
+  > _**M**<sub>0</sub>_ + _**M**<sub>1</sub>_ = _**M**<sub>2</sub>_
+
+For example,
 
 ![Matrix Addition](/.attachments/matrix-addition.png)
 
-![Scalar Division](/.attachments/scalar-division.png)
+
+
+##### Scalar Multiplication
+
 
 ![Scalar Multiplication](/.attachments/scalar-multiplication.png)
+
+![Scalar Division](/.attachments/scalar-division.png)
 
 ### Trigonometry
 
