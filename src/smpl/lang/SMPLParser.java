@@ -747,44 +747,21 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
   public int error_sym() {return 1;}
 
 
-  /** User initialization code. */
-  public void user_init() throws java.lang.Exception
-    {
 
-    // Create a lexer that reads from specified input stream
-    if (in == null) {
-		in = System.in;
-		lexer = new SMPLLexer( new InputStreamReader(in) );
-	}
-	setScanner( lexer );
-
-    }
-
-
-	SMPLLexer lexer;
-	InputStream in = null;
-
-	public SMPLParser(String file) {
-		try {
-			in = new FileInputStream(file);
-			lexer = new SMPLLexer(new InputStreamReader(in));
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}	    
-	}
 
 	public void report_error(String message, Object info) {
 	    System.err.println(message + info);
 	}
 
 	public void syntax_error(Symbol cur_token) {
+		SMPLLexer lexer = (SMPLLexer) getScanner();
+
 		System.err.print("Line " + lexer.getLine() +
 				         " near char " + lexer.getChar() + ": ");
 
 		report_error("Syntax error while reading: ", cur_token);
 
-		System.err.println ("Last token read is " +
-					        lexer.getText());
+		System.err.println ("Last token read is " + lexer.getText());
 	}
 
 

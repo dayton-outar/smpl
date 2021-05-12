@@ -6,8 +6,6 @@ What can we achieve using _SMPL_?
 
 ## Mathematical Examples
 
-### Algebra
-
 
 
 ### Geometry
