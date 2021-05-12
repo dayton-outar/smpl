@@ -19,7 +19,7 @@ public class App {
 
 				for (int i = 0; i < args.length; i++) {
 					System.out.println();
-					System.out.println( String.format("Reading %s ...", args[i]) );
+					System.out.println( String.format("\u001B[32mReading %s ...\u001B[0m", args[i]) );
 					System.out.println();
 					//---
 					File file = new File( args[i] );
@@ -33,7 +33,8 @@ public class App {
 						}
 					} else if ( file.isDirectory() ) {
 						for (File smplFile : file.listFiles( (f, s) -> s.endsWith(".smpl") )) {
-							System.out.println( String.format("Reading %s ...", smplFile.getName()) );
+							System.out.println();
+							System.out.println( String.format("\u001B[32mReading %s ...\u001B[0m", smplFile.getName()) );
 							System.out.println();
 
 							in = new FileInputStream( smplFile.getPath() );
