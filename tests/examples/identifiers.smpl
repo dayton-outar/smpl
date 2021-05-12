@@ -1,7 +1,7 @@
 bar = 3;
 d1 = 5;
 foo2 = 7;
-p = 5 * 1d;
+p = 5 * d1;
 
 q = bar + d1 + foo2 + p;
 q++;
