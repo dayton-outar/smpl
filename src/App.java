@@ -15,27 +15,62 @@ public class App {
 		try {
 			InputStream in;
 
-			if (args.length > 0) {				
+			if (args.length > 0) {
+
 				for (int i = 0; i < args.length; i++) {
 					System.out.println();
 					System.out.println( String.format("Reading %s ...", args[i]) );
 					System.out.println();
-					in = new FileInputStream( args[i] );
-					parseSmpl(in);
+					//---
+					File file = new File( args[i] );
+					if ( file.isFile() ) {
+						in = new FileInputStream( args[i] );
+						try {
+							parseSmpl(in);
+						} catch (Exception e) {
+							System.out.println( String.format("\u001B[31m$s\u001B[0m", e.getMessage()) );
+							System.out.println("\u001B[31mLoaded program failed to compile\u001B[0m");
+						}
+					} else if ( file.isDirectory() ) {
+						for (File smplFile : file.listFiles( (f, s) -> s.endsWith(".smpl") )) {
+							System.out.println( String.format("Reading %s ...", smplFile.getName()) );
+							System.out.println();
+
+							in = new FileInputStream( smplFile.getPath() );
+							try {
+								parseSmpl(in);
+							} catch (Exception e) {
+								System.out.println( String.format("\u001B[31m$s\u001B[0m", e.getMessage()) );
+								System.out.println("\u001B[31mLoaded program failed to compile\u001B[0m");
+							}
+						}
+					} else {
+						System.out.println( String.format("Argument, %s, is not valid", args[i]) );
+					}
 				}
+
 			} else {
 				System.out.println("Please type your arithmethic expression:");
-				String shellContent = System.console().readLine("\u001B[32m#smpl!\u001B[0m ");
-				in = new ByteArrayInputStream(shellContent.getBytes(StandardCharsets.UTF_8));
-				parseSmpl(in);
+				String shellContent = "";
+
+				while( (shellContent.equals("quit") || shellContent.equals("exit")) == false ) {
+					System.out.println();
+					shellContent = System.console().readLine("\u001B[32m\u001B[1m#smpl!\u001B[0m ");
+					in = new ByteArrayInputStream(shellContent.getBytes(StandardCharsets.UTF_8));
+					if ((shellContent.equals("quit") || shellContent.equals("exit")) == false) {
+						try {
+							parseSmpl(in);
+						} catch (Exception e) {
+							System.out.println( String.format("\u001B[31m$s\u001B[0m", e.getMessage()) );
+							System.out.println("\u001B[31mLoaded program failed to compile\u001B[0m");
+						}
+					}
+				}
 			}
 
 		} catch (FileNotFoundException fnfe) {
 			System.out.println("\u001B[31mFile not found error: \u001B[0m" +
 				fnfe.getMessage());
-		} catch (Exception e) {
-			System.out.println( String.format("\u001B[31m$s\u001B[0m", e.getMessage()) );
-			System.out.println("\u001B[31mLoaded program failed to compile\u001B[0m");
 		}
     }
 
