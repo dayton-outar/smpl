@@ -14,6 +14,7 @@ public class App {
 
 		try {
 			InputStream in;
+			Hashtable<String, IValue> heap = new Hashtable<String, IValue>();
 
 			if (args.length > 0) {
 
@@ -26,7 +27,7 @@ public class App {
 					if ( file.isFile() ) {
 						in = new FileInputStream( args[i] );
 						try {
-							parseSmpl(in);
+							parseSmpl(in, heap);
 						} catch (Exception e) {
 							System.out.println( String.format("\u001B[31m%s\u001B[0m", e.getMessage()) );
 							System.out.println("\u001B[31mLoaded program failed to compile\u001B[0m");
@@ -39,7 +40,7 @@ public class App {
 
 							in = new FileInputStream( smplFile.getPath() );
 							try {
-								parseSmpl(in);
+								parseSmpl(in, heap);
 							} catch (Exception e) {
 								System.out.println( String.format("\u001B[31m%s\u001B[0m", e.getMessage()) );
 								System.out.println("\u001B[31mLoaded program failed to compile\u001B[0m");
@@ -60,9 +61,9 @@ public class App {
 					in = new ByteArrayInputStream(shellContent.getBytes(StandardCharsets.UTF_8));
 					if ((shellContent.equals("quit") || shellContent.equals("exit")) == false) {
 						try {
-							parseSmpl(in);
+							parseSmpl(in, heap);
 						} catch (Exception e) {
-							System.out.println( String.format("\u001B[31m$s\u001B[0m", e.getMessage()) );
+							System.out.println( String.format("\u001B[31m%s\u001B[0m", e.getMessage()) );
 							System.out.println("\u001B[31mLoaded program failed to compile\u001B[0m");
 						}
 					}
@@ -75,13 +76,13 @@ public class App {
 		}
     }
 
-	public static void parseSmpl(InputStream in) throws Exception {
+	public static void parseSmpl(InputStream in, Hashtable<String, IValue> heap) throws Exception {
 		SMPLLexer lexer = new SMPLLexer( new InputStreamReader(in) );
 		SMPLParser p = new SMPLParser(lexer);
 		
 		Symbol parseResult = p.parse();
 		
 		Program program = (Program)parseResult.value;
-		program.execute( new Hashtable<String, IValue>() );
+		program.execute( heap );
 	}
 }

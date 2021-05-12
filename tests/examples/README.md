@@ -144,14 +144,50 @@ For example,
 
 ![Matrix Addition](/.attachments/matrix-addition.png)
 
+The example above is achieved in SMPL as follows,
 
+```
+m0 = [ [2, 3, 4], [0, 0, 0], [3, 2, 1] ];
+m1 = [ [1, 1, 1], [0, 0, 0], [1, 1, 1] ];
+
+:> m0 + m1; // Output: [[3, 4, 5], [0, 0, 0], [4, 3, 2]]
+```
+
+Notice that the resulting matrix retains the same dimensions (3 × 3).
+
+**NB** _When matrices of different dimensions are added, **SMPL** accommodates the expression by expanding the result to the biggest matrix. See example below_
+
+```
+m2 = [ [1, 5, 9], [3, 0, 3] ];
+:> m2 + m1; // The (2 × 3) matrix resulted in a (3 × 3) matrix when added to a 3 × 3 matrix
+```
+
+Is allowing expandable matrices a good idea? (Let's see)
 
 ##### Scalar Multiplication
 
+- To **multiply a matrix by scalar** (a raw number), one also simply multiplies all its entries by this scalar
+- It results in another matrix with the same dimentions
+
+For example,
 
 ![Scalar Multiplication](/.attachments/scalar-multiplication.png)
 
+- Note that the multiplication of a matrix by a scalar and the multiplication of a scalar by a matrix are equal
+
+![Scalar to Matrix and Matrix to Scalar](/.attachments/scalar-matrix-matrix-scalar.png)
+
+- A matrix can be divided by a scalar in the same way
+
 ![Scalar Division](/.attachments/scalar-division.png)
+
+Scalar multiplication of matrices is demonstrated in the SMPL syntax below,
+
+```
+:> [2, 3] * [4, 6, 9]; // Output: [8, 18, 0]
+:> "\n"; // New line
+:> [55, 32] / [5, 4, 9]; // Output: [11, 8, 0]
+```
 
 ### Trigonometry
 
