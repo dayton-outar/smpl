@@ -89,7 +89,7 @@ public class LongValue implements IValue {
     }
 
     public IValue add(LongValue val) {
-        return new LongValue( Long.valueOf( this.longValue() + val.longValue() ) );
+        return new LongValue( Long.valueOf( this.longValue() + val.longValue() ), this._radix );
     }
 
     public IValue add(ArrayValue val) throws Exception {
@@ -117,7 +117,7 @@ public class LongValue implements IValue {
     }
 
     public IValue sub(LongValue val) {
-        return new LongValue( Long.valueOf( this.longValue() - val.longValue() ) );
+        return new LongValue( Long.valueOf( this.longValue() - val.longValue() ), this._radix );
     }
 
     public IValue sub(ArrayValue val) throws Exception{
@@ -145,7 +145,7 @@ public class LongValue implements IValue {
     }
 
     public IValue mul(LongValue val) {
-        return new LongValue( Long.valueOf( this.longValue() * val.longValue() ) );
+        return new LongValue( Long.valueOf( this.longValue() * val.longValue() ), this._radix );
     }
 
     public IValue mul(ArrayValue val) throws Exception {
@@ -175,7 +175,7 @@ public class LongValue implements IValue {
     public IValue div(LongValue val) {
         Double dividend = this.doubleValue() / val.doubleValue();
         double remainder = dividend % 1.0; // TODO: Refactor. Duplicated code
-        return ( remainder == 0.0 ) ? new LongValue( dividend.longValue() ) : new DoubleValue( dividend ) ;
+        return ( remainder == 0.0 ) ? new LongValue( dividend.longValue(), this._radix ) : new DoubleValue( dividend ) ;
     }
 
     public IValue div(ArrayValue val) throws Exception {
@@ -203,7 +203,7 @@ public class LongValue implements IValue {
     }
 
     public IValue mod(LongValue val) {
-        return new LongValue( Long.valueOf( this.longValue() % val.longValue() ) );
+        return new LongValue( Long.valueOf( this.longValue() % val.longValue() ), this._radix );
     }
 
     public IValue mod(ArrayValue val) throws Exception {
@@ -224,7 +224,7 @@ public class LongValue implements IValue {
         } else {
             Double exponent = Math.pow( this.doubleValue(), val.doubleValue() );
             double remainder = exponent % 1.0; // TODO: Refactor. Duplicated code
-            return ( remainder == 0.0 ) ? new LongValue( exponent.longValue() ) : new DoubleValue( exponent ) ;
+            return ( remainder == 0.0 ) ? new LongValue( exponent.longValue(), this._radix ) : new DoubleValue( exponent ) ;
         }
     }
 
@@ -249,7 +249,7 @@ public class LongValue implements IValue {
     }
     
     public IValue ban(LongValue val) {
-        return new LongValue( Long.valueOf( this.longValue() & val.longValue() ) );
+        return new LongValue( Long.valueOf( this.longValue() & val.longValue() ), this._radix );
     }
     
     public IValue ban(ArrayValue val) throws Exception {
@@ -273,7 +273,7 @@ public class LongValue implements IValue {
     }
     
     public IValue bor(LongValue val) {
-        return new LongValue( Long.valueOf( this.longValue() | val.longValue() ) );
+        return new LongValue( Long.valueOf( this.longValue() | val.longValue() ), this._radix );
     }
     
     public IValue bor(ArrayValue val) throws Exception {
@@ -297,7 +297,7 @@ public class LongValue implements IValue {
     }
     
     public IValue bxr(LongValue val) {
-        return new LongValue( Long.valueOf( this.longValue() ^ val.longValue() ) );
+        return new LongValue( Long.valueOf( this.longValue() ^ val.longValue() ), this._radix );
     }
     
     public IValue bxr(ArrayValue val) throws Exception {
@@ -313,7 +313,7 @@ public class LongValue implements IValue {
 
     @Override
     public IValue biv() {
-        return new LongValue( Long.valueOf( ~this.longValue() ) );
+        return new LongValue( Long.valueOf( ~this.longValue() ), this._radix );
     }
 
     @Override
@@ -321,7 +321,7 @@ public class LongValue implements IValue {
         long val = this.longValue();
         val++;
 
-        return new LongValue( Long.valueOf( val ) );
+        return new LongValue( Long.valueOf( val ), this._radix );
     }
 
     @Override
@@ -329,12 +329,12 @@ public class LongValue implements IValue {
         long val = this.longValue();
         val--;
 
-        return new LongValue( Long.valueOf( val ) );
+        return new LongValue( Long.valueOf( val ), this._radix );
     }
 
     @Override
     public IValue inv() {
-        return new LongValue( Long.valueOf( -this.longValue() ) );
+        return new LongValue( Long.valueOf( -this.longValue() ), this._radix );
     }
 
     @Override

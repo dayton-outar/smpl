@@ -15,5 +15,11 @@ n = 0o1071;
 :> n;
 :> "\n";
 
-:> l * k; // FIXME: Goes back to radix 10. Need precedence of first val to maintain radix.
+:> l * k; // Output: 8ca
+:> "\n";
+
+:> k * l; // Output: 100011001010
+:> "\n";
+
+:> n + k; // Output: 1102
 :> "\n";
