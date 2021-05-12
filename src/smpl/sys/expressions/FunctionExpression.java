@@ -21,7 +21,7 @@ public class FunctionExpression implements IExpression {
     public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
         FunctionValue fv = (FunctionValue)dictionary.get(_function);
         if (fv == null)
-            throw new Exception("The function, " + _function + ", was not declared");
+            throw new Exception( String.format("The function, %s, was not declared", _function) );
 
         Program prog = new Program( fv.getStatements() );
 
@@ -29,7 +29,12 @@ public class FunctionExpression implements IExpression {
         // Use variables in global scope (or calling scope)
         programDictionary.putAll(dictionary);
         Vector<String> variables = fv.getParameters();
-        for (int x = 0; x < variables.size(); x++) {
+        int vsize = variables.size();
+
+        if ( _parameters.size() < vsize )
+            throw new Exception( String.format("The function, %1$s, requires at least %2$s parameters", _function, vsize) );
+
+        for (int x = 0; x < vsize; x++) {
             programDictionary.put( variables.elementAt(x), _parameters.elementAt(x).evaluate(dictionary) );
         }
         
