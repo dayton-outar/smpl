@@ -16,7 +16,7 @@ public class EqualsExpression implements IExpression {
 
     @Override
     public IValue evaluate(Hashtable<String, IValue> dictionary) throws Exception {
-        return _exp1.evaluate(dictionary).noteq( _exp2.evaluate(dictionary) );
+        return _exp1.evaluate(dictionary).eq( _exp2.evaluate(dictionary) );
     }
     
 }

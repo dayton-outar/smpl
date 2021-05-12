@@ -429,7 +429,7 @@ public class ArrayValue implements IValue {
 
     @Override
     public IValue eq(IValue val) throws Exception {
-        BooleanValue bv = new BooleanValue(false);
+        BooleanValue bv = new BooleanValue(this.booleanValue());
 
         if ( val instanceof ArrayValue ) {
             Vector<IValue> vals = val.arrayValues();
