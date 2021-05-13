@@ -291,7 +291,7 @@ Once the trigonometric functions have been established, they can be used as foll
 :> "Tangent of 30 degrees is ${ tan(30) }\n";
 ```
 
-See the [trigonometry](trigonometru.smpl) SMPL file for _cos_ function.
+See the [trigonometry](trigonometry.smpl) SMPL file for _cos_ function.
 
 ### Statistics & Probability
 
