@@ -2,13 +2,77 @@
 
 What can we achieve using _SMPL_?
 
+Mostly, a journey into using symbolic language by using all that is available on the keyboard and some unicode characters to write mathematical expressions that can be evaluated.
+
 ## Logical Expressions
 
 Logical expressions are what make a programming language. A language is said to be _Turing-complete_ when it has the ability to ask logical questions in a conditional statement and perform the appropriate instructions when conditions are met.
 
 SMPL contains the popular ternary _if_ expression, _if-else_ statement, _case_ statement and a loop structure.
 
-...
+The ternary operator expression has become ubiquitous in so many languages. It is brief, to the point and readable. See below snippet of how logical expressions are used within the ternary operator expression,
+
+```
+:> ( [2, 3, 4] > [1, 2, 3] ) ? "Boom" : "Yow"; // Output: Boom
+:> "\n";
+```
+
+The _if-else_ statement expression was inspired by the brief and symbolic ternary operator expression. Hence, the design came up with a code structure that resembles the following snippet,
+
+```
+f = 3;
+g = (){ 7; }
+h = 8;
+
+?: {
+    g() > f: :> h; // Output: 8
+    !34 == 34: :> y();
+    (25 == 25) && (65 >= 5) && (55 > 5): :> 33;
+}
+:> "\n";
+```
+
+The _case_ statement expression always offers a succinct alternative for performing different instructions based on the evaluation of an expression. The snippet below gives an idea of how the _case_ statement is used,
+
+```
+f = 3;
+
+g = (){ 7; }
+
+e = (){ f * 8; }
+
+?: ([1 * 3, 3 +2]) {
+    2: :> "${ g() }\n";
+    5: :> "${ e() }\n";
+    10:
+    12:
+    15: :> "${f * 22}\n";
+    10 * 10: :> "${ 3*7 }\n";
+    [3, 5]: :> "Booyah!\n"; // Output: Booyah!
+}
+```
+
+The loop is a must have that facilitates the ability to repeat a set of instructions more than once based on the conditions set by evaluated expressions.
+
+```
+
+:> "Step up by 1\n";
+
+(i = 1; i <= 9; i++) {
+    :> i * (3 + i); :> " ": // Output 4 10 18 28 40 54 70 88 108
+}
+:> "\n";
+
+
+q = 3;
+:> "Step up down from 3 by 1\n";
+
+(; q > 1;) {
+    :> "${q}"; :> " ": // Output: 3 2
+    q--;
+}
+
+```
 
 ## Mathematical Expressions
 
