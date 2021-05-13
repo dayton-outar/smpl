@@ -293,13 +293,23 @@ Once the trigonometric functions have been established, they can be used as foll
 
 See the [trigonometry](trigonometry.smpl) SMPL file for _cos_ function.
 
-### Statistics & Probability
-
-### Calculus
-
 ## String Expressions
 
-...
+Strings are included in SMPL to facilitate elaborate communication to a user interface. SMPL inherently facilitates the interpolation of mathematical and logical expressions within strings by placing those expressions within enclosing symbols: `${`, `}`.
+
+For example, given that the functions `sin` and `tan` have been implemented, the following string expression evaluates the function expression within `${` and `}`.
+
+```
+:> "Sine of 30 degrees is ${ sin(30) }\n";
+
+:> "Tangent of 30 degrees is ${ tan(30) }\n";
+```
+
+String expressions can be used within arrays and dictionaries in SMPL. See below example,
+
+```
+
+```
 
 # References
 
