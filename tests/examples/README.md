@@ -2,7 +2,7 @@
 
 What can we achieve using _SMPL_?
 
-
+## Logical Expressions
 
 ## Mathematical Examples
 
@@ -83,10 +83,6 @@ hypotenuse = (:a, :b) { √(a**2 + b**2); }
 
 :> hypotenuse(3, 4); // Outputs 5.0
 ```
-### Logics
-
-...
-
 ### Algebra
 
 #### Factorial
