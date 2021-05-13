@@ -62,7 +62,7 @@ o1 = 0o0501;
 
 Octal numbers can be used within all mathematical and logical expressions within SMPL.
 
-### Hexadecimal Numbers
+#### Hexadecimal Numbers
 
 Hexadecimal numbers are prefixed with `0b` before the sequence of numbers between `0` and `9` and letters between `a` and `f` (it is case insensitive).
 
@@ -73,7 +73,7 @@ h1 = 0x0050a;
 :> h0 & h1; // Output: 2
 ```
 
-Octal numbers can be used within all mathematical and logical expressions within SMPL.
+Hexadecimal numbers can be used within all mathematical and logical expressions within SMPL.
 
 ### Geometry
 
@@ -152,7 +152,11 @@ hypotenuse = (:a, :b) { √(a**2 + b**2); }
 ```
 ### Algebra
 
+SMPL is also very good at expressing algebra expressions.
+
 #### Factorial
+
+The snippet below calculates the factorial of 7 (7!) to be 5040.
 
 ```
 fact = (:n) { (n <= 1) ? 1 : n * fact( n - 1 ); }
@@ -256,6 +260,38 @@ Scalar multiplication of matrices is demonstrated in the SMPL syntax below,
 ```
 
 ### Trigonometry
+
+Deriving trigonometric functions from its foundational principles can be achieved in SMPL. See below snippet that creates a _sin_ function by using a factorial function to create an expression based on the taylor series to calculate a shallow approximation of the result of _sin_ function.
+
+```
+fact = (:n) { (n <= 1) ? 1 : n * fact( n - 1 ); }
+
+// To get a better approximation for cos(r), you need more terms in your Taylor polynomial.
+sin = (:n) {
+    r = ( n / 180.0 ) * π;
+    v = r - ( (r**3)/fact(3) ) + ( (r**5)/fact(5) ) - ( (r**7)/fact(7) ) + ( (r**9)/fact(9) ) - ( (r**11)/fact(11) );
+    v;
+}
+```
+
+The tangent function is more easily derived once the above snippet is implemented to create the _sin_ function. See below snippet of _tan_ trigonometric function,
+
+```
+tan = (:n) {
+    t = sin(n) ÷ √( 1 - sin(n)**2 );
+    t;
+}
+```
+
+Once the trigonometric functions have been established, they can be used as follows,
+
+```
+:> "Sine of 30 degrees is ${ sin(30) }\n";
+
+:> "Tangent of 30 degrees is ${ tan(30) }\n";
+```
+
+See the [trigonometry](trigonometru.smpl) SMPL file for _cos_ function.
 
 ### Statistics & Probability
 
