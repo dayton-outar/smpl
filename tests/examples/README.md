@@ -2,11 +2,78 @@
 
 What can we achieve using _SMPL_?
 
+## Logical Expressions
+
+## Mathematical Expressions
+
+### Number Systems
+
+SMPL supports 4 number systems for long integer expressions: binary, octal, hexadecimal and decimal.
+
+#### Binary Numbers
+
+Binary numbers are prefixed with `0b` before the sequence of `1`'s and `0`'s. See below a snippet of code, where two binary numbers are added.
+
+```
+b0 = 0b100101;
+b1 = 0b010101;
+:> b0 + b1; // Output: 111010
+```
+
+In order to convert the binary number to its decimal representation, the number can be multiplied by 1. Where the 1 is placed at the leftmost position to have its radix gain precedence of the expression. See below snippet of code,
+
+```
+:> 1 * b0; // Output: 37
+:> 1 * b1; // Output: 21
+:> 1 * (b0 + b1); // Output: 58
+```
+
+Numbers in decimal representation can also be converted to binary by multiplying the long integer expression by `0b1`. See snippet below,
+
+```
+:> 0b1 * 8; // Output: 1000
+:> 0b1 * 20; // Output: 10100
+```
+
+_This conversion cannot be done for fractional decimal representation. Multiplying the fractional number by `0b1` does not change the radix. For example,_
+
+```
+:> 0b1 * 8.5; // Output: 8.5
+```
+
+The binary numbers can use all the mathematical and logical expressions that are available in SMPL. See below some more examples of binary numbers in SMPL expressions,
+
+```
+:> b0**2; // Output: 10101011001
+:> 1 * ( b0**2); // Output: 1369
+```
+
+#### Octal Numbers
+
+Binary numbers are prefixed with `0b` before the sequence of numbers between `0` and `7`.
 
 
-## Mathematical Examples
+```
+o0 = 0o1027;
+o1 = 0o0501;
+:> o0 - o1; // Output: 326
+:> 1 * (o0 - o1); // Output: 214
+```
+
+Octal numbers can be used within all mathematical and logical expressions within SMPL.
+
+#### Hexadecimal Numbers
+
+Hexadecimal numbers are prefixed with `0b` before the sequence of numbers between `0` and `9` and letters between `a` and `f` (it is case insensitive).
 
 
+```
+h0 = 0xFF027;
+h1 = 0x0050a;
+:> h0 & h1; // Output: 2
+```
+
+Hexadecimal numbers can be used within all mathematical and logical expressions within SMPL.
 
 ### Geometry
 
@@ -83,10 +150,13 @@ hypotenuse = (:a, :b) { √(a**2 + b**2); }
 
 :> hypotenuse(3, 4); // Outputs 5.0
 ```
-
 ### Algebra
 
+SMPL is also very good at expressing algebra expressions.
+
 #### Factorial
+
+The snippet below calculates the factorial of 7 (7!) to be 5040.
 
 ```
 fact = (:n) { (n <= 1) ? 1 : n * fact( n - 1 ); }
@@ -118,7 +188,7 @@ _**M**<sub>i, j</sub>_ is the entry in the _i<sup>th</sup>_ row and _j<sup>th</s
 So, _**M**<sub>0, 0</sub>_ can be represented as,
 
 ```
-:> M[0, 0]; // Output: 1
+:> M[0][0]; // Output: 1
 ```
 
 A **vector** is a 1 × _n_ matrix
@@ -132,24 +202,114 @@ _**v**_<sub>i</sub> is the _i<sup>th</sup>_ entry of the vector
 So, _**v**<sub>1</sub>_ can be represented as,
 
 ```
-:> v[1];
+:> v[1]; // Output: 3
 ```
+##### Matrix Addition
+
+- **Matrix addition** is simply adding the entries of two or more matrices one by one
+- This summation results in another matrix:
+  > _**M**<sub>0</sub>_ + _**M**<sub>1</sub>_ = _**M**<sub>2</sub>_
+
+For example,
 
 ![Matrix Addition](/.attachments/matrix-addition.png)
 
-![Scalar Division](/.attachments/scalar-division.png)
+The example above is achieved in SMPL as follows,
+
+```
+m0 = [ [2, 3, 4], [0, 0, 0], [3, 2, 1] ];
+m1 = [ [1, 1, 1], [0, 0, 0], [1, 1, 1] ];
+
+:> m0 + m1; // Output: [[3, 4, 5], [0, 0, 0], [4, 3, 2]]
+```
+
+Notice that the resulting matrix retains the same dimensions (3 × 3).
+
+**NB** _When matrices of different dimensions are added, **SMPL** accommodates the expression by expanding the result to the biggest matrix. See example below_
+
+```
+m2 = [ [1, 5, 9], [3, 0, 3] ];
+:> m2 + m1; // The (2 × 3) matrix resulted in a (3 × 3) matrix when added to a 3 × 3 matrix ==> [[2, 6, 10], [3, 0, 3], [1, 1, 1]]
+```
+
+Is allowing expandable matrices a good idea? (Let's see)
+
+##### Scalar Multiplication
+
+- To **multiply a matrix by scalar** (a raw number), one also simply multiplies all its entries by this scalar
+- It results in another matrix with the same dimentions
+
+For example,
 
 ![Scalar Multiplication](/.attachments/scalar-multiplication.png)
 
+- Note that the multiplication of a matrix by a scalar and the multiplication of a scalar by a matrix are equal
+
+![Scalar to Matrix and Matrix to Scalar](/.attachments/scalar-matrix-matrix-scalar.png)
+
+- A matrix can be divided by a scalar in the same way
+
+![Scalar Division](/.attachments/scalar-division.png)
+
+Scalar multiplication of matrices is demonstrated in the SMPL syntax below,
+
+```
+:> [2, 3] * [4, 6, 9]; // Output: [8, 18, 0]
+:> "\n"; // New line
+:> [55, 32] / [5, 4, 9]; // Output: [11, 8, 0]
+```
+
 ### Trigonometry
 
+Deriving trigonometric functions from its foundational principles can be achieved in SMPL. See below snippet that creates a _sin_ function by using a factorial function to create an expression based on the taylor series to calculate a shallow approximation of the result of _sin_ function.
 
- - Factorial
- - Permutations
- - Probabilies
+```
+fact = (:n) { (n <= 1) ? 1 : n * fact( n - 1 ); }
 
-### Calculus
+// To get a better approximation for cos(r), you need more terms in your Taylor polynomial.
+sin = (:n) {
+    r = ( n / 180.0 ) * π;
+    v = r - ( (r**3)/fact(3) ) + ( (r**5)/fact(5) ) - ( (r**7)/fact(7) ) + ( (r**9)/fact(9) ) - ( (r**11)/fact(11) );
+    v;
+}
+```
 
+The tangent function is more easily derived once the above snippet is implemented to create the _sin_ function. See below snippet of _tan_ trigonometric function,
+
+```
+tan = (:n) {
+    t = sin(n) ÷ √( 1 - sin(n)**2 );
+    t;
+}
+```
+
+Once the trigonometric functions have been established, they can be used as follows,
+
+```
+:> "Sine of 30 degrees is ${ sin(30) }\n";
+
+:> "Tangent of 30 degrees is ${ tan(30) }\n";
+```
+
+See the [trigonometry](trigonometry.smpl) SMPL file for _cos_ function.
+
+## String Expressions
+
+Strings are included in SMPL to facilitate elaborate communication to a user interface. SMPL inherently facilitates the interpolation of mathematical and logical expressions within strings by placing those expressions within enclosing symbols: `${`, `}`.
+
+For example, given that the functions `sin` and `tan` have been implemented, the following string expression evaluates the function expression within `${` and `}`.
+
+```
+:> "Sine of 30 degrees is ${ sin(30) }\n";
+
+:> "Tangent of 30 degrees is ${ tan(30) }\n";
+```
+
+String expressions can be used within arrays and dictionaries in SMPL. See below example,
+
+```
+
+```
 
 # References
 
