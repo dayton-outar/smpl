@@ -83,6 +83,9 @@ hypotenuse = (:a, :b) { √(a**2 + b**2); }
 
 :> hypotenuse(3, 4); // Outputs 5.0
 ```
+### Logics
+
+...
 
 ### Algebra
 
@@ -159,7 +162,7 @@ Notice that the resulting matrix retains the same dimensions (3 × 3).
 
 ```
 m2 = [ [1, 5, 9], [3, 0, 3] ];
-:> m2 + m1; // The (2 × 3) matrix resulted in a (3 × 3) matrix when added to a 3 × 3 matrix
+:> m2 + m1; // The (2 × 3) matrix resulted in a (3 × 3) matrix when added to a 3 × 3 matrix ==> [[2, 6, 10], [3, 0, 3], [1, 1, 1]]
 ```
 
 Is allowing expandable matrices a good idea? (Let's see)
@@ -191,13 +194,13 @@ Scalar multiplication of matrices is demonstrated in the SMPL syntax below,
 
 ### Trigonometry
 
-
- - Factorial
- - Permutations
- - Probabilies
+### Statistics & Probability
 
 ### Calculus
 
+## String Expressions
+
+...
 
 # References
 
