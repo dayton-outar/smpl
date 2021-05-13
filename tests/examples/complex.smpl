@@ -1,0 +1,13 @@
+a = [ "apples", "bananas", "melon" ];
+:> a; :> "\n";
+
+b = "The first set of fruits in the bunch is ... ${a[0]}\n";
+:> b;
+
+c = [ "nike", "adidas", "puma" ];
+d = "Booyah";
+e = [ "fruits" => a, "brands" => c, "message" => d];
+
+:> "\n";
+:> "A complex data structure ${ e }";
+:> "\n";

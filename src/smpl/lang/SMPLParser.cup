@@ -162,11 +162,8 @@ assignment_statement ::= IDENTIFIER:i INCREMENT
 			| IDENTIFIER:i DECREMENT
 			{: RESULT = new DecrementCommand(i); :}
 
-			| IDENTIFIER:i ASSIGN math_expression:e
+			| IDENTIFIER:i ASSIGN expression:e
 			{: RESULT = new AssignmentExpressionCommand(i, e); :}
-
-			| IDENTIFIER:i ASSIGN condition:c
-			{: RESULT = new AssignmentExpressionCommand(i, c); :}
 
 			| IDENTIFIER:i ASSIGNADD math_expression:e
 			{: RESULT = new AssignmentAddExpressionCommand(i, e); :}
@@ -193,13 +190,13 @@ assignment_statement ::= IDENTIFIER:i INCREMENT
 			{: RESULT = new AssignmentInvExpressionCommand(i, e); :}
 			;
 
-parameter_list ::= math_expression:e COMMA parameter_list:l
+parameter_list ::= expression:e COMMA parameter_list:l
 			{:
 				l.addElement(e);
 				RESULT = l;
 			:}
 
-			| math_expression:e
+			| expression:e
 			{: 
 				Vector<IExpression> l = new Vector<IExpression>();
 				l.addElement(e);
@@ -228,13 +225,13 @@ variable ::= COLON IDENTIFIER:i
 			{: RESULT = i; :}
 			;
 
-dictionary ::= dictionary:l COMMA STRING:s MAP math_expression:e
+dictionary ::= dictionary:l COMMA STRING:s MAP expression:e
 			{:
 				l.put(s, e);
 				RESULT = l;
 			:}
 
-			| STRING:s MAP math_expression:e 
+			| STRING:s MAP expression:e 
 			{:
 				Hashtable<String,IExpression> l = new Hashtable<String,IExpression>();
 				l.put(s, e);
@@ -242,7 +239,7 @@ dictionary ::= dictionary:l COMMA STRING:s MAP math_expression:e
 			:}
 			;
 
-array ::= math_expression:e COMMA array:l
+array ::= expression:e COMMA array:l
 			{:
 				l.addElement(e);
 				RESULT = l;
@@ -254,7 +251,7 @@ array ::= math_expression:e COMMA array:l
 				RESULT = l; 
 			:}
 
-			| math_expression:e	
+			| expression:e	
 			{: 
 				Vector<IExpression> l = new Vector<IExpression>(); 
 				l.addElement(e); 
