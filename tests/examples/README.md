@@ -4,6 +4,12 @@ What can we achieve using _SMPL_?
 
 ## Logical Expressions
 
+Logical expressions are what make a programming language. A language is said to be _Turing-complete_ when it has the ability to ask logical questions in a conditional statement and perform the appropriate instructions when conditions are met.
+
+SMPL contains the popular ternary _if_ expression, _if-else_ statement, _case_ statement and a loop structure.
+
+...
+
 ## Mathematical Expressions
 
 ### Number Systems
@@ -308,8 +314,22 @@ For example, given that the functions `sin` and `tan` have been implemented, the
 String expressions can be used within arrays and dictionaries in SMPL. See below example,
 
 ```
+a = [ "apples", "bananas", "melon" ];
+:> a; :> "\n";
 
+b = "The first set of fruits in the bunch is ... ${a[0]}\n";
+:> b;
+
+c = [ "nike", "adidas", "puma" ];
+d = "Booyah";
+e = [ "fruits" => a, "brands" => c, "message" => d];
+
+:> "\n";
+:> "A complex data structure ${ e }";
+:> "\n"
 ```
+
+With some ingenuity and industry, SMPL is capable of making calculations on very complex data structures
 
 # References
 
