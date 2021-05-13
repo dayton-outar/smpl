@@ -6,7 +6,74 @@ What can we achieve using _SMPL_?
 
 ## Mathematical Expressions
 
+### Number Systems
 
+SMPL supports 4 number systems for long integer expressions: binary, octal, hexadecimal and decimal.
+
+#### Binary Numbers
+
+Binary numbers are prefixed with `0b` before the sequence of `1`'s and `0`'s. See below a snippet of code, where two binary numbers are added.
+
+```
+b0 = 0b100101;
+b1 = 0b010101;
+:> b0 + b1; // Output: 111010
+```
+
+In order to convert the binary number to its decimal representation, the number can be multiplied by 1. Where the 1 is placed at the leftmost position to have its radix gain precedence of the expression. See below snippet of code,
+
+```
+:> 1 * b0; // Output: 37
+:> 1 * b1; // Output: 21
+:> 1 * (b0 + b1); // Output: 58
+```
+
+Numbers in decimal representation can also be converted to binary by multiplying the long integer expression by `0b1`. See snippet below,
+
+```
+:> 0b1 * 8; // Output: 1000
+:> 0b1 * 20; // Output: 10100
+```
+
+_This conversion cannot be done for fractional decimal representation. Multiplying the fractional number by `0b1` does not change the radix. For example,_
+
+```
+:> 0b1 * 8.5; // Output: 8.5
+```
+
+The binary numbers can use all the mathematical and logical expressions that are available in SMPL. See below some more examples of binary numbers in SMPL expressions,
+
+```
+:> b0**2; // Output: 10101011001
+:> 1 * ( b0**2); // Output: 1369
+```
+
+#### Octal Numbers
+
+Binary numbers are prefixed with `0b` before the sequence of numbers between `0` and `7`.
+
+
+```
+o0 = 0o1027;
+o1 = 0o0501;
+:> o0 - o1; // Output: 326
+:> 1 * (o0 - o1); // Output: 214
+```
+
+Octal numbers can be used within all mathematical and logical expressions within SMPL.
+
+### Hexadecimal Numbers
+
+Hexadecimal numbers are prefixed with `0b` before the sequence of numbers between `0` and `9` and letters between `a` and `f` (it is case insensitive).
+
+
+```
+h0 = 0xFF027;
+h1 = 0x0050a;
+:> h0 & h1; // Output: 2
+```
+
+Octal numbers can be used within all mathematical and logical expressions within SMPL.
 
 ### Geometry
 
