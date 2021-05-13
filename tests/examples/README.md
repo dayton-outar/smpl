@@ -4,7 +4,7 @@ What can we achieve using _SMPL_?
 
 ## Logical Expressions
 
-## Mathematical Examples
+## Mathematical Expressions
 
 
 
