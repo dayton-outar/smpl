@@ -707,7 +707,7 @@ public class SMPLLexer implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { throw new Error( String.format("Illegal character, %s.", yytext()) );
+            { return new Symbol(sym.error, yytext());
             } 
             // fall through
           case 70: break;
