@@ -30,5 +30,5 @@ To install JUnit
 ## References
 
 1. [Java Testing - JUnit 5 Crash Course](https://www.youtube.com/watch?v=flpmSXVTqBI&list=WL&index=10)
-2. [JUNIT 5: USING LISTS AS AN ARGUMENT FOR PARAMETERIZED TESTS](https://blog.felix-seifert.com/junit-5-parameterized-tests-using-lists-as-argument/)
+2. [JUnit 5: Using Lists as an argument for parameterized tests](https://blog.felix-seifert.com/junit-5-parameterized-tests-using-lists-as-argument/)
 3. [Guide to JUnit 5 Parameterized Tests](https://www.baeldung.com/parameterized-tests-junit-5)
