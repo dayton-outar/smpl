@@ -177,4 +177,4 @@ id              = {alpha}|{alpha}{alphanum}
 }
 
 /* error fallback */
-[^]                              { throw new Error( String.format("Illegal character, %s.", yytext()) ); }
+[^]                              { return new Symbol(sym.error, yytext()); }

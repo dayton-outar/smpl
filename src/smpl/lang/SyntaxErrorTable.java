@@ -11,8 +11,8 @@ public final class SyntaxErrorTable {
         sed = new Hashtable<>();
         String numberSuggestion = "Numbers are usually to be placed within a mathematical expression";
         String[][] pairs = {
-            { "EOF", "" },
-            { "error", "" },
+            { "EOF", "All statements must be terminated with a semi-colon" },
+            { "error", "Ensure that all string, interpolated string expressions and statements are properly terminated" },
             { "SEMI", "" },
             { "COLON", "" },
             { "LPAREN", "" },
@@ -23,7 +23,7 @@ public final class SyntaxErrorTable {
             { "RBRAK", "" },
             { "MAP", "" },
             { "COMMA", "Commas must delimit an expression within an array, a pair in a dictionary or function call. E.g. [5, 6]" },
-            { "IDENTIFIER", "Variables can be ..." },
+            { "IDENTIFIER", "Variables are used in assignments, array, dictionary or function calls." },
             { "STRING", "" },
             { "BINARY", "" },
             { "HEX", "" },
@@ -35,7 +35,7 @@ public final class SyntaxErrorTable {
             { "PI", "" },
             { "EULER", "" },
             { "SIGMA", "" },
-            { "PRINT", "" },
+            { "PRINT", "Check syntax before the print statement" },
             { "READ", "" },
             { "PLUS", "" },
             { "ASSIGNADD", "" },
