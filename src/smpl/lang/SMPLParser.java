@@ -762,11 +762,9 @@ public class SMPLParser extends java_cup.runtime.lr_parser {
 	public void syntax_error(Symbol cur_token) {
 		SMPLLexer lexer = (SMPLLexer) getScanner();
 
-		System.err.print( String.format("Line %1$s near character %2$s:\n", lexer.getLine(), lexer.getChar()) );
+		System.err.println( String.format( "Syntax error at line %1$s column %2$s near %3$s. --> %4$s", lexer.getLine(), lexer.getColumn(), lexer.getText(), sym.terminalNames[cur_token.sym] ) );
 
-		report_error("Syntax error while reading: ", sym.terminalNames[cur_token.sym]);
-
-		System.err.println ( String.format("Last token read is ... %s.", lexer.getText()) );
+		System.err.println( SyntaxErrorTable.sed.get( sym.terminalNames[cur_token.sym] ) );
 	}
 
 

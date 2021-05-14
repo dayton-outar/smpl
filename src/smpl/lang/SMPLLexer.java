@@ -306,9 +306,9 @@ public class SMPLLexer implements java_cup.runtime.Scanner {
   /* user code: */
   StringBuffer string = new StringBuffer();
 
-  public int getChar()
+  public int getColumn()
   {
-    return yychar + 1;
+    return yycolumn + 1;
   }
 
   public int getLine()
