@@ -27,6 +27,7 @@ Find tutorials [here](tests/examples).
  - [Java 11 SDK](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
  - [JFlex](https://jflex.de/)
  - [CUP](http://www2.cs.tum.edu/projects/cup/index.php)
+ - [JUnit 5](https://junit.org/junit5/)
 
 ## Installation
 

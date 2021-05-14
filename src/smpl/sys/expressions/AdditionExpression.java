@@ -19,8 +19,8 @@ public class AdditionExpression implements IExpression {
     /**
      * Adds the two provided expressions
      * 
-     * @param exp1 An expression that will be aggregated into a sum total
-     * @param exp2 An expression that will be aggregated into a sum total
+     * @param exp1 An expression that will be aggregated into the sum total
+     * @param exp2 An expression that will be aggregated into the sum total
      */
     public AdditionExpression(IExpression exp1, IExpression exp2) {
         _exp1 = exp1;
