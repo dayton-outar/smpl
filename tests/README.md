@@ -32,6 +32,10 @@ To install JUnit
 | :--- | :--- | :--- |
 | <h5>Adding 9 to 22</h5><ol><li>Create a `LongExpression` object with constructor value of 9</li><li>Create `LongExpression` with constructor value of 21</li><li>Inject both `LongExpression` objects into `AdditionExpression`</li><li>Evaluate the expression object in last step above</li></ol> | 31 | 31 |
 | <h5>Adding 8 to 9.5</h5><ol><li>Create `LongExpression` with constructor value of 8</li><li>Create `DoubleExpression` with value of constructor value of 9.5</li><li>Inject `LongExpression` object and `DoubleExpression` object into constructor of `AdditionExpression`</li><li>Evaluate the expression object in last step above</li></ol> | 17.5 | 17.5 |
+| <h5>Repeatedly adding decimal numbers</h5><ol><li></li></ol> | | |
+| <h5>Subtract 7 from a number</h5><ol><li></li></ol> | | |
+| <h5>Multiply a number times 5</h5><blockquote>3.1<br />11.2<br />13.5</blockquote><ol><li></li></ol> | 15.5<br />56<br />67.5 | 15.5<br />56<br />67.5 |
+| <h5>Adding number to boolean is not implemented</h5><ol><li></li></ol> | Exception -> "... not yet implemented" | Exception -> "... not yet implemented" |
 
 ### String Expressions
 
