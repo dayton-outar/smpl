@@ -73,8 +73,15 @@ find bin -type f -name "*.class" -delete
 
 Compile all files
 
+Compile files in src
+
 ```bash
 javac -cp lib/java-cup-11b-runtime.jar:. src/*.java
+```
+Compile files in tests
+
+```bash
+javac -cp lib/java-cup-11b-runtime.jar:lib/smpl-coore-outar-1.0.0.jar:lib/junit-platform-console-standalone-1.8.0.jar:. tests/**/*.java
 ```
 
 Running documentation generator
