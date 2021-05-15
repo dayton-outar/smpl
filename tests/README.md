@@ -54,3 +54,4 @@ String expressions in SMPL are mainly for the purpose of communicating informati
 1. [Java Testing - JUnit 5 Crash Course](https://www.youtube.com/watch?v=flpmSXVTqBI&list=WL&index=10)
 2. [JUnit 5: Using Lists as an argument for parameterized tests](https://blog.felix-seifert.com/junit-5-parameterized-tests-using-lists-as-argument/)
 3. [Guide to JUnit 5 Parameterized Tests](https://www.baeldung.com/parameterized-tests-junit-5)
+4. [How To Write Automation Tests With Java](https://betterprogramming.pub/how-to-write-automation-tests-with-java-ed468e0af305)
