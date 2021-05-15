@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="compile" name="SMPL - Simple Math Programming Language">
+<project default="run" name="SMPL - Simple Math Programming Language">
 
     <property name="version" value="1.0.0" />
 
@@ -16,8 +16,29 @@
         <pathelement location="lib/jflex-full-1.8.2.jar" />
     </path>
 
+    <path id="test.classpath">
+        <pathelement location="lib/junit-platform-console-standalone-1.8.0.jar" />
+        <pathelement location="bin" />
+    </path>
+
+    <path id="compile.test.classpath">
+        <pathelement location="lib/java-cup-11b-runtime.jar" />
+        <pathelement location="lib/smpl-coore-outar-${version}.jar" />
+        <pathelement location="lib/junit-platform-console-standalone-1.8.0.jar" />
+    </path>
+
     <target name="ping">
         <echo>${message}</echo>
+    </target>
+
+    <target name="clean">
+        <delete dir="bin"/>
+        <delete dir="docs"/>
+    </target>
+
+    <target name="init">
+        <mkdir dir="bin"/>
+        <mkdir dir="docs"/>
     </target>
 
     <taskdef name="jflex"
@@ -41,7 +62,7 @@
         </cup>
     </target>
 
-    <target name="compile" depends="build-parser">
+    <target name="compile" depends="init, build-parser">
         <javac srcdir="src"
             destdir="bin"
             deprecation="true"
@@ -55,7 +76,7 @@
             excludes="bin/App.class" />
     </target>
 
-    <target name="build-docs" depends="compile">
+    <target name="build-docs" depends="build-lib">
         <javadoc packagenames="smpl.*"
             destdir="docs"
             sourcepath="src"
@@ -63,12 +84,22 @@
             version="true" />
     </target>
 
-    <target name="test" depends="build-lib">
+    <target name="compile-tests" depends="build-lib">
+        <javac srcdir="tests"
+            destdir="bin"
+            deprecation="true"
+            includeantruntime="false"
+            classpathref="compile.test.classpath" />
+    </target>
+
+    <target name="test" depends="compile-tests">
         <java fork="true"
-            jar="lib/junit-platform-console-standalone-1.8.0.jar"
-            classpath="bin">
+            classpathref="test.classpath"
+            classname="org.junit.platform.console.ConsoleLauncher" 
+            failonerror="true">
             <arg value="--include-engine=junit-jupiter" />
             <arg value="--scan-classpath" />
+            <arg line="--reports-dir docs/test-report"/>
         </java>
     </target>
 

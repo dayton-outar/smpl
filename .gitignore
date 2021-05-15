@@ -17,4 +17,4 @@ src/Test.java
 *.pdf
 
 # Ignore doc folder
-doc
+docs
