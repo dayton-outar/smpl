@@ -106,6 +106,12 @@ Run main and pass text containing expression to it
 java -cp lib/java-cup-11b-runtime.jar:bin App test/examples/identifiers.smpl test/examples/hypotenuse.smpl
 ```
 
+Run JUnit tests :sweat: :test_tube:
+
+```bash
+java -jar lib/junit-platform-console-standalone-1.8.0.jar -cp lib/junit-platform-console-standalone-1.8.0.jar:lib/smpl-coore-outar-1.0.0.jar:bin --include-engine=junit-jupiter --include-classname=.* --scan-classpath
+```
+
 ## Usage
 
 ...
