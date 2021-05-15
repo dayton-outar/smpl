@@ -11,6 +11,7 @@
     <path id="cup.classpath">
         <pathelement location="lib/java-cup-11b.jar" />
     </path>
+
     <path id="jflex.classpath">
         <pathelement location="lib/jflex-full-1.8.2.jar" />
     </path>
@@ -60,6 +61,25 @@
             sourcepath="src"
             author="true"
             version="true" />
+    </target>
+
+    <target name="test" depends="build-lib">
+        <java fork="true"
+            jar="lib/junit-platform-console-standalone-1.8.0.jar"
+            classpath="bin">
+            <arg value="--include-engine=junit-jupiter" />
+            <arg value="--scan-classpath" />
+        </java>
+    </target>
+
+    <target name="run" depends="test">
+        <java classname="App">
+            <arg value="tests/examples/" />
+            <classpath>
+                <pathelement location="lib/java-cup-11b-runtime.jar" />
+                <pathelement location="bin" />
+            </classpath>
+        </java>
     </target>
 
 </project>
