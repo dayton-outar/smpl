@@ -44,12 +44,12 @@ public class BooleanValue implements IValue {
 
     @Override
     public long longValue() {
-        return 0;
+        return _val.booleanValue() ? 1l : 0l;
     }
 
     @Override
     public double doubleValue() {
-        return 0;
+        return _val.booleanValue() ? 1.0 : 0.0;
     }
 
     @Override

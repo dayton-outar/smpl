@@ -73,8 +73,15 @@ find bin -type f -name "*.class" -delete
 
 Compile all files
 
+Compile files in src
+
 ```bash
 javac -cp lib/java-cup-11b-runtime.jar:. src/*.java
+```
+Compile files in tests
+
+```bash
+javac -cp lib/java-cup-11b-runtime.jar:lib/smpl-coore-outar-1.0.0.jar:lib/junit-platform-console-standalone-1.8.0.jar:. tests/**/*.java -d bin
 ```
 
 Running documentation generator
@@ -97,6 +104,12 @@ Run main and pass text containing expression to it
 
 ```bash
 java -cp lib/java-cup-11b-runtime.jar:bin App test/examples/identifiers.smpl test/examples/hypotenuse.smpl
+```
+
+Run JUnit tests :sweat: :test_tube:
+
+```bash
+java -jar lib/junit-platform-console-standalone-1.8.0.jar -cp bin --include-engine=junit-jupiter --scan-classpath
 ```
 
 ## Usage
