@@ -9,15 +9,25 @@ A few unit tests were done to demonstrate the use of the expression classes (`IE
 
 ## Installation
 
-To install JUnit
+To install [JUnit 5](https://junit.org/junit5/) in this application, the latest JUnit Platform Console Standalone jar file can be downloaded [here](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console-standalone) and placed in the [lib](/lib) folder. This repo already contains the jar file needed to perform JUnit tests.
 
-...
+The source paths has been set in the [settings.json](/.vscode/settings.json) to discover tests files in VS Code Testing Explorer.
 
 ## Usage
 
-`Run Test` in VS Code
+In VS Code, there will be a `Run Test` tip hovering over each test class and test method. When this tip is clicked, it will perform the tests that can be viewed in the Test Explorer.
 
-...
+Apart from this, the Ant _[build.xml](/build.xml)_ file in the root of this project contains configuration to perform all tests within the _[/tests/expressions](/tests/expressions)_ folder. So, to perform that build automation, open a terminal within the root directory of this project and perform the following command,
+
+```bash
+ant test
+```
+
+To take it a step further to see the results of the examples in the _[examples](examples)_ folder, the following command can be performed,
+
+```bash
+ant
+```
 
 ## Test Cases
 
