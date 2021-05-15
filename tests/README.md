@@ -29,8 +29,8 @@ To install JUnit
 
 | Case | Expected | Actual |
 | :--- | :--- | :--- |
-| <h5>Adding 9 to 22</h5><ol><li>Create `LongExpression` with value of constructor value of 9</li><li>Create `LongExpression` with value of constructor value of 21</li><li>Inject both `LongExpression` objects into `AdditionExpression`</li></ol> | 31 | 31 |
-| <h5>Adding 8 to 9.5</h5><ol><li>Create `LongExpression` with value of constructor value of 8</li><li>Create `DoubleExpression` with value of constructor value of 9.5</li><li>Inject `LongExpression` object and `DoubleExpression` object into `AdditionExpression`</li></ol> | 17.5 | 17.5 |
+| <h5>Adding 9 to 22</h5><ol><li>Create `LongExpression` with constructor value of 9</li><li>Create `LongExpression` with constructor value of 21</li><li>Inject both `LongExpression` objects into `AdditionExpression`</li><li>Evaluate the expression object in last step above</li></ol> | 31 | 31 |
+| <h5>Adding 8 to 9.5</h5><ol><li>Create `LongExpression` with constructor value of 8</li><li>Create `DoubleExpression` with value of constructor value of 9.5</li><li>Inject `LongExpression` object and `DoubleExpression` object into constructor of `AdditionExpression`</li><li>Evaluate the expression object in last step above</li></ol> | 17.5 | 17.5 |
 
 ### String Expressions
 
@@ -40,6 +40,8 @@ String expressions in SMPL are mainly for the purpose of communicating informati
 
 | Case | Expected | Actual |
 | :--- | :--- | :--- |
+| <h5>Welcome to SMPL!</h5><ol><li>Create an empty vector (or collection) of expressions, `IExpression`</li><li>Create a `StringExpression` with constructor value of "Welcome to SMPL!"</li><li>Add the `StringExpression` object created above in the collection of expressions</li><li>Inject the collection of expressions into the constructor of a `CombinedStringExpression` object</li><li>Evaluate the expression object in last step above</li></ol> | Welcome to SMPL! | Welcome to SMPL! |
+| <h5>Injecting πr²</h5><ol><li></li><li>Evaluate the expression object in last step above</li></ol> | Area of circle with radius 3 is 28.27431. | Area of circle with radius 3 is 28.27431. |
 
 ## References
 
