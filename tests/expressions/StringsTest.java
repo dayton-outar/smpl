@@ -18,7 +18,7 @@ import smpl.sys.expressions.MultiplicationExpression;
 import smpl.sys.expressions.StringExpression;
 import smpl.sys.values.IValue;
 
-public class TestStrings {
+public class StringsTest {
     
     private CombinedStringExpression _string;
     private Hashtable<String, IValue> _dictionary;

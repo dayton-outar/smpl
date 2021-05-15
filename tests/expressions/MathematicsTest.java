@@ -25,7 +25,7 @@ import smpl.sys.expressions.DoubleExpression;
 import smpl.sys.values.IValue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestMathematics {
+public class MathematicsTest {
 
     private AdditionExpression _addition;
     private SubtractionExpression _subtraction;

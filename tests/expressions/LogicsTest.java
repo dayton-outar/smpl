@@ -16,7 +16,7 @@ import smpl.sys.expressions.VariableExpression;
 import smpl.sys.values.IValue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class TestLogics {
+public class LogicsTest {
     
     private EqualsExpression _equalsLogic;
     private Hashtable<String, IValue> _dictionary;
