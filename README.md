@@ -33,8 +33,6 @@ This compiler project is built on the Java platform and uses JFlex and CUP tools
 
 ## Installation
 
-### Manual Installation
-
 Download your preferred version of _smpl-coore-outar-x-x-x.jar_ file in the [releases](releases) section. Transfer that file into your _lib_ folder from which your Java compiler will read and understand.
 
 For Java Projects created in VS Code such as this, you can transfer the file into the _lib_ folder found at the root of the project.
@@ -50,10 +48,6 @@ You will also need to make reference to these dependecies To run the generated c
 ```bash
 java -cp lib/smpl-coore-outar-1.0.0.jar:lib/java-cup-11b.jar src/App
 ```
-
-### Maven Installation
-
-...
 
 ## Usage
 
