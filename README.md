@@ -22,13 +22,16 @@ Find tutorials [here](tests/examples).
 
 ## Requirements
 
-...
+![Java](.attachments/java-eps-vector-logo.png)
+![CUP](.attachments/cup_logo.gif)
 
  - [Java 11 SDK](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
  - [JFlex](https://jflex.de/)
  - [CUP](http://www2.cs.tum.edu/projects/cup/index.php)
  - [JUnit 5](https://junit.org/junit5/)
+ - [Ant](https://ant.apache.org/) 1.10.7
 
+![Apache Ant](.attachments/Apache-Ant-logo.png)
 ## Installation
 
 The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
