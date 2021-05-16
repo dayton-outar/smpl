@@ -6,25 +6,17 @@
   <br/>
 </div>
 
-[This README is currently a messy sketch of notes]
-
 # SMPL
 
 SMPL is a small, but expressive math programming language.
 
---
+I was introduced to _Compiler Design_ by Prof. Daniel Coore in my final year while doing Undergraduate studies for Computer Science and Electronics degree at the University of the West Indies, Mona. It's the most memorable project that I have had while studying at the university. Herein is an updated version of building that project. I have made a few modification to the original specification provided by Prof. Coore and the result of the modifications are found [here](./src/smpl/lang).
 
-Credits to Prof. Daniel Coore for the original specification. Herein this project is the manifestation of a custom version of that specification. The result of the modifications are found [here](./src/smpl/lang).
+Prof. Coore mentioned that his initial specification was inspired by [Scheme](https://home.adelphi.edu/sbloch/class/archive/270/scheme.shtml). Scheme is inspired by [Lisp](https://lisp-lang.org/). Some of the modifications are inspired by [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript). The plan is to maintain the language as loosely typed language.
 
-Prof. Coore mentioned that his initial specification was inspired by [Scheme](https://home.adelphi.edu/sbloch/class/archive/270/scheme.shtml). Scheme is inspired by [Lisp](https://lisp-lang.org/).
+This compiler project is built on the Java platform and uses JFlex and CUP tools. While conducting researching and developing the project, I was fascinated by other compiler design tools such as the Lex & Yacc tools (or, better yet, Flex & Bison<sup>[+](https://aquamentus.com/flex_bison.html)</sup>). Apparently JFlex and CUP was modeled off flex and bison (formerly lex and yacc) that is, in my opinion, far more superior than any other tool in this genre simply because of the language used: C. With C, you can build more native machine applications rather than depending on a virtual machine or language runtime environment.
 
-Plan to maintain the language as loosely typed. So, using Java [this StackOverflow entry](https://stackoverflow.com/questions/28042626/check-if-object-is-instance-of-any-number-class) may prove useful.
-
-This repo contains the prototype of the SMPL project that uses the Java platform and uses JFlex and CUP tools. Plans are in mind to build this project using C by making use of the Lex & Yacc tools (or, better yet, Flex & Bison<sup>[+](https://aquamentus.com/flex_bison.html)</sup>).
-
-JFlex and CUP, which is the Java version modeled off flex and bison (formerly lex and yacc), in my opinion, is far more superior than [ANTLR](https://www.antlr.org/) <sup><a href="https://theantlrguy.atlassian.net/wiki/spaces/ANTLR3/pages/2687102/Five+minute+introduction+to+ANTLR+3">[+]</a></sup>. The only benefit to be had from using ANTLR is its attempt to involve as many target programming language as is it possible. For the experienced programmer, this isn't enough to influence a decision to use it.
-
-Find tutorials [here](tests/examples).
+[ANTLR](https://www.antlr.org/) <sup><a href="https://theantlrguy.atlassian.net/wiki/spaces/ANTLR3/pages/2687102/Five+minute+introduction+to+ANTLR+3">[+]</a></sup> also caught my attention. It's main selling point seems to be that it can be used in many of the popular programming languages. Nonetheless, for the experienced programmer, this isn't enough to influence a decision to use it.
 
 ## Requirements
 
