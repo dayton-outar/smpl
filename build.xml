@@ -84,7 +84,7 @@
             version="true" />
     </target>
 
-    <target name="compile-tests" depends="build-lib">
+    <target name="compile-tests" depends="build-docs">
         <javac srcdir="tests"
             destdir="bin"
             deprecation="true"
@@ -101,6 +101,12 @@
             <arg value="--scan-classpath" />
             <arg line="--reports-dir docs/test-report"/>
         </java>
+        <junitreport todir="docs/test-report">
+            <fileset dir="docs/test-report">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="docs/test-report/html" />
+        </junitreport>
     </target>
 
     <target name="run" depends="test">

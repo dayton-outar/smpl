@@ -9,15 +9,25 @@ A few unit tests were done to demonstrate the use of the expression classes (`IE
 
 ## Installation
 
-To install JUnit
+To install [JUnit 5](https://junit.org/junit5/) in this application, the latest JUnit Platform Console Standalone jar file can be downloaded [here](https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console-standalone) and placed in the [lib](/lib) folder. This repo already contains the jar file needed to perform JUnit tests.
 
-...
+The source paths has been set in the [settings.json](/.vscode/settings.json) to discover tests files in VS Code Testing Explorer.
 
 ## Usage
 
-`Run Test` in VS Code
+In VS Code, there will be a `Run Test` tip hovering over each test class and test method. When this tip is clicked, it will perform the tests that can be viewed in the Test Explorer.
 
-...
+Apart from this, the Ant _[build.xml](/build.xml)_ file in the root of this project contains configuration to perform all tests within the _[/tests/expressions](/tests/expressions)_ folder. So, to perform that build automation, open a terminal within the root directory of this project and perform the following command,
+
+```bash
+ant test
+```
+
+To take it a step further to see the results of the examples in the _[examples](examples)_ folder, the following command can be performed,
+
+```bash
+ant
+```
 
 ## Test Cases
 
@@ -33,10 +43,10 @@ To install JUnit
 | :--- | :--- | :--- |
 | <h5>Adding 9 to 22</h5><ol><li>Create a `LongExpression` object with constructor value of 9</li><li>Create `LongExpression` with constructor value of 21</li><li>Inject both `LongExpression` objects into `AdditionExpression`</li><li>Evaluate the expression object in last step above</li></ol> | 31 | 31 |
 | <h5>Adding 8 to 9.5</h5><ol><li>Create `LongExpression` with constructor value of 8</li><li>Create `DoubleExpression` with value of constructor value of 9.5</li><li>Inject `LongExpression` object and `DoubleExpression` object into constructor of `AdditionExpression`</li><li>Evaluate the expression object in last step above</li></ol> | 17.5 | 17.5 |
-| <h5>Repeatedly adding decimal numbers</h5><ol><li></li></ol> | | |
-| <h5>Subtract 7 from a number</h5><ol><li></li></ol> | | |
-| <h5>Multiply a number times 5</h5><blockquote>3.1<br />11.2<br />13.5</blockquote><ol><li></li></ol> | 15.5<br />56<br />67.5 | 15.5<br />56<br />67.5 |
-| <h5>Adding number to boolean is not implemented</h5><ol><li></li></ol> | Exception -> "... not yet implemented" | Exception -> "... not yet implemented" |
+| <h5>Repeatedly adding decimal numbers</h5><ol><li>Create a `DoubleExpression` object with constructor value of 8.5</li><li>Create `DoubleExpression` with constructor value of 9.5</li><li>Inject both `DoubleExpression` objects into `AdditionExpression`</li><li>Evaluate the expression object in last step above</li></ol> | 18 | 18 |
+| <h5>Subtract 7 from a number</h5><blockquote>`number`:<br />40<br />13<br />28</blockquote><ol><li>Create a `LongExpression` object with constructor value of `number`</li><li>Create `LongExpression` with constructor value of 7</li><li>Inject both `LongExpression` objects into `SubtractionExpression`</li><li>Evaluate the expression object in last step above</li></ol> | 33<br />6<br />21 | 33<br />6<br />21 |
+| <h5>Multiply a number times 5</h5><blockquote>`number`:<br />3.1<br />11.2<br />13.5</blockquote><ol><li>Create a `DoubleExpression` object with constructor value of `number`</li><li>Create `DoubleExpression` with constructor value of 5</li><li>Inject both `DoubleExpression` objects into `MutiplicationExpression`</li><li>Evaluate the expression object in last step above</li></ol> | 15.5<br />56<br />67.5 | 15.5<br />56<br />67.5 |
+| <h5>Adding number to boolean is not implemented</h5><ol><li>Create a `LongExpression` object with constructor value of 10</li><li>Create `BooleanExpression` with constructor value of **true**</li><li>Inject the `LongExpression` and the `BooleanExpression` objects into `AdditionExpression`</li><li>Evaluate the expression object in last step above</li></ol> | Exception -> "... not yet implemented" | Exception -> "... not yet implemented" |
 
 ### String Expressions
 
@@ -54,3 +64,4 @@ String expressions in SMPL are mainly for the purpose of communicating informati
 1. [Java Testing - JUnit 5 Crash Course](https://www.youtube.com/watch?v=flpmSXVTqBI&list=WL&index=10)
 2. [JUnit 5: Using Lists as an argument for parameterized tests](https://blog.felix-seifert.com/junit-5-parameterized-tests-using-lists-as-argument/)
 3. [Guide to JUnit 5 Parameterized Tests](https://www.baeldung.com/parameterized-tests-junit-5)
+4. [How To Write Automation Tests With Java](https://betterprogramming.pub/how-to-write-automation-tests-with-java-ed468e0af305)
