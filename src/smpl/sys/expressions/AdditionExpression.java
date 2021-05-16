@@ -8,7 +8,6 @@ import smpl.sys.values.IValue;
  * Embodies the sum of two expressions
  * 
  * @author Dayton Outar
- * 
  * @since 1.0.0
  */
 public class AdditionExpression implements IExpression {
