@@ -22,7 +22,7 @@
     </path>
 
     <path id="compile.test.classpath">
-        <pathelement location="lib/java-cup-11b-runtime.jar" />
+        <pathelement location="lib/java-cup-11b.jar" />
         <pathelement location="lib/smpl-coore-outar-${version}.jar" />
         <pathelement location="lib/junit-platform-console-standalone-1.8.0.jar" />
     </path>
@@ -113,7 +113,7 @@
         <java classname="App">
             <arg value="tests/examples/" />
             <classpath>
-                <pathelement location="lib/java-cup-11b-runtime.jar" />
+                <pathelement location="lib/java-cup-11b.jar" />
                 <pathelement location="bin" />
             </classpath>
         </java>

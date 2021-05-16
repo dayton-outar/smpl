@@ -11,7 +11,7 @@ public final class SyntaxErrorTable {
         sed = new Hashtable<>();
         String numberSuggestion = "Numbers are usually to be placed within a mathematical expression";
         String[][] pairs = {
-            { "EOF", "All statements must be terminated with a semi-colon" },
+            { "EOF", "All statements must be terminated with a semi-colon or, for function definitions, if-elses and cases, a brace" },
             { "error", "Ensure that all string, interpolated string expressions and statements are properly terminated" },
             { "SEMI", "" },
             { "COLON", "" },
@@ -67,7 +67,7 @@ public final class SyntaxErrorTable {
             { "AND", "" },
             { "OR", "" },
             { "NOT", "" },
-            { "ASSIGN", "" },
+            { "ASSIGN", "Assignments must be a single statement of expression and can only be done within function definitions, if-elses, cases and loops." },
             { "IMPLY", "" },
             { "QUERY", "" },
             { "CASES", "" }
