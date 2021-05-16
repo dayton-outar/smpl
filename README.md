@@ -13,7 +13,12 @@
 SMPL is a small, but expressive math programming language.
 
 --
+
 Credits to Prof. Daniel Coore for the original specification. Herein this project is the manifestation of a custom version of that specification. The result of the modifications are found [here](./src/smpl/lang).
+
+Prof. Coore mentioned that his initial specification was inspired by [Scheme](https://home.adelphi.edu/sbloch/class/archive/270/scheme.shtml). Scheme is inspired by [Lisp](https://lisp-lang.org/).
+
+Plan to maintain the language as loosely typed. So, using Java [this StackOverflow entry](https://stackoverflow.com/questions/28042626/check-if-object-is-instance-of-any-number-class) may prove useful.
 
 This repo contains the prototype of the SMPL project that uses the Java platform and uses JFlex and CUP tools. Plans are in mind to build this project using C by making use of the Lex & Yacc tools (or, better yet, Flex & Bison<sup>[+](https://aquamentus.com/flex_bison.html)</sup>).
 
@@ -34,6 +39,25 @@ Find tutorials [here](tests/examples).
 
 ![Apache Ant](.attachments/apache-ant.png)
 ## Installation
+
+
+
+## Usage
+
+...
+
+How can this be used in another java file?
+
+Reference example README. Demo ability of SMPL.
+
+## Contributing
+
+### Folder Structure
+
+The workspace contains two folders by default, where:
+
+- `src`: the folder to maintain sources
+- `lib`: the folder to maintain dependencies
 
 The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
 
@@ -116,25 +140,6 @@ Run JUnit tests :sweat: :test_tube:
 java -jar lib/junit-platform-console-standalone-1.8.0.jar -cp bin --include-engine=junit-jupiter --scan-classpath
 ```
 
-## Usage
-
-...
-
-How can this be used in another java file?
-
-Reference example README. Demo ability of SMPL.
-
-## Contributing
-
-### Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-...
-
 ### Creating a .jar file
 
 <small>Adapted from João Silva from [StackOverflow](https://stackoverflow.com/questions/4597866/java-creating-jar-file)</small>
@@ -159,15 +164,7 @@ Finally, you can execute it:
 java -jar myJar.jar
 ```
 
-### Miscellaneous
-
-This will be a symbolic language almost like a language expressed by academic Mathematicians. So, [this resource](https://byjus.com/maths/math-symbols/) listing the symbols will prove to be useful. May need to also pull out my Discrete Mathematics text book.
-
-Prof. Coore mentioned that his initial specification was inspired by [Scheme](https://home.adelphi.edu/sbloch/class/archive/270/scheme.shtml). Scheme is inspired by [Lisp](https://lisp-lang.org/).
-
-Plan to maintain the language as loosely typed. So, using Java [this StackOverflow entry](https://stackoverflow.com/questions/28042626/check-if-object-is-instance-of-any-number-class) may prove useful.
-
-#### See also
+##### See also
 
  - [Creating a JAR File](http://download.oracle.com/javase/tutorial/deployment/jar/build.html)
  - [Setting an Application's Entry Point with the JAR Tool](http://download.oracle.com/javase/tutorial/deployment/jar/appman.html)
