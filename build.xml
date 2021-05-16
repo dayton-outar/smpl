@@ -81,7 +81,8 @@
             destdir="docs"
             sourcepath="src"
             author="true"
-            version="true" />
+            version="true"
+            classpathref="cup.classpath" />
     </target>
 
     <target name="compile-tests" depends="build-docs">
