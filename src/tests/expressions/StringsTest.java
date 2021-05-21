@@ -1,4 +1,4 @@
-package expressions;
+package tests.expressions;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="run" name="SMPL - Simple Math Programming Language">
 
-    <property name="version" value="1.0.0" />
+    <property name="version" value="1.0.1" />
 
     <property name="message" value="This is SMPL! The Simple Math Programming Language" />
     <property name="smpl-lang-dir" location="src/smpl/lang" />
@@ -21,9 +21,8 @@
         <pathelement location="bin" />
     </path>
 
-    <path id="compile.test.classpath">
+    <path id="compile.classpath">
         <pathelement location="lib/java-cup-11b.jar" />
-        <pathelement location="lib/smpl-coore-outar-${version}.jar" />
         <pathelement location="lib/junit-platform-console-standalone-1.8.0.jar" />
     </path>
 
@@ -67,13 +66,14 @@
             destdir="bin"
             deprecation="true"
             includeantruntime="false"
-            classpathref="cup.classpath" />
+            classpathref="compile.classpath" />
     </target>
 
     <target name="build-lib" depends="compile">
-        <jar destfile="lib/smpl-coore-outar-${version}.jar"
-            basedir="bin"
-            excludes="bin/App.class" />
+        <jar destfile="lib/smpl-coore-outar-${version}.jar" excludes="bin/tests">
+            <fileset dir="bin" />
+            <zipfileset src="lib/java-cup-11b.jar"/>
+        </jar>
     </target>
 
     <target name="build-docs" depends="build-lib">
@@ -82,18 +82,10 @@
             sourcepath="src"
             author="true"
             version="true"
-            classpathref="cup.classpath" />
+            classpath="lib/smpl-coore-outar-${version}.jar" />
     </target>
 
-    <target name="compile-tests" depends="build-docs">
-        <javac srcdir="tests"
-            destdir="bin"
-            deprecation="true"
-            includeantruntime="false"
-            classpathref="compile.test.classpath" />
-    </target>
-
-    <target name="test" depends="compile-tests">
+    <target name="test" depends="compile">
         <java fork="true"
             classpathref="test.classpath"
             classname="org.junit.platform.console.ConsoleLauncher" 
@@ -112,10 +104,9 @@
 
     <target name="run" depends="test">
         <java classname="App">
-            <arg value="tests/examples/" />
+            <arg value="examples/" />
             <classpath>
-                <pathelement location="lib/java-cup-11b.jar" />
-                <pathelement location="bin" />
+                <pathelement location="lib/smpl-coore-outar-${version}.jar" />
             </classpath>
         </java>
     </target>

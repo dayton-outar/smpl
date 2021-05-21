@@ -40,14 +40,16 @@ For Java Projects created in VS Code such as this, you can transfer the file int
 When compiling in the terminal, reference must be made to this jar file and the _java-cup-11b.jar_ file in the _javac_ command. For example,
 
 ```bash
-javac -cp lib/smpl-coore-outar-1.0.0.jar:lib/java-cup-11b.jar src/App.java
+javac -cp lib/smpl-coore-outar-1.0.1.jar src/App.java
 ```
 
 You will also need to make reference to these dependecies To run the generated class file as follows,
 
 ```bash
-java -cp lib/smpl-coore-outar-1.0.0.jar:lib/java-cup-11b.jar src/App
+java -cp lib/smpl-coore-outar-1.0.1.jar src/App
 ```
+
+**N.B.** For version 1.0.0, reference must be made to the _java-cup-11b.jar_ file. Since version 1.0.1, the _java-cup-11b.jar_ file has been bundled into _smpl-coore-outar-x.x.x.jar_ file.
 
 ## Usage
 
@@ -90,12 +92,76 @@ public class App {
 }
 ```
 
-Now, once this works well for you, you can begin tinkering with SMPL by trying out the [examples](tests/examples) listed and documented [here](tests/examples).
+Now, once this works well for you, you can begin tinkering with SMPL by trying out the [examples](examples) listed and documented [here](examples).
+
+A few examples of using SMPL syntax can be seen in the snippet below, which was extracted from [examples](examples),
+
+```
+fact = (:n) { (n <= 1) ? 1 : n * fact( n - 1 ); }
+
+// To get a better approximation for cos(r), you need more terms in your Taylor polynomial.
+sin = (:n) {
+    r = ( n / 180.0 ) * π;
+    v = r - ( (r**3)/fact(3) ) + ( (r**5)/fact(5) ) - ( (r**7)/fact(7) ) + ( (r**9)/fact(9) ) - ( (r**11)/fact(11) );
+    v;
+}
+
+cos = (:n) {
+    r = ( n / 180.0 ) * π;
+    v = 1 - ( (r**2)/fact(2) ) + ( (r**4)/fact(4) ) - ( (r**6)/fact(6) ) + ( (r**8)/fact(8) ) - ( (r**10)/fact(10) );
+    v;
+}
+
+tan = (:n) {
+    t = sin(n) ÷ √( 1 - sin(n)**2 );
+    t;
+}
+
+:> "Sine of 30 degrees is ${ sin(30) }\n";
+
+:> "Cosine of 30 degrees is ${ cos(30) }\n";
+
+:> "Tangent of 30 degrees is ${ tan(30) }\n";
+```
+
+Yet another snippet extracted from [examples](examples) can be seen below.
+
+```
+:> "Step by 1\n";
+(i = 1; i <= 9; i++) {
+    :> i * (3 + i);:> "\n";
+}
+
+:> "Step by 2\n";
+(i = 1; i < 9; i+=2) {
+    :> i * (3 + i);:> "\n";
+}
+
+q = 5;
+(; q > 1; q--) {
+    :> "Rebel ${q}";
+    :> "\n";
+}
+
+q = 3;
+(; q > 1;) {
+    :> "Boom ... ${q}";
+    :> "\n";
+
+    q--;
+}
+
+/*
+(;;) {
+    :> "Ooh lala"; :> "\n";
+}
+*/
+```
 
 To use the SMPL interactive shell, you must perform the following command (assuming that the dependencies are in a _lib_ folder within the folder that you are running the command),
 
 ```bash
-java -cp lib/java-cup-11b.jar:lib/smpl-coore-outar-1.0.0.jar App
+java -cp lib/smpl-coore-outar-1.0.1.jar App
 ```
 
 You can exit the interactive shell by entering `exit`or `quit` and then press ENTER.
@@ -103,19 +169,19 @@ You can exit the interactive shell by entering `exit`or `quit` and then press EN
 To read a folder containing text files with extension _.smpl_, perform the following command (assuming _examples_ is the path of folder within the folder that you are running the command),
 
 ```bash
-java -cp lib/java-cup-11b.jar:lib/smpl-coore-outar-1.0.0.jar App examples
+java -cp lib/smpl-coore-outar-1.0.1.jar App examples
 ```
 
 To read a file containing SMPL syntax (no strict filtering done for file path arguments), perform the following command,
 
 ```bash
-java -cp lib/java-cup-11b.jar:lib/smpl-coore-outar-1.0.0.jar App myplayground.smpl
+java -cp lib/smpl-coore-outar-1.0.1.jar App myplayground.smpl
 ```
 
 For multiple files,
 
 ```bash
-java -cp lib/java-cup-11b.jar:bin App identifiers.smpl hypotenuse.smpl
+java -cp lib/smpl-coore-outar-1.0.1.jar App identifiers.smpl hypotenuse.smpl
 ```
 
 ## Contributing
@@ -128,8 +194,10 @@ It is expected that prospective contributors acquaint themselves with an underst
 
 The workspace contains several folders, where:
 
-- `src`: maintain source code for core function
-- `test`: contains SMPL syntax samples and JUnit tests
+- `src`: all source code
+  - `smpl`: core functions for the SMPL interpreter
+  - `tests`: contains SMPL JUnit tests
+- `examples`: contains several documented examples and snippets of SMPL syntax in _.smpl_ text files
 - `lib`: maintains dependencies
 - `bin`: contains generated class files from compilation
 - `docs`: contains generated HTML and XML files from _javadoc_ and _junitreport_
