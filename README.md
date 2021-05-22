@@ -313,3 +313,8 @@ java -jar lib/junit-platform-console-standalone-1.8.0.jar -cp bin --include-engi
 4. [Implementing String Interpolation in Flex & Bison](https://stackoverflow.com/questions/57971191/implementing-string-interpolation-in-flex-bison) - StackOverflow
 5. Ant: The Definitive Guide by Steve Holzner
 6. [Building and testing Java with Ant](https://docs.github.com/en/actions/guides/building-and-testing-java-with-ant)
+
+## Video Tutorial References
+
+1. [How to use the GitHub Package Registry](https://youtu.be/2-77KhGWlRg)
+2. [How to use Github Packages with Maven Java Project](https://youtu.be/MhzoxE7NdpI)
