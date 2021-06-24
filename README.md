@@ -318,3 +318,4 @@ java -jar lib/junit-platform-console-standalone-1.8.0.jar -cp bin --include-engi
 
 1. [How to use the GitHub Package Registry](https://youtu.be/2-77KhGWlRg)
 2. [How to use Github Packages with Maven Java Project](https://youtu.be/MhzoxE7NdpI)
+3. [25 VS Code Productivity Tips and Speed Hacks](https://youtu.be/ifTF3ags0XI)
